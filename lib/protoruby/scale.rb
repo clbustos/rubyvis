@@ -1,0 +1,29 @@
+module Protoruby
+  class Scale
+    def self.quantitative(*args)
+      Quantitative.new(*args)
+    end
+    def self.linear(*args)
+      Linear.new(*args)
+    end
+    def interpolator(start,_end)
+      if start.is_a? Numeric
+        return lambda {|t| t*(_end-start)+start}
+      end
+      start=Protoruby.color(start).rgb()
+      _end = Protoruby.color(_end).rgb()
+      return lambda {|t|
+        a=start.a*(1-t)+_end.a*t
+        a=0 if a<1e-5
+        return (start.a == 0) ? Protoruby.rgb(_end.r, _end.g, _end.b, a)
+        : ((_end.a == 0) ? pv.rgb(start.r, start.g, start.b, a)
+        : Protoruby.rgb(
+          (start.r * (1 - t) + _end.r * t).round,
+          (start.g * (1 - t) + _end.g * t).round,
+          (start.b * (1 - t) + _end.b * t).round, a))
+      }
+    end
+  end
+end
+require 'protoruby/scale/quantitative.rb'
+require 'protoruby/scale/linear.rb'
