@@ -6,6 +6,9 @@ module Protoruby
     def self.linear(*args)
       Linear.new(*args)
     end
+    def self.ordinal(*args)
+      Ordinal.new(*args)
+    end    
     def interpolator(start,_end)
       if start.is_a? Numeric
         return lambda {|t| t*(_end-start)+start}
@@ -27,3 +30,4 @@ module Protoruby
 end
 require 'protoruby/scale/quantitative.rb'
 require 'protoruby/scale/linear.rb'
+require 'protoruby/scale/ordinal.rb'

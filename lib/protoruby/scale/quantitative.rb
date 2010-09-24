@@ -12,7 +12,7 @@ module Protoruby
         @g=Protoruby.identity
         @tick_format=:to_s
         domain(*args)
-        end
+      end
       def l
         @l
       end

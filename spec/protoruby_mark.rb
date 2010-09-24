@@ -9,8 +9,6 @@ describe Protoruby::Mark do
     a.data.should=='hola'
     a.data(lambda{ object_id})
     a.data.should==a.object_id
-    a.data(lambda{|o| o.object_id})
-    a.data.should==a.object_id
   end
   it "should set values using chained methods" do
     r,l,b,t=rand(),rand(),rand(),rand()

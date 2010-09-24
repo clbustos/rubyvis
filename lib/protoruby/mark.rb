@@ -4,6 +4,9 @@ module Protoruby
    # specific rendering functionality, but together with {@link Panel} establishes
    # the core framework.
   class Mark
+    @properties={}
+    @cast={}
+    
     # Defines and registers a property method for the property with the
     # given name.  
     # This method should be called on a mark class prototype to define
@@ -12,40 +15,43 @@ module Protoruby
     # associated datum.
     # If invoked with non-block, the propery is treated as a constant
     # If invoked with no arument, the computed property value is returned
-    def self.property(*syms)
-      syms.each do |sym|
-        sym_w_sm=sym.to_s.gsub(":","")
-        define_method(sym) do |*args, &block|
-          if args.size==0
-            var=instance_variable_get("@#{sym_w_sm}")
-            if var.is_a? Proc
-              var.arity<1 ? self.instance_eval(&var) : var.call(self)
-            else
-              var
-            end
-          else
-            if args.size==0 and block
-              instance_variable_set("@#{sym_w_sm}", block)
-            else
-              instance_variable_set("@#{sym_w_sm}", args[0])
-            end
-            return self
-          end
+    
+    def self.property(name,_def=false)
+      @properties[name]=true
+      define_method(:name) {|*arguments|
+        v,v1=arguments
+        # Ommited def stuff
+        if (self.scene and _def)
+          raise "Not implemented"
         end
-        
-        define_method(sym.to_s+"=") do |*args|
-          instance_variable_set("@#{sym_w_sm}", args[0])
+        if arguments.size>0
+          is_function=v.is_a? Proc
+        else
+          instance[name]
         end
-      end
+      }
+      self
     end
     
-    property :data, :visible, :left, :right, :top, :bottom, :cursor, :title, :reverse, :antialias, :events, :id
-    attr_reader :child_index, :index, :scale
+    property(:data).
+    property(:visible).
+    property(:left).
+    property(:right).
+    property(:top).
+    property(:bottom).
+    property(:cursor).
+    property(:title).
+    property(:reverse).
+    property(:antialias).
+    property(:events).
+    property(:id)
+    attr_accessor :child_index
+    attr_reader :index, :scale
     def initialize
       @child_index=-1
       @index=-1
       @scale=1
-      
+      @properties=[]
     end
     def defaults
       Mark.new.data(lambda {|d| return [d];}).visible(true).antialias(true).events("painted")
@@ -80,8 +86,8 @@ module Protoruby
         end
         return s.left + w
       })
-    .top(lambda {|s|
-        s1 = s.scene.target[s.index]
+    .top(lambda {
+        s1 = self.scene.target[self.index]
         h = s1.height
         h||=0;
         case s.name
@@ -92,16 +98,16 @@ module Protoruby
         end
         return s.top + h;
       })
-    .right(lambda {|s1|
-        s = s1.scene.target[s1.index];
-        return s1.name() == "left" ? s.right + (s.width || 0) : nil;
+    .right(lambda {
+        s = self.scene.target[self.index];
+        return self.name() == "left" ? s.right + (s.width || 0) : nil;
       })
-    .bottom(lambda {|s1|
-        s = s1.scene.target[this.index];
-        return s1.name() == "top" ? s.bottom + (s.height || 0) : nil;
+    .bottom(lambda {
+        s = self.scene.target[self.index];
+        return self.name() == "top" ? s.bottom + (s.height || 0) : nil;
       })
-    .text_align(lambda {|this|
-        case this.name() 
+    .text_align(lambda {
+        case self.name() 
           when "center"
             return "center";
           when "right"
@@ -109,8 +115,8 @@ module Protoruby
         end
         return "left";
       })
-    .text_baseline(lambda {|this|
-        case this.name
+    .text_baseline(lambda {
+        case self.name
           when "center"
             return "middle";
           when "top"
@@ -120,9 +126,9 @@ module Protoruby
       });
     end
     def instance(default_index=nil)
-      scene=self.scene || self.parent.instance(-1).children[self.child_index]
-      index=!default_index.nil? || self.respond_to? :index ? self.index : default_index
-      return scene[index < 0 ? scene.length - 1 : index];.
+      scene=scene || parent.instance(-1).children[child_index]
+      index=!default_index.nil? || (self.respond_to?(:index) ? self.index : default_index)
+      return scene[index < 0 ? scene.length - 1 : index]
     end
   end
 end

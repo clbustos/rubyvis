@@ -1,9 +1,13 @@
+require 'protoruby/javascript_behaviour'
 require 'protoruby/format'
 require 'protoruby/label'
 require 'protoruby/mark'
 require 'protoruby/bar'
 require 'protoruby/panel'
 require 'protoruby/scale'
+require 'protoruby/color/color'
+require 'protoruby/color/colors'
+
 require 'date'
 module Protoruby
   VERSION = '1.0.0'
@@ -16,10 +20,21 @@ module Protoruby
   end
   def self.Format
     Protoruby::Format
-    
   end
+  def self.Panel
+    Protoruby::Panel
+  end  
   def self.identity
     lambda {|x| x}
+  end
+  def self.index
+    js_function {return self.index}
+  end
+  def self.child
+    js_function {return self.child_index}
+  end
+  def self.parent
+    js_function {return self.parent.index}
   end
   def self.log(x,b)
     Math::log(x).quo(Math::log(b))
@@ -27,7 +42,19 @@ module Protoruby
   def self.logFloor(x,b)
     (x>0)  ? b**(pv.log(x,b).floor) : b**(-(-pv.log(-x,b)).floor)
   end
-  
+  def self.map(array,f)
+    o={}
+    if f
+      out=[]
+      array.each_with_index {|v,i|
+        o[:index]=i
+        out.push(f.js_call(o,v))
+      }
+      out
+    else
+      array.dup
+    end
+  end
   def self.search (array, value, f=nil)
     f = identity if (f.nil?) 
     low = 0
@@ -49,8 +76,8 @@ module Protoruby
   
   def self.range(*arguments)
     
-    start, stop, step=arguments[0], arguments[1],arguments[2]
-    if (arguments.size == 1) 
+    start, stop, step=arguments
+    if (arguments.size == 1)
       stop = start;
       start = 0;
     end
@@ -66,15 +93,12 @@ module Protoruby
         array.push(j)
         i+=1
         j = start + step * i
-        
       end
      else 
       while (j < stop)
         array.push(j)
         i+=1
         j = start + step * i
-        
-
       end
     end
     array
