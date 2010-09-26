@@ -38,6 +38,7 @@ describe Protoruby::Scale::Linear do
   end
   it "should returns correct scale" do
     @y.scale(@h_dom).should==280
+    @y[@h_dom].should==280
     val=20
     @y.scale(val).should be_close(val.quo(@h_dom)*@h.to_f, 0.001)
   end

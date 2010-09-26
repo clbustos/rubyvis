@@ -1,6 +1,5 @@
 module Protoruby
-  class Scale
-    class Linear < Quantitative
+  
+  class Scale::Linear < Protoruby::Scale::Quantitative
     end
-  end
 end

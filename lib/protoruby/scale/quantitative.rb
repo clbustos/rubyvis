@@ -1,20 +1,18 @@
 module Protoruby
-  class Scale
-    class Quantitative < Scale
+  class Scale::Quantitative
+    include Protoruby::Scale
+    attr_reader :l
       def initialize(*args)
         @d=[0,1] # domain
         @l=[0,1] # transformed domain
-        @r=[0,1]
-        @i=[Protoruby.identity]
-        @type=:to_f
+        @r=[0,1] # default range
+        @i=[Protoruby.identity] # default interpolator
+        @type=:to_f # default type
         @n=false
-        @f=Protoruby.identity
+        @f=Protoruby.identity # default forward transformation
         @g=Protoruby.identity
         @tick_format=:to_s
         domain(*args)
-      end
-      def l
-        @l
       end
       def new_date(x=nil)
         if x.nil?
@@ -23,79 +21,50 @@ module Protoruby
           Date.new(x)
         end
       end
+
       def scale(x)
-        j=pv.search(@d,x)
+        j=Protoruby.search(@d,x)
         j=-j-2 if (j<0)
-        j=[0,[@i.length-1,j].min].max
+        j=[0,[@i.size-1,j].min].max
         # p @l
         # puts "Primero #{j}: #{@f.call(x) - @l[j]}"
         # puts "Segundo #{(@l[j + 1] - @l[j])}"
         @i[j].call((@f.call(x) - @l[j]) .quo(@l[j + 1] - @l[j]));
       end
-      
+      def [](x)
+        scale(x)
+      end
       def transform(forward, inverse)
         @f=lambda {|x| @n ? -forward.call(-x) : forward.call(x); }
         @g=lambda {|y| @n ? -inverse.call(-y) : inverse.call(y); }
         @l=@d.map{|v| @f.call(v)}
-        return self
-      end
-      def invert(y)
-        j=pv.search(@r, y)
-        j=-j-2 if j<0
-        j = [0, [@i.size - 1, j].min].max
-        
-        @g.call(@l[j] + (y - @r[j]).quo(@r[j + 1] - @r[j]) * (@l[j + 1] - @l[j]));
+        self
       end
       
-      def range(*arguments)
-        if (arguments.size>0) 
-          @r = arguments.dup
-          if (@r.size==0)
-            @r = [-Infinity, Infinity];
-          elsif (@r.length == 1)
-            @r = [@r[0], @r[0]]
-          end
-          
-          @i = Array.new
-          (@r.size-1).times do |j|
-            @i.push(interpolator(@r[j], @r[j + 1]));
-          end
-          return self
-        end
-        @r
-      end
       
-      def pv
-        Protoruby
-      end
-      
-      def domain(array=nil,min=nil,max=nil)
-        #puts "definiendo dominio"
-        arguments=Array.new
-        arguments.push(array) unless array.nil?
-        arguments.push(min) unless min.nil?
-        arguments.push(max) unless max.nil?
-        
+      def domain(*arguments)
+        array,min,max=arguments
         if (arguments.size>0)
           if array.is_a? Array 
-            min = pv.identity if (arguments.length < 2)
-            max = min if (arguments.length < 3)
-            o = array.length && [array[0]].min
-            @d = array.length ? [array.map {|v| min.call(v)}.min, array.map {|v| max.call(v)}.max] : [];
+            min = pv.identity if (arguments.size < 2)
+            max = min if (arguments.size < 3)
+            o = array.size && [array[0]].min
+            @d = array.size ? [Protoruby.min(array, min), Protoruby.max(array, max)] : [];
           else 
             o = array;
             @d = arguments.map {|i| i.to_f}
           end
-          if (!@d.size) 
+          if !@d.size 
             @d = [-Infinity, Infinity];
           elsif (@d.size == 1) 
-            @d = [@d[0], @d[0]]
+            @d = [@d.first, @d.first]
           end
-          @n = (@d[0] <=> @d[@d.length - 1]) < 0;
+          @n = (@d.first<0 or @d.last<0)
           @l=@d.map{|v| @f.call(v)}
           @type = (o.is_a? Date) ? newDate : :to_f;
           return self
         end
+        # TODO: Fix this.
         @d.map{|v| 
           case @type
           when :to_f
@@ -109,23 +78,53 @@ module Protoruby
       end
       
       
+      def range(*arguments)
+        if (arguments.size>0) 
+          @r = arguments.dup
+          if (@r.size==0)
+            @r = [-Infinity, Infinity];
+          elsif (@r.size == 1)
+            @r = [@r[0], @r[0]]
+          end
+          @i=(@r.size-1).times.map do |j|
+            interpolator(@r[j], @r[j + 1]);
+          end
+          return self
+        end
+        @r
+      end
       
+      def invert(y)
+        j=Protoruby.search(@r, y)
+        j=-j-2 if j<0
+        j = [0, [@i.size - 1, j].min].max
+        
+        @g.call(@l[j] + (y - @r[j]).quo(@r[j + 1] - @r[j]) * (@l[j + 1] - @l[j]));
+      end
       
-      
-      
+      def type(v=nil)
+        return @type if v.nil?
+        case @type
+          when Numeric
+            v.to_f
+          when Date
+            raise "Not implemented yet"
+          end
+      end
+      # TODO: FIX this func
       def ticks(*arguments) 
-        m=arguments[0]
-        start = @d[0]
-        _end = @d[@d.size - 1]
+        m = arguments[0]
+        start = @d.first
+        _end = @d.last
         reverse = _end < start
         min = reverse ? _end : start
         max = reverse ? start : _end
         span = max - min
         
         # Special case: empty, invalid or infinite span.
-        if (!span or span.infinite?) 
-          tick_format = pv.Format.date("%x") if (@type == newDate) 
-          return [min.call(@type)];
+        if (!span or (span.is_a? Float and span.infinite?)) 
+          @tick_format= Protoruby.Format.date("%x") if (@type == newDate) 
+          return [type(min)];
         end
         
         #/* Special case: dates. */
@@ -233,7 +232,7 @@ module Protoruby
         # Normal case: numbers. 
         m = 10 if (arguments.size==0)
         
-        step = pv.logFloor(span.quo(m), 10)
+        step = pv.log_floor(span.quo(m), 10)
         err = m.quo(span.quo(step))
         if (err <= 0.15)
         step = step*10
@@ -255,7 +254,7 @@ module Protoruby
         if (@d.size!=2)
           return self;
         end
-        start=@d[0]
+        start=@d.first
         _end=@d[@d.size-1]
         reverse=_end<start
         min=reverse ? _end : start
@@ -268,5 +267,4 @@ module Protoruby
         @l=@d.map {|v| @f.call(v)}
       end
     end
-  end
 end

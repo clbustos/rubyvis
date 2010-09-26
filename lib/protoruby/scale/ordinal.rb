@@ -1,9 +1,7 @@
 module Protoruby
-  class Scale
-    class Ordinal 
-      def pv
-        Protoruby
-      end
+  class Scale::Ordinal
+    include Protoruby::Scale
+    
       def initialize(*args)
         @d=[] # domain
         @i={}
@@ -45,5 +43,4 @@ module Protoruby
         self
       end
     end
-  end
 end

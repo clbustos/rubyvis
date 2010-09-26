@@ -2,7 +2,7 @@ module Protoruby
   def self.Scale
     Protoruby::Scale
   end
-  class Scale
+  module Scale
     def self.quantitative(*args)
       Quantitative.new(*args)
     end
@@ -29,6 +29,7 @@ module Protoruby
           (start.b * (1 - t) + _end.b * t).round, a))
       }
     end
+    module_function :interpolator
   end
 end
 require 'protoruby/scale/quantitative.rb'
