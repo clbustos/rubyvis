@@ -1,4 +1,7 @@
 module Protoruby
+  def self.Scale
+    Protoruby::Scale
+  end
   class Scale
     def self.quantitative(*args)
       Quantitative.new(*args)

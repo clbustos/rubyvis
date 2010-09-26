@@ -1,4 +1,8 @@
 module Protoruby
+  def self.Format
+    Protoruby::Format
+  end
+  
   module Format
     def self.re(s)
       s.gsub(/[\\\^\$\*\+\?\[\]\(\)\.\{\}]/, "\\$&")

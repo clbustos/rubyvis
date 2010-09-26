@@ -1,4 +1,7 @@
 module Protoruby
+  def self.Panel
+    Protoruby::Panel
+  end    
   class Panel < Bar
     @properties={}
     attr_accessor :children, :root
