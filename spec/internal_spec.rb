@@ -119,6 +119,28 @@ describe "Protoruby module methods" do
       Protoruby.median([1,3,2,5,3]).should==3
       Protoruby.median([1,3,2,5,3].map(&:to_s), lambda(&:to_f)).should==3
     end
+    it "method variance returns sum of squares" do
+      Protoruby.variance([5,7,9,11]).should==20
+      Protoruby.variance([5,7,9,11], lambda {|x| x+self.index}).should==45
+    end
+    it "method deviation returns standard deviation" do
+      Protoruby.deviation([5,7,9,11]).should be_close(2.581, 0.001)
+    end
+    it "method log" do
+      Protoruby.log(5,4).should be_close(1.16, 0.001)
+    end
+    it "method log_symmetric" do
+      Protoruby.log_symmetric(-5,4).should be_close(-1.16, 0.001)
+    end
+    it "method log_adjusted" do
+      Protoruby.log_adjusted(6,10).should be_close(0.806, 0.001)
+    end
+    it "method log_floor" do
+      Protoruby.log_floor(-5,4).should be_close(16, 0.001)
+    end
+    it "method log_ceil" do
+      Protoruby.log_ceil(-5,4).should be_close(-4, 0.001)
+    end
   end
   
 end

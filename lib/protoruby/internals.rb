@@ -176,22 +176,40 @@ module Protoruby
     array = Protoruby.map(array, f).sort{|a,b| Protoruby.natural_order(a,b)}
     return array[array.size.quo(2).floor] if (array.length % 2>0) 
     i = array.size.quo(2);
-    
     return (array[i - 1] + array[i]).quo(2);
-    
-    
+  end
+  # Sum of square, really
+  def self.variance(array,f=nil)
+    return 0 if array.size==1 or array.uniq.size==1
+    ar=(f.nil?) ? array : Protoruby.map(array,f)
+    mean=Protoruby.mean(ar)
+    ar.inject(0) {|ac,v| ac+(v-mean)**2}
+  end
+  def self.deviation(array,f=nil)
+    Math::sqrt(self.variance(array,f) / (array.size.to_f-1))
   end
   def self.log(x,b)
     Math::log(x).quo(Math::log(b))
   end
-  def self.logFloor(x,b)
-    (x>0)  ? b**(pv.log(x,b).floor) : b**(-(-pv.log(-x,b)).floor)
+  def self.log_symmetric(x,b)
+    (x == 0) ? 0 : ((x < 0) ? -Protoruby.log(-x, b) : Protoruby.log(x, b));
   end
-  
-  
-  
-  
-  
-  
-  
+  def self.log_adjusted(x,b)
+    x if x.is_a? Float and !x.finite?
+    negative=x<0
+    x += (b - x) / b.to_f if (x < b)
+    negative ? -Protoruby.log(x, b) : Protoruby.log(x, b);
+  end
+  def self.log_floor(x,b)
+    (x>0)  ? b**(Protoruby.log(x,b).floor) : b**(-(-Protoruby.log(-x,b)).floor)
+  end
+  def self.log_ceil(x,b)
+    (x > 0) ? b ** (Protoruby.log(x, b)).ceil : -(b ** -(-Protoruby.log(-x, b)).ceil);
+  end
+  def self.radians(degrees)
+    (Math::PI/180.0)*degrees
+  end
+  def self.degrees(radians)
+    ((180.0) / Math::PI)*radians
+  end
 end
