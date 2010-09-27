@@ -1,5 +1,5 @@
 $:.unshift(File.dirname(__FILE__)+"/../lib")
-require 'protoruby'
+require 'rubyvis'
 causes = ["wounds", "other", "disease"];
 
 crimea = [

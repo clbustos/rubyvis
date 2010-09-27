@@ -1,4 +1,4 @@
-module Protoruby
+module Rubyvis
    # Represents a data-driven graphical mark. The <tt>Mark</tt> class is
    # the base class for all graphical marks in Protovis; it does not provide any
    # specific rendering functionality, but together with {@link Panel} establishes

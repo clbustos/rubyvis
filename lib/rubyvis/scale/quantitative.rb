@@ -1,16 +1,16 @@
-module Protoruby
+module Rubyvis
   class Scale::Quantitative
-    include Protoruby::Scale
+    include Rubyvis::Scale
     attr_reader :l
       def initialize(*args)
         @d=[0,1] # domain
         @l=[0,1] # transformed domain
         @r=[0,1] # default range
-        @i=[Protoruby.identity] # default interpolator
+        @i=[Rubyvis.identity] # default interpolator
         @type=:to_f # default type
         @n=false
-        @f=Protoruby.identity # default forward transformation
-        @g=Protoruby.identity
+        @f=Rubyvis.identity # default forward transformation
+        @g=Rubyvis.identity
         @tick_format=lambda {|x| x.to_f}
         domain(*args)
       end
@@ -19,7 +19,7 @@ module Protoruby
       end
 
       def scale(x)
-        j=Protoruby.search(@d,x)
+        j=Rubyvis.search(@d,x)
         j=-j-2 if (j<0)
         j=[0,[@i.size-1,j].min].max
         # p @l
@@ -45,7 +45,7 @@ module Protoruby
             min = pv.identity if (arguments.size < 2)
             max = min if (arguments.size < 3)
             o = array.size>0 && [array[0]].min
-            @d = array.size ? [Protoruby.min(array, min), Protoruby.max(array, max)] : [];
+            @d = array.size ? [Rubyvis.min(array, min), Rubyvis.max(array, max)] : [];
           else 
             o = array;
             @d = arguments.map {|i| i.to_f}
@@ -83,7 +83,7 @@ module Protoruby
             @r = [@r[0], @r[0]]
           end
           @i=(@r.size-1).times.map do |j|
-            Protoruby::Scale.interpolator(@r[j], @r[j + 1]);
+            Rubyvis::Scale.interpolator(@r[j], @r[j + 1]);
           end
           return self
         end
@@ -91,7 +91,7 @@ module Protoruby
       end
       
       def invert(y)
-        j=Protoruby.search(@r, y)
+        j=Rubyvis.search(@r, y)
         j=-j-2 if j<0
         j = [0, [@i.size - 1, j].min].max
         
@@ -119,7 +119,7 @@ module Protoruby
         
         # Special case: empty, invalid or infinite span.
         if (!span or (span.is_a? Float and span.infinite?)) 
-          @tick_format= Protoruby.Format.date("%x") if (@type == newDate) 
+          @tick_format= Rubyvis.Format.date("%x") if (@type == newDate) 
           return [type(min)];
         end
         # From here, ¡chaos!

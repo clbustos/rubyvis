@@ -1,12 +1,12 @@
-module Protoruby
+module Rubyvis
   def self.colors(*args)
-    scale=Protoruby::Scale.ordinal
+    scale=Rubyvis::Scale.ordinal
     scale.range(*args)
     scale
   end
   module Colors
     def pv
-      Protoruby
+      Rubyvis
     end
     def category20(*arguments)
       scale = pv.colors(

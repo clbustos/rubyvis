@@ -1,11 +1,11 @@
 require 'date'
-module Protoruby
+module Rubyvis
   module Format
     class Date
       attr_reader :pattern
       def initialize(pattern)
         @pattern=pattern
-        #@pad=Protoruby::Format.pad
+        #@pad=Rubyvis::Format.pad
       end
       def format(d)
         d.strftime(pattern)

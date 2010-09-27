@@ -1,4 +1,4 @@
-module Protoruby
+module Rubyvis
   # :section: /pv-internals.js
   @@id=0
   def self.id
@@ -46,7 +46,7 @@ module Protoruby
     out
   end
   def self.normalize(array,f=nil)
-    norm=Protoruby.map(array,f)
+    norm=Rubyvis.map(array,f)
     sum=pv.sum(norm)
     norm.map {|x| x.quo(sum)}
   end
@@ -54,11 +54,11 @@ module Protoruby
     o=OpenStruct.new :index=>i
   end
   def self.permute(array,indexes, f=nil)
-    f=Protoruby.identity if f.nil?
+    f=Rubyvis.identity if f.nil?
     indexes.map {|i| o=o_index(i); f.js_call(o, array[i])}
   end
   def self.numerate(keys, f=nil)
-    f=Protoruby.identity if f.nil?
+    f=Rubyvis.identity if f.nil?
     m = {}
     keys.each_with_index {|x,i|
       o=o_index(i)
@@ -77,7 +77,7 @@ module Protoruby
   end
   
   def self.search(array, value, f=nil)
-    f = Protoruby.identity if (f.nil?) 
+    f = Rubyvis.identity if (f.nil?) 
     low = 0
     high = array.size - 1;
     while (low <= high)
@@ -94,7 +94,7 @@ module Protoruby
     return -low - 1;
   end
   def self.search_index(array,value,f=nil)
-    i=Protoruby.search(array,value,f)
+    i=Rubyvis.search(array,value,f)
     (i < 0 ) ? (-i-1) : i;
   end
   
@@ -150,30 +150,30 @@ module Protoruby
     end
   end
   def self.max(array, f=nil)
-    return array.size-1 if f==Protoruby.index
-    f ? Protoruby.map(array, f).max : array.max
+    return array.size-1 if f==Rubyvis.index
+    f ? Rubyvis.map(array, f).max : array.max
   end
   def self.max_index(array,f=nil)
-    a2=Protoruby.map(array,f)
+    a2=Rubyvis.map(array,f)
     max=a2.max
     a2.index(max)
   end
 
   def self.min(array, f=nil)
-    return array.size-1 if f==Protoruby.index
-    f ? Protoruby.map(array, f).min : array.min
+    return array.size-1 if f==Rubyvis.index
+    f ? Rubyvis.map(array, f).min : array.min
   end
   def self.min_index(array,f=nil)
-    a2=Protoruby.map(array,f)
+    a2=Rubyvis.map(array,f)
     min=a2.min
     a2.index(min)
   end
   def self.mean(array, f=nil)
-    Protoruby.sum(array,f).quo(array.size)
+    Rubyvis.sum(array,f).quo(array.size)
   end
   def self.median(array,f=nil)
     return (array.length - 1).quo(2) if (f == pv.index) 
-    array = Protoruby.map(array, f).sort{|a,b| Protoruby.natural_order(a,b)}
+    array = Rubyvis.map(array, f).sort{|a,b| Rubyvis.natural_order(a,b)}
     return array[array.size.quo(2).floor] if (array.length % 2>0) 
     i = array.size.quo(2);
     return (array[i - 1] + array[i]).quo(2);
@@ -181,8 +181,8 @@ module Protoruby
   # Sum of square, really
   def self.variance(array,f=nil)
     return 0 if array.size==1 or array.uniq.size==1
-    ar=(f.nil?) ? array : Protoruby.map(array,f)
-    mean=Protoruby.mean(ar)
+    ar=(f.nil?) ? array : Rubyvis.map(array,f)
+    mean=Rubyvis.mean(ar)
     ar.inject(0) {|ac,v| ac+(v-mean)**2}
   end
   def self.deviation(array,f=nil)
@@ -192,19 +192,19 @@ module Protoruby
     Math::log(x).quo(Math::log(b))
   end
   def self.log_symmetric(x,b)
-    (x == 0) ? 0 : ((x < 0) ? -Protoruby.log(-x, b) : Protoruby.log(x, b));
+    (x == 0) ? 0 : ((x < 0) ? -Rubyvis.log(-x, b) : Rubyvis.log(x, b));
   end
   def self.log_adjusted(x,b)
     x if x.is_a? Float and !x.finite?
     negative=x<0
     x += (b - x) / b.to_f if (x < b)
-    negative ? -Protoruby.log(x, b) : Protoruby.log(x, b);
+    negative ? -Rubyvis.log(x, b) : Rubyvis.log(x, b);
   end
   def self.log_floor(x,b)
-    (x>0)  ? b**(Protoruby.log(x,b).floor) : b**(-(-Protoruby.log(-x,b)).floor)
+    (x>0)  ? b**(Rubyvis.log(x,b).floor) : b**(-(-Rubyvis.log(-x,b)).floor)
   end
   def self.log_ceil(x,b)
-    (x > 0) ? b ** (Protoruby.log(x, b)).ceil : -(b ** -(-Protoruby.log(-x, b)).ceil);
+    (x > 0) ? b ** (Rubyvis.log(x, b)).ceil : -(b ** -(-Rubyvis.log(-x, b)).ceil);
   end
   def self.radians(degrees)
     (Math::PI/180.0)*degrees

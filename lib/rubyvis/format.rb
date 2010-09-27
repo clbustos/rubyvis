@@ -1,6 +1,6 @@
-module Protoruby
+module Rubyvis
   def self.Format
-    Protoruby::Format
+    Rubyvis::Format
   end
   
   module Format
@@ -15,5 +15,5 @@ module Protoruby
     end
   end
 end
-require 'protoruby/format/number'
-require 'protoruby/format/date'
+require 'rubyvis/format/number'
+require 'rubyvis/format/date'

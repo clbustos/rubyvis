@@ -1,6 +1,6 @@
-module Protoruby
+module Rubyvis
   def self.Panel
-    Protoruby::Panel
+    Rubyvis::Panel
   end    
   class Panel < Bar
     @properties={}

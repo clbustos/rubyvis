@@ -1,4 +1,4 @@
-module Protoruby
+module Rubyvis
   module Format
     class Number
       def initialize

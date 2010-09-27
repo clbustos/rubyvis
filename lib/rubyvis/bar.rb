@@ -1,4 +1,4 @@
-module Protoruby
+module Rubyvis
   class Bar < Mark
     @properties={}
     property(:width).

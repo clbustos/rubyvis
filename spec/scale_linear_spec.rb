@@ -1,16 +1,16 @@
 require File.dirname(__FILE__)+"/spec_helper.rb"
-describe Protoruby::Scale::Linear do
+describe Rubyvis::Scale::Linear do
   it "should be created as Javascript" do
     h=280
-    y = Protoruby.Scale.linear(0, 1500)
+    y = Rubyvis.Scale.linear(0, 1500)
   end
   before do
     @h=280
     @h_dom=1000
-    @y = Protoruby.Scale.linear(0, @h_dom).range(0,@h)
+    @y = Rubyvis.Scale.linear(0, @h_dom).range(0,@h)
   end
   it "y should be a Scale" do
-    @y.should be_a(Protoruby::Scale::Linear)
+    @y.should be_a(Rubyvis::Scale::Linear)
   end
   it "should set domain with dates" do
     pending("Should accept dates as domain values")
@@ -19,7 +19,7 @@ describe Protoruby::Scale::Linear do
     { :date=> Date.new, :wounds=> 2, :other=> 130, :disease=> 110 }
     
     ]
-    x=Protoruby.Scale.linear(data, lambda {|d| d[:date]})
+    x=Rubyvis.Scale.linear(data, lambda {|d| d[:date]})
     
   end
   it "should respond to domain" do

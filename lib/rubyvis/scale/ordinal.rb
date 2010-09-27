@@ -1,6 +1,6 @@
-module Protoruby
+module Rubyvis
   class Scale::Ordinal
-    include Protoruby::Scale
+    include Rubyvis::Scale
     
       def initialize(*args)
         @d=[] # domain

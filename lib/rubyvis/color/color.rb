@@ -1,10 +1,10 @@
-module Protoruby
+module Rubyvis
   def self.color(format)
     return format.rgb if format.respond_to? :rgb
     
   end
   def rgb(r,g,b,a=1)
-      Protoruby::Color::Rgb.new(r,g,b,a)
+      Rubyvis::Color::Rgb.new(r,g,b,a)
   end
     
   class Color
