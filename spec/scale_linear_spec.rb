@@ -1,9 +1,68 @@
 require File.dirname(__FILE__)+"/spec_helper.rb"
 describe Rubyvis::Scale::Linear do
+  if Rubyvis::JohnsonLoader.available?
+    context "direct protovis API comparison" do 
+      before(:all) do
+        @rt=  Rubyvis::JohnsonLoader.new("/data/Scale.js", "/data/QuantitativeScale.js", "/data/LinearScale.js","/color/Color.js","/color/Colors.js","/text/Format.js", "/text/DateFormat.js","/text/NumberFormat.js","/text/TimeFormat.js").runtime
+      end
+      before do 
+        @h=280
+        @h_dom=1000
+        @y = Rubyvis.Scale.linear(0, @h_dom).range(0,@h)
+        @rt[:h_dom] = @h_dom
+        @rt[:h] = @h
+        @y_js=@rt.evaluate("y=pv.Scale.linear(0, h_dom).range(0,h)")
+        @v1,@v2,@v3=rand(),rand()+3,rand()+5
+        @rt[:v1]=@v1
+        @rt[:v2]=@v2
+        @rt[:v3]=@v3
+
+      end
+      it "domain() implemented equally" do
+        @y.domain(@v1)
+        @rt.evaluate("y.domain(v1)")
+        @y.domain.should==@rt.evaluate("y.domain()").to_a
+        @y.domain(@v1,@v2,@v3)
+        @rt.evaluate("y.domain(v1,v2,v3)")
+        @y.domain.should==@rt.evaluate("y.domain()").to_a        
+      end
+      it "scale() implemented equally for complex domain" do
+        @y.domain(@v1,@v2,@v3)
+        @rt.evaluate("y.domain(v1,v2,v3)")
+        @y.scale(@v1+1).should==@rt.evaluate("y(v1+1)")
+        @y.scale(@v2+1).should==@rt.evaluate("y(v2+1)")
+        @y.scale(@v3+1).should==@rt.evaluate("y(v3+1)")
+      end
+      it "invert() implemented equally" do
+        @y.domain(@v1,@v2,@v3)
+        @rt.evaluate("y.domain(v1,v2,v3)")
+        @y.invert(@v1+1).should==@rt.evaluate("y.invert(v1+1)")
+        @y.invert(@v2+1).should==@rt.evaluate("y.invert(v2+1)")
+        @y.invert(@v3+1).should==@rt.evaluate("y.invert(v3+1)")
+      end
+      it "ticks() implemented equally for numbers" do
+        @y.ticks.should==@rt.evaluate("y.ticks()").to_a
+        (5..20).each {|i|
+          @rt[:i]=i
+          @y.ticks(i).should==@rt.evaluate("y.ticks(i)").to_a
+        }
+      end
+      it "nice() implemented equally" do
+        @y.domain(@v1,@v2)
+        @rt.evaluate("y.domain(v1,v2)")
+        @y.nice
+        @rt.evaluate("y.nice()")
+        @y.domain.should==@rt.evaluate("y.domain()").to_a
+      end
+   
+    end
+    
+  end
   it "should be created as Javascript" do
     h=280
     y = Rubyvis.Scale.linear(0, 1500)
   end
+  
   before do
     @h=280
     @h_dom=1000
