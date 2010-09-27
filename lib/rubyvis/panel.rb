@@ -9,17 +9,12 @@ module Rubyvis
       @children=[]
       @root=self
     end
-    property(:transform).
-    property(:overflow).
-    property(:canvas)
+    property(:transform).property(:overflow).property(:canvas)
     def type
       "panel"
     end
     def defaults
-      Panel.new
-      ._extend(Bar.new.default)
-      .fill_style(nil)
-      .overflow("visible")
+      Panel.new._extend(Bar.new.default).fill_style(nil).overflow("visible")
     end
     def anchor(name)
       a=super(name)

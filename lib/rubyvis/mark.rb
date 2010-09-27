@@ -33,18 +33,7 @@ module Rubyvis
       self
     end
     
-    property(:data).
-    property(:visible).
-    property(:left).
-    property(:right).
-    property(:top).
-    property(:bottom).
-    property(:cursor).
-    property(:title).
-    property(:reverse).
-    property(:antialias).
-    property(:events).
-    property(:id)
+    property(:data).    property(:visible).    property(:left).    property(:right).    property(:top).    property(:bottom).    property(:cursor).    property(:title).    property(:reverse).    property(:antialias).    property(:events).    property(:id)
     attr_accessor :child_index
     attr_reader :index, :scale
     def initialize
@@ -69,12 +58,7 @@ module Rubyvis
     end
     def anchor(name)
        name = "center" if (!name) # default anchor name
-       return new pv.Anchor(self)
-    .name(name)
-    .data(lambda {self.scene.target.map {|s| s.data}})
-    .visible(lambda {self.scene.target[self.index].visible})
-    .id(lambda {self.scene.target[self.index].id})
-    .left(lambda {
+       return new pv.Anchor(self).name(name).data(lambda {self.scene.target.map {|s| s.data}}).visible(lambda {self.scene.target[self.index].visible}).id(lambda {self.scene.target[self.index].id}).left(lambda {
         s = self.scene.target[self.index]
         w = s.width
         w||=0
@@ -85,8 +69,7 @@ module Rubyvis
             return nil
         end
         return s.left + w
-      })
-    .top(lambda {
+      }).top(lambda {
         s1 = self.scene.target[self.index]
         h = s1.height
         h||=0;
@@ -97,16 +80,13 @@ module Rubyvis
             return nil
         end
         return s.top + h;
-      })
-    .right(lambda {
+      }).right(lambda {
         s = self.scene.target[self.index];
         return self.name() == "left" ? s.right + (s.width || 0) : nil;
-      })
-    .bottom(lambda {
+      }).bottom(lambda {
         s = self.scene.target[self.index];
         return self.name() == "top" ? s.bottom + (s.height || 0) : nil;
-      })
-    .text_align(lambda {
+      }).text_align(lambda {
         case self.name() 
           when "center"
             return "center";
@@ -114,8 +94,7 @@ module Rubyvis
             return "right";
         end
         return "left";
-      })
-    .text_baseline(lambda {
+      }).text_baseline(lambda {
         case self.name
           when "center"
             return "middle";
