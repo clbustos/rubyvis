@@ -12,7 +12,7 @@ module Protoruby
     def self.ordinal(*args)
       Ordinal.new(*args)
     end    
-    def interpolator(start,_end)
+    def self.interpolator(start,_end)
       if start.is_a? Numeric
         return lambda {|t| t*(_end-start)+start}
       end
@@ -29,7 +29,6 @@ module Protoruby
           (start.b * (1 - t) + _end.b * t).round, a))
       }
     end
-    module_function :interpolator
   end
 end
 require 'protoruby/scale/quantitative.rb'

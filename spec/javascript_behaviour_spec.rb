@@ -1,5 +1,5 @@
 require File.dirname(__FILE__)+"/spec_helper.rb"
-describe "Javascript simulation" do
+describe "Javascript compatibility" do
   it "extends Proc with js_apply and js_call" do
     f=lambda {|a,b| a+b}
     f.should respond_to(:js_apply)

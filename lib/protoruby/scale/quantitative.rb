@@ -11,15 +11,11 @@ module Protoruby
         @n=false
         @f=Protoruby.identity # default forward transformation
         @g=Protoruby.identity
-        @tick_format=:to_s
+        @tick_format=lambda {|x| x.to_f}
         domain(*args)
       end
       def new_date(x=nil)
-        if x.nil?
-          Date.new
-        else
-          Date.new(x)
-        end
+        x.nil? ? Date.today : DateTime.civil(x)
       end
 
       def scale(x)
@@ -48,7 +44,7 @@ module Protoruby
           if array.is_a? Array 
             min = pv.identity if (arguments.size < 2)
             max = min if (arguments.size < 3)
-            o = array.size && [array[0]].min
+            o = array.size>0 && [array[0]].min
             @d = array.size ? [Protoruby.min(array, min), Protoruby.max(array, max)] : [];
           else 
             o = array;
@@ -61,7 +57,7 @@ module Protoruby
           end
           @n = (@d.first<0 or @d.last<0)
           @l=@d.map{|v| @f.call(v)}
-          @type = (o.is_a? Date) ? newDate : :to_f;
+          @type = (o.is_a? Date) ? new_date : :to_f;
           return self
         end
         # TODO: Fix this.
@@ -87,7 +83,7 @@ module Protoruby
             @r = [@r[0], @r[0]]
           end
           @i=(@r.size-1).times.map do |j|
-            interpolator(@r[j], @r[j + 1]);
+            Protoruby::Scale.interpolator(@r[j], @r[j + 1]);
           end
           return self
         end
@@ -126,7 +122,7 @@ module Protoruby
           @tick_format= Protoruby.Format.date("%x") if (@type == newDate) 
           return [type(min)];
         end
-        
+        # From here, ¡chaos!
         #/* Special case: dates. */
         if (@type == new_date) 
         #/* Floor the date d given the precision p. */
@@ -246,9 +242,6 @@ module Protoruby
         @tick_format= pv.Format.number().fraction_digits([0, -(pv.log(step, 10) + 0.01).floor].max);
         ticks = pv.range(start, _end + step, step);
         return reverse ? ticks.reverse() : ticks;
-      end
-      def tick_format(t)
-        t.send(@tick_format)
       end
       def nice
         if (@d.size!=2)
