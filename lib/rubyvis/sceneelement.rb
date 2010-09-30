@@ -9,7 +9,7 @@ module Rubyvis
     def []=(v,i)
       if v.is_a? Numeric
         @scenes[v]=i
-      elsif self.respond_to? (v.to_s+"=")
+      elsif self.respond_to?(v.to_s+"=")
         self.send(v.to_s+"=",i)
       end
     end

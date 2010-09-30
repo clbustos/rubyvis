@@ -18,7 +18,7 @@ module Rubyvis
          end
          if arguments.size>0
            type=(!_def).to_i<<1 | (v.is_a? Proc).to_i
-           property_value(name,(type & 1 !=0) ? lambda {|*args| return v.js_apply(self, args)} : v).type=type
+           property_value(name,(type & 1 !=0) ? lambda {|*args|  v.js_apply(self, args)} : v)._type=type
            @_properties_types[name]=type
            return self
          end
@@ -122,7 +122,7 @@ module Rubyvis
     def _properties
       out={}
       @_properties_values.each {|k,v|
-        out[k]=OpenStruct.new({:name=>k.to_s,:value=>v, :type=>@_properties_types[k]})
+        out[k]=OpenStruct.new({:name=>k.to_s,:value=>v, :_type=>@_properties_types[k]})
       }
       out
     end
@@ -134,7 +134,7 @@ module Rubyvis
     
     
     def defaults
-      {:data=>lambda {|d| return [d]}, :visible=>true, :antialias=>true}
+      {:data=>lambda {|d| [d]}, :visible=>true, :antialias=>true}
     end
     def extend(proto)
       @proto=proto
@@ -279,7 +279,7 @@ module Rubyvis
               when "id"
                 @_required.push(v)
               else
-                @types[v.type].push(v)
+                @types[v._type].push(v)
             end
           end
         }
@@ -298,7 +298,7 @@ module Rubyvis
       begin
       properties.each {|name,v|
         if !@seen[name.to_s]
-          @seen[name.to_s]=OpenStruct.new(:name=>name.to_s, :type=>2, :value=>nil)
+          @seen[name.to_s]=OpenStruct.new(:name=>name.to_s, :_type=>2, :value=>nil)
           @types[2].push(@seen[name.to_s])
         end
       }
@@ -414,7 +414,7 @@ module Rubyvis
         end
         data=self.binds.data
         
-        data=(data.type & 1)>0 ? data.value.js_apply(self, stack) : data.value
+        data=(data._type & 1)>0 ? data.value.js_apply(self, stack) : data.value
         stack.unshift(nil)
         
         scene.size=data.size
@@ -448,7 +448,7 @@ module Rubyvis
 
       #  p "#{prop.name}=#{v}"
         
-        if prop.type==3
+        if prop._type==3
           v=v.js_apply(self, Mark.stack)
         end
         ss.send((prop.name.to_s+"=").to_sym, v)

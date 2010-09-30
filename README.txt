@@ -8,7 +8,7 @@ Ruby version of Protovis, a great visualization toolkit
 
 == FEATURES/PROBLEMS:
 
-NOTE: THIS LIBRARY IS NOT YET OPERATIONAL. WILL BE RELEASED AS A GEM WHEN CAN OUTPUT SOMETHING
+NOTE: Barely operational version. Just have bars, panels and scene.
 
 I try to maintain, when posible, complete compatibility with Javascript API. Johnson [http://github.com/jbarnette/johnson] - the lovely Javascript wrapper inside Ruby embrace - is out friend. 
  
@@ -21,25 +21,35 @@ User could use +pv+ freely, cause is defined as a global method which call Rubyv
 * pv.js
 * pv-internals.js
 * color/Color.js (incomplete)
-* color/Colors.js (incomplete)
+* color/Colors.js
 * data/Arrays.js
 * data/Numbers.js
 * data/Scale.js
 * data/LinearScale.js
 * data/QuantitativeScale.js (only numbers)
 * data/OrdinalScale.js (not tested)
-* mark/Mark.js (doesn't pass tests)
-* mark/Bar.js (doesn't pass tests)
-* mark/Panel.js (doesn't pass tests)
+* mark/Mark.js
+* mark/Bar.js 
+* mark/Panel.js
+* scene/SvgPanel.js
+* scene/SvgBar.js
+* scene/SvgScene.js
 * text/Format.js (incomplete)
 * text/NumberFormat.js (incomplete)
 
 == SYNOPSIS:
 
     require 'rubyvis'
-    x = pv.Scale.linear(crimea, lambda {|d|  d[:date]}).range(0, w)
-    y = pv.Scale.linear(0, 1500).range(0, h)
     
+    vis = Rubyvis::Panel.new.width(150).height(150);
+    vis.add(pv.Bar).data([1, 1.2, 1.7, 1.5, 0.7, 0.3]).
+    width(20).
+    height(lambda {|d| d * 80}).
+    bottom(0).
+    left(lambda {self.index * 25});
+    vis.render()
+    # All elements are rendered inside tag 'canvas', inside the panel
+    puts vis.canvas.elements[1]
 
 == REQUIREMENTS:
 
