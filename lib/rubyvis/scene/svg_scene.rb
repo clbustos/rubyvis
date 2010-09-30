@@ -1,5 +1,7 @@
 require 'rubyvis/scene/svg_panel'
 require 'rubyvis/scene/svg_bar'
+require 'rubyvis/scene/svg_rule'
+require 'rubyvis/scene/svg_label'
 
 class REXML::Element
   attr_accessor :_scene
@@ -48,7 +50,7 @@ module Rubyvis
     }
     css={"font"=>"10px sans-serif"}
     
-    {:svg=>svg,css=>css}
+    {:svg=>svg,:css=>css}
     end
     def self.update_all(scenes)
       if (scenes.size>0 and scenes[0].reverse and scenes.type!='line' and scenes.type!='area')
@@ -102,7 +104,6 @@ module Rubyvis
       if(style)
         style.each {|name,value|
           value=nil if value==self.implicit[:css][name]
-          
           if (value.nil?)
             e.delete_attribute(name)
           else

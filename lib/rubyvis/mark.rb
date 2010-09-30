@@ -39,6 +39,9 @@ module Rubyvis
        @_properties_values[name]=v
        return prop
      end
+     def margin(n)
+       self.left(n).right(n).top(n).bottom(n)
+     end
      def instance(default_index=nil)
        scene=self.scene
        scene||=self.parent.instance(-1).children[self.child_index]
@@ -64,7 +67,7 @@ module Rubyvis
     end
     
     attr_accessor :parent, :root, :index, :child_index, :scene, :proto, :target, :scale
-    attr_accessor_dsl :data,:visible, :left, :right, :top, :bottom, :title, :reverse, :antialias
+    attr_accessor_dsl :data,:visible, :left, :right, :top, :bottom, :title, :reverse, :antialias, :id
    
     @scene=nil
     @stack=[]
@@ -96,16 +99,13 @@ module Rubyvis
     def Mark.stack=(v)
       @stack=v
     end
-    def stack
-      (self.class).stack
-    end
     
     def initialize(opts=Hash.new)
       @_properties_values={}
       @_properties_types={}
       @_properties=[]
       @options=defaults.merge opts
-      @stack=[]
+      # @stack=[]
       @options.each {|k,v|
         self.send("#{k}=",v) if self.respond_to? k
       }
@@ -145,14 +145,59 @@ module Rubyvis
     def add(type)
       parent.add(type).extend(self)
     end
-    def anchor(name)
-      return Anchor.new(self)
-    end
-    def svg_render_pre
-      ""
-    end
-    def svg_render_post
-      ""
+    def anchor(name=nil)
+      name = "center" if (!name) # default anchor name
+      return Rubyvis::Anchor.new(self).name(name).data(lambda {
+      self.scene.target.map {|s| s.data} }).visible(lambda {
+      self.scene.target[self.index].visible
+      }).id(lambda {self.scene.target[self.index].id}).left(lambda {
+        s = self.scene.target[self.index]
+        w = s.width
+        w||=0
+        if ['bottom','top','center'].include?(self.name)
+          s.left + w / 2.0
+        elsif self.name=='left'
+          nil
+        else
+          s.left + w
+        end
+      }).top(lambda {
+       s = self.scene.target[self.index]
+       h = s.height
+       h||= 0
+       if ['left','right','center'].include? self.name
+          s.top+h/2.0
+        elsif self.name=='top'
+          nil
+        else
+          s.top + h
+        end
+      }).right(lambda {
+        s = self.scene.target[self.index]
+        self.name() == "left" ? s.right + (s.width ? s.width : 0) : nil;
+      }).bottom(lambda {
+        s = self.scene.target[self.index];
+        self.name() == "top" ? s.bottom + (s.height ? s.height : 0) : nil;
+      }).text_align(lambda {
+      if ['bottom','top','center'].include? self.name
+        'center'
+      elsif self.name=='right'
+        'right'
+      else
+        'left'
+      end
+      }).text_baseline(lambda {
+      if ['right','left','center'].include? self.name
+        'middle'
+      elsif self.name=='top'
+        'top'
+      else
+        'bottom'
+      end
+      })
+
+      
+      
     end
     
     
@@ -172,10 +217,14 @@ module Rubyvis
       
       width=self.parent ? self.parent.width(): (w+(l.nil? ? 0 : l)+(r.nil? ? 0 :r))
       if w.nil?
-        w=width-(r ? r :0)-(l ? l : 0)
+        r||=0
+        l||=0
+        w=width-r-l
       elsif r.nil?
         if l.nil?
-          l=r=(width-w) / (2.0)
+          
+          r=(width-w) / (2.0)
+          l=r
         else
           r=width-w-l
         end
@@ -186,22 +235,28 @@ module Rubyvis
       height=self.parent ? self.parent.height(): (h+(t.nil? ? 0 : t )+(b.nil? ? 0 : b))
       
       if h.nil?
-        h=height-(t ? t :0)-(b ? b : 0)
+        t||=0
+        b||=0
+        h=height-t-b
       elsif b.nil?
         if t.nil?
-          b=t=(height-h) / 2.0
+          t=(height-h) / 2.0
+          b=t
         else
           b=height-h-t
         end
       elsif t.nil?
         t=height-h-b
       end
+      
+      
+      
       s.left=l
       s.right=r
       s.top=t
       s.bottom=b
       
-       # puts "#{l},#{r},#{t},#{b}"
+      # puts "#{l},#{r},#{t},#{b}"
       
       s.width=w if prop[:width]
       s.height=h if prop[:height]
@@ -250,7 +305,8 @@ module Rubyvis
         child_index.times {|i|
           mark.children[i].scene=s.children[i]
         }
-        @stack[0]=s.data
+        Mark.stack[0]=s.data
+        
         if (child.scene)
           render_render(child,depth+1,scale*s.transform.k)
         else
@@ -399,6 +455,7 @@ module Rubyvis
     def build
       scene=self.scene
       stack=Mark.stack
+      #p self.type
       if(!scene)
         self.scene=SceneElement.new
         scene=self.scene
@@ -409,30 +466,34 @@ module Rubyvis
           scene.parent=self.parent.scene
           scene.parent_index=self.parent.index
         end
-        if(self.target)
-          scene.target=self.target.instances(scene)
-        end
-        data=self.binds.data
-        
-        data=(data._type & 1)>0 ? data.value.js_apply(self, stack) : data.value
-        stack.unshift(nil)
-        
-        scene.size=data.size
-        data.each_with_index {|d,i|
-          Mark.index=self.index=i
-          s=scene[i]
-          if !s
-            scene[i]=s=SceneElement.new
-          end
-          stack[0]=data[i]
-          s.data=data[i]
-          build_instance(s)
-        }
-        Mark.index=-1
-        self.index=nil
-        stack.shift()
-        return self
       end
+      if(self.target)
+        scene.target=self.target.instances(scene)
+      end
+        
+      data=self.binds.data
+      #puts "stack:#{stack}"
+      #puts "data_value:#{data.value}"
+      
+      data=(data._type & 1)>0 ? data.value.js_apply(self, stack) : data.value
+      #puts "data:#{data}"
+      
+      stack.unshift(nil)
+      scene.size=data.size
+      data.each_with_index {|d,i|
+        Mark.index=self.index=i
+        s=scene[i]
+        if !s
+          scene[i]=s=SceneElement.new
+        end
+        stack[0]=data[i]
+        s.data=data[i]
+        build_instance(s)
+      }
+      Mark.index=-1
+      self.index=nil
+      stack.shift()
+      return self
     end
     def build_instance(s1)
       build_properties(s1, self.binds.required)
@@ -446,7 +507,7 @@ module Rubyvis
       props.each do |prop|
         v=prop.value
 
-      #  p "#{prop.name}=#{v}"
+        # p "#{prop.name}=#{v}"
         
         if prop._type==3
           v=v.js_apply(self, Mark.stack)
@@ -455,28 +516,13 @@ module Rubyvis
       end
       #p ss
     end
-    def naive_render
-      out=""
-      if !data.nil?
-        if data.is_a? Proc
-        elsif data.is_a? Array
-          data.each_with_index do |d,i|
-            self.index=i
-            Mark.stack=[d]
-            prot=self.clone
-            build_implied(prot)
-           
-            out << prot.svg_render_pre
-            out << prot.svg_render_post
-          end
-          self.index=nil
-        end
-      end
-      out
-      
-    end
   end
 end
 
 require 'rubyvis/mark/bar'
 require 'rubyvis/mark/panel'
+require 'rubyvis/mark/rule'
+require 'rubyvis/mark/area'
+require 'rubyvis/mark/anchor'
+require 'rubyvis/mark/label'
+

@@ -7,7 +7,6 @@ module Rubyvis
       "panel"
     end
 
-    @stack=[]
     @properties=Bar.properties
     attr_accessor_dsl :transform, :overflow, :canvas
     attr_accessor :children, :root
@@ -28,23 +27,7 @@ module Rubyvis
       children.push(child)
       child
     end
-    def svg_render_pre
-      "<svg height='#{height}' width='#{width}' stroke-width='#{line_width}' stroke='#{stroke_style ? stroke_style : 'none'}' fill='#{fill_style ? fill_style: 'none'}' font-family='sans-serif' font-size='10px'><g>"
-    end
-    def svg_render_post
-      "</g></svg>"
-    end
-    def naive_render
-      out=svg_render_pre
-      if respond_to? :children
-        children.each do |c|
-          out+=c.naive_render
-        end
-      end
-      out+=svg_render_post
-      out
-
-    end
+    
     attr_reader :_canvas
     def bind
       super

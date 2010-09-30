@@ -7,18 +7,22 @@ module Rubyvis
     attr_accessor_dsl :width, :height, :line_width, :stroke_style
     def defaults
       sd=super
-      return sd.merge({:line_width=>1,:stroke_style=>'black',:antialias=>false})
+      return sd.merge({:line_width=>1,:stroke_style=>pv.color('black'),:antialias=>false})
     end
-    def anchor(name)
-      # Copiar de linea
-      Rubyvis::Line.new.anchor(name)
+    def type
+      'rule'
     end
-    
-    def svg_render_pre
-      "<line shape-rendering='#{shape_rendering}' x1=>'>"
-    end
-    def svg_render_post
-      "</line>"
+    def build_implied(s)
+      l=s.left
+      r=s.right
+      t=s.top
+      b=s.bottom
+      if((!s.width.nil?) or ((l.nil?) and (r.nil?)) or ((!r.nil?) or (!l.nil?)))
+        s.height=0
+      else
+        s.width=0
+      end
+      super(s)
     end
   end
 end
