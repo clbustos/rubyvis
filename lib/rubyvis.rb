@@ -21,7 +21,7 @@ def pv
 end
 
 module Rubyvis
-  VERSION = '1.0.0'
+  VERSION = '0.1.0'
   Infinity=1.0 / 0 # You actually can do it! http://snipplr.com/view/2137/uses-for-infinity-in-ruby/
   # :section: basic methods
   def self.identity
