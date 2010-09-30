@@ -10,7 +10,7 @@ Ruby version of Protovis, a great visualization toolkit
 
 NOTE: Barely operational version. Just have bars, panels and scene.
 
-I try to maintain, when posible, complete compatibility with Javascript API. Johnson [http://github.com/jbarnette/johnson] - the lovely Javascript wrapper inside Ruby embrace - is out friend. 
+I try to maintain, when posible, complete compatibility with Javascript API. Johnson [http://github.com/jbarnette/johnson] - the lovely Javascript wrapper inside Ruby embrace - is our friend. 
  
 Until version 0.1.0, lambdas should always should created explicitly for method you may be temted to call it with a block.
 On a second stage, traditional block calling could be using maintaining backwards compatibily with Javascript API,
@@ -48,16 +48,16 @@ User could use +pv+ freely, cause is defined as a global method which call Rubyv
     bottom(0).
     left(lambda {self.index * 25});
     vis.render()
-    # All elements are rendered inside tag 'canvas', inside the panel
+    # All elements are rendered inside tag 'canvas', on vis object
     puts vis.canvas.elements[1]
 
 == REQUIREMENTS:
 
-Ruby 1.9.1
+Ruby 1.8.7 or 1.9.1
 
 == INSTALL:
 
-Copy from github and create the gem for yourself (sorry)
+$ sudo gem install rubyvis
 
 == LICENSE:
 
