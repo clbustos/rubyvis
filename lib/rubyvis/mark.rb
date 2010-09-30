@@ -4,110 +4,463 @@ module Rubyvis
    # specific rendering functionality, but together with {@link Panel} establishes
    # the core framework.
   class Mark
-    @properties={}
-    @cast={}
-    
-    # Defines and registers a property method for the property with the
-    # given name.  
-    # This method should be called on a mark class prototype to define
-    # each exposed property. 
-    # If invoked with a block, this functions is evaluated for each
-    # associated datum.
-    # If invoked with non-block, the propery is treated as a constant
-    # If invoked with no arument, the computed property value is returned
-    
-    def self.property(name,_def=false)
-      @properties[name]=true
-      define_method(:name) {|*arguments|
-        v,v1=arguments
-        # Ommited def stuff
-        if (self.scene and _def)
-          raise "Not implemented"
+     @properties={}
+     
+     def self.property_method(name,_def)
+       define_method(name) do |*arguments|
+         v,dummy = arguments
+         if _def and self.scene
+           if arguments.size>0
+             defs[name]=OpenStruct.new({:id=>(v.nil?) ? 0 : Rubyvis.id, :value=> v})
+             return self
+           end
+           return defs[name]
+         end
+       end
+     end
+     
+     def self.attr_accessor_dsl(*attr)
+      attr.each  do |sym| 
+        @properties[sym]=true
+        sym_w_sm=sym.to_s.gsub(":","")
+        define_method(sym) do |*args|
+          if args.size==0
+            #puts "Stack: #{Mark.stack}"
+            var=instance_variable_get("@#{sym_w_sm}")
+            if var.is_a? Proc
+              return (var.arity < 1) ? instance_eval(&var) : instance_exec(*Mark.stack, &var)
+            else
+              return var
+            end
+          else
+            instance_variable_set("@#{sym_w_sm}", args[0])
+            @_properties_values[sym_w_sm]=args[0]
+            @_properties_types[sym_w_sm]=(args[0].is_a? Proc) ? 3:2
+            return self
+          end
         end
-        if arguments.size>0
-          is_function=v.is_a? Proc
-        else
-          instance[name]
+        
+        define_method(sym.to_s+"=") do |*args|
+          instance_variable_set("@#{sym_w_sm}", args[0])
+          @_properties_values[sym_w_sm]=args[0]
+          @_properties_types[sym_w_sm]=(args[0].is_a? Proc) ? 3:2
         end
-      }
-      self
+      end
     end
     
-    property(:data).    property(:visible).    property(:left).    property(:right).    property(:top).    property(:bottom).    property(:cursor).    property(:title).    property(:reverse).    property(:antialias).    property(:events).    property(:id)
-    attr_accessor :child_index
-    attr_reader :index, :scale
-    def initialize
+    attr_accessor :parent, :root, :index, :child_index, :scene, :proto, :target, :scale
+     attr_accessor_dsl :data,:visible, :left, :right, :top, :bottom, :title, :reverse, :antialias
+   
+    @scene=nil
+    @stack=[]
+    @index=nil
+    def self.properties
+      @properties
+    end
+    def self.index
+      @index
+    end
+    def self.index=(v)
+      @index=v
+    end
+
+
+
+    def self.scene
+      @scene
+    end
+    def self.scene=(v)
+      @scene=v
+    end
+    def properties
+      (self.class).properties
+    end
+    def Mark.stack
+      @stack
+    end
+    def Mark.stack=(v)
+      @stack=v
+    end
+    def stack
+      (self.class).stack
+    end
+    
+    def initialize(opts=Hash.new)
+      @_properties_values={}
+      @_properties_types={}
+      @options=defaults.merge opts
+      @stack=[]
+      @options.each {|k,v|
+        self.send("#{k}=",v) if self.respond_to? k
+      }
+      @defs={}
       @child_index=-1
       @index=-1
       @scale=1
-      @properties=[]
+      @scene=nil
+      
     end
+    def type
+      "mark"
+    end
+    def _properties
+      out={}
+      @_properties_values.each {|k,v|
+        out[k]=OpenStruct.new({:name=>k.to_s,:value=>v, :type=>@_properties_types[k]})
+      }
+      out
+    end
+   
+    
+   
+
+
+    
+    
     def defaults
-      Mark.new.data(lambda {|d| return [d];}).visible(true).antialias(true).events("painted")
+      {:data=>lambda {|d| return [d]}, :visible=>true, :antialias=>true}
     end
+    def extend(proto)
+      @proto=proto
+      @target=target
+      self
+    end
+    
     def add(type)
-      parent.add(type)._extend(self)
-    end
-    def _extend(proto)
-      self.proto=proto
-      self.target=proto.target
-      return self
-    end
-    def margin(n)
-      left(n).right(n).top(n).bottom(n)
+      parent.add(type).extend(self)
     end
     def anchor(name)
-       name = "center" if (!name) # default anchor name
-       return new pv.Anchor(self).name(name).data(lambda {self.scene.target.map {|s| s.data}}).visible(lambda {self.scene.target[self.index].visible}).id(lambda {self.scene.target[self.index].id}).left(lambda {
-        s = self.scene.target[self.index]
-        w = s.width
-        w||=0
-        case s.name 
-          when "center"
-            return s.left + w.quo(2)
-          when "left"
-            return nil
-        end
-        return s.left + w
-      }).top(lambda {
-        s1 = self.scene.target[self.index]
-        h = s1.height
-        h||=0;
-        case s.name
-          when "center"
-            return s.top + h.quo(2)
-          when "top"
-            return nil
-        end
-        return s.top + h;
-      }).right(lambda {
-        s = self.scene.target[self.index];
-        return self.name() == "left" ? s.right + (s.width || 0) : nil;
-      }).bottom(lambda {
-        s = self.scene.target[self.index];
-        return self.name() == "top" ? s.bottom + (s.height || 0) : nil;
-      }).text_align(lambda {
-        case self.name() 
-          when "center"
-            return "center";
-          when "right"
-            return "right";
-        end
-        return "left";
-      }).text_baseline(lambda {
-        case self.name
-          when "center"
-            return "middle";
-          when "top"
-            return "top";
-        end
-        return "bottom";
-      });
+      return Anchor.new(self)
     end
-    def instance(default_index=nil)
-      scene=scene || parent.instance(-1).children[child_index]
-      index=!default_index.nil? || (self.respond_to?(:index) ? self.index : default_index)
-      return scene[index < 0 ? scene.length - 1 : index]
+    def svg_render_pre
+      ""
+    end
+    def svg_render_post
+      ""
+    end
+    
+    
+    
+    
+    
+    def build_implied(s)
+      l=s.left
+      r=s.right
+      t=s.top
+      b=s.bottom
+      prop=properties
+      w = (prop[:width] and !prop[:width].nil?)  ? s.width : 0
+      h = (prop[:height] and !prop[:height].nil?)  ? s.height : 0
+      #puts "#{l},#{r},#{t},#{b}"
+      #puts "#{w},#{h}"
+      
+      width=self.parent ? self.parent.width(): (w+(l.nil? ? 0 : l)+(r.nil? ? 0 :r))
+      
+      if w.nil?
+        w=width-(r ? r :0)-(l ? l : 0)
+      elsif r.nil?
+        if l.nil?
+          l=r=(width-w).quo(2)
+        else
+          r=width-w-l
+        end
+      elsif l.nil?
+        l=width-w-r
+      end
+      
+      height=self.parent ? self.parent.height(): (h+(t.nil? ? 0 : t )+(b.nil? ? 0 : b))
+      
+      if h.nil?
+        h=height-(t ? t :0)-(b ? b : 0)
+      elsif b.nil?
+        if t.nil?
+          b=t=(height-h).quo(2)
+        else
+          b=height-h-t
+        end
+      elsif t.nil?
+        t=height-h-b
+      end
+      s.left=l
+      s.right=r
+      s.top=t
+      s.bottom=b
+      
+       # puts "#{l},#{r},#{t},#{b}"
+      
+      s.width=w if prop[:width]
+      s.height=h if prop[:height]
+      s.text_style=Rubyvis::Color.transparent if prop[:text_style] and !s.text_style
+      s.fill_style=Rubyvis::Color.transparent if prop[:fill_style] and !s.fill_style
+      s.stroke_style=Rubyvis::Color.transparent if prop[:stroke_style] and !s.stroke_style
+    end
+    
+    
+    
+    
+    def pr_svg(name)
+      res=self.send(name)
+      if res.nil?
+        "none"
+      else
+        res.to_s
+      end
+    end
+    def render_render(mark,depth,scale)
+      mark.scale=scale
+      if (depth < @indexes.size) 
+        @stack.unshift(nil)
+        if (mark.respond_to? :index) 
+            render_instance(mark, depth, scale);
+        else 
+          mark.scene.size.times {|i|
+            mark.index = i;
+            render_instance(mark, depth, scale);
+          }
+        mark.index=nil
+        end
+        stack.shift();
+      else 
+        mark.build();
+        pv.Scene.scale = scale;
+        pv.Scene.update_all(mark.scene);
+      end
+      mark.scale=nil
+    end
+    def render_instance(mark,depth,scale)
+      s=mark.scene[mark.index]
+      if s.visible
+        child_index=@indexes[depth]
+        child=mark.children[child_index]
+        child_index.times {|i|
+          mark.children[i].scene=s.children[i]
+        }
+        @stack[0]=s.data
+        if (child.scene)
+          render_render(child,depth+1,scale*s.transform.k)
+        else
+          child.scene=s.children[child_index]
+          render_render(child, depth+1,scale*s.transform.k)
+          child.scene=nil
+        end
+        child_index.times {|i|
+          mark.children[i].scene=nil
+        }
+        
+      end
+    end
+    private :render_render, :render_instance
+    def bind_bind(mark)
+      begin
+        _properties.each {|k,v|
+          if !@seen.has_key?(k)
+            @seen[k.to_s]=v
+            case k
+              when "data"
+                @_data=v
+              when "visible"
+                @_required.push(v)
+              when "id"
+                @_required.push(v)
+              else
+                @types[v.type].push(v)
+            end
+          end
+        }
+      end while(mark = mark.proto)
+    end
+    attr_accessor :binds
+    def bind()
+      @seen={}
+      @types={1=>[],2=>[],3=>[]}
+      @_data=nil
+      @_required=[]
+      bind_bind(self)
+      @types[1].reverse!
+      @types[3].reverse!
+      mark=self
+      begin
+      properties.each {|name,v|
+        if !@seen[name.to_s]
+          @seen[name.to_s]=OpenStruct.new(:name=>name.to_s, :type=>2, :value=>nil)
+          @types[2].push(@seen[name.to_s])
+        end
+      }
+      end while(mark=mark.proto)
+      @binds=OpenStruct.new({:properties=>@seen, :data=>@_data, :required=>@_required, :optional=>@types[1]+@types[2]+@types[3]
+      })
+    end
+    def render
+      parent=self.parent
+      @stack=Mark.stack
+      if parent and !self.root.scene
+        root.render()
+        return 
+      end
+      @indexes=[]
+      mark=self
+      until mark.parent.nil?
+        indexes.unshift(mark.child_index)
+      end
+      self.bind()
+      while(parent and !parent.respond_to? :index) do
+        parent=parent.parent
+      end
+      self.context( parent ? parent.scene : nil, parent ? parent.index : -1, lambda {render_render(self.root, 0,1)})
+      
+    end
+    
+    def context_apply(scene,index)
+      Mark.scene=scene
+      Mark.index=index
+      return if(!scene)
+      that=scene.mark
+      mark=that
+      ancestors=[]
+      begin
+        ancestors.push(mark)
+        Mark.stack.push(scene[index].data)
+        mark.index=index
+        mark.scene=scene
+        index=scene.parent_index
+        scene=scene.parent
+      end while(mark=mark.parent)
+      k=1
+      ancestors.size.times {|ic|
+        i=ancestors.size-ic-1
+        mark=ancestors[i]
+        mark.scale=k
+        k=k*mark.scene[mark.index].transform.k
+      }
+      if (that.children)
+        n=than.children.size
+        n.times {|i|
+          mark=that.children[i]
+          mark.scene=that.scene[that.index].children[i]
+          mark.scale=k
+        }
+        
+      end
+      
+    end
+    def context_clear(scene,index)
+      return if !scene
+      that=scene.mark
+      mark=nil
+      if(that.children)
+        that.children.size.times {|i|
+          mark=that.children[i]
+          mark.scene=nil
+          mark.scale=nil
+        }
+        
+      end
+      mark=that
+      begin
+        Mark.stack.pop
+        if(mark.parent)
+          mark.scene=nil
+          mark.scale=nil
+        end
+        mark.index=nil
+      end while(mark=mark.parent)
+    end
+    def context(scene,index,f)
+      proto=Mark
+      stack=Mark.stack
+      oscene=Mark.scene
+      oindex=Mark.index
+      context_clear(oscene,oindex)
+      context_apply(scene,index)
+      begin
+        f.js_apply(self, stack)
+      ensure
+        context_clear(scene,index)
+        context_apply(oscene,oindex)
+      end
+    end
+    
+    def build
+      scene=self.scene
+      stack=Mark.stack
+      if(!scene)
+        self.scene=SceneElement.new
+        scene=self.scene
+        scene.mark=self
+        scene.type=self.type
+        scene.child_index=self.child_index
+        if(self.parent)
+          scene.parent=self.parent.scene
+          scene.parent_index=self.parent.index
+        end
+        if(self.target)
+          scene.target=self.target.instances(scene)
+        end
+        data=self.binds.data
+        
+        data=(data.type & 1)>0 ? data.value.js_apply(self, stack) : data.value
+        stack.unshift(nil)
+        
+        scene.size=data.size
+        data.each_with_index {|d,i|
+          Mark.index=self.index=i
+          s=scene[i]
+          if !s
+            scene[i]=s=SceneElement.new
+          end
+          stack[0]=data[i]
+          s.data=data[i]
+          self.build_instance(s)
+        }
+        Mark.index=-1
+        self.index=nil
+        stack.shift()
+        return self
+      end
+    end
+    def build_instance(s1)
+      build_properties(s1, self.binds.required)
+      if s1.visible
+        build_properties(s1,self.binds.optional)
+        build_implied(s1)
+      end
+    end
+    def build_properties(ss, props)
+      #p props
+      props.each do |prop|
+        v=prop.value
+
+      #  p "#{prop.name}=#{v}"
+        
+        if prop.type==3
+          v=v.js_apply(self, Mark.stack)
+        end
+        ss.send((prop.name.to_s+"=").to_sym, v)
+      end
+      #p ss
+    end
+    def naive_render
+      out=""
+      if !data.nil?
+        if data.is_a? Proc
+        elsif data.is_a? Array
+          data.each_with_index do |d,i|
+            self.index=i
+            Mark.stack=[d]
+            prot=self.clone
+            build_implied(prot)
+           
+            out << prot.svg_render_pre
+            out << prot.svg_render_post
+          end
+          self.index=nil
+        end
+      end
+      out
+      
     end
   end
 end
+
+require 'rubyvis/mark/bar'
+require 'rubyvis/mark/panel'

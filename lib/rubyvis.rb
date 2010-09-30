@@ -1,15 +1,20 @@
 require 'date'
 require 'ostruct'
+require 'rexml/document'
+require 'pp'
 require 'rubyvis/internals'
+require 'rubyvis/sceneelement'
+
 require 'rubyvis/javascript_behaviour'
 require 'rubyvis/format'
 require 'rubyvis/label'
 require 'rubyvis/mark'
-require 'rubyvis/bar'
-require 'rubyvis/panel'
 require 'rubyvis/scale'
 require 'rubyvis/color/color'
 require 'rubyvis/color/colors'
+
+require 'rubyvis/scene/svg_scene'
+require 'rubyvis/transform'
 
 def pv
   Rubyvis
@@ -31,4 +36,8 @@ module Rubyvis
   def self.parent
     lambda {|*args| self.parent.index}
   end
+  def self.document
+    @document||=REXML::Document.new
+  end
+    
 end

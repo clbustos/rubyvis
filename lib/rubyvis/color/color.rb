@@ -1,20 +1,66 @@
 module Rubyvis
   def self.color(format)
     return format.rgb if format.respond_to? :rgb
+    if (format =~/([a-z]+)\((.*)\)/)
+      m2 = $2.split(",")
+      a = 1
+      if ['hsla','rgba'].include? $1
+        a = m2[3].to_f
+        return Color.transparent if (a==0) 
+      end
+      
+      if ['hsla','hsl'].include? $1
+        h=m2[0].to_f
+        s=m2[0].to_f.quo(100)
+        l=m2[0].to_f.quo(100)
+        return Color::Hsl.new(h,s,l,a).rgb()
+      end
+      
+      if ['rgba','rgb'].include? $1
+        parse=lambda {|c|
+          f=c.to_f
+          return (c[c.size-1]=='%') ? (f*2.55).round : f
+        }
+        r=parse.call(m2[0])
+        g=parse.call(m2[1])
+        b=parse.call(m2[2])
+        return Rubyvis.rgb(r,g,b,a)
+      end
+    end
     
+    named = Rubyvis::Color.names[format];
+    return named if (named) 
+
+    # Hexadecimal colors: #rgb and #rrggbb. */
+    if (format[0,1]== "#") 
+      if (format.size == 4) 
+          r = format[1,1]; r += r
+          f = format[2,1]; g +=g
+          b = format[3,1]; b +=b
+      elsif (format.size == 7) 
+        r = format[1,2]
+        g = format[3,2]
+        b = format[5,2]
+      end
+      return Rubyvis.rgb(r.to_i(16), g.to_i(16), b.to_i(16), 1);
+    end
+  
+    # Otherwise, pass-through unsupported colors. */
+    return Rubyvis::Color.new(format, 1);
   end
-  def rgb(r,g,b,a=1)
+  def self.rgb(r,g,b,a=1)
       Rubyvis::Color::Rgb.new(r,g,b,a)
   end
     
   class Color
+    attr_reader :color, :opacity
     def initialize(color,opacity)
       @color=color
       @opacity=opacity
     end
     
     
-    def names
+    def self.names
       {
           :aliceblue=>"#f0f8ff",
           :antiquewhite=>"#faebd7",
@@ -163,14 +209,16 @@ module Rubyvis
           :whitesmoke=>"#f5f5f5",
           :yellow=>"#ffff00",
           :yellowgreen=>"#9acd32",
-          :transparent=>pv.Color.transparent = pv.rgb(0, 0, 0, 0)
+          :transparent=>Rubyvis.rgb(0, 0, 0, 0)
       } 
     end
-  
+    def self.transparent
+      Rubyvis.rgb(0,0,0,0)
+    end
     
     
     class Rgb < Color
-      def initialize(r,b,g,a)
+      def initialize(r,g,b,a)
         @r=r
         @b=b
         @g=g
@@ -181,6 +229,12 @@ module Rubyvis
         else
           @color="none"
         end
+      end
+      def rgb
+        self
+      end
+      def to_s
+        @color
       end
     end
   end

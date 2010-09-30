@@ -27,7 +27,7 @@ module Rubyvis
         @d
       end
       def range(*arguments)
-        array,f = arguments[0],arguments[1]
+        array, f = arguments[0],arguments[1]
         if(arguments.size>0)
         @r=(array.is_a? Array) ? ((arguments.size>1) ? array.map(&f) : array) : arguments.dup
           if @r[0].is_a? String
@@ -41,6 +41,12 @@ module Rubyvis
         step=(max-min).quo(domain().size)
         @r=pv.range(min+step.quo(2),max,step)
         self
+      end
+      def by(*arguments)
+        f,dummy=arguments
+        t=self
+        by=lambda {return t.scale(f.js_apply(self,arguments))}
+        by
       end
     end
 end

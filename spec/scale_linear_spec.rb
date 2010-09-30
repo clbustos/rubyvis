@@ -3,7 +3,7 @@ describe Rubyvis::Scale::Linear do
   if Rubyvis::JohnsonLoader.available?
     context "direct protovis API comparison" do 
       before(:all) do
-        @rt=  Rubyvis::JohnsonLoader.new("/data/Scale.js", "/data/QuantitativeScale.js", "/data/LinearScale.js","/color/Color.js","/color/Colors.js","/text/Format.js", "/text/DateFormat.js","/text/NumberFormat.js","/text/TimeFormat.js").runtime
+        @rt=  Rubyvis::JohnsonLoader.new().runtime
       end
       before do 
         @h=280

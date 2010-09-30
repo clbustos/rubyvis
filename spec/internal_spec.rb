@@ -4,7 +4,7 @@ describe "Rubyvis module methods" do
     it "method identify should always return the same value" do
       f=Rubyvis.identity
       a="a"
-      f.js_call(a,5).should==5
+      f.js_call(a, 5).should==5
     end
     it "method index should return index method from a object" do
       o1=Rubyvis.o_index(1)

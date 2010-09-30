@@ -1,3 +1,15 @@
+class TrueClass
+  def to_i
+    1
+  end
+end
+class FalseClass
+  def to_i
+    0
+  end
+end
+
+
 unless Object.public_method_defined? :instance_exec
   class Object
     module InstanceExecHelper; end
@@ -26,9 +38,22 @@ end
 # Requires Ruby 1.9
 class Proc
   def js_apply(obj,args)
-		obj.instance_exec(*args,&self)
+    arguments=args.dup
+    # Modify numbers of args to works with arity
+    min_args=self.arity>0 ? self.arity : (-self.arity)-1
+    if args.size > min_args and self.arity>0
+      arguments=arguments[0,self.arity]
+    elsif args.size < min_args
+      arguments+=[nil]*(min_args-args.size)
+    end
+    #puts "#{args}->#{arguments} (#{self.arity})"
+    if self.arity==0
+      obj.instance_eval(&self)
+    else
+      obj.instance_exec(*arguments,&self)
+    end
 	end
 	def js_call(obj,*args)
-		obj.instance_exec(*args, &self)		
+    js_apply(obj,args)
 	end
 end

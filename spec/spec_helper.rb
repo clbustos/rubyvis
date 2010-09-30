@@ -18,10 +18,10 @@ module Rubyvis
     end
     attr_accessor :runtime
     def initialize(*files)
-      files=["/pv.js","/pv-internals.js", "/data/Arrays.js","/data/Numbers.js"]+files
+      files=["/pv.js","/pv-internals.js", "/data/Arrays.js","/data/Numbers.js", "/data/Scale.js", "/data/QuantitativeScale.js", "/data/LinearScale.js","/color/Color.js","/color/Colors.js","/text/Format.js", "/text/DateFormat.js","/text/NumberFormat.js","/text/TimeFormat.js"]+files
+      files.uniq!
       files=files.map {|v| $PROTOVIS_DIR+v}
-      @runtime = Johnson::Runtime.new
-      @runtime.load(*files)
+      @runtime = Johnson.load(*files)
     end
   end
 end
