@@ -35,8 +35,12 @@ unless Object.public_method_defined? :instance_exec
 end
 # Add javascript-like +apply+ and +call+ methods to Proc,
 # called +js_apply+ and +js_call+, respectivly.
-# Requires Ruby 1.9
+
 class Proc
+  # Apply on javascript is very flexible. Can accept more or less
+  # variables than explicitly defined parameters on lambda, so the method
+  # adds or remove elements according to lambda arity
+  #
   def js_apply(obj,args)
     arguments=args.dup
     # Modify numbers of args to works with arity
@@ -53,6 +57,7 @@ class Proc
       obj.instance_exec(*arguments,&self)
     end
 	end
+  # Same as js_apply, but using explicit arguments
 	def js_call(obj,*args)
     js_apply(obj,args)
 	end

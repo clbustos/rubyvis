@@ -16,40 +16,55 @@ module Rubyvis
            end
            return defs[name]
          end
+         if arguments.size>0
+           type=(!_def).to_i<<1 | (v.is_a? Proc).to_i
+           property_value(name,(type & 1 !=0) ? lambda {|*args| return v.js_apply(self, args)} : v).type=type
+           @_properties_types[name]=type
+           return self
+         end
+         i=instance()
+         if i.nil?
+           raise "No instancia para #{name}"
+         else
+           #puts "Instancia para #{name}"
+           
+           i.send(name)
+         end
        end
      end
+     def property_value(name,v)
+       prop=OpenStruct.new({:name=>name, :id=>Rubyvis.id, :value=>v})
+       @_properties.delete_if{|v| v.name==name}
+       @_properties.push(prop)
+       @_properties_values[name]=v
+       return prop
+     end
+     def instance(default_index=nil)
+       scene=self.scene
+       scene||=self.parent.instance(-1).children[self.child_index]
+       if(default_index)
+         index=self.respond_to?(:index) ? self.index : default_index
+       else
+         index=scene.size-1
+       end
+       #puts "index:#{index} , scene.size:#{scene.size}, default_index:#{default_index}"
+       scene[index]
+     end
+     
      
      def self.attr_accessor_dsl(*attr)
-      attr.each  do |sym| 
+      attr.each  do |sym|
         @properties[sym]=true
         sym_w_sm=sym.to_s.gsub(":","")
-        define_method(sym) do |*args|
-          if args.size==0
-            #puts "Stack: #{Mark.stack}"
-            var=instance_variable_get("@#{sym_w_sm}")
-            if var.is_a? Proc
-              return (var.arity < 1) ? instance_eval(&var) : instance_exec(*Mark.stack, &var)
-            else
-              return var
-            end
-          else
-            instance_variable_set("@#{sym_w_sm}", args[0])
-            @_properties_values[sym_w_sm]=args[0]
-            @_properties_types[sym_w_sm]=(args[0].is_a? Proc) ? 3:2
-            return self
-          end
-        end
-        
-        define_method(sym.to_s+"=") do |*args|
-          instance_variable_set("@#{sym_w_sm}", args[0])
-          @_properties_values[sym_w_sm]=args[0]
-          @_properties_types[sym_w_sm]=(args[0].is_a? Proc) ? 3:2
-        end
+        self.property_method(sym,false)
+        define_method(sym.to_s+"=") {|v|
+          self.send(sym,v)
+        }
       end
     end
     
     attr_accessor :parent, :root, :index, :child_index, :scene, :proto, :target, :scale
-     attr_accessor_dsl :data,:visible, :left, :right, :top, :bottom, :title, :reverse, :antialias
+    attr_accessor_dsl :data,:visible, :left, :right, :top, :bottom, :title, :reverse, :antialias
    
     @scene=nil
     @stack=[]
@@ -88,6 +103,7 @@ module Rubyvis
     def initialize(opts=Hash.new)
       @_properties_values={}
       @_properties_types={}
+      @_properties=[]
       @options=defaults.merge opts
       @stack=[]
       @options.each {|k,v|
@@ -148,19 +164,18 @@ module Rubyvis
       r=s.right
       t=s.top
       b=s.bottom
-      prop=properties
+      prop=self.properties
       w = (prop[:width] and !prop[:width].nil?)  ? s.width : 0
       h = (prop[:height] and !prop[:height].nil?)  ? s.height : 0
       #puts "#{l},#{r},#{t},#{b}"
       #puts "#{w},#{h}"
       
       width=self.parent ? self.parent.width(): (w+(l.nil? ? 0 : l)+(r.nil? ? 0 :r))
-      
       if w.nil?
         w=width-(r ? r :0)-(l ? l : 0)
       elsif r.nil?
         if l.nil?
-          l=r=(width-w).quo(2)
+          l=r=(width-w) / (2.0)
         else
           r=width-w-l
         end
@@ -174,7 +189,7 @@ module Rubyvis
         h=height-(t ? t :0)-(b ? b : 0)
       elsif b.nil?
         if t.nil?
-          b=t=(height-h).quo(2)
+          b=t=(height-h) / 2.0
         else
           b=height-h-t
         end
@@ -252,9 +267,10 @@ module Rubyvis
     private :render_render, :render_instance
     def bind_bind(mark)
       begin
-        _properties.each {|k,v|
+        @_properties.each {|v|
+          k=v.name.to_s
           if !@seen.has_key?(k)
-            @seen[k.to_s]=v
+            @seen[k]=v
             case k
               when "data"
                 @_data=v
@@ -410,7 +426,7 @@ module Rubyvis
           end
           stack[0]=data[i]
           s.data=data[i]
-          self.build_instance(s)
+          build_instance(s)
         }
         Mark.index=-1
         self.index=nil

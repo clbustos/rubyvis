@@ -46,6 +46,33 @@ module Rubyvis
 
     end
     attr_reader :_canvas
+    def bind
+      super
+      children.each {|c|
+        c.bind()
+      }
+    end
+    def build_instance(s)
+      super(s)
+      return if !s.visible
+      s.children=[] if !s.children
+      scale=self.scale*s.transform.k
+      n=self.children.size
+      Mark.index=-1
+      n.times {|i|
+        child=children[i]
+        child.scene=s.children[i]
+        child.scale=scale
+        child.build()
+      }
+      n.times {|i|
+        child=children[i]
+        s.children[i]=child.scene
+        child.scene=nil
+        child.scale=nil
+      }
+      s.children=s.children[0,n]
+    end
     def build_implied(s)
       if(!self.parent)
         c=s.canvas

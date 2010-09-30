@@ -1,6 +1,10 @@
 require 'rubyvis/scene/svg_panel'
 require 'rubyvis/scene/svg_bar'
 
+class REXML::Element
+  attr_accessor :_scene
+end
+
 module Rubyvis
   def self.Scene
     Rubyvis::SvgScene
@@ -47,11 +51,6 @@ module Rubyvis
     {:svg=>svg,css=>css}
     end
     def self.update_all(scenes)
-      scenes.each {|s|
-        p s
-        puts "***"
-        
-      }
       if (scenes.size>0 and scenes[0].reverse and scenes.type!='line' and scenes.type!='area')
         scenes=scenes.reverse
       end
@@ -60,20 +59,24 @@ module Rubyvis
     end
     def self.remove_siblings(e)
       while(e)
-        
+        n=e.next_sibling_node
+        e.remove
+        e=n
       end
     end
     def self.create(type)
-      Element.new "svg:#{type}"
+      el=Element.new "#{type}"
+      #el.add_namespace('svg',self.svg)
     end
     
     def self.append(e,scenes,index)
-      #e._scene=OpenStruct.new({:scenes=>scenes, :index=>index})
+      e._scene=OpenStruct.new({:scenes=>scenes, :index=>index})
       #e=self.title
+      
       if(!e.parent)
         scenes._g.add_element(e)
       end
-      return e
+      return e.next_sibling_node
     end
     
     def self.expect(e, type, attributes, style=nil) 
