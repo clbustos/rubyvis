@@ -33,7 +33,7 @@ module Rubyvis
         "x"=> x,
         "y"=> y,
         "dy"=> dy,
-        "transform"=> "translate(" + s.left.to_s + "," + s.top.to_s + ")" + (s.text_angle ? " rotate(" + (180 * s.text_angle / Math::PI).to_s + ")" : "") + (self.scale != 1 ? " scale(" + 1 / self.scale + ")" : ""),
+        "transform"=> "translate(" + s.left.to_s + "," + s.top.to_s + ")" + (s.text_angle!=0 ? " rotate(" + (180 * s.text_angle / Math::PI).to_s + ")" : "") + (self.scale != 1 ? " scale(" + 1 / self.scale + ")" : ""),
         "fill"=> fill.color,
         "fill-opacity"=> fill.opacity || nil,
         "text-anchor"=> anchor

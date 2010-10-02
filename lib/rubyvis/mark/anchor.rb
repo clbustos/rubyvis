@@ -4,18 +4,16 @@ module Rubyvis
   end
   
   class Anchor < Mark
-    @properties=Mark.properties
-    attr_accessor_dsl :name, :text_baseline, :text_align
-    def type
-      'area'
-    end
+    @properties=Mark.properties.dup
+    attr_accessor_dsl :name, :text_align, :text_baseline
+    
     def initialize(target)
       super()
       self.target=target
       self.parent=target.parent
     end
-    def _extend(proto)
-      self.proto=proto
+    def extend(proto)
+      @proto=proto
       return self
     end
   end

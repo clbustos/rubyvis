@@ -1,9 +1,12 @@
 require 'date'
 require 'ostruct'
 require 'rexml/document'
+require 'rexml/formatters/default'
+
 require 'pp'
 require 'rubyvis/internals'
 require 'rubyvis/sceneelement'
+require 'rubyvis/property'
 
 require 'rubyvis/javascript_behaviour'
 require 'rubyvis/format'
@@ -36,8 +39,20 @@ module Rubyvis
   def self.parent
     lambda {|*args| self.parent.index}
   end
-  def self.document
-    @document||=REXML::Document.new
+  def self.clear_document
+    @document=REXML::Document.new
+    @document.add_element("document")
   end
-    
+  def self.document
+    if @document.nil?
+      @document=REXML::Document.new
+      @document.add_element("document")
+    end
+    @document.root
+  end
+  def self.to_svg
+    s=""
+    @document.write(s)
+    s
+  end
 end

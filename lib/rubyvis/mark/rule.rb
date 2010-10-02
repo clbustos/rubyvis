@@ -3,14 +3,18 @@ module Rubyvis
     Rubyvis::Rule
   end
   class Rule < Mark
-    @properties=Mark.properties
+    include LinePrototype
+    @properties=Mark.properties.dup
     attr_accessor_dsl :width, :height, :line_width, :stroke_style
-    def defaults
-      sd=super
-      return sd.merge({:line_width=>1,:stroke_style=>pv.color('black'),:antialias=>false})
+    def self.defaults
+      Rule.new.extend(Mark.defaults).line_width(1).stroke_style(pv.color('black')).antialias(false)
     end
     def type
       'rule'
+    end
+    
+    def anchor(name)
+      line_anchor(name)
     end
     def build_implied(s)
       l=s.left

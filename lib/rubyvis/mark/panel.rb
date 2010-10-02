@@ -7,7 +7,7 @@ module Rubyvis
       "panel"
     end
 
-    @properties=Bar.properties
+    @properties=Bar.properties.dup
     attr_accessor_dsl :transform, :overflow, :canvas
     attr_accessor :children, :root
     def initialize
@@ -15,9 +15,20 @@ module Rubyvis
       @children=[]
       @root=self
     end
-    def defaults
-      sd=super
-      return sd.merge({:fill_style=>nil, :overflow=>'visible', :canvas=>Rubyvis.document.add_element("canvas")})
+    def children_inspect(level=0)
+      out=[]
+      @children.each do |c|
+        out << ("  "*level)+"- #{c.type} (#{c.object_id}) proto:#{c.proto.object_id} target:#{c.target.object_id}"
+        if c.respond_to? :children and c.children
+          out <<c.children_inspect(level+1)
+        end
+      end
+      out
+      
+    end
+    
+    def self.defaults
+      Panel.new.extend(Bar.defaults).fill_style(nil).overflow('visible')
     end
     def add(type)
       child=type.new
@@ -56,10 +67,23 @@ module Rubyvis
       }
       s.children=s.children[0,n]
     end
+    def to_svg
+      @_canvas.sort.map {|v|
+        bar = REXML::Formatters::Default.new
+        out = String.new
+        bar.write(v[1].elements[1], out)
+        out
+      }.join
+    end
     def build_implied(s)
       if(!self.parent)
         c=s.canvas
         if(c)
+          if(c._panel!=self)
+            c._panel=self
+            p "hola"
+            c.delete_if? {true}
+          end
           if s.width.nil?
             w=Rubyvis.css(c,'width')
             s.width=w-s.left-s.right
@@ -68,16 +92,17 @@ module Rubyvis
             w=Rubyvis.css(c,'height')
             s.height=h-s.top-s.bottom
           end
+          
         else
           @_canvas||={}
           cache=@_canvas
           if(!(c=cache[self.index]))
-            c=cache[this.index]=Rubyvis.add_element('span')
+            c=cache[self.index]=Rubyvis.document.add_element('span')
           end
         end
         s.canvas=c
       end
-      
+     
       s.transform=Rubyvis.Transform.identity if (s.transform.nil?)
       super(s)
       

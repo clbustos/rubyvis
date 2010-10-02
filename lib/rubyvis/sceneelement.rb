@@ -16,6 +16,8 @@ module Rubyvis
     def [](v)
       if v.is_a? Numeric
         @scenes[v]
+      elsif v.nil?
+        nil
       elsif self.respond_to? v
         self.send(v)
       end

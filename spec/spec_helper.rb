@@ -3,6 +3,7 @@ require 'spec'
 require 'spec/autorun'
 require 'rubyvis'
 require 'pp'
+require 'nokogiri'
 $PROTOVIS_DIR=File.dirname(__FILE__)+"/../vendor/protovis/src"
 module Rubyvis
   class JohnsonLoader

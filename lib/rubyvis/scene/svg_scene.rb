@@ -68,7 +68,8 @@ module Rubyvis
     end
     def self.create(type)
       el=Element.new "#{type}"
-      #el.add_namespace('svg',self.svg)
+      el.add_namespace('svg',self.svg) if type=='svg'
+      el
     end
     
     def self.append(e,scenes,index)

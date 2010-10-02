@@ -19,7 +19,7 @@ module Rubyvis
          if arguments.size>0
            type=(!_def).to_i<<1 | (v.is_a? Proc).to_i
            property_value(name,(type & 1 !=0) ? lambda {|*args|  v.js_apply(self, args)} : v)._type=type
-           @_properties_types[name]=type
+           #@_properties_types[name]=type
            return self
          end
          i=instance()
@@ -33,10 +33,10 @@ module Rubyvis
        end
      end
      def property_value(name,v)
-       prop=OpenStruct.new({:name=>name, :id=>Rubyvis.id, :value=>v})
+       prop=Property.new({:name=>name, :id=>Rubyvis.id, :value=>v})
        @_properties.delete_if{|v| v.name==name}
        @_properties.push(prop)
-       @_properties_values[name]=v
+       #@_properties_values[name]=v
        return prop
      end
      def margin(n)
@@ -67,7 +67,8 @@ module Rubyvis
     end
     
     attr_accessor :parent, :root, :index, :child_index, :scene, :proto, :target, :scale
-    attr_accessor_dsl :data,:visible, :left, :right, :top, :bottom, :title, :reverse, :antialias, :id
+    attr_reader :_properties
+    attr_accessor_dsl :data,:visible, :left, :right, :top, :bottom, :cursor, :title, :reverse, :antialias, :events, :id 
    
     @scene=nil
     @stack=[]
@@ -75,10 +76,10 @@ module Rubyvis
     def self.properties
       @properties
     end
-    def self.index
+    def Mark.index
       @index
     end
-    def self.index=(v)
+    def Mark.index=(v)
       @index=v
     end
 
@@ -101,12 +102,12 @@ module Rubyvis
     end
     
     def initialize(opts=Hash.new)
-      @_properties_values={}
-      @_properties_types={}
+      #@_properties_values={}
+      #@_properties_types={}
       @_properties=[]
-      @options=defaults.merge opts
+      #@options=opts
       # @stack=[]
-      @options.each {|k,v|
+      opts.each {|k,v|
         self.send("#{k}=",v) if self.respond_to? k
       }
       @defs={}
@@ -119,35 +120,55 @@ module Rubyvis
     def type
       "mark"
     end
-    def _properties
-      out={}
-      @_properties_values.each {|k,v|
-        out[k]=OpenStruct.new({:name=>k.to_s,:value=>v, :_type=>@_properties_types[k]})
-      }
-      out
-    end
-   
-    
-   
-
-
-    
-    
-    def defaults
-      {:data=>lambda {|d| [d]}, :visible=>true, :antialias=>true}
+   def self.defaults
+      Mark.new({:data=>lambda {|d| [d]}, :visible=>true, :antialias=>true, :events=>'painted'})
     end
     def extend(proto)
       @proto=proto
-      @target=target
+      @target=proto.target
       self
     end
+    
+    def instances(source)
+      
+  mark = self
+  index = []
+  scene=nil
+  while (!(scene = mark.scene)) do
+    source = source.parent;
+    index.push(OpenStruct.new({:index=>source.index, :child_index=>mark.child_index}))
+    mark = mark.parent
+  end
+  while (index.size>0) do
+    i = index.pop()
+    scene = scene[i.index].children[i.child_index]
+  end
+  #
+  # When the anchor target is also an ancestor, as in the case of adding
+  # to a panel anchor, only generate one instance per panel. Also, set
+  # the margins to zero, since they are offset by the enclosing panel.
+  # /
+  if (self.respond_to? :index and self.index) 
+    
+    s = scene[self.index].dup
+    s.right = s.top = s.left = s.bottom = 0;
+    return [s];
+  end
+  return scene;
+end
+
+    
+    
+    
+    
+    
     
     def add(type)
       parent.add(type).extend(self)
     end
-    def anchor(name=nil)
-      name = "center" if (!name) # default anchor name
-      return Rubyvis::Anchor.new(self).name(name).data(lambda {
+    def anchor(name="center")
+      
+      anchor=Rubyvis::Anchor.new(self).name(name).data(lambda {
       self.scene.target.map {|s| s.data} }).visible(lambda {
       self.scene.target[self.index].visible
       }).id(lambda {self.scene.target[self.index].id}).left(lambda {
@@ -195,9 +216,9 @@ module Rubyvis
         'bottom'
       end
       })
-
       
       
+      return anchor
     end
     
     
@@ -210,11 +231,11 @@ module Rubyvis
       t=s.top
       b=s.bottom
       prop=self.properties
-      w = (prop[:width] and !prop[:width].nil?)  ? s.width : 0
-      h = (prop[:height] and !prop[:height].nil?)  ? s.height : 0
-      #puts "#{l},#{r},#{t},#{b}"
-      #puts "#{w},#{h}"
-      
+      #p self
+      w = (prop[:width])  ? s.width : 0
+      h = (prop[:height])  ? s.height : 0
+      #puts "l:#{l},r:#{r},t:#{t},b:#{b}"
+      #puts "w:#{w},h:#{h}"
       width=self.parent ? self.parent.width(): (w+(l.nil? ? 0 : l)+(r.nil? ? 0 :r))
       if w.nil?
         r||=0
@@ -264,23 +285,32 @@ module Rubyvis
       s.fill_style=Rubyvis::Color.transparent if prop[:fill_style] and !s.fill_style
       s.stroke_style=Rubyvis::Color.transparent if prop[:stroke_style] and !s.stroke_style
     end
-    
-    
-    
-    
-    def pr_svg(name)
-      res=self.send(name)
-      if res.nil?
-        "none"
-      else
-        res.to_s
+    def render
+      parent=self.parent
+      @stack=Mark.stack
+      if parent and !self.root.scene
+        root.render()
+        return 
       end
+      @indexes=[]
+      mark=self
+      until mark.parent.nil?
+        @indexes.unshift(mark.child_index)
+      end
+      bind      
+      while(parent and !parent.respond_to? :index) do
+        parent=parent.parent
+      end
+      
+      self.context( parent ? parent.scene : nil, parent ? parent.index : -1, lambda {render_render(self.root, 0,1)})
+      
     end
+    
     def render_render(mark,depth,scale)
       mark.scale=scale
       if (depth < @indexes.size) 
         @stack.unshift(nil)
-        if (mark.respond_to? :index) 
+        if (mark.respond_to? :index and mark.index) 
             render_instance(mark, depth, scale);
         else 
           mark.scene.size.times {|i|
@@ -323,16 +353,17 @@ module Rubyvis
     private :render_render, :render_instance
     def bind_bind(mark)
       begin
-        @_properties.each {|v|
-          k=v.name.to_s
+        mark._properties.each {|v|
+          #p v.name
+          k=v.name
           if !@seen.has_key?(k)
             @seen[k]=v
             case k
-              when "data"
+              when :data
                 @_data=v
-              when "visible"
+              when :visible
                 @_required.push(v)
-              when "id"
+              when :id
                 @_required.push(v)
               else
                 @types[v._type].push(v)
@@ -341,46 +372,31 @@ module Rubyvis
         }
       end while(mark = mark.proto)
     end
+    
     attr_accessor :binds
+    
     def bind()
       @seen={}
       @types={1=>[],2=>[],3=>[]}
       @_data=nil
       @_required=[]
       bind_bind(self)
+      bind_bind((self.class).defaults)
       @types[1].reverse!
       @types[3].reverse!
       mark=self
       begin
-      properties.each {|name,v|
-        if !@seen[name.to_s]
-          @seen[name.to_s]=OpenStruct.new(:name=>name.to_s, :_type=>2, :value=>nil)
-          @types[2].push(@seen[name.to_s])
-        end
-      }
+        properties.each {|name,v|
+          if !@seen[name]
+            @seen[name]=Property.new(:name=>name, :_type=>2, :value=>nil)
+            @types[2].push(@seen[name])
+          end
+        }
       end while(mark=mark.proto)
       @binds=OpenStruct.new({:properties=>@seen, :data=>@_data, :required=>@_required, :optional=>@types[1]+@types[2]+@types[3]
       })
     end
-    def render
-      parent=self.parent
-      @stack=Mark.stack
-      if parent and !self.root.scene
-        root.render()
-        return 
-      end
-      @indexes=[]
-      mark=self
-      until mark.parent.nil?
-        indexes.unshift(mark.child_index)
-      end
-      self.bind()
-      while(parent and !parent.respond_to? :index) do
-        parent=parent.parent
-      end
-      self.context( parent ? parent.scene : nil, parent ? parent.index : -1, lambda {render_render(self.root, 0,1)})
-      
-    end
+    
     
     def context_apply(scene,index)
       Mark.scene=scene
@@ -455,7 +471,7 @@ module Rubyvis
     def build
       scene=self.scene
       stack=Mark.stack
-      #p self.type
+      
       if(!scene)
         self.scene=SceneElement.new
         scene=self.scene
@@ -467,10 +483,12 @@ module Rubyvis
           scene.parent_index=self.parent.index
         end
       end
+      # Resolve anchor target
+      #puts "Resolve target"
       if(self.target)
         scene.target=self.target.instances(scene)
       end
-        
+      #pp self.binds
       data=self.binds.data
       #puts "stack:#{stack}"
       #puts "data_value:#{data.value}"
@@ -480,7 +498,7 @@ module Rubyvis
       
       stack.unshift(nil)
       scene.size=data.size
-      data.each_with_index {|d,i|
+      data.each_with_index {|d, i|
         Mark.index=self.index=i
         s=scene[i]
         if !s
@@ -508,7 +526,6 @@ module Rubyvis
         v=prop.value
 
         # p "#{prop.name}=#{v}"
-        
         if prop._type==3
           v=v.js_apply(self, Mark.stack)
         end
@@ -519,10 +536,11 @@ module Rubyvis
   end
 end
 
+require 'rubyvis/mark/anchor'
 require 'rubyvis/mark/bar'
 require 'rubyvis/mark/panel'
-require 'rubyvis/mark/rule'
 require 'rubyvis/mark/area'
-require 'rubyvis/mark/anchor'
+require 'rubyvis/mark/line'
+require 'rubyvis/mark/rule'
 require 'rubyvis/mark/label'
 
