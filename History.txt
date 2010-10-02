@@ -1,3 +1,8 @@
-﻿=== 0.1.0 / 2010-09-30
+﻿=== 0.1.1 / 2010-10-02
+
+* Operational implementation of Panel, Bar, Rule, Line and Label. Anchor doesn't work, yet [clbustos]
+* Updated README.txt
+
+=== 0.1.0 / 2010-09-30
 
 * First (barely) operational version. See examples/first.rb and examples/second.rb 

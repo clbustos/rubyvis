@@ -1,17 +1,16 @@
 = protoruby
 
-* http://github.com/clbustos/rubyvis
+* http://rubyvis.rubyforge.org/
 
 == DESCRIPTION:
 
-Ruby version of Protovis, a great visualization toolkit
+Ruby port of Protovis, a great visualization toolkit
 
 == FEATURES/PROBLEMS:
 
-NOTE: Barely operational version. Just have bars, panels and scene.
-
+Implemented: Panel, Bar, Rule, Line and Label. Anchor doesn't work yet 
 I try to maintain, when posible, complete compatibility with Javascript API. Johnson [http://github.com/jbarnette/johnson] - the lovely Javascript wrapper inside Ruby embrace - is our friend. 
- 
+
 Until version 0.1.0, lambdas should always should created explicitly for method you may be temted to call it with a block.
 On a second stage, traditional block calling could be using maintaining backwards compatibily with Javascript API,
 User could use +pv+ freely, cause is defined as a global method which call Rubyvis.
@@ -31,8 +30,11 @@ User could use +pv+ freely, cause is defined as a global method which call Rubyv
 * mark/Mark.js
 * mark/Bar.js 
 * mark/Panel.js
+* mark/Label.js
+* mark/Rule.js
 * scene/SvgPanel.js
 * scene/SvgBar.js
+* scene/SvgRule.js
 * scene/SvgScene.js
 * text/Format.js (incomplete)
 * text/NumberFormat.js (incomplete)
@@ -47,9 +49,9 @@ User could use +pv+ freely, cause is defined as a global method which call Rubyv
     height(lambda {|d| d * 80}).
     bottom(0).
     left(lambda {self.index * 25});
-    vis.render()
-    # All elements are rendered inside tag 'canvas', on vis object
-    puts vis.canvas.elements[1]
+    vis.render
+    puts vis.to_svg
+    
 
 == REQUIREMENTS:
 

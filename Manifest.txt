@@ -23,6 +23,7 @@ lib/rubyvis/mark/label.rb
 lib/rubyvis/mark/line.rb
 lib/rubyvis/mark/panel.rb
 lib/rubyvis/mark/rule.rb
+lib/rubyvis/property.rb
 lib/rubyvis/scale.rb
 lib/rubyvis/scale/linear.rb
 lib/rubyvis/scale/ordinal.rb
@@ -34,11 +35,16 @@ lib/rubyvis/scene/svg_rule.rb
 lib/rubyvis/scene/svg_scene.rb
 lib/rubyvis/sceneelement.rb
 lib/rubyvis/transform.rb
+spec/bar_spec.rb
 spec/internal_spec.rb
 spec/javascript_behaviour_spec.rb
+spec/label_spec.rb
+spec/mark_spec.rb
 spec/panel_spec.rb
 spec/scale_linear_spec.rb
 spec/scale_spec.rb
 spec/spec.opts
 spec/spec_helper.rb
 vendor/protovis
+web/first.svg
+web/index.html
