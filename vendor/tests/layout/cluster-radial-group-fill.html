@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <title>Flare Circle</title>
+    <script type="text/javascript" src="../../protovis-d3.3.js"></script>
+    <script type="text/javascript" src="../flare.js"></script>
+  </head>
+  <body>
+    <script type="text/javascript+protovis">
+
+var vis = new pv.Panel()
+    .width(800)
+    .height(800)
+    .top(100)
+    .left(100)
+    .bottom(100)
+    .right(100);
+
+var layout = vis.add(pv.Layout.Cluster.Fill)
+    .nodes(pv.dom(flare).root("flare").nodes())
+    .group(true)
+    .orient("radial");
+
+layout.node.add(pv.Wedge);
+layout.label.add(pv.Label);
+
+vis.render();
+
+    </script>
+  </body>
+</html>

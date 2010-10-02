@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <title>Donut</title>
+    <script type="text/javascript" src="../../protovis-d3.3.js"></script>
+  </head>
+  <body>
+    <script type="text/javascript+protovis">
+
+var w = 400,
+    h = 400,
+    r = w / 2,
+    t = 30;
+
+var vis = new pv.Panel()
+    .width(w)
+    .height(h);
+
+vis.add(pv.Wedge)
+    .innerRadius(r - t)
+    .outerRadius(r)
+    .angle(2 * Math.PI);
+
+vis.render();
+
+    </script>
+  </body>
+</html>

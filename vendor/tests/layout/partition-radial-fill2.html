@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <title>Diamond Partition</title>
+    <script type="text/javascript" src="../../protovis-d3.3.js"></script>
+    <script type="text/javascript" src="../diamond.js"></script>
+  </head>
+  <body>
+    <script type="text/javascript+protovis">
+
+var vis = new pv.Panel()
+    .width(600)
+    .height(600);
+
+vis.add(pv.Layout.Partition.Fill)
+    .nodes(pv.dom(diamond(3, 4, 4)).nodes())
+    .orient("radial")
+  .node.add(pv.Wedge);
+
+vis.render();
+
+    </script>
+  </body>
+</html>

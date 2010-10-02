@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <title>Flare Tree</title>
+    <script type="text/javascript" src="../../protovis-d3.3.js"></script>
+    <script type="text/javascript" src="../flare.js"></script>
+  </head>
+  <body>
+    <script type="text/javascript+protovis">
+
+var vis = new pv.Panel()
+    .width(600)
+    .height(2300)
+    .left(40)
+    .top(-400)
+    .bottom(-50);
+
+var layout = vis.add(pv.Layout.Tree)
+    .nodes(pv.dom(flare).root("flare").nodes())
+    .depth(120)
+    .breadth(10)
+    .orient("left");
+
+layout.link.add(pv.Line);
+layout.node.add(pv.Dot);
+layout.label.add(pv.Label);
+
+vis.render();
+
+    </script>
+  </body>
+</html>

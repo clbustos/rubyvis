@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>Panel Anchor</title>
+    <script type="text/javascript" src="../../protovis-d3.3.js"></script>
+  </head>
+  <body>
+    <script type="text/javascript+protovis">
+
+var vis = new pv.Panel()
+    .width(200)
+    .height(200)
+    .margin(5)
+    .strokeStyle("#ccc");
+
+vis.anchor("center").add(pv.Label)
+    .text("Hello, world!");
+
+vis.render();
+
+    </script>
+  </body>
+</html>

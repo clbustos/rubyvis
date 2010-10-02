@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <title>Dot Stroke</title>
+    <script type="text/javascript" src="../../protovis-d3.3.js"></script>
+    <link type="text/css" href="../style.css" rel="stylesheet"/>
+  </head>
+  <body>
+    <script type="text/javascript+protovis">
+
+var vis = new pv.Panel()
+    .width(500)
+    .height(200)
+    .top(100)
+    .bottom(100);
+
+vis.anchor("top").add(pv.Dot)
+    .shape("circle")
+    .shapeSize(3000)
+    .fillStyle("lightcoral")
+    .strokeStyle("hsla(240,50%,50%,.5)")
+    .lineWidth(10)
+    .event("mousedown", function() this.lineWidth(this.lineWidth() + 20))
+  .anchor("center").add(pv.Label)
+    .text("DO NOT PUSH");
+
+vis.anchor("bottom").add(pv.Dot)
+    .shape("square")
+    .shapeSize(1000)
+    .fillStyle("lightcoral")
+    .strokeStyle("hsla(240,50%,50%,.5)")
+    .lineWidth(10)
+    .event("mousedown", function() this.lineWidth(this.lineWidth() + 20));
+
+vis.render();
+
+    </script><p>
+
+When paths have very thick stroke widths, the stroke path can self-intersect.
+This test checks that the stroke path is stroked using the nonzero rather than
+evenodd winding rule.
+
+  </body>
+</html>

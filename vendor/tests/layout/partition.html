@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <title>Flare Partition</title>
+    <script type="text/javascript" src="../../protovis-d3.3.js"></script>
+    <script type="text/javascript" src="../flare.js"></script>
+  </head>
+  <body>
+    <script type="text/javascript+protovis">
+
+var vis = new pv.Panel()
+    .width(500)
+    .height(2000)
+    .left(40)
+    .right(120)
+    .top(10)
+    .bottom(10);
+
+var layout = vis.add(pv.Layout.Partition)
+    .nodes(pv.dom(flare)
+        .root("flare")
+        .sort(function(a, b) pv.naturalOrder(a.nodeName, b.nodeName))
+        .nodes())
+    .orient("left");
+
+layout.link.add(pv.Line);
+layout.node.add(pv.Dot);
+layout.label.add(pv.Label);
+
+vis.render();
+
+    </script>
+  </body>
+</html>

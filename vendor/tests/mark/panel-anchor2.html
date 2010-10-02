@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <title>Anchor</title>
+    <script type="text/javascript" src="../../protovis-d3.3.js"></script>
+  </head>
+  <body>
+    <script type="text/javascript+protovis">
+
+var vis = new pv.Panel()
+    .width(200)
+    .height(200)
+    .margin(10);
+
+var bar = vis.add(pv.Panel)
+    .data(pv.range(10))
+    .top(function(i) 20 * i)
+    .height(20)
+  .add(pv.Bar);
+
+vis.add(pv.Panel)
+    .extend(bar.parent)
+  .add(pv.Dot)
+    .extend(bar.anchor("bottom"))
+    .fillStyle("#fff")
+    .strokeStyle("#000");
+
+vis.render();
+
+    </script>
+  </body>
+</html>

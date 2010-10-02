@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <title>Reverse Stack</title>
+    <script type="text/javascript" src="../../protovis-d3.3.js"></script>
+    <script type="text/javascript" src="../layers.js"></script>
+    <style type="text/css">
+
+body {
+  margin: 0;
+}
+
+    </style>
+  </head>
+  <body>
+    <script type="text/javascript+protovis">
+
+var w = window.innerWidth,
+    h = window.innerHeight,
+    n = 20, // number of layers
+    m = 400, // number of samples per layer
+    x = pv.Scale.linear(0, m - 1).range(0, w),
+    y = pv.Scale.linear(0, 2 * n).range(0, h);
+
+var vis = new pv.Panel()
+    .width(w)
+    .height(h);
+
+vis.add(pv.Layout.Stack)
+    .layers(layers(n, m))
+    .order("reverse")
+    .offset("zero")
+    .x(x.by(pv.index))
+    .y(y)
+  .layer.add(pv.Area)
+    .fillStyle(pv.ramp("#aad", "#556").domain(0, n - 1).by(pv.parent))
+    .strokeStyle(function() this.fillStyle().darker(.5));
+
+vis.render();
+
+    </script>
+  </body>
+</html>
