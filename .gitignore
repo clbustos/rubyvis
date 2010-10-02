@@ -2,3 +2,5 @@
 *~
 doc/*
 pkg/*
+vendor/protovis/tests
+vendor/protovis/lib
