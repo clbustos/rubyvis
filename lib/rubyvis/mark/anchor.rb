@@ -5,7 +5,7 @@ module Rubyvis
   
   class Anchor < Mark
     @properties=Mark.properties.dup
-    attr_accessor_dsl :name, :text_align, :text_baseline
+    attr_accessor_dsl :name
     
     def initialize(target)
       super()

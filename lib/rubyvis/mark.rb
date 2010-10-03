@@ -7,7 +7,8 @@ module Rubyvis
      @properties={}
      
      def self.property_method(name,_def)
-       define_method(name) do |*arguments|
+       
+       Mark.send(:define_method, name) do |*arguments|
          v,dummy = arguments
          if _def and self.scene
            if arguments.size>0
@@ -24,7 +25,7 @@ module Rubyvis
          end
          i=instance()
          if i.nil?
-           raise "No instancia para #{name}"
+           raise "No instance for #{self} on #{name}"
          else
            #puts "Instancia para #{name}"
            
@@ -45,13 +46,10 @@ module Rubyvis
      def instance(default_index=nil)
        scene=self.scene
        scene||=self.parent.instance(-1).children[self.child_index]
-       if(default_index)
-         index=self.respond_to?(:index) ? self.index : default_index
-       else
-         index=scene.size-1
-       end
-       #puts "index:#{index} , scene.size:#{scene.size}, default_index:#{default_index}"
-       scene[index]
+
+       index = self.respond_to?(:index) ? self.index : default_index
+        puts "self.index: #{self.index}, index:#{index} , scene.size:#{scene.size}, default_index:#{default_index}"
+       scene[index<0 ? scene.length-1: index]
      end
      
      
