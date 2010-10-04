@@ -11,7 +11,7 @@ module Rubyvis
         d.strftime(pattern)
       end
       def parse(s)
-        ::Date.strptime(s, pattern)
+        ::Time.strptime(s, pattern)
       end
     end
   end

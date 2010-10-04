@@ -15,11 +15,12 @@ module Rubyvis
         domain(*args)
       end
       def new_date(x=nil)
-        x.nil? ? Date.today : DateTime.civil(x)
+        x.nil? ? Time.new() : Time.at(x)
       end
 
       def scale(x)
-        j=Rubyvis.search(@d,x)
+        x=x.to_f
+        j=Rubyvis.search(@d, x)
         j=-j-2 if (j<0)
         j=[0,[@i.size-1,j].min].max
         # p @l
@@ -57,16 +58,16 @@ module Rubyvis
           end
           @n = (@d.first<0 or @d.last<0)
           @l=@d.map{|v| @f.call(v)}
-          @type = (o.is_a? Date) ? new_date : :to_f;
+          @type = (o.is_a? Time) ? :time : :number;
           return self
         end
         # TODO: Fix this.
         @d.map{|v| 
           case @type
-          when :to_f
+          when :number
             v.to_f
-          when :to_date
-            Date.new(v)
+          when :time
+            Time.at(v)
           else 
             v
           end
@@ -95,7 +96,8 @@ module Rubyvis
         j=-j-2 if j<0
         j = [0, [@i.size - 1, j].min].max
         
-        @g.call(@l[j] + (y - @r[j]).quo(@r[j + 1] - @r[j]) * (@l[j + 1] - @l[j]));
+        val=@g.call(@l[j] + (y - @r[j]).quo(@r[j + 1] - @r[j]) * (@l[j + 1] - @l[j]))
+        @type==:time ? Time.at(val) : val
       end
       
       def type(v=nil)
@@ -107,6 +109,33 @@ module Rubyvis
             raise "Not implemented yet"
           end
       end
+      def ticks_floor(d,prec)
+        ar=d.to_a
+        #p ar
+        # [ sec, min, hour, day, month, year, wday, yday, isdst, zone ]
+        case(prec) 
+          when 31536e6
+            ar[4]=1
+          when 2592e6
+            ar[3]=1
+          when 6048e5
+            ar[3]=ar[3]-ar[6] if (prec == 6048e5)
+          when 864e5
+            ar[2]=0
+          when 36e5
+            ar[1]=0
+          when 6e4
+            ar[0]=0
+          when 1e3
+            # do nothing
+        end
+        to_date(ar)
+      end
+      
+      def to_date(d)
+        
+        Time.utc(*d)
+      end
       # TODO: FIX this func
       def ticks(*arguments) 
         m = arguments[0]
@@ -116,7 +145,6 @@ module Rubyvis
         min = reverse ? _end : start
         max = reverse ? start : _end
         span = max - min
-        
         # Special case: empty, invalid or infinite span.
         if (!span or (span.is_a? Float and span.infinite?)) 
           @tick_format= Rubyvis.Format.date("%x") if (@type == newDate) 
@@ -124,105 +152,83 @@ module Rubyvis
         end
         # From here, ¡chaos!
         #/* Special case: dates. */
-        if (@type == new_date) 
+        if (@type == :time) 
         #/* Floor the date d given the precision p. */
-        lambda  do |d,p|
-        case(p) 
-        when 31536e6
-          d.setMonth(0);
-        when 2592e6
-          d.setDate(1);
-        when 6048e5
-          if (p == 6048e5) 
-            d.setDate(d.getDate() - d.getDay());
-          end
-        when 864e5
-          d.setHours(0);
-        when 36e5
-          d.setMinutes(0);
-        when 6e4
-          d.setSeconds(0);
-        when 1e3
-          d.setMilliseconds(0);
-        end
-        end
-        
         precision, format, increment, step = 1,1,1,1
-        if (span >= 3 * 31536e6) 
-        precision = 31536e6;
-        format = "%Y";
-        increment = lambda {|d| d.setFullYear(d.getFullYear() + step); };
-        elsif (span >= 3 * 2592e6) 
-        precision = 2592e6;
-        format = "%m/%Y";
-        increment = lambda {|d| d.setMonth(d.getMonth() + step); };
-        elsif (span >= 3 * 6048e5) 
-        precision = 6048e5;
-        format = "%m/%d";
-        increment = lambda {|d| d.setDate(d.getDate() + 7 * step); };
-        elsif (span >= 3 * 864e5) 
-        precision = 864e5;
-        format = "%m/%d";
-        increment = lambda {|d| d.setDate(d.getDate() + step); };
-        elsif (span >= 3 * 36e5) 
-        precision = 36e5;
-        format = "%I:%M %p";
-        increment = lambda {|d| d.setHours(d.getHours() + step); };
-        elsif (span >= 3 * 6e4) 
-        precision = 6e4;
-        format = "%I:%M %p";
-        increment = lambda {|d| d.setMinutes(d.getMinutes() + step); };
-        elsif (span >= 3 * 1e3) 
-        precision = 1e3;
-        format = "%I:%M:%S";
-        increment = lambda {|d|  d.setSeconds(d.getSeconds() + step); };
+        if (span >= 3 * 31536e6 / 1000.0) 
+          precision = 31536e6
+          format = "%Y"
+          increment = lambda {|d|  Time.at(d.to_f+(step*365*24*60*60)) }
+        elsif (span >= 3 * 2592e6 / 1000.0) 
+          precision = 2592e6;
+          format = "%m/%Y";
+          increment = lambda {|d| Time.at(d.to_f+(step*30*24*60*60)) }
+        elsif (span >= 3 * 6048e5 / 1000.0) 
+          precision = 6048e5;
+          format = "%m/%d";
+          increment = lambda {|d| Time.at(d.to_f+(step*7*24*60*60)) }
+        elsif (span >= 3 * 864e5 / 1000.0) 
+          precision = 864e5;
+          format = "%m/%d";
+          increment = lambda {|d| Time.at(d.to_f+(step*24*60*60)) }
+        elsif (span >= 3 * 36e5 / 1000.0) 
+          precision = 36e5;
+          format = "%I:%M %p";
+          increment = lambda {|d| Time.at(d.to_f+(step*60*60)) }
+        elsif (span >= 3 * 6e4 / 1000.0 ) 
+          precision = 6e4;
+          format = "%I:%M %p";
+          increment = lambda {|d| Time.at(d.to_f+(step*60)) }
+        elsif (span >= 3 * 1e3 / 1000.0) 
+          precision = 1e3;
+          format = "%I:%M:%S";
+          increment = lambda {|d|  Time.at(d.to_f+(step)) }
         else 
-        precision = 1;
-        format = "%S.%Qs";
-        increment = lambda {|d|  d.setTime(d.getTime() + step); };
+          precision = 1;
+          format = "%S.%Qs";
+          increment = lambda {|d|  Time.at(d.to_f+(step/1000.0)) }
         end
+        
         @tick_format = pv.Format.date(format);
-        
-        date = Date.new(min)
+        date = Time.at(min.to_f)
         dates = []
-        #floor(date, precision);
-        
+        date = ticks_floor(date,precision)
         # If we'd generate too many ticks, skip some!.
-        n = span.quo(precision)
+        n = span / (precision/1000.0)
         if (n > 10) 
-        case (precision) 
-        when 36e5
-          step = (n > 20) ? 6 : 3;
-          date.setHours(Math.floor(date.getHours() / step) * step);
-        when 2592e6
-          step = 3; # seasons
-          date.setMonth(Math.floor(date.getMonth() / step) * step);
-        when 6e4
-          step = (n > 30) ? 15 : ((n > 15) ? 10 : 5);
-          date.setMinutes(Math.floor(date.getMinutes() / step) * step);
-        when 1e3
-          step = (n > 90) ? 15 : ((n > 60) ? 10 : 5);
-          date.setSeconds(Math.floor(date.getSeconds() / step) * step);
-        when 1
-          step = (n > 1000) ? 250 : ((n > 200) ? 100 : ((n > 100) ? 50 : ((n > 50) ? 25 : 5)));
-          date.setMilliseconds(Math.floor(date.getMilliseconds() / step) * step);
-        else
-          step = pv.logCeil(n / 15, 10);
-          if (n / step < 2) 
-            step =step.quo(5)
-          elsif (n / step < 5)
-            step = step.quo(2)
+          case (precision) 
+          when 36e5
+            step = (n > 20) ? 6 : 3;
+            date.setHours(Math.floor(date.getHours() / step) * step);
+          when 2592e6
+            step = 3; # seasons
+            date.setMonth(Math.floor(date.getMonth() / step) * step);
+          when 6e4
+            step = (n > 30) ? 15 : ((n > 15) ? 10 : 5);
+            date.setMinutes(Math.floor(date.getMinutes() / step) * step);
+          when 1e3
+            step = (n > 90) ? 15 : ((n > 60) ? 10 : 5);
+            date.setSeconds(Math.floor(date.getSeconds() / step) * step);
+          when 1
+            step = (n > 1000) ? 250 : ((n > 200) ? 100 : ((n > 100) ? 50 : ((n > 50) ? 25 : 5)));
+            date.setMilliseconds(Math.floor(date.getMilliseconds() / step) * step);
+          else
+            step = pv.logCeil(n / 15, 10);
+            if (n / step < 2) 
+              step =step.quo(5)
+            elsif (n / step < 5)
+              step = step.quo(2)
+            end
+            date.setFullYear((date.getFullYear().quo(step)).floor * step);
           end
-          date.setFullYear((date.getFullYear().quo(step)).floor * step);
-        end
         end
         
-        while (true)
-        increment(date);
-        break if (date > max)
-        dates.push(Date.new(date));
-        end
-        return reverse ? dates.reverse() : dates;
+          while (true)
+            date=increment.call(date)
+            break if (date.to_f > max)
+            dates.push(date)
+          end
+          return reverse ? dates.reverse() : dates;
         end
         
         # Normal case: numbers. 

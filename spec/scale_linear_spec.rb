@@ -71,16 +71,6 @@ describe Rubyvis::Scale::Linear do
   it "y should be a Scale" do
     @y.should be_a(Rubyvis::Scale::Linear)
   end
-  it "should set domain with dates" do
-    pending("Should accept dates as domain values")
-    data= [
-    { :date=> Date.today, :wounds=> 0, :other=> 110, :disease=> 110 },
-    { :date=> Date.new, :wounds=> 2, :other=> 130, :disease=> 110 }
-    
-    ]
-    x=Rubyvis.Scale.linear(data, lambda {|d| d[:date]})
-    
-  end
   it "should respond to domain" do
     @y.domain.should==[0, 1000]
     @y.domain(1)

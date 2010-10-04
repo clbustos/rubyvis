@@ -44,12 +44,12 @@ module Rubyvis
        self.left(n).right(n).top(n).bottom(n)
      end
      def instance(default_index=nil)
-       scene=self.scene
-       scene||=self.parent.instance(-1).children[self.child_index]
-
-       index = self.respond_to?(:index) ? self.index : default_index
-        puts "self.index: #{self.index}, index:#{index} , scene.size:#{scene.size}, default_index:#{default_index}"
-       scene[index<0 ? scene.length-1: index]
+      scene=self.scene
+      scene||=self.parent.instance(-1).children[self.child_index]
+      
+      index = self.respond_to?(:index) ? self.index : default_index
+      #puts "self.index: #{self.index}, index:#{index} , scene.size:#{scene.size}, default_index:#{default_index}"
+      scene[index<0 ? scene.length-1: index]
      end
      
      
