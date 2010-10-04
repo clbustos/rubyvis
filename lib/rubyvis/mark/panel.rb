@@ -1,7 +1,7 @@
 module Rubyvis
   def self.Panel
     Rubyvis::Panel
-  end    
+  end
   class Panel < Bar
     def type
       "panel"
@@ -20,13 +20,13 @@ module Rubyvis
       @children.each do |c|
         out << ("  "*level)+"- #{c.type} (#{c.object_id}) proto:#{c.proto.object_id} target:#{c.target.object_id}"
         if c.respond_to? :children and c.children
-          out <<c.children_inspect(level+1)
+          out << c.children_inspect(level+1)
         end
       end
       out
-      
+
     end
-    
+
     def self.defaults
       Panel.new.extend(Bar.defaults).fill_style(nil).overflow('visible')
     end
@@ -38,7 +38,7 @@ module Rubyvis
       children.push(child)
       child
     end
-    
+
     attr_reader :_canvas
     def bind
       super
@@ -57,7 +57,7 @@ module Rubyvis
         child=children[i]
         child.scene=s.children[i]
         child.scale=scale
-        child.build()
+        child.build
       }
       n.times {|i|
         child=children[i]
@@ -66,7 +66,9 @@ module Rubyvis
         child.scale=nil
       }
       s.children=s.children[0,n]
+
     end
+
     def to_svg
       @_canvas.sort.map {|v|
         bar = REXML::Formatters::Default.new
@@ -92,7 +94,7 @@ module Rubyvis
             w=Rubyvis.css(c,'height')
             s.height=h-s.top-s.bottom
           end
-          
+
         else
           @_canvas||={}
           cache=@_canvas
@@ -102,11 +104,11 @@ module Rubyvis
         end
         s.canvas=c
       end
-     
+
       s.transform=Rubyvis.Transform.identity if (s.transform.nil?)
       super(s)
-      
+
     end
-    
+
   end
 end

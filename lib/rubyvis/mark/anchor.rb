@@ -2,11 +2,11 @@ module Rubyvis
   def self.Anchor(target)
     Rubyvis::Anchor.new(target)
   end
-  
+
   class Anchor < Mark
     @properties=Mark.properties.dup
     attr_accessor_dsl :name
-    
+
     def initialize(target)
       super()
       self.target=target

@@ -3,12 +3,12 @@ module Rubyvis
     Rubyvis::Line
   end
   module LinePrototype
-    include AreaPrototype  
+    include AreaPrototype
     def line_anchor(name)
       area_anchor(name).text_align(lambda {|d|
-         {'left'=>'right','bottom'=>'center', 'top'=>'center','center'=>'center','right'=>'left'}[d]
+        {'left'=>'right','bottom'=>'center', 'top'=>'center','center'=>'center','right'=>'left'}[d]
       }).text_baseline(lambda{|d|
-         {'top'=>'bottom','right'=>'middle', 'left'=>'middle','center'=>'middle','bottom'=>'top'}[d]
+        {'top'=>'bottom','right'=>'middle', 'left'=>'middle','center'=>'middle','bottom'=>'top'}[d]
       })
     end
   end

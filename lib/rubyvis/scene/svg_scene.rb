@@ -23,7 +23,7 @@ module Rubyvis
     def self.xlink
       "http://www.w3.org/1999/xlink"
     end
-    def self.xhtml 
+    def self.xhtml
       "http://www.w3.org/1999/xhtml"
     end
     @scale=1
@@ -35,25 +35,27 @@ module Rubyvis
     end
     def self.implicit
       svg={
-      "shape-rendering"=> "auto",
-      "pointer-events"=> "painted",
-      "x"=> 0,
-      "y"=> 0,
-      "dy"=> 0,
-      "text-anchor"=> "start",
-      "transform"=> "translate(0,0)",
-      "fill"=> "none",
-      "fill-opacity"=> 1,
-      "stroke"=> "none",
-      "stroke-opacity"=> 1,
-      "stroke-width"=> 1.5,
-      "stroke-linejoin"=> "miter"
-    }
-    css={"font"=>"10px sans-serif"}
-    
-    {:svg=>svg,:css=>css}
+        "shape-rendering"=> "auto",
+        "pointer-events"=> "painted",
+        "x"=> 0,
+        "y"=> 0,
+        "dy"=> 0,
+        "text-anchor"=> "start",
+        "transform"=> "translate(0,0)",
+        "fill"=> "none",
+        "fill-opacity"=> 1,
+        "stroke"=> "none",
+        "stroke-opacity"=> 1,
+        "stroke-width"=> 1.5,
+        "stroke-linejoin"=> "miter"
+      }
+      css={"font"=>"10px sans-serif"}
+
+      {:svg=>svg,:css=>css}
     end
+
     def self.update_all(scenes)
+      puts "update_all: #{scenes.inspect}" if $DEBUG
       if (scenes.size>0 and scenes[0].reverse and scenes.type!='line' and scenes.type!='area')
         scenes=scenes.reverse
       end
@@ -72,22 +74,22 @@ module Rubyvis
       el.add_namespace('svg',self.svg) if type=='svg'
       el
     end
-    
+
     def self.append(e,scenes,index)
       e._scene=OpenStruct.new({:scenes=>scenes, :index=>index})
       #e=self.title
-      
+
       if(!e.parent)
         scenes._g.add_element(e)
       end
       return e.next_sibling_node
     end
-    
-    def self.expect(e, type, attributes, style=nil) 
-      
+
+    def self.expect(e, type, attributes, style=nil)
+
       if (e)
-        e = e.elements[1] if (e.name == "a") 
-        if (e.name != type) 
+        e = e.elements[1] if (e.name == "a")
+        if (e.name != type)
           n = self.create(type);
           e.parent.replace_child(e, n);
           e = n
@@ -97,9 +99,9 @@ module Rubyvis
       end
       attributes.each {|name,value|
         value = nil if (value == self.implicit[:svg][name])
-        if (value.nil?) 
-          e.delete_attribute(name) 
-        else 
+        if (value.nil?)
+          e.delete_attribute(name)
+        else
           e.attributes[name]=value
         end
       }
@@ -115,6 +117,6 @@ module Rubyvis
       end
       e
     end
-    
+
   end
 end

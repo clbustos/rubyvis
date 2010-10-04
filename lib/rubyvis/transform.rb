@@ -15,11 +15,11 @@ module Rubyvis
       v.x=self.k*x+self.x
       v.y=self.k*y+self.y
       v
-      
+
     end
     def self.identity
       Transform.new
     end
   end
-  
+
 end

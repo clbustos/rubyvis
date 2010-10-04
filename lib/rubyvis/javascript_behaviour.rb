@@ -56,9 +56,9 @@ class Proc
     else
       obj.instance_exec(*arguments,&self)
     end
-	end
+  end
   # Same as js_apply, but using explicit arguments
-	def js_call(obj,*args)
+  def js_call(obj,*args)
     js_apply(obj,args)
-	end
+  end
 end

@@ -31,7 +31,7 @@ $crimea = [
   OpenStruct.new({ date: "3/1856", wounds: 0, other: 125, disease: 90 })
 ];
 
-format= pv.Format.date("%m/%Y");
+format= pv.Format::Date.new("%m/%Y");
 $crimea.each_with_index {|d,i|
   d.date = format.parse(d.date)
 }

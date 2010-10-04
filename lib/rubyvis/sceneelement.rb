@@ -33,6 +33,10 @@ module Rubyvis
     def size
       @scenes.size
     end
+    def inspect
+      elements_id=@scenes.map{|e| '<'+ e.object_id.to_s(16)+'>'}.join(", ")
+      "<SE #{object_id.to_s(16)} (#{type}), elements: #{self.size} (#{elements_id}), children: #{children ? children.size : '0'}, data: #{data ? data.to_s: ''}>"
+    end
     def size=(v)
       if self.size==v
         return true

@@ -11,15 +11,15 @@ module Rubyvis
     def pv
       Rubyvis
     end
-     def self.category10(*arguments)
+    def self.category10(*arguments)
       scale = pv.colors(
-     "#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd",
+      "#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd",
       "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf")
       scale.domain(*arguments);
       scale
     end
     def self.category19(*arguments)
-       scale = pv.colors(
+      scale = pv.colors(
       "#9c9ede", "#7375b5", "#4a5584", "#cedb9c", "#b5cf6b",
       "#8ca252", "#637939", "#e7cb94", "#e7ba52", "#bd9e39",
       "#8c6d31", "#e7969c", "#d6616b", "#ad494a", "#843c39",

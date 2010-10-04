@@ -24,6 +24,7 @@ def pv
 end
 
 module Rubyvis
+  @document=nil
   VERSION = '0.1.1'
   Infinity=1.0 / 0 # You actually can do it! http://snipplr.com/view/2137/uses-for-infinity-in-ruby/
   # :section: basic methods

@@ -15,7 +15,7 @@ module Rubyvis
         @np = "\u2212" # default negative prefix
         @ns = "" # default negative suffix
       end
-      def fraction_digits(*arguments) 
+      def fraction_digits(*arguments)
         if (arguments.size>0)
           min=arguments[0]
           max=arguments[1]
@@ -24,7 +24,7 @@ module Rubyvis
           @maxk = 10**@maxf
           return self
         end
-        [minf, maxf]      
+        [minf, maxf]
       end
     end
   end

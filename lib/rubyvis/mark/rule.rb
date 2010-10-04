@@ -12,7 +12,7 @@ module Rubyvis
     def type
       'rule'
     end
-    
+
     def anchor(name)
       line_anchor(name)
     end

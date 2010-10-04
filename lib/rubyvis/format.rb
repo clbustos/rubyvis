@@ -2,7 +2,7 @@ module Rubyvis
   def self.Format
     Rubyvis::Format
   end
-  
+
   module Format
     def self.re(s)
       s.gsub(/[\\\^\$\*\+\?\[\]\(\)\.\{\}]/, "\\$&")

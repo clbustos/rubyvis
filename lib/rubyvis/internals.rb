@@ -8,7 +8,7 @@ module Rubyvis
     (f.is_a? Proc) ? f : lambda {f}
   end
   # :section: /data/Arrays.js
-  
+
   def self.map(array, f=nil)
     if f
       array.size.times.map {|i|
@@ -75,9 +75,9 @@ module Rubyvis
   def self.reverse_order(a,b)
     -(a<=>b)
   end
-  
+
   def self.search(array, value, f=nil)
-    f = Rubyvis.identity if (f.nil?) 
+    f = Rubyvis.identity if (f.nil?)
     low = 0
     high = array.size - 1;
     while (low <= high)
@@ -97,11 +97,11 @@ module Rubyvis
     i=Rubyvis.search(array,value,f)
     (i < 0 ) ? (-i-1) : i;
   end
-  
-  
+
+
   # :section: /data/Numbers.js
-  
-    def self.range(*arguments)
+
+  def self.range(*arguments)
     start, stop, step=arguments
     if (arguments.size == 1)
       stop = start;
@@ -114,12 +114,12 @@ module Rubyvis
     stop = stop- (stop - start) * 1e-10 #// floating point precision!
     j = start + step * i
     if (step < 0)
-      while (j > stop) 
+      while (j > stop)
         array.push(j)
         i+=1
         j = start + step * i
       end
-     else 
+    else
       while (j < stop)
         array.push(j)
         i+=1
@@ -130,14 +130,14 @@ module Rubyvis
   end
   def self.random(*arguments)
     start,stop,step=arguments
-    if (arguments.size == 1) 
+    if (arguments.size == 1)
       stop = start;
       start = 0;
     end
     step||= 1;
     return step ? ((rand() * (stop - start).quo(step)).floor * step + start) : (rand() * (stop - start) + start);
   end
-  
+
   def self.sum(array,f=nil)
     if f.nil?
       array.inject(0) {|ac,v| ac+v}
@@ -172,9 +172,9 @@ module Rubyvis
     Rubyvis.sum(array,f).quo(array.size)
   end
   def self.median(array,f=nil)
-    return (array.length - 1).quo(2) if (f == pv.index) 
+    return (array.length - 1).quo(2) if (f == pv.index)
     array = Rubyvis.map(array, f).sort{|a,b| Rubyvis.natural_order(a,b)}
-    return array[array.size.quo(2).floor] if (array.length % 2>0) 
+    return array[array.size.quo(2).floor] if (array.length % 2>0)
     i = array.size.quo(2);
     return (array[i - 1] + array[i]).quo(2);
   end
