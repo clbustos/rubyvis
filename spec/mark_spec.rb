@@ -5,12 +5,12 @@ describe Rubyvis::Mark do
     Rubyvis::Mark.properties.should==props
   end
   it "should return correct defaults" do
-    props=Rubyvis::Mark.defaults._properties
-    props[0].name.should==:data
-    props[0].value.should be_instance_of Proc
-    props[1].name.should==:visible
-    props[2].name.should==:antialias
-    props[3].name.should==:events
+    props=Rubyvis::Mark.defaults._properties.sort {|a,b| a.name.to_s<=>b.name.to_s}
+    props[1].name.should==:data
+    props[1].value.should be_instance_of Proc
+    props[3].name.should==:visible
+    props[0].name.should==:antialias
+    props[2].name.should==:events
   end
   
 end

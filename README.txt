@@ -25,15 +25,18 @@ User could use +pv+ freely, cause is defined as a global method which call Rubyv
 * data/Numbers.js
 * data/Scale.js
 * data/LinearScale.js
-* data/QuantitativeScale.js (only numbers)
+* data/QuantitativeScale.js
 * data/OrdinalScale.js (not tested)
 * mark/Mark.js
 * mark/Bar.js 
 * mark/Panel.js
 * mark/Label.js
+* mark/Line.js
 * mark/Rule.js
-* scene/SvgPanel.js
 * scene/SvgBar.js
+* scene/SvgLabel.js
+* scene/SvgLine.js
+* scene/SvgPanel.js
 * scene/SvgRule.js
 * scene/SvgScene.js
 * text/Format.js (incomplete)

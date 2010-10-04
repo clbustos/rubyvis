@@ -25,7 +25,7 @@ end
 
 module Rubyvis
   @document=nil
-  VERSION = '0.1.1'
+  VERSION = '0.1.2'
   Infinity=1.0 / 0 # You actually can do it! http://snipplr.com/view/2137/uses-for-infinity-in-ruby/
   # :section: basic methods
   def self.identity

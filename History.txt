@@ -1,4 +1,11 @@
-﻿=== 0.1.1 / 2010-10-02
+﻿=== 0.1.2 / 2010-10-04
+
+* Bug fix: SvgScene.panel only parse first element. Crimea-line example works (almost) as expected
+* Support for lines as anchors (not tested, yet)
+* Support for scales using Time class
+* Deleted unnecesary files from protovis
+
+=== 0.1.1 / 2010-10-02
 
 * Operational implementation of Panel, Bar, Rule, Line and Label. Anchor doesn't work, yet [clbustos]
 * Updated README.txt
