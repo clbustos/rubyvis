@@ -60,7 +60,9 @@ module Rubyvis
       @color=color
       @opacity=opacity
     end
-
+    def darker(*args)
+      self.rgb.darker(*args)
+    end
 
     def self.names
       {
@@ -219,6 +221,7 @@ module Rubyvis
 
 
     class Rgb < Color
+      attr_reader :r, :b, :g, :a
       def initialize(r,g,b,a)
         @r=r
         @b=b
@@ -233,6 +236,15 @@ module Rubyvis
       end
       def rgb
         self
+      end
+      def darker(*arguments)
+        k,dummy=arguments
+        k = 0.7 ** ( arguments.size>0 ? k : 1)
+        return pv.rgb(
+          [0, (k * self.r).floor].max,
+          [0, (k * self.g).floor].max,
+          [0, (k * self.b).floor].max,
+          self.a)
       end
       def to_s
         @color

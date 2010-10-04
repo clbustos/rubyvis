@@ -1,11 +1,12 @@
 module Rubyvis
   class Scale::Ordinal
     include Rubyvis::Scale
-
+    attr_reader :range_band
     def initialize(*args)
       @d=[] # domain
       @i={}
       @r=[]
+      @range_band=nil
       @band=0
       domain(*args)
     end
@@ -19,12 +20,30 @@ module Rubyvis
     def domain(*arguments)
       array,f=arguments[0],arguments[1]
       if(arguments.size>0)
-        array= (array.is_a? Array) ? ((arguments.size>1) ? array.map(&f) : array) : arguments.dup
+      array= (array.is_a? Array) ? ((arguments.size>1) ? pv.map(array,f) : array) : arguments.dup
         @d=array.uniq
-        i=pv.numerate(d)
+        @i=pv.numerate(@d)
         return self
       end
       @d
+    end
+    def split_banded(*arguments)
+      min,max,band=arguments
+      band=1 if (arguments.size < 3)
+      if (band < 0) 
+        
+        n = self.domain().size
+        total = -band * n
+        remaining = max - min - total
+        padding = remaining / (n + 1).to_f
+        @r = pv.range(min + padding, max, padding - band);
+        @range_band = -band;
+      else
+        step = (max - min) / (self.domain().size + (1 - band))
+        @r = pv.range(min + step * (1 - band), max, step);
+        @range_band = step * band;
+      end
+      return self
     end
     def range(*arguments)
       array, f = arguments[0],arguments[1]
