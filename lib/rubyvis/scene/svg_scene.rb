@@ -2,6 +2,7 @@ require 'rubyvis/scene/svg_panel'
 require 'rubyvis/scene/svg_bar'
 require 'rubyvis/scene/svg_rule'
 require 'rubyvis/scene/svg_label'
+require 'rubyvis/scene/svg_line'
 
 class REXML::Element
   attr_accessor :_scene

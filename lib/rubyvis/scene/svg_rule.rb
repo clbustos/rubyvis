@@ -5,7 +5,7 @@ module Rubyvis
       scenes.each_with_index do |s,i|
       next unless s.visible
       stroke=s.stroke_style
-      
+
       next if(!stroke.opacity)
       e=SvgScene.expect(e,'line', {
       "shape-rendering"=> s.antialias ? nil : "crispEdges",

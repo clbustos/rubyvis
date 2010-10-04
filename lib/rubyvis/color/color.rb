@@ -28,14 +28,16 @@ module Rubyvis
       end
     end
     
-    named = Rubyvis::Color.names[format];
-    return named if (named) 
+    named = Rubyvis::Color.names[format.to_sym]
+    
+    
+    return pv.color(named) if (named) 
 
     # Hexadecimal colors: #rgb and #rrggbb. */
     if (format[0,1]== "#") 
       if (format.size == 4) 
           r = format[1,1]; r += r
-          f = format[2,1]; g +=g
+          g = format[2,1]; g +=g
           b = format[3,1]; b +=b
       elsif (format.size == 7) 
         r = format[1,2]
@@ -209,8 +211,7 @@ module Rubyvis
           :whitesmoke=>"#f5f5f5",
           :yellow=>"#ffff00",
           :yellowgreen=>"#9acd32",
-          :transparent=>Rubyvis.rgb(0, 0, 0, 0)
-      } 
+      }
     end
     def self.transparent
       Rubyvis.rgb(0,0,0,0)

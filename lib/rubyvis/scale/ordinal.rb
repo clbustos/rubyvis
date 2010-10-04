@@ -45,7 +45,7 @@ module Rubyvis
       def by(*arguments)
         f,dummy=arguments
         t=self
-        by=lambda { t.scale(f.js_apply(self,arguments))}
+        by=lambda {t.scale(f.js_apply(self,arguments))}
         by
       end
     end

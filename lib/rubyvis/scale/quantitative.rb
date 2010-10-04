@@ -41,23 +41,27 @@ module Rubyvis
       
       def domain(*arguments)
         array,min,max=arguments
+        o=nil
         if (arguments.size>0)
           if array.is_a? Array 
             min = pv.identity if (arguments.size < 2)
             max = min if (arguments.size < 3)
-            o = array.size>0 && [array[0]].min
-            @d = array.size ? [Rubyvis.min(array, min), Rubyvis.max(array, max)] : [];
+            o = [array[0]].min if array.size>0
+            @d = array.size>0 ? [Rubyvis.min(array, min), Rubyvis.max(array, max)] : []
           else 
-            o = array;
+            o = array
             @d = arguments.map {|i| i.to_f}
           end
+          
           if !@d.size 
             @d = [-Infinity, Infinity];
           elsif (@d.size == 1) 
             @d = [@d.first, @d.first]
           end
-          @n = (@d.first<0 or @d.last<0)
+          
+          @n = (@d.first.to_f<0 or @d.last.to_f<0)
           @l=@d.map{|v| @f.call(v)}
+          
           @type = (o.is_a? Time) ? :time : :number;
           return self
         end
@@ -202,7 +206,9 @@ module Rubyvis
             date.setHours(Math.floor(date.getHours() / step) * step);
           when 2592e6
             step = 3; # seasons
-            date.setMonth(Math.floor(date.getMonth() / step) * step);
+            ar=date.to_a
+            ar[4]=(date.month/step.to_f).floor*step
+            date=to_date(ar)
           when 6e4
             step = (n > 30) ? 15 : ((n > 15) ? 10 : 5);
             date.setMinutes(Math.floor(date.getMinutes() / step) * step);
@@ -225,7 +231,7 @@ module Rubyvis
         
           while (true)
             date=increment.call(date)
-            break if (date.to_f > max)
+            break if (date.to_f > max.to_f)
             dates.push(date)
           end
           return reverse ? dates.reverse() : dates;

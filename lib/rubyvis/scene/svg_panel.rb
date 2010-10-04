@@ -4,7 +4,7 @@ module Rubyvis
       g=scenes._g
       e=(@g.nil?) ? nil : @g.elements[1]
       if g
-        e=g.elements[0]
+        e=g.elements[1]
       end
       scenes.each_with_index do |s,i|
         next unless s.visible

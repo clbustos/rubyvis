@@ -164,7 +164,10 @@ end
     def add(type)
       parent.add(type).extend(self)
     end
-    def anchor(name="center")
+    def anchor(name='center')
+      mark_anchor(name)
+    end
+    def mark_anchor(name="center")
       
       anchor=Rubyvis::Anchor.new(self).name(name).data(lambda {
       self.scene.target.map {|s| s.data} }).visible(lambda {
@@ -221,9 +224,11 @@ end
     
     
     
-    
-    
     def build_implied(s)
+      mark_build_implied(s)
+    end
+    
+    def mark_build_implied(s)
       l=s.left
       r=s.right
       t=s.top
@@ -372,8 +377,10 @@ end
     end
     
     attr_accessor :binds
-    
-    def bind()
+    def bind
+      mark_bind
+    end
+    def mark_bind()
       @seen={}
       @types={1=>[],2=>[],3=>[]}
       @_data=nil
@@ -511,7 +518,10 @@ end
       stack.shift()
       return self
     end
-    def build_instance(s1)
+    def build_instance(s)
+      mark_build_instance(s)
+    end
+    def mark_build_instance(s1)
       build_properties(s1, self.binds.required)
       if s1.visible
         build_properties(s1,self.binds.optional)
@@ -529,7 +539,7 @@ end
         end
         ss.send((prop.name.to_s+"=").to_sym, v)
       end
-      #p ss
+      # p ss
     end
   end
 end

@@ -2,9 +2,9 @@ $:.unshift(File.dirname(__FILE__)+"/../../lib")
 require 'rubyvis'
 require 'ostruct'
 
-causes = ["wounds", "other", "disease"];
+$causes = ["wounds", "other", "disease"];
 
-crimea = [
+$crimea = [
   OpenStruct.new({ date: "4/1854", wounds: 0, other: 110, disease: 110 }),
   OpenStruct.new({ date: "5/1854", wounds: 0, other: 95, disease: 105 }),
   OpenStruct.new({ date: "6/1854", wounds: 0, other: 40, disease: 95 }),
@@ -32,6 +32,6 @@ crimea = [
 ];
 
 format= pv.Format.date("%m/%Y");
-crimea.each_with_index {|d,i|
+$crimea.each_with_index {|d,i|
   d.date = format.parse(d.date)
 }
