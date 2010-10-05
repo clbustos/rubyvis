@@ -212,4 +212,10 @@ module Rubyvis
   def self.degrees(radians)
     ((180.0) / Math::PI)*radians
   end
+  # :section: /data/Objects.js
+  
+  def self.keys(map)
+    map.keys
+  end
+    
 end

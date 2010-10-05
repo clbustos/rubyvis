@@ -37,6 +37,7 @@ end
 # called +js_apply+ and +js_call+, respectivly.
 
 class Proc
+  attr_accessor :order
   # Apply on javascript is very flexible. Can accept more or less
   # variables than explicitly defined parameters on lambda, so the method
   # adds or remove elements according to lambda arity

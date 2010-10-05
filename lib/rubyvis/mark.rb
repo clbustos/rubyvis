@@ -218,8 +218,6 @@ module Rubyvis
           'bottom'
         end
       })
-
-
       return anchor
     end
 
@@ -552,4 +550,4 @@ require 'rubyvis/mark/area'
 require 'rubyvis/mark/line'
 require 'rubyvis/mark/rule'
 require 'rubyvis/mark/label'
-
+require 'rubyvis/mark/dot'

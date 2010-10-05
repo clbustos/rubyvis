@@ -12,6 +12,9 @@ module Rubyvis
     def self.ordinal(*args)
       Ordinal.new(*args)
     end
+    def self.log(*args)
+      Log.new(*args)
+    end
     def self.interpolator(start,_end)
       if start.is_a? Numeric
         return lambda {|t| t*(_end-start)+start}
@@ -32,3 +35,4 @@ end
 require 'rubyvis/scale/quantitative.rb'
 require 'rubyvis/scale/linear.rb'
 require 'rubyvis/scale/ordinal.rb'
+require 'rubyvis/scale/log.rb'

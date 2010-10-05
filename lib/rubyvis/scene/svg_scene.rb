@@ -3,7 +3,7 @@ require 'rubyvis/scene/svg_bar'
 require 'rubyvis/scene/svg_rule'
 require 'rubyvis/scene/svg_label'
 require 'rubyvis/scene/svg_line'
-
+require 'rubyvis/scene/svg_dot'
 class REXML::Element
   attr_accessor :_scene
 end
@@ -71,7 +71,11 @@ module Rubyvis
     end
     def self.create(type)
       el=Element.new "#{type}"
-      el.add_namespace('svg',self.svg) if type=='svg'
+      if type=='svg'
+        el.add_namespace(self.svg)
+        #el.add_namespace("xmlns:xmlns", self.xmlns)
+        #el.add_namespace("xlink", self.xlink)
+      end
       el
     end
 

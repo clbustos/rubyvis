@@ -7,6 +7,7 @@ require 'pp'
 require 'rubyvis/internals'
 require 'rubyvis/sceneelement'
 require 'rubyvis/property'
+require 'rubyvis/nest'
 
 require 'rubyvis/javascript_behaviour'
 require 'rubyvis/format'

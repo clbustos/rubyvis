@@ -74,7 +74,6 @@ module Rubyvis
         bar = REXML::Formatters::Default.new
         out = String.new
         bar.write(v[1].elements[1], out)
-        out
       }.join
     end
     def build_implied(s)
