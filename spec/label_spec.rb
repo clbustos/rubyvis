@@ -31,7 +31,7 @@ require File.dirname(__FILE__)+"/spec_helper.rb"
 
       doc=Nokogiri::XML(s)
       
-      attribs=doc.xpath("//svg/g/text").map {|v|
+      attribs=doc.xpath("//xmlns:text").map {|v|
       [v.attributes['y'].value, v.attributes['transform'].value, v.text] }
       attribs.should==[["-3","translate(0,100)","1"],["-3","translate(25,100)","2"]]
     end    

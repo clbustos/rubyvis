@@ -11,13 +11,22 @@ module Rubyvis
       @n=false
       @f=Rubyvis.identity # default forward transformation
       @g=Rubyvis.identity
-      @tick_format=lambda {|x| x.to_f}
+      @tick_format=lambda {|x|
+        if x.is_a? Numeric
+          (x.to_i==x.to_f) ? x.to_i : x.to_f
+        else
+          ""
+        end
+      }
       domain(*args)
     end
     def new_date(x=nil)
       x.nil? ? Time.new() : Time.at(x)
     end
-  
+    def to_proc
+      that=self
+      lambda {|*args|  args[0] ? that.scale(args[0]) : nil }
+    end
     def scale(x)
       x=x.to_f
       j=Rubyvis.search(@d, x)
@@ -255,6 +264,11 @@ module Rubyvis
       ticks = pv.range(start, _end + step, step);
       return reverse ? ticks.reverse() : ticks;
     end
+    
+    def tick_format
+      @tick_format
+    end
+    
     def nice
       if (@d.size!=2)
         return self;

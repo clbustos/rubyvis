@@ -6,7 +6,7 @@ module Rubyvis
   class Mark
     @properties={}
 
-    def self.property_method(name,_def)
+    def self.property_method(name, _def, func=nil)
       return if Mark.method_defined? name
       Mark.send(:define_method, name) do |*arguments|
         v,dummy = arguments
@@ -18,8 +18,13 @@ module Rubyvis
           return defs[name]
         end
         if arguments.size>0
-          type=(!_def).to_i<<1 | (v.is_a? Proc).to_i
-          property_value(name,(type & 1 !=0) ? lambda {|*args|  v.js_apply(self, args)} : v)._type=type
+          v=v.to_proc if v.respond_to? :to_proc
+          type=(!_def).to_i<<1 | (v.is_a? Proc).to_i          
+          
+          property_value(name,(type & 1 !=0) ? lambda {|*args|
+              x=v.js_apply(self, args)
+              (func and x) ? func.call(x) : x
+          } : (func and v) ? func.call(v) : v)._type=type
           #@_properties_types[name]=type
           return self
         end
@@ -27,8 +32,7 @@ module Rubyvis
         if i.nil?
           raise "No instance for #{self} on #{name}"
         else
-          #puts "Instancia para #{name}"
-          #puts "index:#{self.index}, name:#{name}, val:#{i.send(name)}"
+#          puts "index:#{self.index}, name:#{name}, val:#{i.send(name)}"
           i.send(name)
         end
       end
@@ -55,17 +59,26 @@ module Rubyvis
 
     def self.attr_accessor_dsl(*attr)
       attr.each  do |sym|
-        @properties[sym]=true
-        sym_w_sm=sym.to_s.gsub(":","")
-        self.property_method(sym,false)
-        define_method(sym.to_s+"=") {|v|
-          self.send(sym,v)
+        
+        if sym.is_a? Array
+          name,func=sym
+        else
+          name=sym
+          func=nil
+        end
+        
+        @properties[name]=true
+        self.property_method(name,false, func)        
+        define_method(name.to_s+"=") {|v|
+          self.send(name,v)
         }
       end
     end
 
     attr_accessor :parent, :root, :index, :child_index, :scene, :proto, :target, :scale
     attr_reader :_properties
+    
+    
     attr_accessor_dsl :data,:visible, :left, :right, :top, :bottom, :cursor, :title, :reverse, :antialias, :events, :id
 
     @scene=nil

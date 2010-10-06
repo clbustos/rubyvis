@@ -5,18 +5,19 @@ module Rubyvis
   module LinePrototype
     include AreaPrototype
     def line_anchor(name)
-      area_anchor(name).text_align(lambda {|d|
-        {'left'=>'right','bottom'=>'center', 'top'=>'center','center'=>'center','right'=>'left'}[d]
+      anchor=area_anchor(name).text_align(lambda {|d|
+          {'left'=>'right','bottom'=>'center', 'top'=>'center','center'=>'center','right'=>'left'}[self.name]
       }).text_baseline(lambda{|d|
-        {'top'=>'bottom','right'=>'middle', 'left'=>'middle','center'=>'middle','bottom'=>'top'}[d]
+        {'top'=>'bottom', 'right'=>'middle', 'left'=>'middle','center'=>'middle','bottom'=>'top'}[self.name]
       })
+      return anchor
     end
   end
   class Line < Mark
     include AreaPrototype
     include LinePrototype
     @properties=Mark.properties.dup
-    attr_accessor_dsl :line_width, :line_join, :stroke_style, :fill_style, :segmented, :interpolate, :eccentricity, :tension
+    attr_accessor_dsl :line_width, :line_join, [:stroke_style, lambda {|d| pv.color(d)}], [:fill_style, lambda {|d| pv.color(d)}], :segmented, :interpolate, :eccentricity, :tension
     def type
       "line"
     end

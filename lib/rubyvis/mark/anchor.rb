@@ -5,7 +5,7 @@ module Rubyvis
 
   class Anchor < Mark
     @properties=Mark.properties.dup
-    attr_accessor_dsl :name
+    attr_accessor_dsl [:name, lambda {|d| d.to_s}]
 
     def initialize(target)
       super()

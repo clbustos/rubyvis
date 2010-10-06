@@ -10,6 +10,10 @@ module Rubyvis
       @band=0
       domain(*args)
     end
+    def to_proc
+      that=self
+      lambda {|*args| args[0] ? that.scale(args[0]) : nil }
+    end
     def scale(x)
       if @i[x].nil?
         @d.push(x)

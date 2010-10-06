@@ -8,7 +8,7 @@ vis.add(pv.Panel).data([1,2]).add(pv.Bar)
     .width(20)
     .height(lambda {|d|  d * 20})
     .bottom(0)
-    .left(lambda {|d,t| t*60+self.index*20}).add(pv.Label).text(lambda {|d,t| "#{t}-#{d}"})
+    .left(lambda {|d,t| t*60+self.index*30}).add(pv.Label).text(lambda {|d,t| "#{t}-#{d}"})
     
 
 vis.render()

@@ -6,12 +6,12 @@ module Rubyvis
     def fixed
       {
         #  :line_width=> true,
-        :line_join=> true,
+        #:line_join=> true,
         # :stroke_style=> true,
         # :fill_style=> true,
-        :segmented=> true,
-        :interpolate=> true,
-        :tension=> true
+        #:segmented=> true,
+        #:interpolate=> true,
+        #:tension=> true
       }
     end
     def area_build_instance(s)
@@ -94,12 +94,13 @@ module Rubyvis
       }).tension(lambda {
         self.scene.target[self.index].tension
       })
+      return anchor
     end
   end
   class Area < Mark
     include AreaPrototype
     @properties=Mark.properties.dup
-    attr_accessor_dsl :width, :height, :line_width, :stroke_style, :fill_style, :segmented, :interpolate, :tension
+    attr_accessor_dsl :width, :height, :line_width, [:stroke_style, lambda {|d| pv.color(d)}], [:fill_style, lambda {|d| pv.color(d)}], :segmented, :interpolate, :tension
     def type
       'area'
     end
@@ -110,7 +111,7 @@ module Rubyvis
       area_build_instance(s)
     end
     def self.defaults
-      Area.new.extend(Mark.defaults).line_width(1.5).fill_style(pv.Colors.category20.by(pv.parent)).interpolate('linear').tension(0.7)
+      Area.new.extend(Mark.defaults).line_width(1.5).fill_style( pv.Colors.category20.by(pv.parent)).interpolate('linear').tension(0.7)
     end
     def anchor(name)
       area_anchor(name)

@@ -1,11 +1,9 @@
 module Rubyvis
   module SvgScene
     def self.line(scenes)
-
       e=scenes._g.elements[1]
       return e if (scenes.size < 2)
       s = scenes[0]
-
       # segmented */
       return self.line_segment(scenes) if (s.segmented)
 

@@ -20,24 +20,48 @@ require File.dirname(__FILE__)+"/spec_helper.rb"
     @h=200
     @w=200
     @vis = Rubyvis.Panel.new.width(@w).height(@h)
-    @vis.add(pv.Bar).data([1,2]).width(20).height(lambda {|d| d * 80}).bottom(0).left(lambda {self.index * 25});
+    @bar=@vis.add(pv.Bar).data([1,2]).width(20).height(lambda {|d| d * 80}).bottom(0).left(lambda {self.index * 25});
     end
     it "should bould propertly" do
       @vis.render
       s=@vis.to_svg
       doc=Nokogiri::XML(s)
-      attribs=doc.xpath("//svg/g/rect").map {|v|
+      attribs=doc.xpath("//xmlns:rect").map {|v|
       [v.attributes['y'].value, v.attributes['height'].value, v.attributes['fill'].value]
       }
       attribs.should==[["120","80","rgb(31,119,180)"],["40","160","rgb(31,119,180)"]]
     end
+    
+    it "should bould properly with string fill_style" do
+      @bar.fill_style('red')
+      @vis.render
+      s=@vis.to_svg
+      doc=Nokogiri::XML(s)
+      doc.at_xpath("//xmlns:rect").attributes['fill'].value.should=='rgb(255,0,0)'
+    end
+    it "should bould properly with pv.color" do
+      @bar.fill_style(pv.color('red'))
+      @vis.render
+      s=@vis.to_svg
+      doc=Nokogiri::XML(s)
+      doc.at_xpath("//xmlns:rect").attributes['fill'].value.should=='rgb(255,0,0)'
+    end
+    it "should bould properly with pv.colors" do
+      @bar.fill_style(pv.colors('black','red'))
+      @vis.render
+      s=@vis.to_svg
+      doc=Nokogiri::XML(s)
+      attr=doc.xpath("//xmlns:rect").map {|x| x.attributes['fill'].value}
+      attr.should==['rgb(0,0,0)', 'rgb(255,0,0)']
+    end
+    
     it "should bould propertly with double data" do
       @vis = Rubyvis.Panel.new.width(@w).height(100)
       @vis.add(pv.Bar).data([1,2]).width(20).height(lambda {|d| d * 10}).bottom(0).left(lambda {self.index * 25}).add(pv.Bar).width(10).height(lambda {|d| d * 30}).bottom(0).left(lambda {self.index * 25});
       @vis.render
       s=@vis.to_svg
       doc=Nokogiri::XML(s)
-      attribs=doc.xpath("//svg/g/rect").map {|v|
+      attribs=doc.xpath("//xmlns:rect").map {|v|
       x=v.attributes['x'] ? v.attributes['x'].value : nil
         [x, v.attributes['y'].value, v.attributes['height'].value]
       }

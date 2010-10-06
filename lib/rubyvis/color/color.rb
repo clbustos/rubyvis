@@ -27,7 +27,7 @@ module Rubyvis
         return Rubyvis.rgb(r,g,b,a)
       end
     end
-
+    
     named = Rubyvis::Color.names[format.to_sym]
 
 
@@ -229,7 +229,7 @@ module Rubyvis
         @a=a
         @opacity=a
         if @a>0
-          @color="rgb(#{r},#{g},#{b})"
+          @color="rgb(#{r.to_i},#{g.to_i},#{b.to_i})"
         else
           @color="none"
         end

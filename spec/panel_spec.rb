@@ -20,7 +20,7 @@ describe Rubyvis::Panel do
     doc=Nokogiri::XML(@vis.to_svg)
     values={"font-size"=>"10px", "font-family"=>"sans-serif", "fill"=>"none", "stroke"=>"none", "stroke-width"=>"1.5", "width"=>"200.0", "height"=>"200.0"}
     values.each {|k,v|
-      doc.at_xpath("//svg").attributes[k].value.should==v
+      doc.at_xpath("//xmlns:svg").attributes[k].value.should==v
     }
   end
 end

@@ -5,7 +5,7 @@ module Rubyvis
       scenes.each_with_index do |s,i|
         next unless s.visible
         stroke=s.stroke_style
-        next if(!stroke.opacity)
+        next if(stroke.opacity==0.0)
         e=SvgScene.expect(e,'line', {
           "shape-rendering"=> s.antialias ? nil : "crispEdges",
           "pointer-events"=> s.events,
@@ -16,7 +16,7 @@ module Rubyvis
           'y2'=>s.top+s.height,
           "stroke"=> stroke.color,
           "stroke-opacity"=> stroke.opacity,
-          "stroke-width"=> s.line_width/self.scale.to_f
+          "stroke-width"=> s.line_width / self.scale
         })
 
         e=SvgScene.append(e,scenes,i)

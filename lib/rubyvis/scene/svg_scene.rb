@@ -4,6 +4,7 @@ require 'rubyvis/scene/svg_rule'
 require 'rubyvis/scene/svg_label'
 require 'rubyvis/scene/svg_line'
 require 'rubyvis/scene/svg_dot'
+require 'rubyvis/scene/svg_area'
 class REXML::Element
   attr_accessor :_scene
 end
