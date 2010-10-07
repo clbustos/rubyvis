@@ -234,6 +234,9 @@ module Rubyvis
           @color="none"
         end
       end
+      def ==(v)
+        self.class==v.class and @r==v.r and @b==v.b and @g=v.g and @a=v.a
+      end
       def rgb
         self
       end

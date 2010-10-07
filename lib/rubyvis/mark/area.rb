@@ -5,26 +5,26 @@ module Rubyvis
   module AreaPrototype
     def fixed
       {
-        #  :line_width=> true,
+        #:line_width=> true,
         #:line_join=> true,
-        # :stroke_style=> true,
-        # :fill_style=> true,
+        :stroke_style=> true,
+        :fill_style=> true,
         #:segmented=> true,
         #:interpolate=> true,
         #:tension=> true
       }
     end
     def area_build_instance(s)
-
+      
       binds = self.binds
-
       # Handle fixed properties on secondary instances. */
-      if (self.index)
-        fixed = @binds.fixed;
+      if (self.index!=0)
+        fixed = @binds.fixed
         #/* Determine which properties are fixed. */
         if (!fixed)
           binds.fixed=[]
           fixed = binds.fixed
+          
           filter=lambda {|prop|
             if prop.fixed
               fixed.push(prop)
@@ -39,8 +39,9 @@ module Rubyvis
           if (!self.scene[0].segmented)
             binds.optional = binds.optional.find_all(&filter)
           end
+          
         end
-
+        
         #    p binds.required
 
 
@@ -49,13 +50,14 @@ module Rubyvis
           name=prop.name
           s[name]=self.scene[0][name]
         }
+        
+        
         #    p binds.fixed
         #/* Evaluate all properties on the first instance. */
       else
         binds.required = binds._required;
         binds.optional = binds._optional;
         binds.fixed = nil;
-
       end
       # pp binds
       mark_build_instance(s)
@@ -66,12 +68,11 @@ module Rubyvis
     def area_bind
       mark_bind()
       binds = self.binds
-
+      
       required = binds.required
       optional = binds.optional
       optional.size.times {|i|
         prop = optional[i]
-
         prop.fixed = fixed.include? prop.name
         if (prop.name == "segmented")
           required.push(prop)
@@ -111,7 +112,7 @@ module Rubyvis
       area_build_instance(s)
     end
     def self.defaults
-      Area.new.extend(Mark.defaults).line_width(1.5).fill_style( pv.Colors.category20.by(pv.parent)).interpolate('linear').tension(0.7)
+      Area.new.extend(Mark.defaults).line_width(1.5).fill_style(lambda {pv.Colors.category20.scale(pv.parent)}).interpolate('linear').tension(0.7)
     end
     def anchor(name)
       area_anchor(name)

@@ -1,6 +1,6 @@
 module Rubyvis
   class Scale::Ordinal
-    include Rubyvis::Scale
+    #include Rubyvis::Scale
     attr_reader :range_band
     def initialize(*args)
       @d=[] # domain
@@ -22,7 +22,7 @@ module Rubyvis
       @r[@i[x] % @r.size]
     end
     def domain(*arguments)
-      array,f=arguments[0],arguments[1]
+      array, f=arguments[0],arguments[1]
       if(arguments.size>0)
       array= (array.is_a? Array) ? ((arguments.size>1) ? pv.map(array,f) : array) : arguments.dup
         @d=array.uniq
@@ -56,7 +56,7 @@ module Rubyvis
         if @r[0].is_a? String
           @r=@r.map {|i| pv.color(i)}
         end
-        self
+        return self
       end
       @r
     end
@@ -65,11 +65,11 @@ module Rubyvis
       @r=pv.range(min+step.quo(2),max,step)
       self
     end
-    def by(*arguments)
-      f,dummy=arguments
-      t=self
-      by=lambda {t.scale(f.js_apply(self,arguments))}
-      by
+    def by(f)
+      that=self
+      lambda {|*args|
+        that.scale(f.js_apply(self,args))
+      }
     end
   end
 end
