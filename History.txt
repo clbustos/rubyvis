@@ -1,4 +1,16 @@
-﻿=== 0.1.2 / 2010-10-04
+﻿=== 0.1.3 / 2010-10-08
+
+* New Wedge and  Dot mark
+* New Log scale and Nest. 
+* Area mark working. 
+* Automatic color scales doesn't work on every ocasion, yet
+* Color, Format::Number and Quantitative fixed. 
+* Fixed attributes works as expected (damn c like 0=false)
+* Added examples (antibiotics and barley)
+* Bug fix: right anchor doesn't affect labels.
+* Crimea grouped bars works. Ordinal scales operational
+
+=== 0.1.2 / 2010-10-04
 
 * Bug fix: SvgScene.panel only parse first element. Crimea-line example works (almost) as expected
 * Support for lines as anchors (not tested, yet)
