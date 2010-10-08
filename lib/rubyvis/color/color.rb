@@ -237,6 +237,19 @@ module Rubyvis
       def ==(v)
         self.class==v.class and @r==v.r and @b==v.b and @g=v.g and @a=v.a
       end
+      def red(r1)
+        pv.rgb(r1,g,b,a)
+      end
+      def green(g1)
+        pv.rgb(r,g1,b,a)
+      end
+      def blue(b1)
+        pv.rgb(r,g,b1,a)
+      end
+      def alpha(a1)
+        pv.rgb(r,g,b,a1)
+      end
+      
       def rgb
         self
       end

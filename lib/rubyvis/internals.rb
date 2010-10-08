@@ -69,11 +69,11 @@ module Rubyvis
   def self.uniq(array, f=nil  )
     self.map(array,f).uniq
   end
-  def self.natural_order(a,b)
-    a<=>b
+  def self.natural_order()
+    lambda {|a,b| a<=>b}
   end
-  def self.reverse_order(a,b)
-    -(a<=>b)
+  def self.reverse_order()
+    lambda {|a,b| -(a<=>b)}
   end
 
   def self.search(array, value, f=nil)
@@ -173,7 +173,7 @@ module Rubyvis
   end
   def self.median(array,f=nil)
     return (array.length - 1).quo(2) if (f == pv.index)
-    array = Rubyvis.map(array, f).sort{|a,b| Rubyvis.natural_order(a,b)}
+    array = Rubyvis.map(array, f).sort
     return array[array.size.quo(2).floor] if (array.length % 2>0)
     i = array.size.quo(2);
     return (array[i - 1] + array[i]).quo(2);

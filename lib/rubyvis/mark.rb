@@ -7,6 +7,7 @@ module Rubyvis
     @properties={}
 
     def self.property_method(name, _def, func=nil)
+      
       return if Mark.method_defined? name
       Mark.send(:define_method, name) do |*arguments|
         v,dummy = arguments
@@ -35,6 +36,11 @@ module Rubyvis
 #          puts "index:#{self.index}, name:#{name}, val:#{i.send(name)}"
           i.send(name)
         end
+      end
+      
+      camel=name.to_s.gsub(/(_.)/) {|v| v[1,1].upcase}
+      if camel!=name
+        Mark.send(:alias_method, camel, name)
       end
     end
     def property_value(name,v)
@@ -168,13 +174,14 @@ module Rubyvis
       end
       return scene;
     end
-
-
-
-
-
-
-
+    def sibling
+      (self.index==0) ? nil: self.scene[self.index-1]
+    end
+    def cousin
+      par=self.parent
+      s= par ? par.sibling : nil
+      (s and s.children) ? s.children[self.child_index][self.index] : nil
+    end
     def add(type)
       parent.add(type).extend(self)
     end
@@ -553,6 +560,10 @@ module Rubyvis
       end
       # p ss
     end
+    def event(type,handler)
+      #@_handlers[type]=handler
+      return self
+    end
   end
 end
 
@@ -564,3 +575,4 @@ require 'rubyvis/mark/line'
 require 'rubyvis/mark/rule'
 require 'rubyvis/mark/label'
 require 'rubyvis/mark/dot'
+require 'rubyvis/mark/wedge'

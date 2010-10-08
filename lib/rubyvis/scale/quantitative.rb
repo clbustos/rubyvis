@@ -13,7 +13,7 @@ module Rubyvis
       @g=Rubyvis.identity
       @tick_format=lambda {|x|
         if x.is_a? Numeric
-          (x.to_i==x.to_f) ? x.to_i : x.to_f
+          (x.to_f-x.to_i==0) ? x.to_i : x.to_f
         else
           ""
         end
@@ -260,7 +260,7 @@ module Rubyvis
       end
       start = (min.quo(step)).ceil * step
       _end = (max.quo(step)).floor * step
-      @tick_format= pv.Format.number().fraction_digits([0, -(pv.log(step, 10) + 0.01).floor].max);
+      @tick_format= pv.Format.number.fraction_digits([0, -(pv.log(step, 10) + 0.01).floor].max)
       ticks = pv.range(start, _end + step, step);
       return reverse ? ticks.reverse() : ticks;
     end

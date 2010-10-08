@@ -5,7 +5,7 @@ module Rubyvis
 
   class Label < Mark
     @properties=Mark.properties.dup
-    attr_accessor_dsl :text, :font, :text_angle, :text_style, :text_align, :text_baseline, :text_margin, :text_decoration, :text_shadow
+    attr_accessor_dsl :text, :font, :text_angle, [:text_style, lambda {|d| pv.color(d)}], :text_align, :text_baseline, :text_margin, :text_decoration, :text_shadow
     def type
       'label'
     end

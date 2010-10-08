@@ -5,13 +5,13 @@ module Rubyvis
   module AreaPrototype
     def fixed
       {
-        #:line_width=> true,
-        #:line_join=> true,
+        :line_width=> true,
+        :line_join=> true,
         :stroke_style=> true,
         :fill_style=> true,
-        #:segmented=> true,
-        #:interpolate=> true,
-        #:tension=> true
+        :segmented=> true,
+        :interpolate=> true,
+        :tension=> true
       }
     end
     def area_build_instance(s)
@@ -112,7 +112,7 @@ module Rubyvis
       area_build_instance(s)
     end
     def self.defaults
-      Area.new.extend(Mark.defaults).line_width(1.5).fill_style(lambda {pv.Colors.category20.scale(pv.parent)}).interpolate('linear').tension(0.7)
+      Area.new.extend(Mark.defaults).line_width(1.5).fill_style(lambda {pv.Colors.category20.scale(self.parent.index)}).interpolate('linear').tension(0.7)
     end
     def anchor(name)
       area_anchor(name)

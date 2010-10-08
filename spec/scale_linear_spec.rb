@@ -101,11 +101,11 @@ describe Rubyvis::Scale::Linear do
     @y.ticks(5).should==[0,200,400,600,800,1000]
 
   end
-  it "should returns correct tick_format"
   it "should nice nicely" do
     @y.domain([0.20147987687960267, 0.996679553296417])
     @y.nice
     @y.domain().should==[0.2,1]
-    
   end
+  
+  it "should returns correct tick_format"
 end
