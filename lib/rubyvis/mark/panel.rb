@@ -77,6 +77,9 @@ module Rubyvis
       }.join
     end
     def build_implied(s)
+      panel_build_implied(s)
+    end
+    def panel_build_implied(s)
       if(!self.parent)
         c=s.canvas
         if(c)

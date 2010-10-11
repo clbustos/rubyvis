@@ -118,14 +118,14 @@ module Rubyvis
         e = 1 - s1.eccentricity
         r = Math.sqrt(dx * dx + dy * dy) / (2 * e)
         if !((e<=0) and (e>1))
-          return "A" + r + "," + r + " 0 0," + l + " " + s2.left + "," + s2.top
+          return "A#{r},#{r} 0 0,#{l} #{s2.left},#{s2.top}"
         end
       when "step-before"
-        return "V" + s2.top + "H" + s2.left
+        return "V#{s2.top}H#{s2.left}"
       when "step-after"
-        return "H" + s2.left + "V" + s2.top
+        return "H#{s2.left}V#{s2.top}"
       end
-      return "L" + s2.left.to_s + "," + s2.top.to_s
+      return "L#{s2.left},#{s2.top}"
     end
 
     #/** @private Line-line intersection, per Akenine-Moller 16.16.1. */

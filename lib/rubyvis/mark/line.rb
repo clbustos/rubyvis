@@ -31,7 +31,8 @@ module Rubyvis
       area_build_instance(*args)
     end
     def self.defaults
-      Line.new.extend(Mark.defaults).line_join('miter').line_width(1.5).stroke_style( lambda {return Rubyvis::Colors.category10().scale(self.parent.index)}).interpolate('linear').eccentricity(0).tension(7)
+      a=Rubyvis::Colors.category10()
+      Line.new.extend(Mark.defaults).line_join('miter').line_width(1.5).stroke_style( lambda {return a.scale(self.parent.index)}).interpolate('linear').eccentricity(0).tension(7)
     end
   end
 end

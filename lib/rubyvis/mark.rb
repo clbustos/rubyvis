@@ -6,10 +6,10 @@ module Rubyvis
   class Mark
     @properties={}
 
-    def self.property_method(name, _def, func=nil)
+    def self.property_method(name, _def, func=nil, klass)
       
-      return if Mark.method_defined? name
-      Mark.send(:define_method, name) do |*arguments|
+      return if klass.method_defined? name
+      klass.send(:define_method, name) do |*arguments|
         v,dummy = arguments
         if _def and self.scene
           if arguments.size>0
@@ -33,16 +33,37 @@ module Rubyvis
         if i.nil?
           raise "No instance for #{self} on #{name}"
         else
-#          puts "index:#{self.index}, name:#{name}, val:#{i.send(name)}"
+        #          puts "index:#{self.index}, name:#{name}, val:#{i.send(name)}"
           i.send(name)
         end
       end
       
       camel=name.to_s.gsub(/(_.)/) {|v| v[1,1].upcase}
       if camel!=name
-        Mark.send(:alias_method, camel, name)
+        klass.send(:alias_method, camel, name)
       end
     end
+    
+    def self.attr_accessor_dsl(*attr)
+      attr.each  do |sym|
+      if sym.is_a? Array
+        name,func=sym
+      else
+        name=sym
+        func=nil
+      end
+      
+      @properties[name]=true
+      self.property_method(name,false, func, Rubyvis::Mark)        
+      define_method(name.to_s+"=") {|v|
+        self.send(name,v)
+      }
+      end
+    end
+
+    
+    
+    
     def property_value(name,v)
       prop=Property.new({:name=>name, :id=>Rubyvis.id, :value=>v})
       @_properties.delete_if{|v1| v1.name==name}
@@ -63,23 +84,6 @@ module Rubyvis
     end
 
 
-    def self.attr_accessor_dsl(*attr)
-      attr.each  do |sym|
-        
-        if sym.is_a? Array
-          name,func=sym
-        else
-          name=sym
-          func=nil
-        end
-        
-        @properties[name]=true
-        self.property_method(name,false, func)        
-        define_method(name.to_s+"=") {|v|
-          self.send(name,v)
-        }
-      end
-    end
 
     attr_accessor :parent, :root, :index, :child_index, :scene, :proto, :target, :scale
     attr_reader :_properties

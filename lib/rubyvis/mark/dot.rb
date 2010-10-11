@@ -12,7 +12,8 @@ module Rubyvis
     attr_accessor_dsl :shape, :shape_angle, :shape_radius, :shape_size, :line_width, [:stroke_style, lambda {|d| pv.color(d)}], [:fill_style, lambda {|d| pv.color(d)}]
     
     def self.defaults()
-      Dot.new().extend(Mark.defaults).shape("circle"). line_width(1.5). stroke_style(lambda {pv.Colors.category10().scale(self.parent.index)})
+      a=Rubyvis::Colors.category10
+      Dot.new().extend(Mark.defaults).shape("circle"). line_width(1.5). stroke_style(lambda {a.scale(self.parent.index)})
     end
     
     def anchor(name)
