@@ -112,7 +112,8 @@ module Rubyvis
       area_build_instance(s)
     end
     def self.defaults
-      Area.new.extend(Mark.defaults).line_width(1.5).fill_style(lambda {pv.Colors.category20.scale(self.parent.index)}).interpolate('linear').tension(0.7)
+      a= Rubyvis::Colors.category20
+      Area.new.extend(Mark.defaults).line_width(1.5).fill_style(lambda {a.scale(self.parent.index)}).interpolate('linear').tension(0.7)
     end
     def anchor(name)
       area_anchor(name)
