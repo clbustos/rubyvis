@@ -108,7 +108,7 @@ module Rubyvis
       end
 
       s.transform=Rubyvis.Transform.identity if (s.transform.nil?)
-      super(s)
+      mark_build_implied(s)
 
     end
 

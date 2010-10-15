@@ -62,8 +62,6 @@ module Rubyvis
     end
 
     
-    
-    
     def property_value(name,v)
       prop=Property.new({:name=>name, :id=>Rubyvis.id, :value=>v})
       @_properties.delete_if{|v1| v1.name==name}
@@ -123,11 +121,7 @@ module Rubyvis
     end
 
     def initialize(opts=Hash.new)
-      #@_properties_values={}
-      #@_properties_types={}
       @_properties=[]
-      #@options=opts
-      # @stack=[]
       opts.each {|k,v|
         self.send("#{k}=",v) if self.respond_to? k
       }

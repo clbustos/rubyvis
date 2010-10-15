@@ -1,10 +1,39 @@
 module Rubyvis
+  class Layout
+  def self.Stack
+    Rubyvis::Layout::Stack
+  end
   class Stack < Rubyvis::Layout
-    def initialize
-      @none=lambda {return nil}
-      @prop = {:t=> none, :l=> none, :r=> none, :b=> none, :w=> none, :h=> none}
-      @values=nil
+    @properties=Mark.properties.dup    
+    
+    attr_accessor :_x, :_y, :_values
+    attr_accessor_dsl :orient,:offset, :order, :layers
+    def self.defaults
+      Stack.new.extend(Layout.defaults).orient("bottom-left").offset("zero").layers([[]])
     end
+    def initialize
+      super
+      @none=lambda {return nil}
+      @prop = {:t=> @none, :l=> @none, :r=> @none, :b=> @none, :w=> @none, :h=> @none}
+      @values=nil
+      @_x=lambda {return 0}
+      @_y=lambda {return 0}
+      @_values=pv.identity
+    end
+    def x(f)
+      @_x=pv.functor(f)
+      return self
+    end
+    def y(f)
+      @_y=pv.functor(f)
+      return self
+    end
+    def values(f)
+      @_values=pv.functor(f)
+      return self
+    end
+    
+    
     def proxy(name) 
       return lambda { @prop[name].call(self.parent.index, self.index)}
     end
@@ -29,7 +58,7 @@ module Rubyvis
      # context in which the x and y psuedo-properties are evaluated is a
      # pseudo-mark that is a grandchild of this layout.
      #
-    stack = pv.Mark.stack
+     stack = Rubyvis::Mark.stack
     
     o = OpenStruct.new({:parent=> OpenStruct.new({:parent=> self})})
     stack.unshift(nil)
@@ -51,7 +80,7 @@ module Rubyvis
       stack.shift()
     }
     stack.shift()
-      
+
     # order
     _index=nil
     case (s.order) 
@@ -83,60 +112,93 @@ module Rubyvis
     end
     
     #/* offset */
-    case (s.offset) {
+    case (s.offset) 
       when "silohouette"
-        for (var j = 0; j < m; j++) {
-          var o = 0;
-          for (var i = 0; i < n; i++) o += dy[i][j];
-          y[index[0]][j] = (h - o) / 2;
+        m.times {|j|
+          o = 0;
+          n.times {|i| 
+            o += dy[i][j]
+          }
+          y[index[0]][j] = (h - o) / 2.0;
         }
-        break;
       
       when "wiggle"
-        var o = 0;
-        for (var i = 0; i < n; i++) o += dy[i][0];
-        y[index[0]][0] = o = (h - o) / 2;
-        for (var j = 1; j < m; j++) {
-          var s1 = 0, s2 = 0, dx = x[j] - x[j - 1];
-          for (var i = 0; i < n; i++) s1 += dy[i][j];
-          for (var i = 0; i < n; i++) {
-            var s3 = (dy[index[i]][j] - dy[index[i]][j - 1]) / (2 * dx);
-            for (var k = 0; k < i; k++) {
-              s3 += (dy[index[k]][j] - dy[index[k]][j - 1]) / dx;
+        o = 0;
+        n.times {|i|  o += dy[i][0] }
+        
+        y[index[0]][0] = o = (h - o) / 2.0
+        
+        (1...m).each  {|j|
+          s1 = 0
+          s2 = 0
+          dx = x[j] - x[j - 1]
+          n.times {|i| s1 += dy[i][j]}
+          n.times {|i|
+            
+            s3 = (dy[index[i]][j] - dy[index[i]][j - 1]) / (2.0 * dx)
+            i.times {|k|
+              s3 += (dy[index[k]][j] - dy[index[k]][j - 1]) / dx.to_f
             }
-            s2 += s3 * dy[index[i]][j];
+            s2 += s3 * dy[index[i]][j]
           }
-          y[index[0]][j] = o -= s1 ? s2 / s1 * dx : 0;
+          o -= (s1!=0) ? s2 / s1.to_f * dx : 0
+          y[index[0]][j] = o
+          
         }
-        break;
-      
       when "expand"
-        for (var j = 0; j < m; j++) {
-          y[index[0]][j] = 0;
-          var k = 0;
-          for (var i = 0; i < n; i++) k += dy[i][j];
-          if (k) {
-            k = h / k;
-            for (var i = 0; i < n; i++) dy[i][j] *= k;
-          } else {
-            k = h / n;
-            for (var i = 0; i < n; i++) dy[i][j] = k;
-          }
+        m.times {|j|
+          y[index[0]][j] = 0
+          
+          k = 0
+          n.times {|i|k += dy[i][j]}
+          if (k!=0) 
+            k = h / k.to_f
+            n.times {|i| dy[i][j] *= k}
+          else 
+            k = h / n.to_f
+            n.times { dy[i][j] = k}
+          end
         }
-        break;
       else
-        for (var j = 0; j < m; j++) y[index[0]][j] = 0;
+        m.times {|j| y[index[0]][j] = 0}
     end
 
+     # Propagate the offset to the other series. */
+     m.times {|j|
+      o = y[index[0]][j]
+      (1...n).each {|i|
+        
+        o += dy[index[i - 1]][j]
+        y[index[i]][j] = o
+      }
+    }
+
+    # /* Find the property definitions for dynamic substitution. */
     
-    
-    
-    
-    
-    
-    
-    
-      
+    i = orient.index("-")
+    pdy = horizontal ? "h" : "w"
+    px = i < 0 ? (horizontal ? "l" : "b") : orient[i + 1,1]
+    py = orient[0,1]
+    @prop.each {|k,v|
+      @prop[k]=@none
+    }
+    @prop[px] =lambda {|i,j| x[j]}
+    @prop[py] =lambda {|i,j| y[i][j]}
+    @prop[pdy]=lambda {|i,j| dy[i][j]}  
     end
+    def layer
+      pv.Mark.new().data(lambda { values[self.parent.index] })
+      .top(proxy("t"))
+      .left(proxy("l"))
+      .right(proxy("r"))
+      .bottom(proxy("b"))
+      .width(proxy("w"))
+      .height(proxy("h"))
+    end
+    def layer_add(type)
+      that=self
+      self.add(pv.Panel).data(lambda {that.layers()}).add(type).extend(self)
+    end
+  end
   end
 end
