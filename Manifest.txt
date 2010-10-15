@@ -14,6 +14,7 @@ examples/crimea/crimea_line.rb
 examples/dot.rb
 examples/first.rb
 examples/line.rb
+examples/line_and_step.rb
 examples/pie_and_donut.rb
 examples/scatterplot.rb
 examples/second.rb
@@ -28,6 +29,7 @@ lib/rubyvis/format/number.rb
 lib/rubyvis/internals.rb
 lib/rubyvis/javascript_behaviour.rb
 lib/rubyvis/label.rb
+lib/rubyvis/layout.rb
 lib/rubyvis/mark.rb
 lib/rubyvis/mark/anchor.rb
 lib/rubyvis/mark/area.rb
