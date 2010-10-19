@@ -21,7 +21,7 @@ vis = pv.Panel.new()
     .left(20)
     .right(10)
     .top(5)
-    if(false)
+    if(true)
 #/* X-axis and ticks. */
 vis.add(pv.Rule)
     .data(x.ticks())
