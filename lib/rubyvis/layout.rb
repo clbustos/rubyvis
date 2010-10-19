@@ -1,5 +1,9 @@
 module Rubyvis
+  def self.Layout
+    Rubyvis::Layout
+  end
   class Layout < Rubyvis::Panel
+    @properties=Mark.properties.dup    
     def self.attr_accessor_dsl(*attr)
       attr.each  do |sym|
         if sym.is_a? Array

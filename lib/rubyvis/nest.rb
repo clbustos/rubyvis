@@ -91,7 +91,7 @@ module Rubyvis
       return self
     end
     def map
-      i=0
+      #i=0
       map={} 
       values=[]
       @array.each_with_index {|x,j|

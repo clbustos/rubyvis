@@ -15,11 +15,11 @@ module Rubyvis
       
       return e if (fill.opacity==0 and stroke.opacity==0) 
       # /** @private Computes the straight path for the range [i, j]. */
-      path=lambda {|i,j|
+      path=lambda {|ii,j|
         p1 = []
         p2 = [];
         k=j
-        (i..k).each {|i|
+        (ii..k).each {|i|
           si = scenes[i]
           sj = scenes[j]
           pi = "#{si.left},#{si.top}"
@@ -48,7 +48,7 @@ module Rubyvis
       }
         
       # @private Computes the curved path for the range [i, j]. */
-      path_curve=lambda {|i, j|
+      path_curve=lambda {|ii, j|
         pointsT = []
         pointsB = []
         pathT=nil
@@ -56,7 +56,7 @@ module Rubyvis
         
         
         k=j
-        (i..k).each {|i|
+        (ii..k).each {|i|
           sj = scenes[j];
           pointsT.push(scenes[i])
           pointsB.push(OpenStruct.new({:left=> sj.left + sj.width, :top=> sj.top + sj.height}))
@@ -112,9 +112,9 @@ module Rubyvis
               "stroke-width"=> stroke.opacity!=0 ? s.line_width / self.scale : nil
             });
           return self.append(e, scenes, 0);
-        end
+    end
         
-        def self.area_segment(scenes)
+    def self.area_segment(scenes)
           
           e = scenes._g.elements[1]
           s = scenes[0]
@@ -191,7 +191,7 @@ module Rubyvis
             e = self.append(e, scenes, i);
           }
           return e;
-        end
-      end
+    end
+  end
 end
 
