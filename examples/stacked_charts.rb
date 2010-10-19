@@ -21,7 +21,7 @@ vis = pv.Panel.new()
     .left(20)
     .right(10)
     .top(5)
-=begin
+    if(false)
 #/* X-axis and ticks. */
 vis.add(pv.Rule)
     .data(x.ticks())
@@ -38,14 +38,13 @@ vis.add(pv.Rule)
     .strokeStyle(lambda {|d|  d!=0 ? "rgba(128,128,128,.2)" : "#000"})
   .anchor("left").add(pv.Label)
   .text(y.tick_format)
-=end
+end
 #/* The stack layout. */
 vis.add(pv.Layout.Stack)
     .layers(data)
     .x(lambda {|d| x.scale(d.x)})
     .y(lambda {|d| y.scale(d.y)})
-  .layer_add(pv.Area)
-
+  .layer.add(pv.Area)
 
 vis.render();
 puts vis.to_svg

@@ -13,7 +13,7 @@ module Rubyvis
     end
     def initialize
       super
-      @none=lambda {return nil}
+      @none=lambda {nil}
       @prop = {:t=> @none, :l=> @none, :r=> @none, :b=> @none, :w=> @none, :h=> @none}
       @values=nil
       @_x=lambda {return 0}
@@ -53,17 +53,17 @@ module Rubyvis
       y = []
       dy = []
       
-     #
-     # Iterate over the data, evaluating the values, x and y functions. The
-     # context in which the x and y psuedo-properties are evaluated is a
-     # pseudo-mark that is a grandchild of this layout.
-     #
-     stack = Rubyvis::Mark.stack
-    
-    o = OpenStruct.new({:parent=> OpenStruct.new({:parent=> self})})
-    stack.unshift(nil)
-    values = []
-    n.times {|i|
+      #
+      # Iterate over the data, evaluating the values, x and y functions. The
+      # context in which the x and y psuedo-properties are evaluated is a
+      # pseudo-mark that is a grandchild of this layout.
+      #
+      stack = Rubyvis::Mark.stack
+      
+      o = OpenStruct.new({:parent=> OpenStruct.new({:parent=> self})})
+      stack.unshift(nil)
+      values = []
+      n.times {|i|
       dy[i] = []
       y[i] = []
       o.parent.index = i
@@ -78,14 +78,13 @@ module Rubyvis
         dy[i][j] = self._y.js_apply(o, stack)
       }
       stack.shift()
-    }
-    stack.shift()
-
-    # order
-    _index=nil
-    case (s.order) 
+      }
+      stack.shift()
+      
+      # order
+      _index=nil
+      case (s.order) 
       when "inside-out" 
-        
         max  = dy.map {|v| pv.max.index(v) }
         map  = pv.range(n).sort {|a,b| return max[a] - max[b]}
         sums = dy.map {|v| pv.sum(v)}
@@ -109,24 +108,24 @@ module Rubyvis
         _index = pv.range(n - 1, -1, -1)
       else
         _index = pv.range(n)
-    end
-    
-    #/* offset */
-    case (s.offset) 
+      end
+      
+      #/* offset */
+      case (s.offset) 
       when "silohouette"
         m.times {|j|
           o = 0;
           n.times {|i| 
             o += dy[i][j]
           }
-          y[index[0]][j] = (h - o) / 2.0;
+          y[_index[0]][j] = (h - o) / 2.0;
         }
       
       when "wiggle"
         o = 0;
         n.times {|i|  o += dy[i][0] }
         
-        y[index[0]][0] = o = (h - o) / 2.0
+        y[_index[0]][0] = o = (h - o) / 2.0
         
         (1...m).each  {|j|
           s1 = 0
@@ -135,19 +134,19 @@ module Rubyvis
           n.times {|i| s1 += dy[i][j]}
           n.times {|i|
             
-            s3 = (dy[index[i]][j] - dy[index[i]][j - 1]) / (2.0 * dx)
+            s3 = (dy[_index[i]][j] - dy[_index[i]][j - 1]) / (2.0 * dx)
             i.times {|k|
-              s3 += (dy[index[k]][j] - dy[index[k]][j - 1]) / dx.to_f
+              s3 += (dy[_index[k]][j] - dy[_index[k]][j - 1]) / dx.to_f
             }
-            s2 += s3 * dy[index[i]][j]
+            s2 += s3 * dy[_index[i]][j]
           }
           o -= (s1!=0) ? s2 / s1.to_f * dx : 0
-          y[index[0]][j] = o
+          y[_index[0]][j] = o
           
         }
       when "expand"
         m.times {|j|
-          y[index[0]][j] = 0
+          y[_index[0]][j] = 0
           
           k = 0
           n.times {|i|k += dy[i][j]}
@@ -160,44 +159,56 @@ module Rubyvis
           end
         }
       else
-        m.times {|j| y[index[0]][j] = 0}
-    end
-
-     # Propagate the offset to the other series. */
-     m.times {|j|
-      o = y[index[0]][j]
+        m.times {|j| y[_index[0]][j] = 0}
+      end
+      
+      # Propagate the offset to the other series. */
+      m.times {|j|
+      o = y[_index[0]][j]
       (1...n).each {|i|
         
-        o += dy[index[i - 1]][j]
-        y[index[i]][j] = o
+        o += dy[_index[i - 1]][j]
+        y[_index[i]][j] = o
       }
-    }
-
-    # /* Find the property definitions for dynamic substitution. */
-    
-    i = orient.index("-")
-    pdy = horizontal ? "h" : "w"
-    px = i < 0 ? (horizontal ? "l" : "b") : orient[i + 1,1]
-    py = orient[0,1]
-    @prop.each {|k,v|
-      @prop[k]=@none
-    }
-    @prop[px] =lambda {|i,j| x[j]}
-    @prop[py] =lambda {|i,j| y[i][j]}
-    @prop[pdy]=lambda {|i,j| dy[i][j]}  
+      }
+      
+      # /* Find the property definitions for dynamic substitution. */
+      
+      i = orient.index("-")
+      pdy = horizontal ? "h" : "w"
+      px = i < 0 ? (horizontal ? "l" : "b") : orient[i + 1,1]
+      py = orient[0,1]
+      @prop.each {|k,v|
+        @prop[k]=@none
+      }
+      # p "x:#{x}"
+      # p "y:#{y}"
+      # p "dy:#{dy}"
+      @prop[px] =lambda {|i,j| x[j]}
+      @prop[py] =lambda {|i,j| y[i][j]}
+      @prop[pdy]=lambda {|i,j| dy[i][j]}  
     end
     def layer
-      pv.Mark.new().data(lambda { values[self.parent.index] })
+      value=Rubyvis::Mark.new().data(lambda { values[self.parent.index] })
       .top(proxy("t"))
       .left(proxy("l"))
       .right(proxy("r"))
       .bottom(proxy("b"))
       .width(proxy("w"))
       .height(proxy("h"))
-    end
-    def layer_add(type)
       that=self
-      self.add(pv.Panel).data(lambda {that.layers()}).add(type).extend(self)
+
+      class << value
+        def that=(v)
+          @that=v
+        end
+        def add(type)
+          that=@that
+          that.add(pv.Panel).data(lambda {that.layers()}).add(type).extend(self)
+        end
+      end
+      value.that=self
+      return value
     end
   end
   end

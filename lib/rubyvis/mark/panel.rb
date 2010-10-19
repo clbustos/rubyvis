@@ -85,7 +85,6 @@ module Rubyvis
         if(c)
           if(c._panel!=self)
             c._panel=self
-            p "hola"
             c.delete_if? {true}
           end
           if s.width.nil?
