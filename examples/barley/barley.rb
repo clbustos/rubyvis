@@ -27,7 +27,7 @@ c = pv.Colors.category10()
 # The root panel. */
 vis = Rubyvis::Panel.new
     .width(w)
-    .height(h * pv.keys(site).length)
+    .height(h * pv.keys(site).size)
     .top(15.5)
     .left(0.5)
     .right(0.5)
@@ -44,7 +44,7 @@ cell = vis.add(pv.Panel)
 # Title bar. */
 cell.add(pv.Bar)
     .height(14)
-    .fill_style(pv.color("bisque"))
+    .fill_style("bisque")
   .anchor("center").add(pv.Label)
   .text(lambda{|site| site.key});
 
@@ -62,17 +62,17 @@ dot = cell.add(pv.Panel)
 
 # A label showing the variety. */
 dot.anchor("left").add(pv.Label)
-  .visible(lambda { !self.parent.index})
+  .visible(lambda { self.parent.index!=0})
   .left(-2)
   .text(lambda {|d| d[:variety]})
 
 # X-ticks. */
 vis.add(pv.Rule)
     .data(x.ticks())
-    .left(lambda {|d|  x.scale(d)})
+    .left(lambda {|d|  90+x.scale(d)})
     .bottom(-5)
     .height(5)
-    .stroke_style(pv.color("#999"))
+    .stroke_style("#999")
   .anchor("bottom").add(pv.Label);
 
 # A legend showing the year. */

@@ -83,7 +83,7 @@ module Rubyvis
       return self
     end
     def sort_keys(order=nil)
-      #keys[keys.size-1].order = order.nil? ? pv.natural_order : order
+      keys[keys.size-1].order = order.nil? ? pv.natural_order : order
       return self
     end
     def sort_values(order=nil)
@@ -111,7 +111,7 @@ module Rubyvis
       }
       if(self.order)
         values.each_with_index {|v,vi|
-          values[vi].sort(&self.order)
+          values[vi].sort!(&self.order)
         }
       end
       map
@@ -129,16 +129,15 @@ module Rubyvis
     def entries_sort(array,i)
       o=keys[i].order
       if o
-        array.sort {|a,b| o(a.key, b.key)}
+        array.sort! {|a,b| o.call(a.key, b.key)}
       end
       i+=1
       if (i<keys.size)
         array.each {|v|
           entries_sort(v, i)
         }
-        
       end
-      return array
+      array
       
     end
     def rollup_rollup(map,f)
