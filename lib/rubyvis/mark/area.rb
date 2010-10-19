@@ -121,7 +121,7 @@ module Rubyvis
     def build_implied(s)
       s.heigth=0 if s.height.nil?
       s.width=0 if s.width.nil?
-      super(s)
+      mark_build_implied(s)
     end
   end
 end

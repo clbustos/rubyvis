@@ -4,9 +4,9 @@ module Rubyvis
     Rubyvis::Layout::Stack
   end
   class Stack < Rubyvis::Layout
-    @properties=Mark.properties.dup    
+    @properties=Panel.properties.dup    
     
-    attr_accessor :_x, :_y, :_values
+    attr_accessor :_x, :_y, :_values, :prop
     attr_accessor_dsl :orient,:offset, :order, :layers
     def self.defaults
       Stack.new.extend(Layout.defaults).orient("bottom-left").offset("zero").layers([[]])
@@ -14,7 +14,7 @@ module Rubyvis
     def initialize
       super
       @none=lambda {nil}
-      @prop = {:t=> @none, :l=> @none, :r=> @none, :b=> @none, :w=> @none, :h=> @none}
+      @prop = {"t"=> @none, "l"=> @none, "r"=> @none, "b"=> @none, "w"=> @none, "h"=> @none}
       @values=nil
       @_x=lambda {return 0}
       @_y=lambda {return 0}
@@ -28,16 +28,27 @@ module Rubyvis
       @_y=pv.functor(f)
       return self
     end
-    def values(f)
-      @_values=pv.functor(f)
-      return self
+    def values(f=nil)
+      if f.nil?
+        @values
+      else
+        @_values=pv.functor(f)
+        return self
+      end
     end
     
     
-    def proxy(name) 
-      return lambda { @prop[name].call(self.parent.index, self.index)}
+    def proxy(name)
+      that=self
+      return lambda {
+        a=that.prop[name].js_call(self, self.parent.index, self.index);
+        puts "proxy(#{name}): #{a}" if $DEBUG
+        a
+      }
     end
+    
     def build_implied(s)
+      # puts "Build stack" if $DEBUG
       panel_build_implied(s)
       data = s.layers
       n = data.size
@@ -178,33 +189,35 @@ module Rubyvis
       pdy = horizontal ? "h" : "w"
       px = i < 0 ? (horizontal ? "l" : "b") : orient[i + 1,1]
       py = orient[0,1]
+      
+      @values=values
+      
       @prop.each {|k,v|
         @prop[k]=@none
       }
-      # p "x:#{x}"
-      # p "y:#{y}"
-      # p "dy:#{dy}"
-      @prop[px] =lambda {|i,j| x[j]}
-      @prop[py] =lambda {|i,j| y[i][j]}
-      @prop[pdy]=lambda {|i,j| dy[i][j]}  
+      # puts "stack: x:#{px}, y:#{py}, dy:#{pdy}" if $DEBUG
+      @prop[px] =lambda {|i1,j| x[j]}
+      @prop[py] =lambda {|i1,j| y[i1][j]}
+      @prop[pdy]=lambda {|i1,j| dy[i1][j]}  
     end
+    
     def layer
-      value=Rubyvis::Mark.new().data(lambda { values[self.parent.index] })
+      that=self
+      value = Rubyvis::Mark.new().data(lambda { that.values[self.parent.index] })
       .top(proxy("t"))
       .left(proxy("l"))
       .right(proxy("r"))
       .bottom(proxy("b"))
       .width(proxy("w"))
       .height(proxy("h"))
-      that=self
-
+      
       class << value
         def that=(v)
-          @that=v
+          @that = v
         end
         def add(type)
-          that=@that
-          that.add(pv.Panel).data(lambda {that.layers()}).add(type).extend(self)
+          that  = @that
+          that.add( pv.Panel ).data(lambda { that.layers() }).add(type).extend( self )
         end
       end
       value.that=self

@@ -50,7 +50,7 @@ module Rubyvis
       super(s)
       return if !s.visible
       s.children=[] if !s.children
-      scale=self.scale*s.transform.k
+      scale=self.scale * s.transform.k
       n=self.children.size
       Mark.index=-1
       n.times {|i|
@@ -105,10 +105,8 @@ module Rubyvis
         end
         s.canvas=c
       end
-
       s.transform=Rubyvis.Transform.identity if (s.transform.nil?)
       mark_build_implied(s)
-
     end
 
   end

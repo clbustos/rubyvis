@@ -20,50 +20,49 @@ module Rubyvis
       
       
       mark_anchor(name).left(lambda {
-          s=scene.target[self.index]
-          case self.name
+        s=scene.target[self.index]
+        case self.name
           when 'bottom' then s.left;
           when 'top' then s.left;
           when 'center' then s.left;
           when 'left' then nil;
           else
             s.left+s.shape_radius
-          end
+        end
       }).right(lambda {
-          s=scene.target[self.index]
-          self.name()=='left' ? s.right+s.shape_radius : nil
-        
+        s=scene.target[self.index]
+        self.name()=='left' ? s.right+s.shape_radius : nil
       }).top(lambda {
         s=scene.target[self.index]
-          case self.name
+        case self.name
           when 'left' then  s.top;
           when 'right' then s.top;
           when 'center' then s.top;
           when 'top' then nil;
           else
             s.top+s.shape_radius
-          end
+        end
       }).bottom(lambda {
-         s=scene.target[self.index]
-          self.name()=='top' ? s.bottom+s.shape_radius : nil
+        s=scene.target[self.index]
+        self.name()=='top' ? s.bottom+s.shape_radius : nil
       }).text_align(lambda {
-       case self.name
+        case self.name
           when 'left' then  'right';
           when 'bottom' then 'center';
           when 'top' then 'center';
           when 'center' then 'center';
           else
             'left'
-          end
+        end
       }).text_baseline( lambda {
-       case self.name
-       when 'right' then  'middle';
-       when 'left' then 'middle';
-       when 'center' then 'middle';
+        case self.name
+          when 'right' then  'middle';
+          when 'left' then 'middle';
+          when 'center' then 'middle';
           when 'bottom' then 'top';
           else
             'bottom'
-          end
+        end
       
       })
     end

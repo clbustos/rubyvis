@@ -251,19 +251,22 @@ module Rubyvis
       t=s.top
       b=s.bottom
       prop=self.properties
+      
       #p self
+      
       w = (prop[:width])  ? s.width : 0
       h = (prop[:height])  ? s.height : 0
-      #puts "l:#{l},r:#{r},t:#{t},b:#{b}"
-      #puts "w:#{w},h:#{h}"
-      width=self.parent ? self.parent.width(): (w+(l.nil? ? 0 : l)+(r.nil? ? 0 :r))
+      
+      width=self.parent ? self.parent.width() : (w+(l.nil? ? 0 : l)+(r.nil? ? 0 : r))
+      #puts (self.parent)? "parent width: #{self.parent.width}" : "no parent" if $DEBUG
+      #p prop.sort if $DEBUG
+      puts "build implied #{type}: l:#{l},r:#{r},t:#{t},b:#{b}, w:#{prop[:width]} #{w},h: #{prop[:height]} #{h}, width:#{width}" if $DEBUG
       if w.nil?
         r||=0
         l||=0
         w=width-r-l
       elsif r.nil?
         if l.nil?
-
           r=(width-w) / (2.0)
           l=r
         else
@@ -297,9 +300,10 @@ module Rubyvis
       s.top=t
       s.bottom=b
 
-      # puts "#{l},#{r},#{t},#{b}"
+      puts "Post->left: #{l},right:#{r},top:#{t},bottom:#{b}, width:#{w}, height:#{h}" if $DEBUG
 
       s.width=w if prop[:width]
+      #puts "width:#{s.width}" if $DEBUG
       s.height=h if prop[:height]
       s.text_style=Rubyvis::Color.transparent if prop[:text_style] and !s.text_style
       s.fill_style=Rubyvis::Color.transparent if prop[:fill_style] and !s.fill_style
@@ -541,7 +545,7 @@ module Rubyvis
     def mark_build_instance(s1)
       build_properties(s1, self.binds.required)
       if s1.visible
-        build_properties(s1,self.binds.optional)
+        build_properties(s1, self.binds.optional)
         build_implied(s1)
       end
     end
