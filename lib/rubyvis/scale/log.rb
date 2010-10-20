@@ -29,30 +29,33 @@ module Rubyvis
     end
     def ticks
       d = domain
-      n = d[0] < 0,
+      n = d[0] < 0
+      
+     # puts "dom: #{d[0]} -> #{n}"
+      
       i = (n ? -log(-d[0]) : log(d[0])).floor
       j = (n ? -log(-d[1]) : log(d[1])).ceil
       ticks = [];
-      if n 
+      if n
         ticks.push(-pow(-i))
         (i..j).each {|ii|
-          ((b-1)...0).each {|k|
+          ((@b-1)...0).each {|k|
             ticks.push(-pow(-ii) * k)
           }
         }
       else
         (i...j).each {|ii|
-          (1...b).each {|k|
-            ticks.push(pow(i) * k)
+          (1...@b).each {|k|
+            ticks.push(pow(ii) * k)
           }
         }
-        ticks.push(pow(i));
+        ticks.push(pow(j));
       end
       
       #for (i = 0; ticks[i] < d[0]; i++); // strip small values
       #for (j = ticks.length; ticks[j - 1] > d[1]; j--); // strip big values
       #return ticks.slice(i, j);
-      ticks
+      ticks.find_all {|v| v>=d[0] and v<=d[1]}
     end
   end
 end

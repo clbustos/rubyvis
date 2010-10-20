@@ -6,8 +6,7 @@ module Rubyvis
   class Mark
     @properties={}
 
-    def self.property_method(name, _def, func=nil, klass)
-      
+    def self.property_method(name, _def, func=nil, klass=nil)
       return if klass.method_defined? name
       klass.send(:define_method, name) do |*arguments|
         v,dummy = arguments
