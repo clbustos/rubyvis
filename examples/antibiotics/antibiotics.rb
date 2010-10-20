@@ -5,8 +5,8 @@ load(File.dirname(__FILE__)+"/antibiotics_data.rb")
 s = 180
 _p = 20
 z = pv.Scale.log(0.001, 1000).range(0, s)
-color = pv.colors("darkred", "darkblue").by(lambda {|d|  d[:gram]})
-ticks = pv.range(-2, 3).map {|e| 10**e}
+color = pv.colors("darkred", "darkblue")
+ticks = pv.range(-2, 3).map {|e| (10**e).to_f}
 
 #/* Root panel. */
 vis = Rubyvis::Panel.new
@@ -29,7 +29,7 @@ cell = vis.add(pv.Panel)
 
 #/* Label. */
 cell.anchor("center").add(pv.Label)
-    .visible(lambda {|d, y, x| x == y})
+    .visible(lambda {|d, y, x| puts d,y,x; return  x == y})
     .font("bold 14px sans-serif")
     .text(lambda {|d, y, x|  x});
 
@@ -37,18 +37,18 @@ cell.anchor("center").add(pv.Label)
 plot = cell.add(pv.Panel)
     .data(lambda {|y, x| [x]})
     .visible(lambda {|x, y| x != y})
-    .stroke_style(pv.color("#aaa"));
+    .stroke_style("#aaa");
 
 #/* Ticks. */
 tick = pv.Rule.new()
     .visible(lambda {|d, x, y| x != y})
     .data(ticks)
-    .stroke_style(pv.color("#ddd"));
+    .stroke_style("#ddd");
 
 #/* X-axis ticks. */
 xtick = plot.add(pv.Rule)
     .extend(tick)
-    .left(lambda {|d| z.scale(d)});
+    .left(z);
 
 #/* Bottom and top labels. */
 xtick.anchor("bottom").add(pv.Label)
@@ -59,7 +59,7 @@ xtick.anchor("top").add(pv.Label)
 #/* Y-axis ticks. */
 ytick = plot.add(pv.Rule)
     .extend(tick)
-    .bottom(lambda {|d| z.scale(d)});
+    .bottom(z);
 
 #/* Bottom and top labels. */
 ytick.anchor("right").add(pv.Label)
@@ -76,10 +76,10 @@ ytick.anchor("left").add(pv.Label)
 #/* Dot plot. */
 dot = plot.add(pv.Dot)
     .data($bacteria)
-    .stroke_style(pv.color("red"))
-    .fill_style(lambda {self.stroke_style()})
-    .left(lambda {|d, x, y| z.scale(d[x])})
-    .bottom(lambda {|d, x, y| z.scale(d[y])})
+    .stroke_style(lambda {|d| color.scale(d[:gram])})
+    .fill_style(lambda {|d| color.scale(d[:gram]).alpha(0.2)})
+    .left(lambda {|d, x, y|  z.scale(d[x.to_sym])})
+    .bottom(lambda {|d, x, y| z.scale(d[y.to_sym])})
     .title(lambda {|d| d[:name]});
 
 #/* Legend. */

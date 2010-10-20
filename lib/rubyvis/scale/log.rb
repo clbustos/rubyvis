@@ -9,8 +9,7 @@ module Rubyvis
       base(10)
     end
     def log(x)
-      
-      Math.log(x+1e15) / @_p
+      Math.log(x) / @_p.to_f
     end
     def pow(y)
       @b**y
@@ -23,6 +22,10 @@ module Rubyvis
         return self
       end
       return @b
+    end
+    def nice
+      d=domain
+      domain(pv.log_floor(d[0],@b), pv.log_ceil(d[1],@b))
     end
     def ticks
       d = domain
