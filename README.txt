@@ -9,16 +9,32 @@ Ruby port of Protovis, a great visualization toolkit
 == FEATURES/PROBLEMS:
 
 Implemented: All marks, except transient, image and transition. 
-Basic protovis examples works exactly like ruby ones with minor sintactic modifications. 
-Complex examples requires some careful update.
 
-I try to maintain, when posible, complete compatibility with Javascript API. Johnson [http://github.com/jbarnette/johnson] - the lovely Javascript wrapper inside Ruby embrace - is our friend. 
+Basic protovis examples[http://vis.stanford.edu/protovis/ex/] works exactly like ruby ones with minor sintactic modifications:
+* Area Charts: Ok
+* Bar & Column Charts: Ok
+* Scatterplots: Ok
+* Pie & Donut: Interaction with mouse not implemented
+* Line & Step Charts: Ok
+* Stacked Charts: Ok
+* Grouped Charts: Almost ok. Problems on data stack at third level.
+
+Complex examples requires more works:
+
+* antibiotics: Almost ok. Missing center labels
+* barley: ok
+* crimea: line and grouped line ok.
+
+
+I try to maintain, when posible, complete compatibility with Javascript API, including camel case naming of functions. Johnson [http://github.com/jbarnette/johnson] - the lovely Javascript wrapper inside Ruby embrace - is our friend. 
 
 Until version 0.1.0, lambdas should always should created explicitly for method you may be temted to call it with a block.
+
 On a second stage, traditional block calling could be using maintaining backwards compatibily with Javascript API,
+
 User could use +pv+ freely, cause is defined as a global method which call Rubyvis.
 
-+self.parent.index+ doesn't work always as expected. +self.index+ works ok.
++self.parent.index+ doesn't work always as expected. +self.index+ works ok. I'm working on it
 
 == CURRENT PROGRESS
 
@@ -30,14 +46,20 @@ User could use +pv+ freely, cause is defined as a global method which call Rubyv
 * data/Numbers.js
 * data/Scale.js
 * data/LinearScale.js
+* data/LogScale.js (incomplete)
+* data/Nest.js
 * data/QuantitativeScale.js
-* data/OrdinalScale.js (not tested)
-* mark/Mark.js
+* data/OrdinalScale.js
+* mark/Anchor.js
+* mark/Area.js
 * mark/Bar.js 
-* mark/Panel.js
+* mark/Dot.js 
 * mark/Label.js
 * mark/Line.js
+* mark/Mark.js
+* mark/Panel.js
 * mark/Rule.js
+* mark/Wedge.js
 * scene/SvgBar.js
 * scene/SvgLabel.js
 * scene/SvgLine.js
@@ -60,7 +82,8 @@ User could use +pv+ freely, cause is defined as a global method which call Rubyv
     vis.render
     puts vis.to_svg
     
-
+See examples directory for original protovis examples adaptations.
+    
 == REQUIREMENTS:
 
 Ruby 1.8.7 or 1.9.1

@@ -1,4 +1,12 @@
-﻿=== 0.1.3 / 2010-10-08
+﻿=== 0.1.4 / 2010-10-20
+
+* Bug fix: Order now works on Nest
+* Added log scale spec. domain, range, scale, invert and ticks works like javascript version
+* First stack layout version operational
+* Added grouped and stacked chart examples
+
+
+=== 0.1.3 / 2010-10-08
 
 * New Wedge and  Dot mark
 * New Log scale and Nest. 
