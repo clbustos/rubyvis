@@ -29,9 +29,9 @@ cell = vis.add(pv.Panel)
 
 #/* Label. */
 cell.anchor("center").add(pv.Label)
-.visible(lambda {|y, x| return  x == y})
+.visible(lambda {|d,y, x| return  x == y})
     .font("bold 14px sans-serif")
-    .text(lambda {|d1,d, y, x| puts "#{d}, #{y},#{x}";  x});
+    .text(lambda {|d, y, x| x});
 
 #/* Dot plot and frame. */
 plot = cell.add(pv.Panel)

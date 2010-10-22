@@ -38,7 +38,7 @@ bar.anchor("left").add(pv.Label)
     .text_margin(5)
     .text_align("right")
     .text(lambda { "ABCDEFGHIJK"[self.index,1]});
-
+ 
 #/* X-axis ticks. */
 vis.add(pv.Rule)
     .data(x.ticks(5))

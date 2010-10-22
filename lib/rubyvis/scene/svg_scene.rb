@@ -112,15 +112,27 @@ module Rubyvis
           e.attributes[name]=value
         end
       }
+      
       if(style)
+        base_style=e.attributes['style']
+        base_style||=""
+        array_styles={}
+        base_style.split(";").each {|v|
+          v=~/\s*(.+)\s*:\s*(.+)/
+          array_styles[$1]=$2
+        }
         style.each {|name,value|
           value=nil if value==self.implicit[:css][name]
           if (value.nil?)
-            e.delete_attribute(name)
+            array_styles.delete(name)
           else
-            e.style[name] = value;
+            
+            array_styles[name]=value
           end
         }
+        if array_styles.size>0
+          e.attributes["style"]=array_styles.map {|k,v| "#{k}:#{v}"}.join(";")
+        end
       end
       e
     end

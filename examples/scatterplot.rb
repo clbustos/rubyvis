@@ -49,7 +49,7 @@ vis.add(pv.Panel)
   .stroke_style(lambda {|d| c.scale(d.z)})
   .fill_style(lambda {|d| c.scale(d.z).alpha(0.2)})
   .shape_size(lambda {|d| d.z})
-  .title(lambda {|d| d.z})
+  .title(lambda {|d| "%0.1f" % d.z})
 
 vis.render()
 puts vis.to_svg
