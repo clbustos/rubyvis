@@ -1,4 +1,9 @@
-﻿=== 0.1.4 / 2010-10-20
+﻿=== 0.1.5 / 2010-10-22
+
+* Bug fix: styles considered properly, so font attribute works right now.
+* Bug fix: anchors have proper parent assignation.
+
+=== 0.1.4 / 2010-10-20
 
 * Bug fix: Order now works on Nest
 * Added log scale spec. domain, range, scale, invert and ticks works like javascript version
