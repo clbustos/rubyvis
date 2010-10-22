@@ -17,12 +17,12 @@ Basic protovis examples[http://vis.stanford.edu/protovis/ex/] works exactly like
 * Pie & Donut: Interaction with mouse not implemented
 * Line & Step Charts: Ok
 * Stacked Charts: Ok
-* Grouped Charts: Almost ok. Problems on data stack at third level.
+* Grouped Charts: Ok.
 
 Complex examples requires more works:
 
-* antibiotics: Almost ok. Missing center labels
-* barley: ok
+* antibiotics: Ok
+* barley: Ok
 * crimea: line and grouped line ok.
 
 
@@ -83,7 +83,60 @@ User could use +pv+ freely, cause is defined as a global method which call Rubyv
     puts vis.to_svg
     
 See examples directory for original protovis examples adaptations.
+
+== TODO
+
+Implement a ruby-like API, like ReportBuilder[http://ruby-statsample.rubyforge.org/reportbuilder/] or Prawn [http://prawn.majesticseacreature.com/docs/] 
+
+The examples/area.rb script should like somethink like that
+
+    require 'rubyvis'
+    vis = pv.Panel.new() {
+      width w 
+      height h 
+      bottom 20 
+      left 20 
+      right 10
+      top 5
+      # Y-axis
+      rule {
+        data y.ticks(5)
+        bottom y
+        stroke_style {|d| d!=0 ? "#eee" : "#000"}
+        anchor("left") {  
+          label {
+            text y.tick_format
+          }
+        }
+      }
+      # X-axis
+      rule {
+        data x.ticks
+        visible {|d| d!=0}
+        left x
+        bottom -5
+        height -5
+        anchor("bottom", :label) { # shorcut for creation of new element
+          text x.tick_format
+        }
+      }
+      
+      # The area with top line.
+      area {
+        data(data)
+        bottom 1
+        left {|d| x.scale(d.x)}
+        height {|d| y.scale(d.y)}
+        fill_style "rgb(121,173,210)"
+        anchor("top", :line) {
+          line_width 3
+        }
+      }
+    }
     
+    puts vis.to_svg
+
+
 == REQUIREMENTS:
 
 Ruby 1.8.7 or 1.9.1
