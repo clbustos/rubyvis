@@ -22,4 +22,4 @@ module Rubyvis
   end
 end
 
-#require 'rubyvis/layout/stack'
+require 'rubyvis/layout/stack'

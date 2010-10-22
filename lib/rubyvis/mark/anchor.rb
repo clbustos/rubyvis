@@ -14,7 +14,7 @@ module Rubyvis
     end
     def extend(proto)
       @proto=proto
-      return self
+      self
     end
   end
 end

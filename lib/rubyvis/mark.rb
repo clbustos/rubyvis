@@ -59,7 +59,24 @@ module Rubyvis
       }
       end
     end
-
+    
+    def delete_index
+      @index=nil
+      @index_defined=false
+    end
+    def index
+      @index
+    end
+    
+    def index_defined?
+      @index_defined
+    end
+    def index=(v)
+      @index_defined=true
+      @index=v
+      v
+    end
+    
     
     def property_value(name,v)
       prop=Property.new({:name=>name, :id=>Rubyvis.id, :value=>v})
@@ -74,15 +91,15 @@ module Rubyvis
     def instance(default_index=nil)
       scene=self.scene
       scene||=self.parent.instance(-1).children[self.child_index]
-
-      index = self.respond_to?(:index) ? self.index : default_index
-      #puts "type: #{type}, self.index: #{self.index}, index:#{index}"
-      scene[index<0 ? scene.length-1: index]
+      
+      index = index_defined? ? self.index : default_index
+      # "defined?: #{index_defined?} : type: #{type}, self.index: #{self.index}, index:#{index}"
+      scene[index<0 ? scene.size-1: index]
     end
 
 
 
-    attr_accessor :parent, :root, :index, :child_index, :scene, :proto, :target, :scale
+    attr_accessor :parent, :root, :child_index, :scene, :proto, :target, :scale
     attr_reader :_properties
     
     
@@ -91,6 +108,7 @@ module Rubyvis
     @scene=nil
     @stack=[]
     @index=nil
+
     def self.properties
       @properties
     end
@@ -127,6 +145,7 @@ module Rubyvis
       @defs={}
       @child_index=-1
       @index=-1
+      @index_defined = true
       @scale=1
       @scene=nil
 
@@ -144,18 +163,18 @@ module Rubyvis
     end
 
     def instances(source)
-
       mark = self
-      index = []
+      _index = []
       scene=nil
+      
       while (!(scene = mark.scene)) do
         source = source.parent;
-        index.push(OpenStruct.new({:index=>source.index, :child_index=>mark.child_index}))
+        _index.push(OpenStruct.new({:index=>source.index, :child_index=>mark.child_index}))
         mark = mark.parent
       end
 
-      while (index.size>0) do
-        i = index.pop()
+      while (_index.size>0) do
+        i = _index.pop()
         scene = scene[i.index].children[i.child_index]
       end
       #
@@ -163,8 +182,8 @@ module Rubyvis
       # to a panel anchor, only generate one instance per panel. Also, set
       # the margins to zero, since they are offset by the enclosing panel.
       # /
-      if (self.respond_to? :index and self.index)
-
+      
+      if (index_defined?)
         s = scene[self.index].dup
         s.right = s.top = s.left = s.bottom = 0;
         return [s];
@@ -186,9 +205,12 @@ module Rubyvis
       mark_anchor(name)
     end
     def mark_anchor(name="center")
-
       anchor=Rubyvis::Anchor.new(self).name(name).data(lambda {
-      self.scene.target.map {|s| s.data} }).visible(lambda {
+          pp self.scene.target if $DEBUG
+      a=self.scene.target.map {|s| puts "s:#{s.data}" if $DEBUG; s.data}
+      p a if $DEBUG
+      a 
+      }).visible(lambda {
         self.scene.target[self.index].visible
       }).id(lambda {self.scene.target[self.index].id}).left(lambda {
         s = self.scene.target[self.index]
@@ -333,14 +355,14 @@ module Rubyvis
       mark.scale=scale
       if (depth < @indexes.size)
         @stack.unshift(nil)
-        if (mark.respond_to? :index and mark.index)
+        if (mark.index_defined?)
           render_instance(mark, depth, scale);
         else
           mark.scene.size.times {|i|
             mark.index = i;
             render_instance(mark, depth, scale);
           }
-          mark.index=nil
+          mark.delete_index
         end
         stack.shift
       else
@@ -350,6 +372,8 @@ module Rubyvis
       end
       mark.scale=nil
     end
+    
+    
     def render_instance(mark,depth,scale)
       s=mark.scene[mark.index]
       if s.visible
@@ -471,7 +495,7 @@ module Rubyvis
       mark=that
       begin
         Mark.stack.pop
-        if(mark.parent)
+        if(mark.parent)                 
           mark.scene=nil
           mark.scale=nil
         end
@@ -524,7 +548,8 @@ module Rubyvis
       stack.unshift(nil)
       scene.size=data.size
       data.each_with_index {|d, i|
-        Mark.index=self.index=i
+        Mark.index=i
+        self.index=i
         s=scene[i]
         if !s
           scene[i]=s=SceneElement.new
@@ -534,10 +559,11 @@ module Rubyvis
         build_instance(s)
       }
       Mark.index=-1
-      self.index=nil
+      delete_index
       stack.shift()
-      return self
+      self
     end
+
     def build_instance(s)
       mark_build_instance(s)
     end

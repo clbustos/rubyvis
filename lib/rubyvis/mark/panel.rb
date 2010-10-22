@@ -46,6 +46,11 @@ module Rubyvis
         c.bind()
       }
     end
+    def anchor(name)
+      anchor=mark_anchor(name)
+      anchor.parent=self
+      anchor
+    end
     def build_instance(s)
       super(s)
       return if !s.visible
