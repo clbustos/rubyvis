@@ -4,5 +4,6 @@ test.svg
 *~
 doc/*
 pkg/*
+.yardoc
 vendor/protovis/tests
 vendor/protovis/lib

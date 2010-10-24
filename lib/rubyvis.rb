@@ -22,22 +22,44 @@ require 'rubyvis/layout'
 require 'rubyvis/scene/svg_scene'
 require 'rubyvis/transform'
 
-def pv
-  Rubyvis
-end
 
 module Rubyvis
   @document=nil
-  VERSION = '0.1.5'
-  API_VERSION='3.3'
+  VERSION = '0.1.5' # Rubyvis version
+  API_VERSION='3.3' # Protovis API on which current Rubyvis is based
   Infinity=1.0 / 0 # You actually can do it! http://snipplr.com/view/2137/uses-for-infinity-in-ruby/
+  #
   # :section: basic methods
+  #
+  
+  # Returns the passed-in argument, +x+; the identity function. This method
+  # is provided for convenience since it is used as the default behavior for a
+  # number of property functions.
+  #
+  # @param [Object] x, a value.
+  # @return [Object] the value +x+.
+  #/
   def self.identity
     lambda {|x,*args| x}
   end
+  
+  # Returns <tt>self.index</tt>. This method is provided for convenience for use
+ # with scales. For example, to color bars by their index, say:
+ #
+ # <pre>.fill_style(Rubyvis::Colors.category10().by(pv.index))</pre>
+ #
+ # This method is equivalent to <tt>lambda {self.index}</tt>, but more
+ # succinct. Note that the <tt>index</tt> property is also supported for
+ # accessor functions with {@link Rubyvis.max}, {@link Rubyvis.min} and other array
+ # utility methods.
+ #
+ # @see Rubyvis::Scale
+ # @see Rubyvis::Mark#index
+ #/
   def self.index
     lambda {|*args| self.index}
   end
+  
   def self.child
     lambda {|*args| self.child_index}
   end
@@ -61,3 +83,10 @@ module Rubyvis
     s
   end
 end
+
+# Alias for Rubyvis module
+# @return [Module] Rubyvis module
+def pv
+  Rubyvis
+end
+

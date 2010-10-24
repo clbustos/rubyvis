@@ -47,7 +47,7 @@ module Rubyvis
   end
   def self.normalize(array,f=nil)
     norm=Rubyvis.map(array,f)
-    sum=pv.sum(norm)
+    sum=Rubyvis.sum(norm)
     norm.map {|x| x.quo(sum)}
   end
   def self.o_index(i)
@@ -172,7 +172,7 @@ module Rubyvis
     Rubyvis.sum(array,f).quo(array.size)
   end
   def self.median(array,f=nil)
-    return (array.length - 1).quo(2) if (f == pv.index)
+    return (array.length - 1).quo(2) if (f == Rubyvis.index)
     array = Rubyvis.map(array, f).sort
     return array[array.size.quo(2).floor] if (array.length % 2>0)
     i = array.size.quo(2);
