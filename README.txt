@@ -89,7 +89,7 @@ Implement a ruby-like API, like ReportBuilder[http://ruby-statsample.rubyforge.o
 The examples/area.rb script should like somethink like that
 
     require 'rubyvis'
-    vis = pv.Panel.new() {
+    vis = Rubyvis::Panel.new {
       width w 
       height h 
       bottom 20 
@@ -114,7 +114,7 @@ The examples/area.rb script should like somethink like that
         left x
         bottom -5
         height -5
-        anchor("bottom", :label) { # shorcut for creation of new element
+        label(:anchor=>'bottom') { # shortcut to create an element inside an anchor
           text x.tick_format
         }
       }
@@ -126,7 +126,7 @@ The examples/area.rb script should like somethink like that
         left {|d| x.scale(d.x)}
         height {|d| y.scale(d.y)}
         fill_style "rgb(121,173,210)"
-        anchor("top", :line) {
+        line(:anchor=>"top") {
           line_width 3
         }
       }
