@@ -18,21 +18,21 @@ module Rubyvis
       @values=nil
       @_x=lambda {return 0}
       @_y=lambda {return 0}
-      @_values=pv.identity
+      @_values=Rubyvis.identity
     end
     def x(f)
-      @_x=pv.functor(f)
+      @_x=Rubyvis.functor(f)
       return self
     end
     def y(f)
-      @_y=pv.functor(f)
+      @_y=Rubyvis.functor(f)
       return self
     end
     def values(f=nil)
       if f.nil?
         @values
       else
-        @_values=pv.functor(f)
+        @_values=Rubyvis.functor(f)
         return self
       end
     end
@@ -96,9 +96,9 @@ module Rubyvis
       _index=nil
       case (s.order) 
       when "inside-out" 
-        max  = dy.map {|v| pv.max.index(v) }
+        max  = dy.map {|v| Rubyvis.max.index(v) }
         map  = pv.range(n).sort {|a,b| return max[a] - max[b]}
-        sums = dy.map {|v| pv.sum(v)}
+        sums = dy.map {|v| Rubyvis.sum(v)}
         top = 0
         bottom = 0
         tops = []
@@ -116,9 +116,9 @@ module Rubyvis
         _index = bottoms.reverse+tops
         
       when "reverse"
-        _index = pv.range(n - 1, -1, -1)
+        _index = Rubyvis.range(n - 1, -1, -1)
       else
-        _index = pv.range(n)
+        _index = Rubyvis.range(n)
       end
       
       #/* offset */
@@ -203,13 +203,10 @@ module Rubyvis
     
     def layer
       that=self
-      value = Rubyvis::Mark.new().data(lambda { that.values[self.parent.index] })
-      .top(proxy("t"))
-      .left(proxy("l"))
-      .right(proxy("r"))
-      .bottom(proxy("b"))
-      .width(proxy("w"))
-      .height(proxy("h"))
+      value = Rubyvis::Mark.new().data(lambda { that.values[self.parent.index] }).top(proxy("t")).left(proxy("l")).right(proxy("r")).
+        bottom(proxy("b")).
+      width(proxy("w")).
+      height(proxy("h"))
       
       class << value
         def that=(v)
@@ -217,7 +214,7 @@ module Rubyvis
         end
         def add(type)
           that  = @that
-          that.add( pv.Panel ).data(lambda { that.layers() }).add(type).extend( self )
+          that.add( Rubyvis.Panel ).data(lambda { that.layers() }).add(type).extend( self )
         end
       end
       value.that=self

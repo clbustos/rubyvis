@@ -25,7 +25,7 @@ module Rubyvis
     end
     def nice
       d=domain
-      domain(pv.log_floor(d[0],@b), pv.log_ceil(d[1],@b))
+      domain(Rubyvis.log_floor(d[0],@b), Rubyvis.log_ceil(d[1],@b))
     end
     def ticks
       d = domain

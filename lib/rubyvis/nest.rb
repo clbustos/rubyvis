@@ -1,9 +1,9 @@
 module Rubyvis
   ##
-  # Returns a {@link pv.Nest} operator for the specified array. This is a
-  # convenience factory method, equivalent to <tt>new pv.Nest(array)</tt>.
+  # Returns a Nest operator for the specified array. This is a
+  # convenience factory method, equivalent to <tt>Nest.new(array)</tt>.
   #
-  # @see pv.Nest
+  # @see Rubyvis::Nest
   # @param {array} array an array of elements to nest.
   # @returns {Nest} a nest operator for the specified array.
   ##
@@ -22,7 +22,7 @@ module Rubyvis
   end
   ##
   # Constructs a nest operator for the specified array. This constructor should
-  # not be invoked directly; use {@link pv.nest} instead.
+  # not be invoked directly; use {@link Rubyvis.nest} instead.
   #
   # @class Represents a {@link Nest} operator for the specified array. Nesting
   # allows elements in an array to be grouped into a hierarchical tree
@@ -43,7 +43,7 @@ module Rubyvis
   # To facilitate visualization, it may be useful to nest the elements first by
   # year, and then by variety, as follows:
   #
-  # <pre>var nest = pv.nest(yields)
+  # <pre>var nest = Rubyvis.nest(yields)
   #     .key(function(d) d.year)
   #     .key(function(d) d.variety)
   #     .entries();</pre>
@@ -83,11 +83,11 @@ module Rubyvis
       return self
     end
     def sort_keys(order=nil)
-      keys[keys.size-1].order = order.nil? ? pv.natural_order : order
+      keys[keys.size-1].order = order.nil? ? Rubyvis.natural_order : order
       return self
     end
     def sort_values(order=nil)
-      @order = order.nil? ? pv.natural_order : order
+      @order = order.nil? ? Rubyvis.natural_order : order
       return self
     end
     def map

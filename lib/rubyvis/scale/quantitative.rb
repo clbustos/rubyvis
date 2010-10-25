@@ -1,7 +1,61 @@
 module Rubyvis
+  # Represents an abstract quantitative scale; a function that performs a
+  # numeric transformation. This class is typically not used directly; see one of
+  # the quantitative scale implementations (linear, log, root, etc.)
+  # instead. <style type="text/css">sub{line-height:0}</style> A quantitative
+  # scale represents a 1-dimensional transformation from a numeric domain of
+  # input data [<i>d<sub>0</sub></i>, <i>d<sub>1</sub></i>] to a numeric range of
+  # pixels [<i>r<sub>0</sub></i>, <i>r<sub>1</sub></i>]. In addition to
+  # readability, scales offer several useful features:
+  #
+  # <p>1. The range can be expressed in colors, rather than pixels. For example:
+  #
+  #   .fill_style(Scale.linear(0, 100).range("red", "green"))
+  #
+  # will fill the marks "red" on an input value of 0, "green" on an input value
+  # of 100, and some color in-between for intermediate values.
+  #
+  # <p>2. The domain and range can be subdivided for a non-uniform
+  # transformation. For example, you may want a diverging color scale that is
+  # increasingly red for negative values, and increasingly green for positive
+  # values:
+  #
+  #   .fill_style(Scale.linear(-1, 0, 1).range("red", "white", "green"))</pre>
+  #
+  # The domain can be specified as a series of <i>n</i> monotonically-increasing
+  # values; the range must also be specified as <i>n</i> values, resulting in
+  # <i>n - 1</i> contiguous linear scales.
+  #
+  # <p>3. Quantitative scales can be inverted for interaction. The
+  # invert() method takes a value in the output range, and returns the
+  # corresponding value in the input domain. This is frequently used to convert
+  # the mouse location (see Mark#mouse) to a value in the input
+  # domain. Note that inversion is only supported for numeric ranges, and not
+  # colors.
+  #
+  # <p>4. A scale can be queried for reasonable "tick" values. The ticks()
+  # method provides a convenient way to get a series of evenly-spaced rounded
+  # values in the input domain. Frequently these are used in conjunction with
+  # Rule to display tick marks or grid lines.
+  #
+  # <p>5. A scale can be "niced" to extend the domain to suitable rounded
+  # numbers. If the minimum and maximum of the domain are messy because they are
+  # derived from data, you can use nice() to round these values down and
+  # up to even numbers.
+  #
+  # @see Scale.linear
+  # @see Scale.log
+  # @see Scale.root
   class Scale::Quantitative
     include Rubyvis::Scale
     attr_reader :l
+    # Returns a default quantitative, linear, scale for the specified domain. The
+    # arguments to this constructor are optional, and equivalent to calling
+    # domain. The default domain and range are [0,1].
+    #
+    # This constructor is typically not used directly; see one of the
+    # quantitative scale implementations instead.
+    # @param {number...} domain... optional domain values.
     def initialize(*args)
       @d=[0,1] # domain
       @l=[0,1] # transformed domain
@@ -20,13 +74,23 @@ module Rubyvis
       }
       domain(*args)
     end
-    def new_date(x=nil)
+    
+    # Deprecated
+    def new_date(x=nil) # :nodoc:
       x.nil? ? Time.new() : Time.at(x)
     end
+    # Return 
+    #   lambda {|d| scale_object.scale(d)}
+    # Useful as value on dynamic properties
+    #   scale=Rubyvis.linear(0,1000)
+    #   bar.width(scale)
+    # is the same as
+    #   bar.width(lambda {|x| scale.scale(x)})
     def to_proc
       that=self
       lambda {|*args|  args[0] ? that.scale(args[0]) : nil }
     end
+    # Transform value +x+ according to domain and range
     def scale(x)
       x=x.to_f
       j=Rubyvis.search(@d, x)
@@ -37,6 +101,7 @@ module Rubyvis
       # puts "Segundo #{(@l[j + 1] - @l[j])}"
       @i[j].call((@f.call(x) - @l[j]) .quo(@l[j + 1] - @l[j]));
     end
+    # Alias for scale(x)
     def [](x)
       scale(x)
     end
@@ -46,14 +111,51 @@ module Rubyvis
       @l=@d.map{|v| @f.call(v)}
       self
     end
-    
-    
+    private :transform
+    # Sets or gets the input domain. This method can be invoked several ways:
+    #
+    # <p>1. <tt>domain(min, ..., max)</tt>
+    #
+    # <p>Specifying the domain as a series of numbers is the most explicit and
+    # recommended approach. Most commonly, two numbers are specified: the minimum
+    # and maximum value. However, for a diverging scale, or other subdivided
+    # non-uniform scales, multiple values can be specified. Values can be derived
+    # from data using Rubyvis.min and Rubyvis.max. For example:
+    #
+    #   .domain(0, Rubyvis.max(array))
+    #
+    # An alternative method for deriving minimum and maximum values from data
+    # follows.
+    #
+    # <p>2. <tt>domain(array, minf, maxf)</tt>
+    #
+    # <p>When both the minimum and maximum value are derived from data, the
+    # arguments to the <tt>domain</tt> method can be specified as the array of
+    # data, followed by zero, one or two accessor functions. For example, if the
+    # array of data is just an array of numbers:
+    #
+    #   .domain(array)
+    #
+    # On the other hand, if the array elements are objects representing stock
+    # values per day, and the domain should consider the stock's daily low and
+    # daily high:
+    #
+    #   .domain(array, lambda {|d|  d.low}, lambda {|d| d.high})
+    #
+    # The first method of setting the domain is preferred because it is more
+    # explicit; setting the domain using this second method should be used only
+    # if brevity is required.
+    #
+    # <p>3. <tt>domain()</tt>
+    #
+    # <p>Invoking the <tt>domain</tt> method with no arguments returns the
+    # current domain as an array of numbers.
     def domain(*arguments)
       array,min,max=arguments
       o=nil
       if (arguments.size>0)
         if array.is_a? Array 
-          min = pv.identity if (arguments.size < 2)
+          min = Rubyvis.identity if (arguments.size < 2)
           max = min if (arguments.size < 3)
           o = [array[0]].min if array.size>0
           @d = array.size>0 ? [Rubyvis.min(array, min), Rubyvis.max(array, max)] : []
@@ -87,7 +189,29 @@ module Rubyvis
       }
     end
     
-    
+    # Sets or gets the output range. This method can be invoked several ways:
+    #
+    # <p>1. <tt>range(min, ..., max)</tt>
+    #
+    # <p>The range may be specified as a series of numbers or colors. Most
+    # commonly, two numbers are specified: the minimum and maximum pixel values.
+    # For a color scale, values may be specified as {@link Rubyvis.Color}s or
+    # equivalent strings. For a diverging scale, or other subdivided non-uniform
+    # scales, multiple values can be specified. For example:
+    #
+    #   .range("red", "white", "green")
+    #
+    # <p>Currently, only numbers and colors are supported as range values. The
+    # number of range values must exactly match the number of domain values, or
+    # the behavior of the scale is undefined.
+    #
+    # <p>2. <tt>range()</tt>
+    #
+    # <p>Invoking the <tt>range</tt> method with no arguments returns the current
+    # range as an array of numbers or colors.
+    # :call-seq:
+    #   range(min,...,max)
+    #   range()
     def range(*arguments)
       if (arguments.size>0) 
         @r = arguments.dup
@@ -122,7 +246,7 @@ module Rubyvis
           raise "Not implemented yet"
       end
     end
-    def ticks_floor(d,prec)
+    def ticks_floor(d,prec) # :nodoc:
       ar=d.to_a
       #p ar
       # [ sec, min, hour, day, month, year, wday, yday, isdst, zone ]
@@ -145,12 +269,19 @@ module Rubyvis
       to_date(ar)
     end
     
-    def to_date(d)
+    private :ticks_floor
+    
+    def to_date(d) # :nodoc:
       
       Time.utc(*d)
     end
-    # TODO: FIX this func
-    def ticks(*arguments) 
+    # Returns an array of evenly-spaced, suitably-rounded values in the input
+    # domain. This method attempts to return between 5 and 10 tick values. These
+    # values are frequently used in conjunction with Rule to display
+    # tick marks or grid lines.
+    #
+    # @todo: fix for dates and n>10
+    def ticks(*arguments) # :args: (number_of_ticks=nil)
       m = arguments[0]
       start = @d.first
       _end = @d.last
@@ -163,7 +294,7 @@ module Rubyvis
         @tick_format= Rubyvis.Format.date("%x") if (@type == newDate) 
         return [type(min)];
       end
-      # From here, ¡chaos!
+      
       #/* Special case: dates. */
       if (@type == :time) 
       #/* Floor the date d given the precision p. */
@@ -202,12 +333,13 @@ module Rubyvis
         increment = lambda {|d|  Time.at(d.to_f+(step/1000.0)) }
       end
       
-      @tick_format = pv.Format.date(format);
+      @tick_format = Rubyvis.Format.date(format);
       date = Time.at(min.to_f)
       dates = []
       date = ticks_floor(date,precision)
       # If we'd generate too many ticks, skip some!.
       n = span / (precision/1000.0)
+      # FIX FROM HERE
       if (n > 10) 
         case (precision) 
         when 36e5
@@ -228,7 +360,7 @@ module Rubyvis
           step = (n > 1000) ? 250 : ((n > 200) ? 100 : ((n > 100) ? 50 : ((n > 50) ? 25 : 5)));
           date.setMilliseconds(Math.floor(date.getMilliseconds() / step) * step);
         else
-          step = pv.logCeil(n / 15, 10);
+          step = Rubyvis.logCeil(n / 15, 10);
           if (n / step < 2) 
             step =step.quo(5)
           elsif (n / step < 5)
@@ -249,7 +381,7 @@ module Rubyvis
       # Normal case: numbers. 
       m = 10 if (arguments.size==0)
       
-      step = pv.log_floor(span.quo(m), 10)
+      step = Rubyvis.log_floor(span.quo(m), 10)
       err = m.quo(span.quo(step))
       if (err <= 0.15)
       step = step*10
@@ -260,15 +392,27 @@ module Rubyvis
       end
       start = (min.quo(step)).ceil * step
       _end = (max.quo(step)).floor * step
-      @tick_format= pv.Format.number.fraction_digits([0, -(pv.log(step, 10) + 0.01).floor].max)
-      ticks = pv.range(start, _end + step, step);
+      @tick_format= Rubyvis.Format.number.fraction_digits([0, -(Rubyvis.log(step, 10) + 0.01).floor].max)
+      ticks = Rubyvis.range(start, _end + step, step);
       return reverse ? ticks.reverse() : ticks;
     end
     
+    # Returns a Proc that formats the specified tick value using the appropriate precision, based on
+    # the step interval between tick marks. If ticks() has not been called,
+    # the argument is converted to a string, but no formatting is applied.
+    #   scale.tick_format.call(value)
+    #
     def tick_format
       @tick_format
     end
     
+    # "Nices" this scale, extending the bounds of the input domain to
+    # evenly-rounded values. Nicing is useful if the domain is computed
+    # dynamically from data, and may be irregular. For example, given a domain of
+    # [0.20147987687960267, 0.996679553296417], a call to <tt>nice()</tt> might
+    # extend the domain to [0.2, 1].
+    #
+    # This method must be invoked each time after setting the domain.
     def nice
       if (@d.size!=2)
         return self;

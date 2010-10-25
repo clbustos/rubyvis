@@ -25,9 +25,12 @@ require 'rubyvis/transform'
 
 module Rubyvis
   @document=nil
-  VERSION = '0.1.5' # Rubyvis version
-  API_VERSION='3.3' # Protovis API on which current Rubyvis is based
-  Infinity=1.0 / 0 # You actually can do it! http://snipplr.com/view/2137/uses-for-infinity-in-ruby/
+  # Rubyvis version
+  VERSION = '0.1.5' 
+  # Protovis API on which current Rubyvis is based
+  API_VERSION='3.3'
+  # You actually can do it! http://snipplr.com/view/2137/uses-for-infinity-in-ruby/
+  Infinity=1.0 / 0 
   #
   # :section: basic methods
   #
@@ -38,15 +41,14 @@ module Rubyvis
   #
   # @param [Object] x, a value.
   # @return [Object] the value +x+.
-  #/
   def self.identity
     lambda {|x,*args| x}
   end
   
-  # Returns <tt>self.index</tt>. This method is provided for convenience for use
+ # Returns <tt>self.index</tt>. This method is provided for convenience for use
  # with scales. For example, to color bars by their index, say:
  #
- # <pre>.fill_style(Rubyvis::Colors.category10().by(pv.index))</pre>
+ # <pre>.fill_style(Rubyvis::Colors.category10().by(Rubyvis.index))</pre>
  #
  # This method is equivalent to <tt>lambda {self.index}</tt>, but more
  # succinct. Note that the <tt>index</tt> property is also supported for
@@ -55,7 +57,6 @@ module Rubyvis
  #
  # @see Rubyvis::Scale
  # @see Rubyvis::Mark#index
- #/
   def self.index
     lambda {|*args| self.index}
   end

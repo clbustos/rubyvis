@@ -101,7 +101,7 @@ module Rubyvis
   class Area < Mark
     include AreaPrototype
     @properties=Mark.properties.dup
-    attr_accessor_dsl :width, :height, :line_width, [:stroke_style, lambda {|d| pv.color(d)}], [:fill_style, lambda {|d| pv.color(d)}], :segmented, :interpolate, :tension
+    attr_accessor_dsl :width, :height, :line_width, [:stroke_style, lambda {|d| Rubyvis.color(d)}], [:fill_style, lambda {|d| Rubyvis.color(d)}], :segmented, :interpolate, :tension
     def type
       'area'
     end

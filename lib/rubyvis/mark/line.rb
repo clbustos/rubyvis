@@ -17,7 +17,7 @@ module Rubyvis
     include AreaPrototype
     include LinePrototype
     @properties=Mark.properties.dup
-    attr_accessor_dsl :line_width, :line_join, [:stroke_style, lambda {|d| pv.color(d)}], [:fill_style, lambda {|d| pv.color(d)}], :segmented, :interpolate, :eccentricity, :tension
+    attr_accessor_dsl :line_width, :line_join, [:stroke_style, lambda {|d| Rubyvis.color(d)}], [:fill_style, lambda {|d| Rubyvis.color(d)}], :segmented, :interpolate, :eccentricity, :tension
     def type
       "line"
     end

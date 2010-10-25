@@ -24,7 +24,7 @@ module Rubyvis
       return lambda {|t|
         a=start.a*(1-t)+_end.a*t
         a=0 if a<1e-5
-        return (start.a == 0) ? Rubyvis.rgb(_end.r, _end.g, _end.b, a) : ((_end.a == 0) ? pv.rgb(start.r, start.g, start.b, a) : Rubyvis.rgb(
+        return (start.a == 0) ? Rubyvis.rgb(_end.r, _end.g, _end.b, a) : ((_end.a == 0) ? Rubyvis.rgb(start.r, start.g, start.b, a) : Rubyvis.rgb(
         (start.r * (1 - t) + _end.r * t).round,
         (start.g * (1 - t) + _end.g * t).round,
         (start.b * (1 - t) + _end.b * t).round, a))

@@ -64,14 +64,14 @@ module Rubyvis
         }
     
         if (s.interpolate == "basis") 
-          pathT = pv.SvgScene.curve_basis(pointsT);
-          pathB = pv.SvgScene.curve_basis(pointsB);
+          pathT = Rubyvis.SvgScene.curve_basis(pointsT);
+          pathB = Rubyvis.SvgScene.curve_basis(pointsB);
         elsif (s.interpolate == "cardinal") 
-            pathT = pv.SvgScene.curve_cardinal(pointsT, s.tension);
-            pathB = pv.SvgScene.curve_cardinal(pointsB, s.tension);
+            pathT = Rubyvis.SvgScene.curve_cardinal(pointsT, s.tension);
+            pathB = Rubyvis.SvgScene.curve_cardinal(pointsB, s.tension);
         elsif # monotone
-          pathT = pv.SvgScene.curve_monotone(pointsT);
-          pathB = pv.SvgScene.curve_monotone(pointsB);
+          pathT = Rubyvis.SvgScene.curve_monotone(pointsT);
+          pathB = Rubyvis.SvgScene.curve_monotone(pointsB);
         end
     
         "#{pointsT[0].left },#{ pointsT[0].top }#{ pathT }L#{ pointsB[0].left},#{pointsB[0].top}#{pathB}"
@@ -132,14 +132,14 @@ module Rubyvis
             }
         
             if (s.interpolate == "basis") 
-              pathT = pv.SvgScene.curve_basis_segments(pointsT);
-              pathB = pv.SvgScene.curve_basis_segments(pointsB);
+              pathT = Rubyvis.SvgScene.curve_basis_segments(pointsT);
+              pathB = Rubyvis.SvgScene.curve_basis_segments(pointsB);
             elsif (s.interpolate == "cardinal") 
-                pathT = pv.SvgScene.curve_cardinal_segments(pointsT, s.tension);
-                pathB = pv.SvgScene.curve_cardinal_segments(pointsB, s.tension);
+                pathT = Rubyvis.SvgScene.curve_cardinal_segments(pointsT, s.tension);
+                pathB = Rubyvis.SvgScene.curve_cardinal_segments(pointsB, s.tension);
             elsif # monotone
-              pathT = pv.SvgScene.curve_monotone_segments(pointsT);
-              pathB = pv.SvgScene.curve_monotone_segments(pointsB);
+              pathT = Rubyvis.SvgScene.curve_monotone_segments(pointsT);
+              pathB = Rubyvis.SvgScene.curve_monotone_segments(pointsB);
             end
           end
           n=scenes.size-1

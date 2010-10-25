@@ -1,20 +1,20 @@
 module Rubyvis
  # Constructs a new mark with default properties. Marks, with the exception of
  # the root panel, are not typically constructed directly; instead, they are
- # added to a panel or an existing mark via {@link pv.Mark#add}.
+ # added to a panel or an existing mark via Mark#add
  #
- # @class Represents a data-driven graphical mark. The <tt>Mark</tt> class is
+ # Represents a data-driven graphical mark. The +Mark+ class is
  # the base class for all graphical marks in Protovis; it does not provide any
- # specific rendering functionality, but together with {@link Panel} establishes
+ # specific rendering functionality, but together with Panel establishes
  # the core framework.
  #
- # <p>Concrete mark types include familiar visual elements such as bars, lines
+ # Concrete mark types include familiar visual elements such as bars, lines
  # and labels. Although a bar mark may be used to construct a bar chart, marks
  # know nothing about charts; it is only through their specification and
  # composition that charts are produced. These building blocks permit many
  # combinatorial possibilities.
  #
- # <p>Marks are associated with <b>data</b>: a mark is generated once per
+ # Marks are associated with <b>data</b>: a mark is generated once per
  # associated datum, mapping the datum to visual <b>properties</b> such as
  # position and color. Thus, a single mark specification represents a set of
  # visual elements that share the same data and visual encoding. The type of
@@ -24,14 +24,14 @@ module Rubyvis
  # can be specified succinctly using anonymous functions. Special properties
  # called event handlers can be registered to add interactivity.
  #
- # <p>Protovis uses <b>inheritance</b> to simplify the specification of related
+ # Protovis uses <b>inheritance</b> to simplify the specification of related
  # marks: a new mark can be derived from an existing mark, inheriting its
  # properties. The new mark can then override properties to specify new
  # behavior, potentially in terms of the old behavior. In this way, the old mark
  # serves as the <b>prototype</b> for the new mark. Most mark types share the
  # same basic properties for consistency and to facilitate inheritance.
  #
- # <p>The prioritization of redundant properties is as follows:<ol>
+ # The prioritization of redundant properties is as follows:<ol>
  #
  # <li>If the <tt>width</tt> property is not specified (i.e., null), its value
  # is the width of the parent panel, minus this mark's left and right margins;
@@ -47,7 +47,7 @@ module Rubyvis
  # </ol>This prioritization is then duplicated for the <tt>height</tt>,
  # <tt>bottom</tt> and <tt>top</tt> properties, respectively.
  #
- # <p>While most properties are <i>variable</i>, some mark types, such as lines
+ # While most properties are <i>variable</i>, some mark types, such as lines
  # and areas, generate a single visual element rather than a distinct visual
  # element per datum. With these marks, some properties may be <b>fixed</b>.
  # Fixed properties can vary per mark, but not <i>per datum</i>! These
@@ -55,20 +55,76 @@ module Rubyvis
  # are specified as a constant. However, it is valid to use a function if the
  # property varies between panels or is dynamically generated.
  #
- class Mark
+  class Mark
+    # Hash storing properties names for current Mark type. 
     @properties={}
     
-    # @private Defines a setter-getter for the specified property.
+     # The enclosing parent panel. The parent panel is generally undefined only for the root panel; however, it is possible to create "offscreen" marks that are used only for inheritance purposes.
+    # @attr [Panel]
+    attr_accessor :parent
+    
+    # The root parent panel. This may be undefined for "offscreen" marks that are
+    # created for inheritance purposes only.
     #
-    # <p>If a cast function has been assigned to the specified property name, the
+    # @attr [Panel]
+    attr_accessor :root
+    
+    # The child index. -1 if the enclosing parent panel is null; otherwise, the
+    # zero-based index of this mark into the parent panel's <tt>children</tt>
+    # array.
+    # @attr [Number]
+    attr_accessor :child_index
+    
+    
+    # The scene graph. The scene graph is an array of objects; each object
+    # (or "node") corresponds to an instance of this mark and an element in the
+    # data array. The scene graph can be traversed to lookup previously-evaluated
+    # properties.
+    attr_accessor :scene
+    
+    # The mark prototype, possibly undefined, from which to inherit property
+    # functions. The mark prototype is not necessarily of the same type as this
+    # mark. Any properties defined on this mark will override properties inherited
+    # either from the prototype or from the type-specific defaults.
+    # @attr [Mark]
+    attr_accessor :proto
+    
+    # The mark anchor target, possibly undefined.
+    # @attr [Mark]
+    attr_accessor :target
+    
+    # The current scale factor, based on any enclosing transforms. The current
+    # scale can be used to create scale-independent graphics. For example, to
+    # define a dot that has a radius of 10 irrespective of any zooming, say:
+    #
+    # <pre>dot.shape_radius(lambda { 10 / self.scale})</pre>
+    #
+    # Note that the stroke width and font size are defined irrespective of scale
+    # (i.e., in screen space) already. Also note that when a transform is applied
+    # to a panel, the scale affects only the child marks, not the panel itself.
+    # @attr [Float]
+    # @see Panel#transform
+    attr_accessor :scale
+    
+    # Array with stores properties values 
+    attr_reader :_properties
+    
+    # OpenStruct which store values for scenes
+    attr_accessor :binds
+
+    
+    # Defines a setter-getter for the specified property.
+    #
+    # If a cast function has been assigned to the specified property name, the
     # property function is wrapped by the cast function, or, if a constant is
     # specified, the constant is immediately cast. Note, however, that if the
     # property value is null, the cast function is not invoked.
-    #
-    # @param [String] name the property name.
-    # @param [Boolean] +def+ whether is a property or a def.
-    # @param [Proc] +cast+ the cast function for this property.
-    # @param [Class] +klass+ the klass on which property will be added
+    # 
+    # Parameters:
+    # * @param [String] name the property name.
+    # * @param [Boolean] +def+ whether is a property or a def.
+    # * @param [Proc] +cast+ the cast function for this property.
+    # * @param [Class] +klass+ the klass on which property will be added
     
     def self.property_method(name, _def, func=nil, klass=nil)
       return if klass.method_defined? name
@@ -107,6 +163,7 @@ module Rubyvis
       end
     end
     
+    # Creates a dinamic property using property_method().
     def self.attr_accessor_dsl(*attr)
       attr.each  do |sym|
       if sym.is_a? Array
@@ -139,18 +196,18 @@ module Rubyvis
     def index
       @index
     end
-    # @private
+    # Returns true if index attribute is set and not deleted
     def index_defined?
       @index_defined
     end
-    # @private
+    # Set index attribute.
     def index=(v)
       @index_defined=true
       @index=v
       v
     end
     
-    # @private Sets the value of the property <i>name</i> to <i>v</i>    
+    # Sets the value of the property <i>name</i> to <i>v</i>    
     def property_value(name,v)
       prop=Property.new({:name=>name, :id=>Rubyvis.id, :value=>v})
       @_properties.delete_if{|v1| v1.name==name}
@@ -185,58 +242,101 @@ module Rubyvis
       scene[index<0 ? scene.size-1: index]
     end
 
-
-    # The enclosing parent panel. The parent panel is generally undefined only for the root panel; however, it is possible to create "offscreen" marks that are used only for inheritance purposes.
-    # @attr [Panel]
-    attr_accessor :parent
+    ##
+    # :section: Marks properties
+    ##
     
-    # The root parent panel. This may be undefined for "offscreen" marks that are
-    # created for inheritance purposes only.
+    ##
+    # :attr: data
+    # The data property; an array of objects. The size of the array determines the number of marks that will be instantiated; each element in the array will be passed to property functions to compute the property values. Typically, the data property is specified as a constant array, such as
+    #   m.data([1, 2, 3, 4, 5])
+    # However, it is perfectly acceptable to define the data property as a
+    # proc. This function might compute the data dynamically, allowing
+    # different data to be used per enclosing panel. For instance, in the stacked
+    # area graph example (see Mark#scene), the data function on the area mark
+    # dereferences each series.
+    
+    ##
+    # :attr: visible
+    # The visible property; a boolean determining whether or not the mark instance
+    # is visible. If a mark instance is not visible, its other properties will not
+    # be evaluated. Similarly, for panels no child marks will be rendered.
+    
+    ##
+    # :attr: left
+    # The left margin; the distance, in pixels, between the left edge of the
+    # enclosing panel and the left edge of this mark. Note that in some cases this
+    # property may be redundant with the right property, or with the conjunction of
+    # right and width.
+    
+    ##
+    # :attr: right
+    # The right margin; the distance, in pixels, between the right edge of the
+    # enclosing panel and the right edge of this mark. Note that in some cases this
+    # property may be redundant with the left property, or with the conjunction of
+    # left and width.
+    
+    ##
+    # :attr: top
+    # The top margin; the distance, in pixels, between the top edge of the
+    # enclosing panel and the top edge of this mark. Note that in some cases this
+    # property may be redundant with the bottom property, or with the conjunction
+    # of bottom and height.
+    
+    ##
+    # :attr: bottom
+    # The bottom margin; the distance, in pixels, between the bottom edge of the
+    # enclosing panel and the bottom edge of this mark. Note that in some cases
+    # this property may be redundant with the top property, or with the conjunction
+    # of top and height.
+    
+    ##
+    # :attr: cursor
+    # The cursor property; corresponds to the CSS cursor property. This is
+    # typically used in conjunction with event handlers to indicate interactivity.
+    # See {CSS 2 cursor}[http://www.w3.org/TR/CSS2/ui.html#propdef-cursor]
+    
+    ##
+    # :attr: title
+    # The title property; corresponds to the HTML/SVG title property, allowing the
+    # general of simple plain text tooltips.
+    
+    
+    ##
+    # :attr: events
+    # The events property; corresponds to the SVG pointer-events property,
+    # specifying how the mark should participate in mouse events. The default value
+    # is "painted". Supported values are:
     #
-    # @attr [Panel]
-    
-    attr_accessor :root
-    
-    # The child index. -1 if the enclosing parent panel is null; otherwise, the
-    # zero-based index of this mark into the parent panel's <tt>children</tt>
-    # array.
-    # @attr [Number]
-    attr_accessor :child_index
-    
-    
-    # @private The scene graph. The scene graph is an array of objects; each object
-    # (or "node") corresponds to an instance of this mark and an element in the
-    # data array. The scene graph can be traversed to lookup previously-evaluated
-    # properties.
-    attr_accessor :scene
-    
-    # The mark prototype, possibly undefined, from which to inherit property
-    # functions. The mark prototype is not necessarily of the same type as this
-    # mark. Any properties defined on this mark will override properties inherited
-    # either from the prototype or from the type-specific defaults.
-    # @attr [Mark]
-    attr_accessor :proto
-    
-    # The mark anchor target, possibly undefined.
-    # @attr [Mark]
-    attr_accessor :target
-    
-    # The current scale factor, based on any enclosing transforms. The current
-    # scale can be used to create scale-independent graphics. For example, to
-    # define a dot that has a radius of 10 irrespective of any zooming, say:
+    # <p>"painted": The given mark may receive events when the mouse is over a
+    # "painted" area. The painted areas are the interior (i.e., fill) of the mark
+    # if a 'fillStyle' is specified, and the perimeter (i.e., stroke) of the mark
+    # if a 'strokeStyle' is specified.
     #
-    # <pre>dot.shape_radius(lambda { 10 / self.scale})</pre>
+    # <p>"all": The given mark may receive events when the mouse is over either the
+    # interior (i.e., fill) or the perimeter (i.e., stroke) of the mark, regardless
+    # of the specified fillStyle and strokeStyle.
     #
-    # Note that the stroke width and font size are defined irrespective of scale
-    # (i.e., in screen space) already. Also note that when a transform is applied
-    # to a panel, the scale affects only the child marks, not the panel itself.
-    # @attr [Float]
-    # @see Panel#transform
-    attr_accessor :scale
-    attr_reader :_properties
+    # <p>"none": The given mark may not receive events.
     
+    ##
+    # :attr: reverse
+    # The reverse property; a boolean determining whether marks are ordered from
+    # front-to-back or back-to-front. SVG does not support explicit z-ordering;
+    # shapes are rendered in the order they appear. Thus, by default, marks are
+    # rendered in data order. Setting the reverse property to false reverses the
+    # order in which they are rendered; however, the properties are still evaluated
+    # (i.e., built) in forward order.
     
-    attr_accessor_dsl :data,:visible, :left, :right, :top, :bottom, :cursor, :title, :reverse, :antialias, :events, :id
+    ##
+    # :attr: id
+    # The instance identifier, for correspondence across animated transitions. If
+    # no identifier is specified, correspondence is determined using the mark
+    # index. Identifiers are not global, but local to a given mark.
+    
+    #
+    
+    attr_accessor_dsl :data, :visible, :left, :right, :top, :bottom, :cursor, :title, :reverse, :antialias, :events, :id
 
     @scene=nil
     @stack=[]
@@ -246,33 +346,39 @@ module Rubyvis
     def self.properties
       @properties
     end
-    
+    # Common index for all marks
     def Mark.index
       @index
     end
     
+    # Set common index for all marks    
     def Mark.index=(v)
       @index=v
     end
-
-
-
+    # Get common scene for all marks    
     def self.scene
       @scene
     end
+    # Set common scene for all marks        
     def self.scene=(v)
       @scene=v
     end
+    
+    
+    # Return properties for current mark
     def properties
       (self.class).properties
     end
+    # Get common stack for all marks    
     def Mark.stack
       @stack
     end
+    # Set common stack for all marks        
     def Mark.stack=(v)
       @stack=v
     end
 
+    # Create a new Mark
     def initialize(opts=Hash.new)
       @_properties=[]
       opts.each {|k,v|
@@ -284,21 +390,38 @@ module Rubyvis
       @index_defined = true
       @scale=1
       @scene=nil
-
     end
+    
+    
+    # The mark type; a lower name. The type name controls rendering
+    # behavior, and unless the rendering engine is extended, must be one of the
+    # built-in concrete mark types: area, bar, dot, image, label, line, panel,
+    # rule, or wedge.
     def type
       "mark"
     end
+    
+    # Default properties for all mark types. By default, the data array is the
+    # parent data as a single-element array; if the data property is not
+    # specified, this causes each mark to be instantiated as a singleton 
+    # with the parents  datum. The visible property is true by default, 
+    # and the reverse property is false.    
     def self.defaults
       Mark.new({:data=>lambda {|d| [d]}, :visible=>true, :antialias=>true, :events=>'painted'})
     end
+    
+    # Sets the prototype of this mark to the specified mark. Any properties not
+    # defined on this mark may be inherited from the specified prototype mark,
+    # or its prototype, and so on. The prototype mark need not be the same 
+    # type of mark as this mark. (Note that for inheritance to be useful,
+    # properties with the same name on different mark types should 
+    # have equivalent meaning.)
     def extend(proto)
       @proto=proto
       @target=proto.target
       self
     end
-    # @private Find the instances of this mark that match source.
-    #
+    # Find the instances of this mark that match source.
     # @see Anchor
     def instances(source)
       mark = self
@@ -330,7 +453,7 @@ module Rubyvis
     end
     
     
-    # @private Returns the previous instance of this mark in the scene graph, or
+    #Returns the previous instance of this mark in the scene graph, or
     # null if this is the first instance.
     #
     # @return a node in the scene graph, or null.
@@ -338,7 +461,8 @@ module Rubyvis
       (self.index==0) ? nil: self.scene[self.index-1]
     end
     
-    # @private Returns the current instance in the scene graph of this mark,
+    
+    # Returns the current instance in the scene graph of this mark,
     # in the previous instance of the enclosing parent panel. 
     # May return null if this instance could not be found.
     #
@@ -352,35 +476,33 @@ module Rubyvis
       parent.add(type).extend(self)
     end
     # Returns an anchor with the specified name. All marks support the five
-    # standard anchor names:<ul>
+    # standard anchor names:
+    # * top
+    # * left
+    # * center
+    # * bottom
+    # * right
     #
-    # <li>top
-    # <li>left
-    # <li>center
-    # <li>bottom
-    # <li>right
+    # In addition to positioning properties (left, right, top bottom), the
+    # anchors support text rendering properties (text-align, text-baseline).
+    # Text is rendered to appear inside the mark by default.
     #
-    # </ul>In addition to positioning properties (left, right, top bottom), the
-    # anchors support text rendering properties (text-align, text-baseline). Text is
-    # rendered to appear inside the mark by default.
+    # To facilitate stacking, anchors are defined in terms of their opposite
+    # edge. For example, the top anchor defines the bottom property, 
+    # such that the mark extends upwards; the bottom anchor instead defines 
+    # the top property, such that the mark extends downwards. See also Layout::Stack
     #
-    # <p>To facilitate stacking, anchors are defined in terms of their opposite
-    # edge. For example, the top anchor defines the bottom property, such that the
-    # mark extends upwards; the bottom anchor instead defines the top property,
-    # such that the mark extends downwards. See also {@link pv.Layout.Stack}.
-    #
-    # <p>While anchor names are typically constants, the anchor name is a true
+    # While anchor names are typically constants, the anchor name is a true
     # property, which means you can specify a function to compute the anchor name
-    # dynamically. See the {@link Anchor#name} property for details.
+    # dynamically. See the Anchor#name property for details.
     #
     # @param [String] name the anchor name; either a string or a property function.
     # @return [Anchor] the new anchor.
-    #/    
     def anchor(name='center')
       mark_anchor(name)
     end
-    # @private Implementation of mark anchor
-    def mark_anchor(name="center")
+    # Implementation of mark anchor
+    def mark_anchor(name="center") # :nodoc:
       anchor=Rubyvis::Anchor.new(self).name(name).data(lambda {
           pp self.scene.target if $DEBUG
       a=self.scene.target.map {|s| puts "s:#{s.data}" if $DEBUG; s.data}
@@ -437,7 +559,7 @@ module Rubyvis
     end
 
 
-    # @private Computes the implied properties for this mark for the specified
+    # Computes the implied properties for this mark for the specified
     # instance <tt>s</tt> in the scene graph. Implied properties are those with
     # dependencies on multiple other properties; for example, the width property
     # may be implied if the left and right properties are set. This method can be
@@ -445,12 +567,11 @@ module Rubyvis
     # necessary.
     #
     # @param s a node in the scene graph; the instance of the mark to build.
-    def build_implied(s)
+    def build_implied(s) # :nodoc:
       mark_build_implied(s)
     end
     
-    # @private
-    def mark_build_implied(s)
+    def mark_build_implied(s) # :nodoc:
       l=s.left
       r=s.right
       t=s.top
@@ -546,7 +667,7 @@ module Rubyvis
 
     end
 
-    def render_render(mark,depth,scale)
+    def render_render(mark,depth,scale) # :nodoc:
       mark.scale=scale
       if (depth < @indexes.size)
         @stack.unshift(nil)
@@ -562,14 +683,14 @@ module Rubyvis
         stack.shift
       else
         mark.build
-        pv.Scene.scale = scale;
-        pv.Scene.update_all(mark.scene);
+        Rubyvis.Scene.scale = scale;
+        Rubyvis.Scene.update_all(mark.scene);
       end
       mark.scale=nil
     end
     
     
-    def render_instance(mark,depth,scale)
+    def render_instance(mark,depth,scale) # :nodoc:
       s=mark.scene[mark.index]
       if s.visible
         child_index=@indexes[depth]
@@ -592,7 +713,6 @@ module Rubyvis
 
       end
     end
-    private :render_render, :render_instance
     def bind_bind(mark)
       begin
         mark._properties.each {|v|
@@ -614,15 +734,14 @@ module Rubyvis
         }
       end while(mark = mark.proto)
     end
-
-    attr_accessor :binds
+    private :bind_bind, :render_render, :render_instance
     # @private In the bind phase, inherited property definitions are cached so they
     # do not need to be queried during build.
     def bind
       mark_bind
     end
-    # @private    
-    def mark_bind()
+    
+    def mark_bind() # :nodoc:
       @seen={}
       @types={1=>[],2=>[],3=>[]}
       @_data=nil
@@ -714,21 +833,21 @@ module Rubyvis
         context_apply(oscene,oindex)
       end
     end
-    # @private
+
     # Evaluates properties and computes implied properties. Properties are
-    # stored in the {@link #scene} array for each instance of this mark.
+    # stored in the Mark.scene array for each instance of this mark.
     #
-    # <p>As marks are built recursively, the {@link #index} property is updated to
+    # As marks are built recursively, the Mark.index property is updated to
     # match the current index into the data array for each mark. Note that the
     # index property is only set for the mark currently being built and its
     # enclosing parent panels. The index property for other marks is unset, but is
-    # inherited from the global <tt>Mark</tt> class prototype. This allows mark
+    # inherited from the global +Mark+ class prototype. This allows mark
     # properties to refer to properties on other marks <i>in the same panel</i>
     # conveniently; however, in general it is better to reference mark instances
     # specifically through the scene graph rather than depending on the magical
-    # behavior of {@link #index}.
+    # behavior of Mark#index.
     #
-    # <p>The root scene array has a special property, <tt>data</tt>, which stores
+    # The root scene array has a special property, <tt>data</tt>, which stores
     # the current data stack. The first element in this stack is the current datum,
     # followed by the datum of the enclosing parent panel, and so on. The data
     # stack should not be accessed directly; instead, property functions are passed
@@ -794,18 +913,21 @@ module Rubyvis
       self
     end
     # @private
-    def build_instance(s)
+    def build_instance(s) # :nodoc:
       mark_build_instance(s)
     end
     # @private
-    def mark_build_instance(s1)
+    def mark_build_instance(s1) # :nodoc:
       build_properties(s1, self.binds.required)
       if s1.visible
         build_properties(s1, self.binds.optional)
         build_implied(s1)
       end
     end
-    # @private Evaluates the specified array of properties for the specified
+    
+    
+    
+    # Evaluates the specified array of properties for the specified
     # instance <tt>s</tt> in the scene graph.
     #
     # @param s a node in the scene graph; the instance of the mark to build.
@@ -822,11 +944,10 @@ module Rubyvis
         ss.send((prop.name.to_s+"=").to_sym, v)
       end
     end
-    # @private
     # @todo implement
     def event(type,handler)
       #@_handlers[type]=handler
-      return self
+      self
     end
   end
 end

@@ -1,14 +1,25 @@
 module Rubyvis
   # :section: /pv-internals.js
   @@id=0
+  # Return a unique id each time
   def self.id
     @@id+=1
   end
+  # Return a value as a Proc.
   def self.functor(f)
     (f.is_a? Proc) ? f : lambda {f}
   end
+  ##
   # :section: /data/Arrays.js
-
+  
+  ##
+  # A private variant of Array.map that supports the index property
+  # 
+  # :call-seq:
+  #   self.map(Array)
+  #   self.map(array,proc)
+  #
+  
   def self.map(array, f=nil)
     if f
       array.size.times.map {|i|
@@ -19,6 +30,7 @@ module Rubyvis
       array.dup
     end
   end
+  
   def self.repeat(array, n=2)
     array*n
   end

@@ -69,10 +69,10 @@ module Rubyvis
       # two-element array is returned containing the minimum and the maximum.
       #
       # @function
-      # @name pv.Format.number.prototype.fractionDigits
+      # @name Rubyvis.Format.number.prototype.fractionDigits
       # @param {number} [min] the minimum fraction digits.
       # @param {number} [max] the maximum fraction digits.
-      # @returns {pv.Format.number} <tt>this</tt>, or the current fraction digits.
+      # @returns {Rubyvis.Format.number} <tt>this</tt>, or the current fraction digits.
       
       def fraction_digits(min=nil,max=nil)
         if (!min.nil?)

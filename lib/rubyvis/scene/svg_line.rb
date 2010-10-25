@@ -72,7 +72,7 @@ module Rubyvis
         next if (!s1.visible and !s2.visible)
 
         stroke = s1.stroke_style
-        fill = pv.Color.transparent
+        fill = Rubyvis.Color.transparent
 
         next if stroke.opacity==0.0
 
@@ -80,7 +80,7 @@ module Rubyvis
         d=nil
         if ((s1.interpolate == "linear") and (s1.lineJoin == "miter"))
           fill = stroke;
-          stroke = pv.Color.transparent;
+          stroke = Rubyvis.Color.transparent;
           d = path_join(scenes[i - 1], s1, s2, scenes[i + 2]);
         elsif(paths)
           d = paths[i];
@@ -142,9 +142,9 @@ module Rubyvis
       # no joins).
       #
 
-      p1 = pv.vector(s1.left, s1.top)
+      p1 = Rubyvis.vector(s1.left, s1.top)
 
-      p2 = pv.vector(s2.left, s2.top)
+      p2 = Rubyvis.vector(s2.left, s2.top)
 
       p = p2.minus(p1)
 
@@ -172,7 +172,7 @@ module Rubyvis
 
       #/* Similarly, for end join. */
       if (s3 && s3.visible)
-        v2 = pv.vector(s3.left, s3.top).minus(p2).perp().norm().plus(v);
+        v2 = Rubyvis.vector(s3.left, s3.top).minus(p2).perp().norm().plus(v);
         c = line_intersect(p2, v2, c, p);
         b = line_intersect(p2, v2, b, p);
       end

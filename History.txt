@@ -1,4 +1,4 @@
-﻿=== 0.1.5 / 2010-10-22
+=== 0.1.5 / 2010-10-22
 
 * Bug fix: styles considered properly, so font attribute works right now.
 * Bug fix: anchors have proper parent assignation.

@@ -4,7 +4,7 @@
 
 == DESCRIPTION:
 
-Ruby port of Protovis, a great visualization toolkit
+Ruby port of Protovis[http://vis.stanford.edu/protovis/], a great visualization toolkit
 
 == FEATURES/PROBLEMS:
 
@@ -26,15 +26,13 @@ Complex examples requires more works:
 * crimea: line and grouped line ok.
 
 
-I try to maintain, when posible, complete compatibility with Javascript API, including camel case naming of functions. Johnson [http://github.com/jbarnette/johnson] - the lovely Javascript wrapper inside Ruby embrace - is our friend. 
+I try to maintain, when posible, complete compatibility with Javascript API, including camel case naming of functions. Johnson [http://github.com/jbarnette/johnson] - the lovely Javascript wrapper inside Ruby embrace - is our friend to test implementation of basic object. 
 
 Until version 0.1.0, lambdas should always should created explicitly for method you may be temted to call it with a block.
 
-On a second stage, traditional block calling could be using maintaining backwards compatibily with Javascript API,
+On a second stage, traditional block calling could be using maintaining backwards compatibily with Javascript API. See TODO section for proposal of new API.
 
 User could use +pv+ freely, cause is defined as a global method which call Rubyvis.
-
-+self.parent.index+ doesn't work always as expected. +self.index+ works ok. I'm working on it
 
 == CURRENT PROGRESS
 

@@ -7,7 +7,7 @@ module Rubyvis
       "wedge"
     end
     @properties=Mark.properties.dup
-    attr_accessor_dsl :start_angle, :end_angle, :angle, :inner_radius, :outer_radius, :line_width, [:stroke_style, lambda {|d| pv.color(d)}], [:fill_style, lambda {|d| pv.color(d)}]
+    attr_accessor_dsl :start_angle, :end_angle, :angle, :inner_radius, :outer_radius, :line_width, [:stroke_style, lambda {|d| Rubyvis.color(d)}], [:fill_style, lambda {|d| Rubyvis.color(d)}]
     def self.defaults
       a=Rubyvis.Colors.category20()
       Wedge.new.extend(Mark.defaults).start_angle(lambda  {s=self.sibling; s ? s.end_angle: -Math::PI.quo(2) } ).inner_radius( 0 ).line_width( 1.5 ).stroke_style( nil ).fill_style( lambda {a.scale(self.index)})

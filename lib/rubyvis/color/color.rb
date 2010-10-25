@@ -31,7 +31,7 @@ module Rubyvis
     named = Rubyvis::Color.names[format.to_sym]
 
 
-    return pv.color(named) if (named)
+    return Rubyvis.color(named) if (named)
 
     # Hexadecimal colors: #rgb and #rrggbb. */
     if (format[0,1]== "#")
@@ -238,16 +238,16 @@ module Rubyvis
         self.class==v.class and @r==v.r and @b==v.b and @g=v.g and @a=v.a
       end
       def red(r1)
-        pv.rgb(r1,g,b,a)
+        Rubyvis.rgb(r1,g,b,a)
       end
       def green(g1)
-        pv.rgb(r,g1,b,a)
+        Rubyvis.rgb(r,g1,b,a)
       end
       def blue(b1)
-        pv.rgb(r,g,b1,a)
+        Rubyvis.rgb(r,g,b1,a)
       end
       def alpha(a1)
-        pv.rgb(r,g,b,a1)
+        Rubyvis.rgb(r,g,b,a1)
       end
       
       def rgb
@@ -256,7 +256,7 @@ module Rubyvis
       def darker(*arguments)
         k,dummy=arguments
         k = 0.7 ** ( arguments.size>0 ? k : 1)
-        return pv.rgb(
+        return Rubyvis.rgb(
           [0, (k * self.r).floor].max,
           [0, (k * self.g).floor].max,
           [0, (k * self.b).floor].max,
