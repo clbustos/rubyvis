@@ -1,0 +1,26 @@
+!!!
+%html
+  %head
+    %link{:type=>"text/css", :rel=>"stylesheet", :href=>"../style.css"}
+    %title="Rubyvis - Example: #{title}"
+  %body
+    %h1="Rubyvis - Example: #{title}"
+    .example_main
+      .description
+        - text.each do |t|
+          %p= t
+      .navigation
+        %ul
+          %li 
+            %a{:href=>"../index.html"} Home
+          - if prev_ex
+            %li
+              %a{:href=>"#{prev_ex}.html"} Previous: #{pages[prev_ex].title}
+          - if next_ex
+            %li
+              %a{:href=>"#{next_ex}.html"} Next: #{pages[next_ex].title}          
+      .image
+        /[if IE]
+          %embed.svg{:src=>svg_file,:width=>"500", :height=>"300"}
+        %object.svg{:data=>svg_file, :type=>"image/svg+xml"}
+      .source=find_and_preserve(source)
