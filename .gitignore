@@ -7,6 +7,7 @@ pkg/*
 .yardoc
 vendor/protovis/tests
 vendor/protovis/lib
+web/*.html
 web/examples/*
 web/upload_task.rb
 coverage
