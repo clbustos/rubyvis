@@ -74,20 +74,28 @@ ytick.anchor("left").add(pv.Label)
     .text_align("center");
 
 #/* Dot plot. */
-dot = plot.add(pv.Dot)
-    .data($bacteria)
-    .stroke_style(lambda {|d| color.scale(d[:gram])})
-    .fill_style(lambda {|d| color.scale(d[:gram]).alpha(0.2)})
-    .left(lambda {|d, x, y|  z.scale(d[x.to_sym])})
-    .bottom(lambda {|d, x, y| z.scale(d[y.to_sym])})
-    .title(lambda {|d| d[:name]});
+dot = plot.add(pv.Dot).
+  data($bacteria).
+  stroke_style(lambda { |d|
+    color.scale(d[:gram])
+  }).
+  fill_style(lambda {|d|
+    color.scale(d[:gram]).alpha(0.2)
+  }).
+  left(lambda {|d, x, y|
+    z.scale(d[x.to_sym])
+  }).
+  bottom(lambda {|d, x, y|
+    z.scale(d[y.to_sym])
+  }).
+  title(lambda {|d| d[:name]})
 
 #/* Legend. */
 vis.add(pv.Dot)
     .extend(dot)
     .data([{gram:"positive"}, {gram:"negative"}])
     .bottom(-30)
-    .left(lambda { self.index * 100})
+    .left(lambda { index * 100})
     .title(nil)
   .anchor("right").add(pv.Label)
     .text(lambda {|d| "Gram-" + d[:gram]});

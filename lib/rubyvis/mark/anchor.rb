@@ -1,5 +1,5 @@
 module Rubyvis
-  # Alias por Rubyvis::Anchor.new
+  # Alias por Rubyvis::Anchor.new(target)
   def self.Anchor(target)
     Rubyvis::Anchor.new(target)
   end

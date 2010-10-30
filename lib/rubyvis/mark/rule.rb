@@ -1,4 +1,5 @@
 module Rubyvis
+  # Alias for Rubyvis::Rule
   def self.Rule
     Rubyvis::Rule
   end

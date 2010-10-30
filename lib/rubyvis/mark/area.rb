@@ -1,8 +1,10 @@
 module Rubyvis
+  # Alias for Rubyvis::Area
   def self.Area
     Rubyvis::Area
   end
-  module AreaPrototype
+  # Provides methods pertinents to area like-marks.
+  module AreaPrototype 
     def fixed
       {
         :line_width=> true,
@@ -15,7 +17,6 @@ module Rubyvis
       }
     end
     def area_build_instance(s)
-      
       binds = self.binds
       # Handle fixed properties on secondary instances. */
       if (self.index!=0)

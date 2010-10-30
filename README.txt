@@ -114,7 +114,7 @@ The examples/area.rb script should like somethink like that
         left x
         bottom -5
         height -5
-        label(:anchor=>'bottom') { # shortcut to create an element inside an anchor
+        label(:anchor=>'bottom') { # shortcut to create a mark inside an anchor
           text x.tick_format
         }
       }

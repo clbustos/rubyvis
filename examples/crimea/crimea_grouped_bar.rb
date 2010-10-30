@@ -1,7 +1,7 @@
 $:.unshift(File.dirname(__FILE__)+"/../../lib")
 require 'rubyvis'
 require 'ostruct'
-load(File.dirname(__FILE__)+"/crimea.rb")
+load(File.dirname(__FILE__)+"/crimea_data.rb")
 
 
 w = 545
@@ -45,7 +45,7 @@ panel.anchor("bottom").add(pv.Label)
     .text_margin(10)
     .text(lambda {|d| format.format(d.date)})
     
-    
+  
 vis.add(pv.Rule)
     .data(y.ticks())
     .bottom(lambda {|d| y.scale(d)})

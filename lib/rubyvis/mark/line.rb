@@ -1,8 +1,9 @@
 module Rubyvis
+  # Alias for Rubyvis::Line
   def self.Line
     Rubyvis::Line
   end
-  module LinePrototype
+  module LinePrototype 
     include AreaPrototype
     def line_anchor(name)
       anchor=area_anchor(name).text_align(lambda {|d|

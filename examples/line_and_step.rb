@@ -1,3 +1,7 @@
+# = Line and Step Chart
+# Line charts are often used to visualize time series data, encoding the value of a variable over time using position. Typically, linear interpolation is used between samples. However, in some cases, the data does not vary smoothly, but instead changes in response to discrete events.
+# Using the interpolate property, it is easy to change this behavior for lines and areas. Rubyvis also supports various nonlinear interpolation methods, including cardinal spline, Catmull-Rom spline, B-spline, and monotone cubic.
+
 $:.unshift(File.dirname(__FILE__)+"/../lib")
 require 'rubyvis'
 

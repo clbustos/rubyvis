@@ -10,6 +10,7 @@ module Rubyvis
   def self.nest(array)
     Nest.new(array)
   end
+  # :stopdoc:
   class NestedArray
     attr_accessor :key, :values
     def initialize(opts)
@@ -20,20 +21,18 @@ module Rubyvis
       key==var.key and values=var.values
     end
   end
-  ##
-  # Constructs a nest operator for the specified array. This constructor should
-  # not be invoked directly; use {@link Rubyvis.nest} instead.
-  #
-  # @class Represents a {@link Nest} operator for the specified array. Nesting
+  # :startdoc: 
+  
+  # Represents a Nest operator for the specified array. Nesting
   # allows elements in an array to be grouped into a hierarchical tree
   # structure. The levels in the tree are specified by <i>key</i> functions. The
   # leaf nodes of the tree can be sorted by value, while the internal nodes can
   # be sorted by key. Finally, the tree can be returned either has a
-  # multidimensional array via {@link #entries}, or as a hierarchical map via
-  # {@link #map}. The {@link #rollup} routine similarly returns a map, collapsing
+  # multidimensional array via Nest.entries, or as a hierarchical map via
+  # Nest.map. The Nest.rollup routine similarly returns a map, collapsing
   # the elements in each leaf node using a summary function.
   #
-  # <p>For example, consider the following tabular data structure of Barley
+  # For example, consider the following tabular data structure of Barley
   # yields, from various sites in Minnesota during 1931-2:
   #
   #   { yield: 27.00, variety: "Manchuria", year: 1931, site: "University Farm" },
@@ -43,10 +42,10 @@ module Rubyvis
   # To facilitate visualization, it may be useful to nest the elements first by
   # year, and then by variety, as follows:
   #
-  # <pre>var nest = Rubyvis.nest(yields)
-  #     .key(function(d) d.year)
-  #     .key(function(d) d.variety)
-  #     .entries();</pre>
+  #     var nest = Rubyvis.nest(yields)
+  #     .key(lambda {|d|  d.year})
+  #     .key(lambda {|d| d.variety})
+  #     .entries();
   #
   # This returns a nested array. Each element of the outer array is a key-values
   # pair, listing the values for each distinct key:
@@ -68,11 +67,12 @@ module Rubyvis
   #
   # Further details, including sorting and rollup, is provided below on the
   # corresponding methods.
-  #
-  # @param {array} array an array of elements to nest.
-  #/
   class Nest
     attr_accessor :array, :keys, :order
+    ##
+    # Constructs a nest operator for the specified array. This constructor should
+    # not be invoked directly; use Rubyvis.nest instead.
+    
     def initialize(array)
       @array=array
       @keys=[]

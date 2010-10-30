@@ -11,7 +11,6 @@ require 'rubyvis/nest'
 
 require 'rubyvis/javascript_behaviour'
 require 'rubyvis/format'
-require 'rubyvis/label'
 require 'rubyvis/mark'
 require 'rubyvis/scale'
 require 'rubyvis/color/color'

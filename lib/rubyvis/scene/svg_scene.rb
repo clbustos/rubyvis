@@ -45,7 +45,7 @@ module Rubyvis
         "dy"=> 0,
         "text-anchor"=> "start",
         "transform"=> "translate(0,0)",
-        "fill"=> "none",
+        #"fill"=> "none",
         "fill-opacity"=> 1,
         "stroke"=> "none",
         "stroke-opacity"=> 1,

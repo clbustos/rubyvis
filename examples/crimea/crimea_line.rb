@@ -1,7 +1,7 @@
 $:.unshift(File.dirname(__FILE__)+"/../../lib")
 require 'rubyvis'
 require 'ostruct'
-load(File.dirname(__FILE__)+"/crimea.rb")
+load(File.dirname(__FILE__)+"/crimea_data.rb")
 
 
 w = 545

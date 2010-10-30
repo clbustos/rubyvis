@@ -1,4 +1,5 @@
 module Rubyvis
+  
   def self.color(format)
     return format.rgb if format.respond_to? :rgb
     if (format =~/([a-z]+)\((.*)\)/)
@@ -50,6 +51,7 @@ module Rubyvis
     # Otherwise, pass-through unsupported colors. */
     return Rubyvis::Color.new(format, 1);
   end
+  
   def self.rgb(r,g,b,a=1)
     Rubyvis::Color::Rgb.new(r,g,b,a)
   end

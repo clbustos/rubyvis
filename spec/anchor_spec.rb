@@ -49,22 +49,22 @@ describe Rubyvis::Anchor do
     adatas=[]
     s = 180
     _p = 20
-    vis = pv.Panel.new()
-    .height(s * antibiotics.size + _p * (antibiotics.size - 1))
-    .width(s * antibiotics.size + _p * (antibiotics.size - 1))
-    .top(14.5)
-    .left(14.5)
-    .bottom(44)
-    .right(14)
+    vis = pv.Panel.new().
+      height(s * antibiotics.size + _p * (antibiotics.size - 1)).
+      width(s * antibiotics.size + _p * (antibiotics.size - 1)).
+      top(14.5).
+      left(14.5).
+      bottom(44).
+      right(14)
 
-    cell = vis.add(pv.Panel)
-    .data(a1)
-    .width(s)
-    .left(lambda {(s + _p) * self.index})
-  .add(pv.Panel)
-    .data(a2)
-    .height(s)
-    .top(lambda {(s + _p) * self.index});
+    cell = vis.add(pv.Panel).
+      data(a1).
+      width(s).
+      left(lambda {(s + _p) * index}).
+    add(pv.Panel).
+      data(a2).
+      height(s).
+      top(lambda {(s + _p) * self.index});
 
     
     cell.anchor("center").add(pv.Label).text(lambda {|*args| adatas.push args})

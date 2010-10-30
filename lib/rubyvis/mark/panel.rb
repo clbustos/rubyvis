@@ -1,4 +1,5 @@
 module Rubyvis
+  # Alias for Rubyvis::Panel
   def self.Panel
     Rubyvis::Panel
   end

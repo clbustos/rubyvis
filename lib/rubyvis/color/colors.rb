@@ -1,4 +1,5 @@
 module Rubyvis
+  # Alias for Rubyvis::Colors
   def self.Colors
     Rubyvis::Colors
   end

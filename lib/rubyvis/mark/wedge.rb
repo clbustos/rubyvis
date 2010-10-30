@@ -1,4 +1,5 @@
 module Rubyvis
+  # Alias for Rubyvis::Wedge
   def self.Wedge
     Rubyvis::Wedge
   end

@@ -16,6 +16,7 @@ examples/first.rb
 examples/grouped_charts.rb
 examples/line.rb
 examples/line_and_step.rb
+examples/nested_grid.rb
 examples/pie_and_donut.rb
 examples/scatterplot.rb
 examples/second.rb
@@ -61,6 +62,7 @@ lib/rubyvis/scene/svg_scene.rb
 lib/rubyvis/scene/svg_wedge.rb
 lib/rubyvis/sceneelement.rb
 lib/rubyvis/transform.rb
+spec/anchor_spec.rb
 spec/bar_spec.rb
 spec/internal_spec.rb
 spec/javascript_behaviour_spec.rb
@@ -70,6 +72,7 @@ spec/nest_spec.rb
 spec/panel_spec.rb
 spec/scale_linear_datetime_spec.rb
 spec/scale_linear_spec.rb
+spec/scale_log_spec.rb
 spec/scale_ordinal_spec.rb
 spec/scale_spec.rb
 spec/spec.opts

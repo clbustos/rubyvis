@@ -503,25 +503,32 @@ module Rubyvis
     end
     # Implementation of mark anchor
     def mark_anchor(name="center") # :nodoc:
-      anchor=Rubyvis::Anchor.new(self).name(name).data(lambda {
+      anchor=Rubyvis::Anchor.
+        new(self).
+        name(name).
+        data(lambda {
           pp self.scene.target if $DEBUG
-      a=self.scene.target.map {|s| puts "s:#{s.data}" if $DEBUG; s.data}
-      p a if $DEBUG
-      a 
-      }).visible(lambda {
-        self.scene.target[self.index].visible
-      }).id(lambda {self.scene.target[self.index].id}).left(lambda {
-        s = self.scene.target[self.index]
-        w = s.width
-        w||=0
-        if ['bottom','top','center'].include?(self.name)
-          s.left + w / 2.0
-        elsif self.name=='left'
-          nil
-        else
-          s.left + w
-        end
-      }).top(lambda {
+          a=self.scene.target.map {|s| puts "s:#{s.data}" if $DEBUG; s.data}
+          p a if $DEBUG
+          a 
+        }).
+        visible(lambda {
+          self.scene.target[self.index].visible
+        }).
+        id(lambda {self.scene.target[self.index].id}).
+        left(lambda {
+          s = self.scene.target[self.index]
+          w = s.width
+          w||=0
+          if ['bottom','top','center'].include?(self.name)
+            s.left + w / 2.0
+          elsif self.name=='left'
+            nil
+          else
+            s.left + w
+          end
+        }).
+        top(lambda {
         s = self.scene.target[self.index]
         h = s.height
         h||= 0

@@ -1,4 +1,5 @@
 module Rubyvis
+  # Alias for Rubyvis::Bar
   def self.Bar
     Rubyvis::Bar
   end
