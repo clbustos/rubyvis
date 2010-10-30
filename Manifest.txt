@@ -174,5 +174,4 @@ web/Rakefile
 web/build_site.rb
 web/examples.haml
 web/index.haml
-web/index.html
 web/style.css
