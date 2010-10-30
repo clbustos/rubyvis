@@ -1,3 +1,11 @@
+=== 0.1.6 / 2010-10-30
+
+* Improved documentation for examples. Added description from protovis site on the one borrowed from it and added commentary on new ones.
+* Distribution includes 'web' directory, with script to recreate the web site. Use as example of massive creation of graphics
+* Added explicitily "none" to  svg "fill" property. This allows to render properly with librsv (rsgv), without affecting the browser output
+* Added API documentation on many files.
+* Replaced all pv instances on code for Rubyvis
+
 === 0.1.5 / 2010-10-22
 
 * Bug fix: styles considered properly, so font attribute works right now.
