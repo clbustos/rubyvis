@@ -13,7 +13,10 @@ examples/crimea/crimea_grouped_bar.rb
 examples/crimea/crimea_line.rb
 examples/dot.rb
 examples/first.rb
+examples/fixtures/tipsy.gif
 examples/grouped_charts.rb
+examples/image.rb
+examples/image.svg
 examples/line.rb
 examples/line_and_step.rb
 examples/nested_grid.rb
@@ -38,6 +41,7 @@ lib/rubyvis/mark/anchor.rb
 lib/rubyvis/mark/area.rb
 lib/rubyvis/mark/bar.rb
 lib/rubyvis/mark/dot.rb
+lib/rubyvis/mark/image.rb
 lib/rubyvis/mark/label.rb
 lib/rubyvis/mark/line.rb
 lib/rubyvis/mark/panel.rb
@@ -53,6 +57,7 @@ lib/rubyvis/scale/quantitative.rb
 lib/rubyvis/scene/svg_area.rb
 lib/rubyvis/scene/svg_bar.rb
 lib/rubyvis/scene/svg_dot.rb
+lib/rubyvis/scene/svg_image.rb
 lib/rubyvis/scene/svg_label.rb
 lib/rubyvis/scene/svg_line.rb
 lib/rubyvis/scene/svg_panel.rb

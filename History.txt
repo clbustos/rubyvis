@@ -1,3 +1,7 @@
+=== 0.1.7 / 2010-10-31
+
+* Added image support
+
 === 0.1.6 / 2010-10-30
 
 * Improved documentation for examples. Added description from protovis site on the one borrowed from it and added commentary on new ones.

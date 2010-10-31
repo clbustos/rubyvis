@@ -25,7 +25,7 @@ require 'rubyvis/transform'
 module Rubyvis
   @document=nil
   # Rubyvis version
-  VERSION = '0.1.6' 
+  VERSION = '0.1.7' 
   # Protovis API on which current Rubyvis is based
   API_VERSION='3.3'
   # You actually can do it! http://snipplr.com/view/2137/uses-for-infinity-in-ruby/
