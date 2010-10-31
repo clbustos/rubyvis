@@ -6,6 +6,7 @@ require 'rubyvis/scene/svg_line'
 require 'rubyvis/scene/svg_dot'
 require 'rubyvis/scene/svg_area'
 require 'rubyvis/scene/svg_wedge'
+require 'rubyvis/scene/svg_image'
 
 class REXML::Element
   attr_accessor :_scene
@@ -77,7 +78,7 @@ module Rubyvis
       if type=='svg'
         el.add_namespace(self.svg)
         #el.add_namespace("xmlns:xmlns", self.xmlns)
-        #el.add_namespace("xlink", self.xlink)
+        el.add_namespace("xmlns:xlink", self.xlink)
       end
       el
     end

@@ -961,6 +961,7 @@ end
 
 require 'rubyvis/mark/anchor'
 require 'rubyvis/mark/bar'
+require 'rubyvis/mark/image'
 require 'rubyvis/mark/panel'
 require 'rubyvis/mark/area'
 require 'rubyvis/mark/line'
