@@ -1,5 +1,8 @@
 module Rubyvis
-  class SceneElement
+  # Scene element
+  # Store information about each scene.
+  # On javascript, is an Array with custom properties.
+  class SceneElement # :nodoc:
     def initialize
       @scenes=Array.new
     end

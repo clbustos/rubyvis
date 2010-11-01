@@ -7,17 +7,18 @@ require 'rubyvis/scene/svg_dot'
 require 'rubyvis/scene/svg_area'
 require 'rubyvis/scene/svg_wedge'
 require 'rubyvis/scene/svg_image'
+require 'rubyvis/scene/svg_curve'
 
 class REXML::Element
   attr_accessor :_scene
 end
 
 module Rubyvis
-  def self.Scene
+  def self.Scene # :nodoc:
     Rubyvis::SvgScene
   end
-  module SvgScene
-    include REXML
+  module SvgScene # :nodoc:
+    #include REXML
     def self.svg
       "http://www.w3.org/2000/svg"
     end;
@@ -74,7 +75,7 @@ module Rubyvis
       end
     end
     def self.create(type)
-      el=Element.new "#{type}"
+      el=REXML::Element.new "#{type}"
       if type=='svg'
         el.add_namespace(self.svg)
         #el.add_namespace("xmlns:xmlns", self.xmlns)

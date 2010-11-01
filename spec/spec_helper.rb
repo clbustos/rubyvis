@@ -26,3 +26,26 @@ module Rubyvis
     end
   end
 end
+# Spec matcher for svg paths
+Spec::Matchers.define :have_path_data_close_to do |exp|
+  match do |obs|
+    def path_scan(path)
+      path.scan(/([MmCcZzLlHhVvSsQqTtAa, ])(\d+(?:\.\d+)?)/).map {|v|
+      v[0]="," if v[0]==" "
+      v[1]=v[1].to_f
+      v
+      }
+    end
+    correct=true
+    obs_array=path_scan(obs.attributes["d"].value)
+    
+    exp_array=path_scan(exp)
+    obs_array.each_with_index {|v,i|
+      if (v[0]!=exp_array[i][0]) or (v[1]-exp_array[i][1]).abs>0.001
+        correct=false
+        break
+      end
+    }
+    correct
+  end
+end

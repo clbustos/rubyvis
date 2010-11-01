@@ -16,5 +16,4 @@ dot=vis.add(pv.Image)
     .url(img_url)
     
 vis.render()
-#puts vis.children_inspect
 puts vis.to_svg

@@ -69,7 +69,7 @@ module Rubyvis
     # @attr [Panel]
     attr_accessor :root
     
-    # The child index. -1 if the enclosing parent panel is null; otherwise, the
+    # The child index. -1 if the enclosing parent panel is nil; otherwise, the
     # zero-based index of this mark into the parent panel's <tt>children</tt>
     # array.
     # @attr [Number]
@@ -118,7 +118,7 @@ module Rubyvis
     # If a cast function has been assigned to the specified property name, the
     # property function is wrapped by the cast function, or, if a constant is
     # specified, the constant is immediately cast. Note, however, that if the
-    # property value is null, the cast function is not invoked.
+    # property value is nil, the cast function is not invoked.
     # 
     # Parameters:
     # * @param [String] name the property name.
@@ -454,9 +454,9 @@ module Rubyvis
     
     
     #Returns the previous instance of this mark in the scene graph, or
-    # null if this is the first instance.
+    # nil if this is the first instance.
     #
-    # @return a node in the scene graph, or null.
+    # @return a node in the scene graph, or nil.
     def sibling
       (self.index==0) ? nil: self.scene[self.index-1]
     end
@@ -464,9 +464,9 @@ module Rubyvis
     
     # Returns the current instance in the scene graph of this mark,
     # in the previous instance of the enclosing parent panel. 
-    # May return null if this instance could not be found.
+    # May return nil if this instance could not be found.
     #
-    # @return a node in the scene graph, or null.
+    # @return a node in the scene graph, or nil.
     def cousin
       par=self.parent
       s= par ? par.sibling : nil

@@ -70,8 +70,8 @@ module Rubyvis
     
     ##
     # :attr: fill_style
-    # The fill style; if non-null, the interior of the dot is filled with the
-    # specified color. The default value of this property is null, meaning dots are
+    # The fill style; if non-nil, the interior of the dot is filled with the
+    # specified color. The default value of this property is nil, meaning dots are
     # not filled by default. See Rubyvis.color()
     
     attr_accessor_dsl :shape, :shape_angle, :shape_radius, :shape_size, :line_width, [:stroke_style, lambda {|d| Rubyvis.color(d)}], [:fill_style, lambda {|d| Rubyvis.color(d)}]

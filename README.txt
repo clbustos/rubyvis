@@ -8,7 +8,7 @@ Ruby port of Protovis[http://vis.stanford.edu/protovis/], a great visualization 
 
 == FEATURES/PROBLEMS:
 
-Implemented: All marks, except transient, image and transition. 
+Implemented: All marks, except transient and transitions. 
 
 Basic protovis examples[http://vis.stanford.edu/protovis/ex/] works exactly like ruby ones with minor sintactic modifications:
 * Area Charts: Ok
