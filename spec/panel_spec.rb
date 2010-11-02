@@ -20,4 +20,5 @@ describe Rubyvis::Panel do
     doc=Nokogiri::XML(@vis.to_svg)
     doc.at_xpath("//xmlns:svg").should have_svg_attributes({"font-size"=>"10px", "font-family"=>"sans-serif", "fill"=>"none", "stroke"=>"none", "stroke-width"=>"1.5", "width"=>"200.0", "height"=>"200.0"})
   end
+  
 end

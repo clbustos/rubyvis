@@ -14,39 +14,40 @@ w = 20+p_w*2
 h = 20+p_h*3
 
 x = pv.Scale.linear(data, lambda {|d| d.x}).range(0, p_w-30)
-
-
 y = pv.Scale.linear(data, lambda {|d| d.y}).range(0, p_h-20);
-
 interpolations=["linear","step-before","step-after", "basis", "cardinal"]
 
-#/* The root panel. */
-vis = pv.Panel.new()
-  .width(w)
-  .height(h)
-  .bottom(20)
-  .left(20)
-  .right(10)
-  .top(5)
+vis = Rubyvis::Panel.new do |pan|
+  pan.width w 
+  pan.height h 
+  pan.bottom 20 
+  pan.left 20 
+  pan.right 10 
+  pan.top 5 
 
-interpolations.each_with_index do |inter,i|
-  n=i%2
-  m=(i/2).floor
-  panel=vis.add(Rubyvis::Panel).
-  left(n*(p_w+10)).
-  top(m*(p_h+10)).
-  width(p_w).
-  height(p_h)
-  panel.anchor('top').add(Rubyvis::Label).text(inter)
-  panel.add(Rubyvis::Area).data(data).
-  left(lambda {|d| x.scale(d.x)}).
-  height(lambda {|d| y.scale(d.y)}).
-  bottom(1).
-  interpolate(inter)
-  
-end
-  
-  
+  interpolations.each_with_index do |inter,i|
+    n=i%2
+    m=(i/2).floor
+    pan.panel do
+      left(n*(p_w+10))
+      top(m*(p_h+10))
+      width p_w
+      height p_h
+      label(:anchor=>'top') do
+        text(inter)
+      end
+      # uses 'a' as reference inside block
+      # to use data method with data variable
+      area do |a| 
+        a.data data
+        a.left {|d| x.scale(d.x)}
+        a.height {|d| y.scale(d.y)}
+        a.bottom 1
+        a.interpolate inter
+      end
+    end
+  end
+end  
      
 
 vis.render();

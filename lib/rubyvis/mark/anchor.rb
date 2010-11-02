@@ -56,9 +56,10 @@ module Rubyvis
     # Create a new Anchor. Use Mark.add instead.
     
     def initialize(target)
-      super()
+      
       self.target=target
       self.parent=target.parent
+      super()
     end
     
     # Sets the prototype of this anchor to the specified mark. Any properties not

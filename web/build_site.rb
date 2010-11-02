@@ -68,15 +68,17 @@ Dir.glob(File.dirname(__FILE__)+"/../examples/**/*.rb") do |f|
   # Read svg size
   width=350
   height=200
-  File.open("examples/#{page.svg_file}","r") {|fp|
-    header=fp.gets(">")
-    if header=~/\sheight='([^']+)'/ 
-      height=$1
-    end
-    if header=~/\swidth='([^']+)'/
-      width=$1
-    end
-  }
+  if File.exists? "examples/#{page.svg_file}"
+    File.open("examples/#{page.svg_file}","r") {|fp|
+      header=fp.gets(">")
+      if header=~/\sheight='([^']+)'/ 
+        height=$1
+      end
+      if header=~/\swidth='([^']+)'/
+        width=$1
+      end
+    }
+  end
   page.svg_width=width.to_f.ceil
   page.svg_height=height.to_f.ceil
 

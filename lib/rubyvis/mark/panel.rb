@@ -12,9 +12,10 @@ module Rubyvis
     attr_accessor_dsl :transform, :overflow, :canvas
     attr_accessor :children, :root
     def initialize
-      super
       @children=[]
       @root=self
+      super
+      
     end
     def children_inspect(level=0)
       out=[]

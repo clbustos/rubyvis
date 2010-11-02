@@ -1,3 +1,4 @@
+
 module Rubyvis
  # Constructs a new mark with default properties. Marks, with the exception of
  # the root panel, are not typically constructed directly; instead, they are
@@ -128,8 +129,12 @@ module Rubyvis
     
     def self.property_method(name, _def, func=nil, klass=nil)
       return if klass.method_defined? name
-      klass.send(:define_method, name) do |*arguments|
+      klass.send(:define_method, name) do |*arguments,&block|
+        
         v,dummy = arguments
+        if block
+          v=block
+        end
         if _def and self.scene
           if arguments.size>0
             defs[name]=OpenStruct.new({:id=>(v.nil?) ? 0 : Rubyvis.id, :value=> v})
@@ -137,7 +142,8 @@ module Rubyvis
           end
           return defs[name]
         end
-        if arguments.size>0
+        
+        if arguments.size>0 or block
           v=v.to_proc if v.respond_to? :to_proc
           type=(!_def).to_i<<1 | (v.is_a? Proc).to_i          
           
@@ -379,7 +385,7 @@ module Rubyvis
     end
 
     # Create a new Mark
-    def initialize(opts=Hash.new)
+    def initialize(opts=Hash.new, &block)
       @_properties=[]
       opts.each {|k,v|
         self.send("#{k}=",v) if self.respond_to? k
@@ -390,7 +396,16 @@ module Rubyvis
       @index_defined = true
       @scale=1
       @scene=nil
+      if block
+        block.arity<1 ? self.instance_eval(&block) : block.call(self)
+      end
     end
+    
+    
+    
+    
+
+      
     
     
     # The mark type; a lower name. The type name controls rendering
@@ -969,3 +984,5 @@ require 'rubyvis/mark/rule'
 require 'rubyvis/mark/label'
 require 'rubyvis/mark/dot'
 require 'rubyvis/mark/wedge'
+require 'rubyvis/mark/shorcut_methods'
+

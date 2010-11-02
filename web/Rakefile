@@ -22,7 +22,7 @@ file "index.html"=>["index.haml", :build_site]+EXAMPLES_BASE.map {|v| "examples/
 
 EXAMPLES.each do |v|
   e=v[1]
-  file "examples/#{e}.html"=>["examples.haml", :build_site, v[0]]
+  file "examples/#{e}.html"=>["examples.haml", "examples/#{e}.svg", :build_site, v[0]]
   file "examples/#{e}.svg"=>[v[0]] do |t|
     system "ruby1.9 #{v[0]} > #{t.name}"
   end
