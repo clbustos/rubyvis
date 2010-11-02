@@ -1,3 +1,15 @@
+=== 0.2.0 / 2010-11-02
+
+* IMPORTANT: Added 'ruby best practices' API. See README and examples/first_rbp_api.rb to learn how to use
+* Added width and height explicitly on examples pages. 
+* Added examples for interpolation on lines and areas
+* Fixed interpolate for lines and areas. 
+* New spec for Line and Area spec.  
+* Added spec for numeric tick_format
+* Added documentation for Rubyvis::Colors, Rubyvis::Color and Rubyvis::Line
+* Bug fix: interpolate "step-after", "step-before" and "basis" on Area marks doesn't work Spec for Area marks
+* Changed API_VERSION for PROTOVIS_API_VERSION
+
 === 0.1.7 / 2010-10-31
 
 * Added image support
