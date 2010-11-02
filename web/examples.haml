@@ -21,8 +21,8 @@
               %a{:href=>"#{next_ex}.html"} Next: #{pages[next_ex].title}          
       .image
         /[if IE]
-          %embed.svg{:src=>svg_file,:width=>"500", :height=>"300"}
-        %object.svg{:data=>svg_file, :type=>"image/svg+xml"}
+          %embed.svg{:src=>svg_file,:width=>svg_width, :height=>svg_height}
+        %object.svg{:data=>svg_file, :type=>"image/svg+xml", :width=>svg_width, :height=>svg_height}
       .source=find_and_preserve(source)
     :javascript
       var _gaq = _gaq || [];

@@ -5,6 +5,7 @@ Rakefile
 examples/antibiotics/antibiotics.rb
 examples/antibiotics/antibiotics_data.rb
 examples/area.rb
+examples/area_interpolation.rb
 examples/bar_column_chart.rb
 examples/barley/barley.rb
 examples/barley/barley_data.rb
@@ -19,6 +20,7 @@ examples/image.rb
 examples/image.svg
 examples/line.rb
 examples/line_and_step.rb
+examples/line_interpolation.rb
 examples/nested_grid.rb
 examples/pie_and_donut.rb
 examples/scatterplot.rb
@@ -28,7 +30,6 @@ examples/third.rb
 lib/rubyvis.rb
 lib/rubyvis/color/color.rb
 lib/rubyvis/color/colors.rb
-lib/rubyvis/color/ramp.rb
 lib/rubyvis/format.rb
 lib/rubyvis/format/date.rb
 lib/rubyvis/format/number.rb
@@ -56,6 +57,7 @@ lib/rubyvis/scale/ordinal.rb
 lib/rubyvis/scale/quantitative.rb
 lib/rubyvis/scene/svg_area.rb
 lib/rubyvis/scene/svg_bar.rb
+lib/rubyvis/scene/svg_curve.rb
 lib/rubyvis/scene/svg_dot.rb
 lib/rubyvis/scene/svg_image.rb
 lib/rubyvis/scene/svg_label.rb
@@ -67,10 +69,12 @@ lib/rubyvis/scene/svg_wedge.rb
 lib/rubyvis/sceneelement.rb
 lib/rubyvis/transform.rb
 spec/anchor_spec.rb
+spec/area_spec.rb
 spec/bar_spec.rb
 spec/internal_spec.rb
 spec/javascript_behaviour_spec.rb
 spec/label_spec.rb
+spec/line_spec.rb
 spec/mark_spec.rb
 spec/nest_spec.rb
 spec/panel_spec.rb

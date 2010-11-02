@@ -25,7 +25,6 @@ vis = pv.Panel.new()
   .right(10)
   .top(5)
 
-#/* The area with top line. */
 vis.add(pv.Line).
   data(data).
   line_width(5).
