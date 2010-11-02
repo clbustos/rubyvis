@@ -13,7 +13,8 @@ examples/crimea/crimea_data.rb
 examples/crimea/crimea_grouped_bar.rb
 examples/crimea/crimea_line.rb
 examples/dot.rb
-examples/first.rb
+examples/first_protovis_api.rb
+examples/first_rbp_api.rb
 examples/fixtures/tipsy.gif
 examples/grouped_charts.rb
 examples/image.rb
@@ -47,6 +48,7 @@ lib/rubyvis/mark/label.rb
 lib/rubyvis/mark/line.rb
 lib/rubyvis/mark/panel.rb
 lib/rubyvis/mark/rule.rb
+lib/rubyvis/mark/shorcut_methods.rb
 lib/rubyvis/mark/wedge.rb
 lib/rubyvis/nest.rb
 lib/rubyvis/property.rb
@@ -78,6 +80,7 @@ spec/line_spec.rb
 spec/mark_spec.rb
 spec/nest_spec.rb
 spec/panel_spec.rb
+spec/ruby_api_spec.rb
 spec/scale_linear_datetime_spec.rb
 spec/scale_linear_spec.rb
 spec/scale_log_spec.rb
