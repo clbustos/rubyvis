@@ -163,183 +163,166 @@ module Rubyvis::SvgScene
 
     path;
   end
-=begin
   # Interpolates the given points with respective tangents using the
   # cubic Hermite spline interpolation. Returns an array of path strings.
   #
-  # @param points the array of points.
-  # @param tangents the array of tangent vectors.
+  # * @param points the array of points.
+  # * @param tangents the array of tangent vectors.
   def self.curve_hermite_segments(points, tangents)
     return [] if (tangents.size < 1 or  (points.size != tangents.size and points.size != tangents.size + 2)) 
     quad = points.size != tangents.size
-      paths = []
-      p0 = points[0]
-      p = p0
-      t0 = tangents[0]
-      t = t0
-      pi = 1
-
-  if (quad) {
-    p = points[1];
-    paths.push("M" + p0.left + "," + p0.top
-        + "Q" + (p.left - t.x * 2 / 3) + "," + (p.top - t.y * 2 / 3)
-        + "," + p.left + "," + p.top);
-    pi = 2;
-  }
-
-  for (var i = 1; i < tangents.length; i++, pi++) {
+    paths = []
+    p0 = points[0]
+    p = p0
+    t0 = tangents[0]
+    t = t0
+    pi = 1
+    
+    if (quad) 
+    p = points[1]
+    paths.push("M#{p0.left},#{p0.top }Q#{(p.left - t.x * 2 / 3.0 )},#{(p.top - t.y * 2 / 3)},#{p.left},#{p.top}")
+    pi = 2
+    end
+    
+    1.upto(tangents.size-1) {|i|
     p0 = p;
     t0 = t;
-    p = points[pi];
-    t = tangents[i];
-    paths.push("M" + p0.left + "," + p0.top
-        + "C" + (p0.left + t0.x) + "," + (p0.top + t0.y)
-        + "," + (p.left - t.x) + "," + (p.top - t.y)
-        + "," + p.left + "," + p.top);
-  }
-
-  if (quad) {
-    var lp = points[pi];
-    paths.push("M" + p.left + "," + p.top
-        + "Q" + (p.left + t.x * 2 / 3) + ","  + (p.top + t.y * 2 / 3) + ","
-        + lp.left + "," + lp.top);
-  }
-
-  return paths;
-};
-
-/**
- * @private Computes the tangents for the given points needed for cardinal
- * spline interpolation. Returns an array of tangent vectors. Note: that for n
- * points only the n-2 well defined tangents are returned.
- *
- * @param points the array of points.
- * @param tension the tension of hte cardinal spline.
- */
-pv.SvgScene.cardinalTangents = function(points, tension) {
-  var tangents = [],
-      a = (1 - tension) / 2,
-      p0 = points[0],
-      p1 = points[1],
-      p2 = points[2];
-
-  for (var i = 3; i < points.length; i++) {
-    tangents.push({x: a * (p2.left - p0.left), y: a * (p2.top - p0.top)});
-    p0 = p1;
-    p1 = p2;
-    p2 = points[i];
-  }
-
-  tangents.push({x: a * (p2.left - p0.left), y: a * (p2.top - p0.top)});
-  return tangents;
-};
-
-/**
- * @private Interpolates the given points using cardinal spline interpolation.
- * Returns an SVG path without the leading M instruction to allow path
- * appending.
- *
- * @param points the array of points.
- * @param tension the tension of hte cardinal spline.
- */
-pv.SvgScene.curveCardinal = function(points, tension) {
-  if (points.length <= 2) return "";
-  return this.curveHermite(points, this.cardinalTangents(points, tension));
-};
-
-/**
- * @private Interpolates the given points using cardinal spline interpolation.
- * Returns an array of path strings.
- *
- * @param points the array of points.
- * @param tension the tension of hte cardinal spline.
- */
-pv.SvgScene.curveCardinalSegments = function(points, tension) {
-  if (points.length <= 2) return "";
-  return this.curveHermiteSegments(points, this.cardinalTangents(points, tension));
-};
-
-/**
- * @private Interpolates the given points using Fritsch-Carlson Monotone cubic
- * Hermite interpolation. Returns an array of tangent vectors.
- *
- * @param points the array of points.
- */
-pv.SvgScene.monotoneTangents = function(points) {
-  var tangents = [],
-      d = [],
-      m = [],
-      dx = [],
-      k = 0;
-
-  /* Compute the slopes of the secant lines between successive points. */
-  for (k = 0; k < points.length-1; k++) {
-    d[k] = (points[k+1].top - points[k].top)/(points[k+1].left - points[k].left);
-  }
-
-  /* Initialize the tangents at every point as the average of the secants. */
-  m[0] = d[0];
-  dx[0] = points[1].left - points[0].left;
-  for (k = 1; k < points.length - 1; k++) {
-    m[k] = (d[k-1]+d[k])/2;
-    dx[k] = (points[k+1].left - points[k-1].left)/2;
-  }
-  m[k] = d[k-1];
-  dx[k] = (points[k].left - points[k-1].left);
-
-  /* Step 3. Very important, step 3. Yep. Wouldn't miss it. */
-  for (k = 0; k < points.length - 1; k++) {
-    if (d[k] == 0) {
-      m[ k ] = 0;
-      m[k+1] = 0;
+    p = points[pi]
+    t = tangents[i]
+    paths.push("M#{p0.left },#{p0.top
+      }C#{(p0.left + t0.x) },#{(p0.top + t0.y)
+      },#{(p.left - t.x) },#{(p.top - t.y)
+      },#{p.left },#{p.top}")
+    pi+=1
     }
-  }
+    
+    if (quad) 
+    lp = points[pi];
+    paths.push("M#{p.left },#{p.top
+        }Q#{(p.left + t.x * 2 / 3) },#{(p.top + t.y * 2 / 3) },#{lp.left },#{lp.top}")
+    end
+    
+    paths
+  end
 
-  /* Step 4 + 5. Out of 5 or more steps. */
-  for (k = 0; k < points.length - 1; k++) {
-    if ((Math.abs(m[k]) < 1e-5) || (Math.abs(m[k+1]) < 1e-5)) continue;
-    var ak = m[k] / d[k],
-        bk = m[k + 1] / d[k],
-        s = ak * ak + bk * bk; // monotone constant (?)
-    if (s > 9) {
-      var tk = 3 / Math.sqrt(s);
-      m[k] = tk * ak * d[k];
-      m[k + 1] = tk * bk * d[k];
+  # Computes the tangents for the given points needed for cardinal
+  # spline interpolation. Returns an array of tangent vectors. Note: that for n
+  # points only the n-2 well defined tangents are returned.
+  #
+  # * @param points the array of points.
+  # * @param tension the tension of hte cardinal spline.
+  def self.cardinal_tangents(points, tension) 
+    tangents = []
+    a = (1 - tension) / 2.0
+    p0 = points[0]
+    p1 = points[1]
+    p2 = points[2]
+    3.upto(points.size-1) {|i|
+      tangents.push(OpenStruct.new({:x=> a * (p2.left - p0.left), :y=> a * (p2.top - p0.top)}))
+      p0 = p1;
+      p1 = p2;
+      p2 = points[i];
     }
-  }
+  
+    tangents.push(OpenStruct.new({:x=> a * (p2.left - p0.left), :y=> a * (p2.top - p0.top)}))
+    return tangents;
+  end
 
-  var len;
-  for (var i = 0; i < points.length; i++) {
-    len = 1 + m[i] * m[i]; // pv.vector(1, m[i]).norm().times(dx[i]/3)
-    tangents.push({x: dx[i] / 3 / len, y: m[i] * dx[i] / 3 / len});
-  }
+  
+  # Interpolates the given points using cardinal spline interpolation.
+  # Returns an SVG path without the leading M instruction to allow path
+  # appending.
+  #
+  # * @param points the array of points.
+  # * @param tension the tension of hte cardinal spline.
+  def self.curve_cardinal(points, tension)
+    return "" if (points.size <= 2) 
+    self.curve_hermite(points, self.cardinal_tangents(points, tension))
+  end
+  # Interpolates the given points using cardinal spline interpolation.
+  # Returns an array of path strings.
+  #
+  # @param points the array of points.
+  # @param tension the tension of hte cardinal spline.
+  def self.curve_cardinal_segments(points, tension) 
+    return "" if (points.size <= 2) 
+    self.curve_hermite_segments(points, self.cardinal_tangents(points, tension))
+  end
 
-  return tangents;
-};
+  # Interpolates the given points using Fritsch-Carlson Monotone cubic
+  # Hermite interpolation. Returns an array of tangent vectors.
+  #
+  # *@param points the array of points.
+  def self.monotone_tangents(points) 
+    tangents = []
+    d = []
+    m = []
+    dx = []
+    k = 0
+    
+    #/* Compute the slopes of the secant lines between successive points. */
+    (points.size-1).times {|k|
+      d[k] = (points[k+1].top - points[k].top) / (points[k+1].left - points[k].left).to_f
+    }
+    
+    #/* Initialize the tangents at every point as the average of the secants. */
+    m[0] = d[0]
+    dx[0] = points[1].left - points[0].left
+    1.upto(points.size-2) {|k|
+      m[k] = (d[k-1]+d[k]) / 2.0
+      dx[k] = (points[k+1].left - points[k-1].left) / 2.0
+    }
+    m[k] = d[k-1];
+    dx[k] = (points[k].left - points[k-1].left);
+    
+    # /* Step 3. Very important, step 3. Yep. Wouldn't miss it. */
+    (points.size-1).times {|k|
+      if d[k] == 0 
+        m[ k ] = 0;
+        m[k+1] = 0;
+      end
+    }
+    
+    # /* Step 4 + 5. Out of 5 or more steps. */
+    (points.size-1).times {|k|
+      next if ((m[k].abs < 1e-5) or (m[k+1].abs < 1e-5))
+      ak = m[k] / d[k].to_f
+      bk = m[k + 1] / d[k].to_f
+      s = ak * ak + bk * bk; # monotone constant (?)
+      if (s > 9) 
+        tk = 3.0 / Math.sqrt(s)
+        m[k] = tk * ak * d[k]
+        m[k + 1] = tk * bk * d[k]
+      end
+    }
+    len=nil;
+    points.size.times {|i|
+      len = 1 + m[i] * m[i]; #// pv.vector(1, m[i]).norm().times(dx[i]/3)
+      tangents.push(OpenStruct.new({:x=> dx[i] / 3.0 / len, :y=> m[i] * dx[i] / 3.0 / len}))
+    }
+    
+    tangents;
+  end
 
-/**
- * @private Interpolates the given points using Fritsch-Carlson Monotone cubic
- * Hermite interpolation. Returns an SVG path without the leading M instruction
- * to allow path appending.
- *
- * @param points the array of points.
- */
-pv.SvgScene.curveMonotone = function(points) {
-  if (points.length <= 2) return "";
-  return this.curveHermite(points, this.monotoneTangents(points));
-}
+  # Interpolates the given points using Fritsch-Carlson Monotone cubic
+  # Hermite interpolation. Returns an SVG path without the leading M instruction
+  # to allow path appending.
+  #
+  # * @param points the array of points.
+  def self.curve_monotone(points) 
+     return "" if (points.length <= 2)
+     return self.curve_hermite(points, self.monotone_tangents(points))
+  end
 
-/**
- * @private Interpolates the given points using Fritsch-Carlson Monotone cubic
- * Hermite interpolation.
- * Returns an array of path strings.
- *
- * @param points the array of points.
- */
-pv.SvgScene.curveMonotoneSegments = function(points) {
-  if (points.length <= 2) return "";
-  return this.curveHermiteSegments(points, this.monotoneTangents(points));
-};
-=end
+  # Interpolates the given points using Fritsch-Carlson Monotone cubic
+  # Hermite interpolation.
+  # Returns an array of path strings.
+  #
+  # * @param points the array of points.
+  #/
+  def self.curve_monotone_segments(points) 
+     return "" if (points.length <= 2)
+     self.curve_hermite_segments(points, self.monotone_tangents(points))
+  end
 
 end

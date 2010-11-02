@@ -65,7 +65,7 @@ require File.dirname(__FILE__)+"/spec_helper.rb"
       x=v.attributes['x'] ? v.attributes['x'].value : nil
         [x, v.attributes['y'].value, v.attributes['height'].value]
       }
-      attribs.should==[[nil,"90","10"],["25","80","20"],[nil,"70","30"],["25","40","60"]]
+      attribs.should==[[nil,"90","10"], ["25","80","20"], [nil,"70","30"], ["25","40","60"]]
     end
     
   end  

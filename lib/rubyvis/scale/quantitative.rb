@@ -67,7 +67,7 @@ module Rubyvis
       @g=Rubyvis.identity
       @tick_format=lambda {|x|
         if x.is_a? Numeric
-          (x.to_f-x.to_i==0) ? x.to_i : x.to_f
+          ((x.to_f-x.to_i==0) ? x.to_i : x.to_f).to_s
         else
           ""
         end
@@ -369,7 +369,7 @@ module Rubyvis
           date.setFullYear((date.getFullYear().quo(step)).floor * step);
         end
       end
-      
+      # END FIX
         while (true)
           date=increment.call(date)
           break if (date.to_f > max.to_f)
@@ -392,7 +392,9 @@ module Rubyvis
       end
       start = (min.quo(step)).ceil * step
       _end = (max.quo(step)).floor * step
-      @tick_format= Rubyvis.Format.number.fraction_digits([0, -(Rubyvis.log(step, 10) + 0.01).floor].max)
+      
+      @tick_format= Rubyvis.Format.number.fraction_digits([0, -(Rubyvis.log(step, 10) + 0.01).floor].max).to_proc
+      
       ticks = Rubyvis.range(start, _end + step, step);
       return reverse ? ticks.reverse() : ticks;
     end

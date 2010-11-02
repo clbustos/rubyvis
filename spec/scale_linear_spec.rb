@@ -107,5 +107,18 @@ describe Rubyvis::Scale::Linear do
     @y.domain().should==[0.2,1]
   end
   
-  it "should returns correct tick_format"
+  it "should returns correct tick_format" do
+    @y.tick_format.should be_instance_of Proc
+    @y.tick_format.call( 2).should=='2'
+    @y.tick_format.call(2.0).should=='2'
+    @y.tick_format.call(2.1).should=='2.1'
+    @y.tick_format.call("a").should==''
+  end
+  it "should return correct tick_format for small numbers" do
+    @y.domain(0.00001,0.0001)
+    @y.range(0.000001,0.0001)
+    @y.ticks.should==[1.quo(100000), 1.quo(50000), 3.quo(100000), 1.quo(25000), 1.quo(20000), 3.quo(50000), 7.quo(100000), 1.quo(12500), 9.quo(100000), 1.quo(10000)]
+    @y.tick_format.call(0.2).should=='0.20000'
+    
+  end
 end

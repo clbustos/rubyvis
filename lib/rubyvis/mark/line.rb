@@ -69,10 +69,7 @@ module Rubyvis
     
     ##
     # :attr: segmented
-    # Whether the line is segmented; whether variations in stroke style, line width
-    # and the other properties are treated as fixed. Rendering segmented lines is
-    # noticeably slower than non-segmented lines.
-    #
+    # Whether the line is segmented; whether variations in stroke style, line width and the other properties are treated as fixed. Rendering segmented lines is noticeably slower than non-segmented lines.
     # <p>This property is <i>fixed</i>. See Rubyvis.Mark    
     
     
@@ -80,11 +77,10 @@ module Rubyvis
     # :attr: interpolate
     # How to interpolate between values. Linear interpolation ("linear") is the
     # default, producing a straight line between points. For piecewise constant
-    # functions (i.e., step functions), either "step-before" or "step-after" can be
-    # specified. To draw a clockwise circular arc between points, specify "polar";
-    # to draw a counterclockwise circular arc between points, specify
-    # "polar-reverse". To draw open uniform b-splines, specify "basis". To draw
-    # cardinal splines, specify "cardinal"; see also Line.tension()
+    # functions (i.e., step functions), either "step-before" or "step-after" 
+    # can be specified. To draw a clockwise circular arc between points, 
+    # specify "polar"; to draw a counterclockwise circular arc between points,
+    # specify "polar-reverse". To draw open uniform b-splines, specify "basis". # To draw cardinal splines, specify "cardinal"; see also Line.tension()
     #
     # <p>This property is <i>fixed</i>. See Rubyvis.Mark    
     
@@ -149,7 +145,7 @@ module Rubyvis
 
     def self.defaults
       a=Rubyvis::Colors.category10()
-      Line.new.extend(Mark.defaults).line_join('miter').line_width(1.5).stroke_style( lambda {return a.scale(self.parent.index)}).interpolate('linear').eccentricity(0).tension(7)
+      Line.new.extend(Mark.defaults).line_join('miter').line_width(1.5).stroke_style( lambda {return a.scale(self.parent.index)}).interpolate('linear').eccentricity(0).tension(0.7)
     end
   end
 end
