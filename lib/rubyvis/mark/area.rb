@@ -25,13 +25,12 @@ module Rubyvis
         if (!fixed)
           binds.fixed=[]
           fixed = binds.fixed
-          
           filter=lambda {|prop|
             if prop.fixed
               fixed.push(prop)
-              return false
+              false
             else
-              return true
+              true
             end
           }
           #      p binds.required

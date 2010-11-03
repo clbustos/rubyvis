@@ -4,9 +4,13 @@ load(File.dirname(__FILE__)+"/barley_data.rb")
 # Nest yields data by site then year. */
 
 # Compute yield medians by site and by variety. */
-median=lambda {|data| pv.median(data, lambda {|d| d[:yield]}) }
+median=lambda {|data| 
+       pv.median(data, lambda {|d| d[:yield]}) 
+       }
 
-site = pv.nest($barley).key(lambda {|d| d[:site]}).rollup(median)
+site = pv.nest($barley).
+       key(lambda {|d| d[:site]}).
+       rollup(median)
 
 variety = pv.nest($barley).key(lambda {|d| d[:variety]}).rollup(median);
 

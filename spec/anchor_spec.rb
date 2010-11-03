@@ -11,10 +11,10 @@ describe Rubyvis::Anchor do
       @expected_p2=[]  
       vis = pv.Panel.new().width(w).height(h)      
       cell=vis.add(pv.Panel).
-        data([1,2]).top(lambda {|*args| data_p1.push(args); return 100}).
-        add(pv.Panel). data(['a','b']).top(lambda {|*args| data_p2.push(args); return 100;})
+        data([1,2]).top(lambda {|*args| data_p1.push(args); 100}).
+        add(pv.Panel). data(['a','b']).top(lambda {|*args| data_p2.push(args); 100;})
       
-      cell.anchor('center').add(pv.Bar).top(lambda {|*args| data_l.push args; return 1})
+      cell.anchor('center').add(pv.Bar).top(lambda {|*args| data_l.push args; 1})
 
       [1,2].each {|a| %w{a b}.each {|b| 
         @expected_l.push([b,b,a,nil])

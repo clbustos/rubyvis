@@ -106,6 +106,12 @@ module Rubyvis
   #  end
   #
   class Mark
+    # On ruby 1.8, we must delete #id method
+    # Is deprecated, so any good developer should'nt use it....
+    if RUBY_VERSION<"1.9"
+      undef_method :id
+    end
+
     # Hash storing properties names for current Mark type. 
     @properties={}
     
@@ -603,11 +609,9 @@ module Rubyvis
           a=self.scene.target.map {|s| puts "s:#{s.data}" if $DEBUG; s.data}
           p a if $DEBUG
           a 
-        }).
-        visible(lambda {
+        }).visible(lambda {
           self.scene.target[index].visible
-        }).
-        id(lambda {
+        }).id(lambda {
             self.scene.target[index].id
         }).
         left(lambda {
@@ -656,7 +660,7 @@ module Rubyvis
           'bottom'
         end
       })
-      return anchor
+      anchor
     end
 
 
