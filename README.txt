@@ -1,4 +1,4 @@
-= protoruby
+= Rubyvis
 
 * http://rubyvis.rubyforge.org/
 
@@ -104,11 +104,17 @@ The library allows you to use chain methods API, like original protovis
 
 See examples directory for original protovis examples adaptations and others graphics
 
+== THE MOST FREQUENT QUESTION (MFQ)
 
+¿Why use a server-side technology if I can use a client-side, which is faster and more economic for developer?
+
+If you want to present graphs: (a) complex and/or dynamically generated, (b) only on the web and (c) on modern browsers, Protovis[http://vis.stanford.edu/protovis/] is an excellent option. For simpler charts, Protovis is overkill. I recomend jqPlot[http://www.jqplot.com/]
+
+Rubyvis is designed mainly for off-line operation, like batch creation of graphs for use on printed documents (rtf-pdf), with possibility of use easily the script for on-line use.
 
 == REQUIREMENTS:
 
-Ruby 1.8.7 or 1.9.1
+Ruby 1.9.1. Working on total Ruby 1.8.7 compatibility
 
 == INSTALL:
 

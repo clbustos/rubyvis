@@ -105,9 +105,9 @@ module Rubyvis
       return e
     end
 
-    #/** @private Returns the path segment for the specified points. */
+    # Returns the path segment for the specified points. */
 
-    def self.path_segment(s1, s2)
+    def self.path_segment(s1, s2) 
       l = 1; # sweep-flag
       l = 0 if s1.interpolate=='polar-reverse'
       

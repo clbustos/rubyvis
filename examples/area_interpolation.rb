@@ -3,7 +3,7 @@
 $:.unshift(File.dirname(__FILE__)+"/../lib")
 require 'rubyvis'
 
-data = pv.range(0, 10, 0.5).map {|x| 
+data = Rubyvis.range(0, 10, 0.5).map {|x| 
   OpenStruct.new({:x=> x, :y=> Math.sin(x) + 2+rand()*0.3})
 }
 
@@ -13,8 +13,8 @@ p_h=150
 w = 20+p_w*2
 h = 20+p_h*3
 
-x = pv.Scale.linear(data, lambda {|d| d.x}).range(0, p_w-30)
-y = pv.Scale.linear(data, lambda {|d| d.y}).range(0, p_h-20);
+x = Rubyvis.Scale.linear(data, lambda {|d| d.x}).range(0, p_w-30)
+y = Rubyvis.Scale.linear(data, lambda {|d| d.y}).range(0, p_h-20);
 interpolations=["linear","step-before","step-after", "basis", "cardinal"]
 
 vis = Rubyvis::Panel.new do |pan|

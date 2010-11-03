@@ -9,7 +9,7 @@ require 'rubyvis/scene/svg_wedge'
 require 'rubyvis/scene/svg_image'
 require 'rubyvis/scene/svg_curve'
 
-class REXML::Element
+class REXML::Element # :nodoc:
   attr_accessor :_scene
 end
 

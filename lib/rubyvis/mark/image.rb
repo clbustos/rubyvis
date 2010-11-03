@@ -60,7 +60,7 @@ module Rubyvis
     # and <tt>a</tt> attributes. A {@link pv.Color} or string can also be returned,
     # though this typically results in slower performance.
     
-    def image(f)
+    def dynamic_image(f)
       f,dummy=arguments
       @_image = lambda {|*args|
         c=f.js_apply(self,args)

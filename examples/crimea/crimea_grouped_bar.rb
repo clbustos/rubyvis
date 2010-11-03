@@ -1,3 +1,5 @@
+# = Crimeam War deaths (Grouped bar)
+# Florence Nightingale used a coxcomb diagram to emphasize the number of deaths due to “preventible or mitigable zymotic diseases”. This graph shows data using a stacked bar chart.
 $:.unshift(File.dirname(__FILE__)+"/../../lib")
 require 'rubyvis'
 require 'ostruct'

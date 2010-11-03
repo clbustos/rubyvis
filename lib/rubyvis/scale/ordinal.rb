@@ -177,6 +177,25 @@ module Rubyvis
       @r=Rubyvis.range(min+step.quo(2),max,step)
       self
     end
+    
+    # Sets the range from the given continuous interval. The interval
+    # [<i>min</i>, <i>max</i>] is subdivided into <i>n</i> equispaced points,
+    # where <i>n</i> is the number of (unique) values in the domain. The first
+    # and last point are exactly on the edge of the range.
+    #
+    # <p>This method must be called <i>after</i> the domain is set.
+    #
+    # * @param {number} min minimum value of the output range.
+    # * @param {number} max maximum value of the output range.
+    # * @returns {pv.Scale.ordinal} <tt>this</tt>.
+    # * @see Ordinal.split
+    
+    def split_flush(min,max)
+      n = self.domain().size
+      step = (max - min) / (n - 1).to_f
+      @r = (n == 1) ? [(min + max) / 2.0] : Rubyvis.range(min, max + step/2.0, step)
+      self
+    end
     def by(f)
       that=self
       lambda {|*args|

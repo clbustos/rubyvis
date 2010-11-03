@@ -92,6 +92,7 @@ module Rubyvis
     end
     # Transform value +x+ according to domain and range
     def scale(x)
+      return nil if x.nil?
       x=x.to_f
       j=Rubyvis.search(@d, x)
       j=-j-2 if (j<0)

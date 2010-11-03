@@ -1,61 +1,110 @@
 
 module Rubyvis
- # Constructs a new mark with default properties. Marks, with the exception of
- # the root panel, are not typically constructed directly; instead, they are
- # added to a panel or an existing mark via Mark#add
- #
- # Represents a data-driven graphical mark. The +Mark+ class is
- # the base class for all graphical marks in Protovis; it does not provide any
- # specific rendering functionality, but together with Panel establishes
- # the core framework.
- #
- # Concrete mark types include familiar visual elements such as bars, lines
- # and labels. Although a bar mark may be used to construct a bar chart, marks
- # know nothing about charts; it is only through their specification and
- # composition that charts are produced. These building blocks permit many
- # combinatorial possibilities.
- #
- # Marks are associated with <b>data</b>: a mark is generated once per
- # associated datum, mapping the datum to visual <b>properties</b> such as
- # position and color. Thus, a single mark specification represents a set of
- # visual elements that share the same data and visual encoding. The type of
- # mark defines the names of properties and their meaning. A property may be
- # static, ignoring the associated datum and returning a constant; or, it may be
- # dynamic, derived from the associated datum or index. Such dynamic encodings
- # can be specified succinctly using anonymous functions. Special properties
- # called event handlers can be registered to add interactivity.
- #
- # Protovis uses <b>inheritance</b> to simplify the specification of related
- # marks: a new mark can be derived from an existing mark, inheriting its
- # properties. The new mark can then override properties to specify new
- # behavior, potentially in terms of the old behavior. In this way, the old mark
- # serves as the <b>prototype</b> for the new mark. Most mark types share the
- # same basic properties for consistency and to facilitate inheritance.
- #
- # The prioritization of redundant properties is as follows:<ol>
- #
- # <li>If the <tt>width</tt> property is not specified (i.e., null), its value
- # is the width of the parent panel, minus this mark's left and right margins;
- # the left and right margins are zero if not specified.
- #
- # <li>Otherwise, if the <tt>right</tt> margin is not specified, its value is
- # the width of the parent panel, minus this mark's width and left margin; the
- # left margin is zero if not specified.
- #
- # <li>Otherwise, if the <tt>left</tt> property is not specified, its value is
- # the width of the parent panel, minus this mark's width and the right margin.
- #
- # </ol>This prioritization is then duplicated for the <tt>height</tt>,
- # <tt>bottom</tt> and <tt>top</tt> properties, respectively.
- #
- # While most properties are <i>variable</i>, some mark types, such as lines
- # and areas, generate a single visual element rather than a distinct visual
- # element per datum. With these marks, some properties may be <b>fixed</b>.
- # Fixed properties can vary per mark, but not <i>per datum</i>! These
- # properties are evaluated solely for the first (0-index) datum, and typically
- # are specified as a constant. However, it is valid to use a function if the
- # property varies between panels or is dynamically generated.
- #
+  # Constructs a new mark with default properties. Marks, with the exception of
+  # the root panel, are not typically constructed directly; instead, they are
+  # added to a panel or an existing mark via Mark#add
+  #
+  # Represents a data-driven graphical mark. The +Mark+ class is
+  # the base class for all graphical marks in Protovis; it does not provide any
+  # specific rendering functionality, but together with Panel establishes
+  # the core framework.
+  #
+  # Concrete mark types include familiar visual elements such as bars, lines
+  # and labels. Although a bar mark may be used to construct a bar chart, marks
+  # know nothing about charts; it is only through their specification and
+  # composition that charts are produced. These building blocks permit many
+  # combinatorial possibilities.
+  #
+  # Marks are associated with <b>data</b>: a mark is generated once per
+  # associated datum, mapping the datum to visual <b>properties</b> such as
+  # position and color. Thus, a single mark specification represents a set of
+  # visual elements that share the same data and visual encoding. The type of
+  # mark defines the names of properties and their meaning. A property may be
+  # static, ignoring the associated datum and returning a constant; or, it may be
+  # dynamic, derived from the associated datum or index. Such dynamic encodings
+  # can be specified succinctly using anonymous functions. Special properties
+  # called event handlers can be registered to add interactivity.
+  #
+  # Protovis uses <b>inheritance</b> to simplify the specification of related
+  # marks: a new mark can be derived from an existing mark, inheriting its
+  # properties. The new mark can then override properties to specify new
+  # behavior, potentially in terms of the old behavior. In this way, the old mark
+  # serves as the <b>prototype</b> for the new mark. Most mark types share the
+  # same basic properties for consistency and to facilitate inheritance.
+  #
+  # The prioritization of redundant properties is as follows:<ol>
+  #
+  # <li>If the <tt>width</tt> property is not specified (i.e., null), its value
+  # is the width of the parent panel, minus this mark's left and right margins;
+  # the left and right margins are zero if not specified.
+  #
+  # <li>Otherwise, if the <tt>right</tt> margin is not specified, its value is
+  # the width of the parent panel, minus this mark's width and left margin; the
+  # left margin is zero if not specified.
+  #
+  # <li>Otherwise, if the <tt>left</tt> property is not specified, its value is
+  # the width of the parent panel, minus this mark's width and the right margin.
+  #
+  # </ol>This prioritization is then duplicated for the <tt>height</tt>,
+  # <tt>bottom</tt> and <tt>top</tt> properties, respectively.
+  #
+  # While most properties are <i>variable</i>, some mark types, such as lines
+  # and areas, generate a single visual element rather than a distinct visual
+  # element per datum. With these marks, some properties may be <b>fixed</b>.
+  # Fixed properties can vary per mark, but not <i>per datum</i>! These
+  # properties are evaluated solely for the first (0-index) datum, and typically
+  # are specified as a constant. However, it is valid to use a function if the
+  # property varies between panels or is dynamically generated.
+  #
+  # == 'RBP' API
+  # 
+  # Since version 0.2.0, you could use a new API to use marks
+  # , similar to one described on Brown's "Ruby Best Practices".
+  # === Set properties using blocks 
+  # You could use a block to set a property, without using explicitly
+  # lambda statement. So
+  #   area.width {|d| d*20}
+  # is the same as
+  #   area.width lambda {|d| d*20}
+  # === Shortcuts methods
+  # The protovis API uses the chain method aproach. Every method which
+  # set a value on a object returns the same object. I maintain
+  # this approach, and you can do
+  #
+  #   area.width(10).height(20).top(lambda {|d| d*10})
+  #
+  # To add a mark to another, you need to use +add+ method. This methods
+  # returns the new mark, so you can still use the chain methods API,
+  #
+  #   area.width(10).height(20). # object is 'area'
+  #   add(Rubyvis::Label).       # object changed to new label
+  #     text('hi')               # text refers to new label
+  # 
+  # In the spirit of RBP, I created several methods as shortcut for +add+:
+  # area(), bar(), dot(), image(), label(), line(), panel(), rule() and wedge().
+  # If you provide a block, it will be executed inside the context of current of new mark depending on block's parameter.
+  # * Without parameter: block executed inside context of new mark
+  # * With paramenter: block executed inside context of current mark. 
+  #   Parameter references the new mark
+  # 
+  # ==Example
+  #
+  # *Without parameter*
+  #  vis=Rubyvis::Panel.new do
+  #    area do
+  #      width 10 # width changed for area
+  #      height 10 # height changed for area
+  #    end
+  #  end
+  # 
+  # *Without parameter*
+  #  vis=Rubyvis::Panel.new do
+  #    area do |a|
+  #      width 10 # width changed for panel
+  #      a.height 10 # height changed for area
+  #    end
+  #  end
+  #
   class Mark
     # Hash storing properties names for current Mark type. 
     @properties={}
@@ -130,7 +179,6 @@ module Rubyvis
     def self.property_method(name, _def, func=nil, klass=nil)
       return if klass.method_defined? name
       klass.send(:define_method, name) do |*arguments,&block|
-        
         v,dummy = arguments
         if block
           v=block
@@ -234,8 +282,8 @@ module Rubyvis
     end
     
     
-    # @private Returns the current instance of this mark in the scene graph.
-    # This is typically equivalent to <tt>this.scene[this.index]</tt>, however if the scene or index is unset, the default instance of the mark is returned. If no default is set, the default is the last instance. 
+    # Returns the current instance of this mark in the scene graph.
+    # This is typically equivalent to +self.scene[self.index]+, however if the scene or index is unset, the default instance of the mark is returned. If no default is set, the default is the last instance. 
     # Similarly, if the scene or index of the parent panel is unset, the default instance of this mark in the last instance of the enclosing panel is returned, and so on.
     #
     # @return a node in the scene graph.
@@ -467,8 +515,28 @@ module Rubyvis
       scene
     end
     
+
+    # Returns the first instance of this mark in the scene graph. This
+    # method can only be called when the mark is bound to the scene graph (for
+    # example, from an event handler, or within a property function).
+    #
+    # * @returns a node in the scene graph.
+    def first 
+      scene[0]
+    end
+    # Returns the last instance of this mark in the scene graph. This
+    # method can only be called when the mark is bound to the scene graph (for
+    # example, from an event handler, or within a property function). In addition,
+    # note that mark instances are built sequentially, so the last instance of this
+    # mark may not yet be constructed.
+    #
+    # * @returns a node in the scene graph.
+    def last 
+      scene[scene.size - 1]
+    end
     
-    #Returns the previous instance of this mark in the scene graph, or
+        
+    # Returns the previous instance of this mark in the scene graph, or
     # nil if this is the first instance.
     #
     # @return a node in the scene graph, or nil.
@@ -487,6 +555,15 @@ module Rubyvis
       s= par ? par.sibling : nil
       (s and s.children) ? s.children[self.child_index][self.index] : nil
     end
+    
+    # Adds a new mark of the specified type to the enclosing parent panel,
+    # whilst simultaneously setting the prototype of the new mark 
+    # to be this mark.
+    #
+    # * @param {function} type the type of mark to add; a constructor, such as
+    # +Rubyvis::Bar+
+    # * @returns {Mark} the new mark.
+    # * @see #extend
     def add(type)
       parent.add(type).extend(self)
     end
@@ -528,11 +605,13 @@ module Rubyvis
           a 
         }).
         visible(lambda {
-          self.scene.target[self.index].visible
+          self.scene.target[index].visible
         }).
-        id(lambda {self.scene.target[self.index].id}).
+        id(lambda {
+            self.scene.target[index].id
+        }).
         left(lambda {
-          s = self.scene.target[self.index]
+          s = self.scene.target[index]
           w = s.width
           w||=0
           if ['bottom','top','center'].include?(self.name)
@@ -786,7 +865,7 @@ module Rubyvis
     end
 
 
-    def context_apply(scene,index)
+    def context_apply(scene,index) # :nodoc:
       Mark.scene=scene
       Mark.index=index
       return if(!scene)
@@ -819,7 +898,7 @@ module Rubyvis
       end
 
     end
-    def context_clear(scene,index)
+    def context_clear(scene,index) # :nodoc:
       return if !scene
       that=scene.mark
       mark=nil
@@ -841,7 +920,7 @@ module Rubyvis
         mark.index=nil
       end while(mark=mark.parent)
     end
-    def context(scene,index,f)
+    def context(scene,index,f) # :nodoc:
       proto=Mark
       stack=Mark.stack
       oscene=Mark.scene
@@ -954,7 +1033,7 @@ module Rubyvis
     #
     # @param s a node in the scene graph; the instance of the mark to build.
     # @param properties an array of properties.
-    def build_properties(ss, props)
+    def build_properties(ss, props) # :nodoc:
       #p props
       props.each do |prop|
         v=prop.value
@@ -967,7 +1046,7 @@ module Rubyvis
       end
     end
     # @todo implement
-    def event(type,handler)
+    def event(type,handler) # :nodoc:
       #@_handlers[type]=handler
       self
     end

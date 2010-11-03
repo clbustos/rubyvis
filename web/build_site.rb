@@ -21,7 +21,8 @@ pages={}
 prev_page=nil
 next_page=nil
 
-Dir.glob(File.dirname(__FILE__)+"/../examples/**/*.rb") do |f|
+files=Dir.glob(File.dirname(__FILE__)+"/../examples/**/*.rb").sort{|a,b| puts "#{a}, #{b}"; a<=>b}
+files.each do |f|
   
   next if f.include? "_data.rb"
   fn=get_base(f)

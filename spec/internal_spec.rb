@@ -141,6 +141,11 @@ describe "Rubyvis module methods" do
     it "method log_ceil" do
       Rubyvis.log_ceil(-5,4).should be_close(-4, 0.001)
     end
+    it "method dict" do
+      Rubyvis.dict(["one", "three", "seventeen"], lambda {|s| s.size}).should=={"one"=> 3, "three"=> 5, "seventeen"=> 9}
+      Rubyvis.dict(["one", "three", nil, "seventeen"], lambda {|s| s.size}).should=={"one"=> 3, "three"=> 5, "seventeen"=> 9}
+      
+    end
   end
   
 end

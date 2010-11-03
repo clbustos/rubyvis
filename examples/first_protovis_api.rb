@@ -1,6 +1,6 @@
-# = First example
+# = First example (Protovis API)
 # This is the protovis API version of "Getting Started" example of Protovis introduction.
-# On this example we show you how can you build a bar chart using panel and bar marks.
+# On this example we  build a bar chart using panel and bar marks.
 # A mark represents a set of graphical elements that share data and visual encodings. Although marks are simple by themselves, you can combine them in interesting ways to make rich, interactive visualizations
 $:.unshift(File.dirname(__FILE__)+"/../lib")
 require 'rubyvis'
