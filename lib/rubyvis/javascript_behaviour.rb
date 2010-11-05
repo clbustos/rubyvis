@@ -57,7 +57,8 @@ class Proc
   def js_apply(obj,args)
     arguments=args.dup
     # Modify numbers of args to works with arity
-    min_args=self.arity>0 ? self.arity : (-self.arity)-1
+    min_args=self.arity > 0 ? self.arity : (-self.arity)-1
+    
     if args.size > min_args and self.arity>0
       arguments=arguments[0,self.arity]
     elsif args.size < min_args
@@ -65,7 +66,12 @@ class Proc
     end
     #puts "#{args}->#{arguments} (#{self.arity})"
     if self.arity==0
-      obj.instance_eval(&self)
+      if RUBY_VERSION <="1.9.2" # CHECK THIS
+        obj.instance_eval(&self)
+      else
+        obj.instance_exec(&self)
+        
+      end
     else
       obj.instance_exec(*arguments,&self)
     end

@@ -768,7 +768,10 @@ module Rubyvis
         parent=parent.parent
       end
 
-      self.context( parent ? parent.scene : nil, parent ? parent.index : -1, lambda {render_render(self.root, 0,1)})
+      self.context( parent ? parent.scene : nil,
+        parent ? parent.index : -1,
+        lambda { render_render(root, 0,1) }
+        )
 
     end
 

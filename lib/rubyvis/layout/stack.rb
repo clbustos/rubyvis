@@ -74,10 +74,10 @@ module Rubyvis
     # <tt>crimea</tt>); the second argument is the layer data (a string in
     # <tt>causes</tt>). Additional arguments specify the data of enclosing panels, if any.
     class Stack < Rubyvis::Layout
-      @properties=Panel.properties.dup    
-      
-      attr_accessor :_x, :_y, :_values, :prop
+      @properties=Layout.properties.dup
       attr_accessor_dsl :orient,:offset, :order, :layers
+      attr_accessor :_x, :_y, :_values, :prop
+
       def self.defaults
         Stack.new.extend(Layout.defaults).orient("bottom-left").offset("zero").layers([[]])
       end
