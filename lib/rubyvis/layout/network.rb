@@ -77,6 +77,7 @@ module Rubyvis
     # @see Rubyvis::Layout::Rollup
     class Stack < Rubyvis::Layout
       @properties=Layout.properties.dup
+      attr_accessor :_id
       def initialize
         super
         @_id=Rubyvis.id()
@@ -97,7 +98,7 @@ module Rubyvis
         def add(type)
           that=@that
           return that.add(Rubyvis::Panel).
-          data(lambda {| that.links() }).
+          data(lambda { that.links() }).
           add(type).
           extend(self)
         end
@@ -123,7 +124,9 @@ module Rubyvis
       # This prototype is provided as an alternative to using the anchor on the
       # node mark; it is primarily intended to be used with radial node-link
       # layouts, since it provides a convenient mechanism to set the text angle.
-      def label
+      # NOTE FOR PROTOVIS USERS: The original name of method was +label+
+      # but it was replaced to not conflict with Mark.label() 
+      def node_label
         that=self
         Mark.new.extend(self.node).
           text_margin(7).
@@ -135,7 +138,7 @@ module Rubyvis
           }).
           text_align(lambda {|n| 
           Rubyvis::Wedge.upright(n.mid_angle) ? "left" : "right"
-          })).parent = self
+          }).parent = self
       end
       ##
       # :class: Node
@@ -157,55 +160,52 @@ module Rubyvis
         out=[]
         v.map {|d|
           if !d.link_value.is_a? Numeric
-            d.link_value = !d.value.is_a? Numeric ? 1 : d.value
+            d.link_value = !d.value.is_a?(Numeric) ? 1 : d.value
           end
           d
         }
       }]
 
+      # Resets the cache, such that changes to layout property definitions will be
+      # visible on subsequent render. Unlike normal marks (and normal layouts),
+      # properties associated with network layouts are not automatically re-evaluated
+      # on render; the properties are cached, and any expensive layout algorithms are
+      # only run after the layout is explicitly reset.
+      #
+      # (@returns Rubyvis::Layout::Network) self
+      def reset
+        self._id=Rubyvis.id()
+        self
+      end
+      # @private Skip evaluating properties if cached. */
       
-      
-
-    .property("links", function(v) {
-        return v.map(function(d) {
-            if (isNaN(d.linkValue)) d.linkValue = isNaN(d.value) ? 1 : d.value;
-            return d;
-          });
-      });
-
-/**
- * Resets the cache, such that changes to layout property definitions will be
- * visible on subsequent render. Unlike normal marks (and normal layouts),
- * properties associated with network layouts are not automatically re-evaluated
- * on render; the properties are cached, and any expensive layout algorithms are
- * only run after the layout is explicitly reset.
- *
- * @returns {pv.Layout.Network} this.
- */
-pv.Layout.Network.prototype.reset = function() {
-  this.$id = pv.id();
-  return this;
-};
-
-/** @private Skip evaluating properties if cached. */
-pv.Layout.Network.prototype.buildProperties = function(s, properties) {
-  if ((s.$id || 0) < this.$id) {
-    pv.Layout.prototype.buildProperties.call(this, s, properties);
-  }
-};
-
-/** @private Compute link degrees; map source and target indexes to nodes. */
-pv.Layout.Network.prototype.buildImplied = function(s) {
-  pv.Layout.prototype.buildImplied.call(this, s);
-  if (s.$id >= this.$id) return true;
-  s.$id = this.$id;
-  s.nodes.forEach(function(d) {
-      d.linkDegree = 0;
-    });
-  s.links.forEach(function(d) {
-      var v = d.linkValue;
-      (d.sourceNode || (d.sourceNode = s.nodes[d.source])).linkDegree += v;
-      (d.targetNode || (d.targetNode = s.nodes[d.target])).linkDegree += v;
-    });
-};
-
+      def build_properties(s, properties)
+        s_id=s._id
+        s_id||=0
+        if (s_id < self._id)
+          layout_build_properties(s,properties)
+        end
+      end
+      def build_implied(s)
+        layout_build_implied(s)
+        return true if (s._id >= self._id) 
+        s._id= self._id
+        s.nodes.each do |d|
+          d.link_degree=0
+        end
+        s.links.each do |d|
+          v=d.link_value
+          if !d.source_node
+            d.source_node=s.nodes[d.source]
+          end
+          d.source_node.link_degree+=v
+          if !d.target_node
+            d.target_node=s.nodes[d.target]
+          end
+          d.target_node.link_degree+=v
+          
+        end
+      end
+    end
+  end
+end
