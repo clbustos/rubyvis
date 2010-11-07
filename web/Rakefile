@@ -1,22 +1,23 @@
 # -*- ruby -*-
 require 'rake'
+
+directory "examples"
+
 def get_base(f)
   f.sub(File.dirname(__FILE__)+"/../examples/","").gsub("/","_").gsub(".rb","")
 end
-directory "examples"
 EXAMPLES=Dir.glob(File.dirname(__FILE__)+"/../examples/**/*.rb").map {|v|     [v,get_base(v)]
 }.find_all{|v| !v[0].include?"_data"}
 
 EXAMPLES_BASE=EXAMPLES.map {|v| v[1]}
 
 
-
+desc "Build all html and svg files"
 task :build_site do
   ruby "build_site.rb"
 end
 
-task :default=>["index.html","../lib/rubyvis.rb"]+EXAMPLES_BASE.map {|v| "examples/#{v}.html"}
-
+task :default=>["examples", "index.html", "../lib/rubyvis.rb"]+EXAMPLES_BASE.map {|v| "examples/#{v}.html"}
 
 file "index.html"=>["index.haml", :build_site]+EXAMPLES_BASE.map {|v| "examples/#{v}.png"}
 
@@ -26,7 +27,7 @@ EXAMPLES.each do |v|
   file "examples/#{e}.svg"=>[v[0]] do |t|
     system "ruby1.9 #{v[0]} > #{t.name}"
   end
-  file "examples/#{e}.png"=>"examples/#{e}.svg" do |t|
+  file "examples/#{e}.png"=>["examples/#{e}.svg"] do |t|
   system   "rsvg  -w 200 -h 200 -f png examples/#{e}.svg #{t.name}"
   end
 end
