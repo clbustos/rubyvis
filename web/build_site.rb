@@ -85,7 +85,7 @@ files.each do |f|
 
 end
 
-pages.each do |name,page|
+pages.each do |name, page|
   html_file="examples/#{page.name}.html"
   File.open(html_file,"w") {|fp|
     fp.write(haml_template.render(page, :pages=>pages))

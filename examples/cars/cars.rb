@@ -1,9 +1,14 @@
 # = Parallel Coordinates
 # Parallel coordinates is a popular method of visualizing high-dimensional data using dynamic queries. 
+# On static setting, you could choose an attribute and colour each datum which belongs to an attribute differently. On this example, we choose to color :cylinders attribute and highlight the cars with 8 cylinders
 
 $:.unshift(File.dirname(__FILE__)+"/../../lib")
 require 'rubyvis'
 load(File.dirname(__FILE__)+"/cars_data.rb")
+attr_to_color=:cylinders
+highlighted=lambda {|d|
+  d[:cylinders].to_i==8
+}
 
 dims = [
   :cylinders,
@@ -20,6 +25,7 @@ dims = [
 w = 840
 h = 420
 color = Rubyvis.Colors.category10()
+car_color = Rubyvis.Colors.category10()
 x = Rubyvis.Scale.ordinal(dims).split_flush(0, w)
 y = Rubyvis.dict(dims, lambda {|t|
     Rubyvis.Scale.linear().
@@ -40,13 +46,13 @@ vis=Rubyvis::Panel.new do
     stroke_style(lambda {|d| color.scale(index)})
     line_width(2)
     # Min value
-    label(:anchor=>'top') do
+    label(:anchor=>'bottom') do
       text {|t|
         y[t].tick_format.call(y[t].domain()[0])
       }
     end
     # Max value
-    label(:anchor=>'bottom') do
+    label(:anchor=>'top') do
       text {
         |t| y[t].tick_format.call(y[t].domain()[1])
       }
@@ -59,15 +65,21 @@ vis=Rubyvis::Panel.new do
   end
   # Parallel coordinates.
   panel do
-    # Each cars generate a panel
+    # Each car generate a panel
     data($cars)
     line do
-      # Inside each car, every dims generate a
-      # point
+      # Inside each car, every dimension generate a point
       data(dims)
-      left {|t,d| x.scale(t)}
-      bottom {|t,d|  y[t].scale(d[t])}
-      stroke_style("rgba(0, 0, 0, 0.2)")
+      left {|t, d| x.scale(t)}
+      bottom {|t, d|  y[t].scale(d[t])}
+      line_width {|t,d| 
+        highlighted.call(d) ? 4 : 1
+      }
+      stroke_style {|t,d|
+        # Highlighted items will be opaquer
+        alpha=highlighted.call(d) ? 0.4 : 0.1
+        car_color.scale(d[attr_to_color]).alpha(alpha)
+      }
       line_width(1)
     end
   end

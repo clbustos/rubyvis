@@ -4,6 +4,12 @@ module Rubyvis
   end
   class Layout < Rubyvis::Panel
     @properties=Panel.properties.dup
+    def layout_build_properties(s,properties)
+      mark_build_properties(s,properties)
+    end
+    def layout_build_implied(s)
+      panel_build_implied(s)
+    end
     def self.attr_accessor_dsl(*attr)
       attr.each  do |sym|
         if sym.is_a? Array

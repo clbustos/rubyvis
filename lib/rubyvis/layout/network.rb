@@ -117,6 +117,7 @@ module Rubyvis
           line_width(lambda {|d,_p| p.link_value * 1.5 }).
           stroke_style("rgba(0,0,0,.2)")
         l.extends(LinkAdd)
+        l.that=self
         l
       end
 
@@ -133,11 +134,11 @@ module Rubyvis
           text_baseline("middle").
           text(lambda {|n| n.node_name ? n.node_name : n.node_value }).
           text_angle(lambda {|n| 
-          a = n.mid_angle
-          Rubyvis::Wedge.upright(a) ? a : (a + Math::PI)
+            a = n.mid_angle
+            Rubyvis::Wedge.upright(a) ? a : (a + Math::PI)
           }).
           text_align(lambda {|n| 
-          Rubyvis::Wedge.upright(n.mid_angle) ? "left" : "right"
+            Rubyvis::Wedge.upright(n.mid_angle) ? "left" : "right"
           }).parent = self
       end
       ##
@@ -145,7 +146,7 @@ module Rubyvis
       # Represents a node in a network layout. There is no explicit
       # constructor; this class merely serves to document the attributes that are
       # used on nodes in network layouts. (Note that hierarchical nodes place
-      # additional requirements on node representation, vis {@link pv.Dom.Node}.)
+      # additional requirements on node representation, vis Rubyvis::Dom::Node
       
       attr_accessor_dsl [:nodes, lambda {|v|
         out=[]
@@ -186,7 +187,11 @@ module Rubyvis
           layout_build_properties(s,properties)
         end
       end
+      
       def build_implied(s)
+        network_build_implied(s)
+      end
+      def network_build_implied(s)
         layout_build_implied(s)
         return true if (s._id >= self._id) 
         s._id= self._id
