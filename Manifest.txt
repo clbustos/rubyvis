@@ -9,6 +9,8 @@ examples/area_interpolation.rb
 examples/bar_column_chart.rb
 examples/barley/barley.rb
 examples/barley/barley_data.rb
+examples/cars/cars.rb
+examples/cars/cars_data.rb
 examples/crimea/crimea_data.rb
 examples/crimea/crimea_grouped_bar.rb
 examples/crimea/crimea_line.rb
@@ -18,7 +20,6 @@ examples/first_rbp_api.rb
 examples/fixtures/tipsy.gif
 examples/grouped_charts.rb
 examples/image.rb
-examples/image.svg
 examples/line.rb
 examples/line_and_step.rb
 examples/line_interpolation.rb
@@ -80,6 +81,7 @@ spec/line_spec.rb
 spec/mark_spec.rb
 spec/nest_spec.rb
 spec/panel_spec.rb
+spec/readme_spec.rb
 spec/ruby_api_spec.rb
 spec/scale_linear_datetime_spec.rb
 spec/scale_linear_spec.rb
