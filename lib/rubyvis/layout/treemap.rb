@@ -39,7 +39,7 @@ module Rubyvis
         self.node.
         stroke_style("#fff").
         fill_style("rgba(31, 119, 180, .25)").
-        width(lambda {|n| { n.dx}).
+        width(lambda {|n| n.dx}).
         height(lambda {|n| n.dy })
       
       self.node_label.
@@ -139,14 +139,14 @@ module Rubyvis
       
       
       attr_accessor_dsl :round, :padding_left, :padding_right, :padding_top, :padding_bottom, :mode, :order
-      # Default propertiess for treemap layouts. The default mode is "squarify" and
-      # the default order is "ascending".
       
+      # Default propertiess for treemap layouts. The default mode is "squarify" and the default order is "ascending".
       def defaults
         Rubyvis::Layout::Treemap.new.extend(Rubyvis::Layout::Hierarchy.default).
         mode("squarify"). # squarify, slice-and-dice, slice, dice
         order('ascending') # ascending, descending, reverse, nil
       end
+      
       # Alias for setting the left, right, top and bottom padding properties
       # simultaneously.
       def padding(n)
@@ -191,164 +191,159 @@ module Rubyvis
         # /** @ignore */ size = function(n) { return n.size; }
         round = s.round ? lambda {|a| a.round } : lambda {|a| a}
         mode = s.mode
+        
+        stack.unshift(nil)
+        root.visit_after(lambda {|n,i|
+          n.depth = i
+          n.x = n.y = n.dx = n.dy = 0
+          n.size = n.first_child
+          ? Rubyvis.sum(n.child_nodes, lambda {|n| n.size })
+            : that._size.js_apply(that, (stack[0] = n, stack))
+        })
+        stack.shift()
+        
+        #/* Sort. */
+        case s.order
+        when 'ascending'
+          root.sort(lambda {|a,b| a.size-b.size})
+        when 'descending'
+          root.sort(lambda {|a,b| b.size-a.size})
+        when 'reverse'
+          root.reverse
+        end
+        
+        # /* Recursively compute the layout. */
+        root.x = 0;
+        root.y = 0;
+        root.dx = s.width;
+        root.dy = s.height
+        
+        root.visit_before(lambda {|n,i| that.build_implied_layout(n,i)})
       end
-/** @private */
-pv.Layout.Treemap.prototype.buildImplied = function(s) {
-  if (pv.Layout.Hierarchy.prototype.buildImplied.call(this, s)) return;
+      def build_implied_slice(row, sum, horizontal, x, y, w, h) 
+        d=0
+        row.each_with_index {|n,i|
+          if (horizontal)
+            n.x = x + d
+            n.y = y
+            d += n.dx = (w * n.size / sum.to_f).round
+            n.dy = h
+          else
+            n.x = x
+            n.y = y + d
+            n.dx = w
+            d += n.dy = (h * n.size / sum.to_f).round
+          end
+        }
+        
+        if (row.last)  # correct on-axis rounding error
+          if (horizontal) 
+              n.dx += w - d
+          else
+            n.dy += h - d
+          end
+        end
+      end
+      def build_implied_ratio(row,l)
+        
+        rmax = -Infinity
+        rmin = Infinity
+        s = 0
+        rmin=0
+        rmax=0
+        row.each_with_index {|v,i|
+          r = row[i].size
+          rmin = r if (r < rmin) 
+          rmax = r if (r > rmax) 
+          s += r
+        }
+        s = s * s
+        l = l * l
+        
+        [l * rmax / s, s / (l * rmin)].max
+      end
+      
+      
+      def build_implied_position(row)
+        horizontal = w == l
+        sum = Rubyvis.sum(row, size)
+        
+        r = l ? round(sum / l.to_f) : 0
+        
+        build_implied_slice(row, sum, horizontal, x, y, horizontal ? w : r, horizontal ? r : h)
+        if (horizontal) 
+          y += r
+          h -= r
+        else 
+          x += r
+          w -= r
+        end
+        l = [w, h].min
+        horizontal
+      end
+      
+      
+      def build_implied_layout(n,i)
+        x = n.x + left
+        y = n.y + top
+        w = n.dx - left - right
+        h = n.dy - top - bottom
 
-  var that = this,
-      nodes = s.nodes,
-      root = nodes[0],
-      stack = pv.Mark.stack,
-      left = s.paddingLeft,
-      right = s.paddingRight,
-      top = s.paddingTop,
-      bottom = s.paddingBottom,
-      /** @ignore */ size = function(n) { return n.size; },
-      round = s.round ? Math.round : Number,
-      mode = s.mode;
-
-  /** @private */
-  function slice(row, sum, horizontal, x, y, w, h) {
-    for (var i = 0, d = 0; i < row.length; i++) {
-      var n = row[i];
-      if (horizontal) {
-        n.x = x + d;
-        n.y = y;
-        d += n.dx = round(w * n.size / sum);
-        n.dy = h;
-      } else {
-        n.x = x;
-        n.y = y + d;
-        n.dx = w;
-        d += n.dy = round(h * n.size / sum);
-      }
-    }
-    if (n) { // correct on-axis rounding error
-      if (horizontal) {
-        n.dx += w - d;
-      } else {
-        n.dy += h - d;
-      }
-    }
-  }
-
-  /** @private */
-  function ratio(row, l) {
-    var rmax = -Infinity, rmin = Infinity, s = 0;
-    for (var i = 0; i < row.length; i++) {
-      var r = row[i].size;
-      if (r < rmin) rmin = r;
-      if (r > rmax) rmax = r;
-      s += r;
-    }
-    s = s * s;
-    l = l * l;
-    return Math.max(l * rmax / s, s / (l * rmin));
-  }
-
-  /** @private */
-  function layout(n, i) {
-    var x = n.x + left,
-        y = n.y + top,
-        w = n.dx - left - right,
-        h = n.dy - top - bottom;
-
-    /* Assume squarify by default. */
-    if (mode != "squarify") {
-      slice(n.childNodes, n.size,
+        #/* Assume squarify by default. */
+        if (mode != "squarify")
+          build_implied_slice(n.child_nodes, n.size,
           mode == "slice" ? true
           : mode == "dice" ? false
-          : i & 1, x, y, w, h);
-      return;
-    }
+          : (i & 1)!=0, x, y, w, h);
+          return nil;
+        end
 
-    var row = [],
-        mink = Infinity,
-        l = Math.min(w, h),
-        k = w * h / n.size;
+        row = []
+        mink = Infinity
+        l = [w, h].min
+        k = w * h / n.size
+        # Abort if the size is nonpositive.
+        return nil if n.size<=0
+        
+        # Scale the sizes to fill the current subregion.
+        n.visit_before(lambda {|n| n.size *= k })
 
-    /* Abort if the size is nonpositive. */
-    if (n.size <= 0) return;
+        # /** @private Position the specified nodes along one dimension. */
+        # children = n.child_nodes.slice(); # // copy
+        children = n.child_nodes.dup
+        
+        while (children.size>0) 
+          child = children[children.size - 1]
+          if (child.size==0) 
+            children.pop();
+            next
+          end
+          
+          row.push(child)
+        
+          k = build_implied_ratio(row, l)
+          if (k <= mink)
+            children.pop()
+            mink = k
+          else 
+            row.pop()
+            build_implied_position(row)
+            row.length = 0
+            mink = Infinity
+          end
+        end
 
-    /* Scale the sizes to fill the current subregion. */
-    n.visitBefore(function(n) { n.size *= k; });
-
-    /** @private Position the specified nodes along one dimension. */
-    function position(row) {
-      var horizontal = w == l,
-          sum = pv.sum(row, size),
-          r = l ? round(sum / l) : 0;
-      slice(row, sum, horizontal, x, y, horizontal ? w : r, horizontal ? r : h);
-      if (horizontal) {
-        y += r;
-        h -= r;
-      } else {
-        x += r;
-        w -= r;
-      }
-      l = Math.min(w, h);
-      return horizontal;
-    }
-
-    var children = n.childNodes.slice(); // copy
-    while (children.length) {
-      var child = children[children.length - 1];
-      if (!child.size) {
-        children.pop();
-        continue;
-      }
-      row.push(child);
-
-      var k = ratio(row, l);
-      if (k <= mink) {
-        children.pop();
-        mink = k;
-      } else {
-        row.pop();
-        position(row);
-        row.length = 0;
-        mink = Infinity;
-      }
-    }
-
-    /* correct off-axis rounding error */
-    if (position(row)) for (var i = 0; i < row.length; i++) {
-      row[i].dy += h;
-    } else for (var i = 0; i < row.length; i++) {
-      row[i].dx += w;
-    }
-  }
-
-  /* Recursively compute the node depth and size. */
-  stack.unshift(null);
-  root.visitAfter(function(n, i) {
-      n.depth = i;
-      n.x = n.y = n.dx = n.dy = 0;
-      n.size = n.firstChild
-          ? pv.sum(n.childNodes, function(n) { return n.size; })
-          : that.$size.apply(that, (stack[0] = n, stack));
-    });
-  stack.shift();
-
-  /* Sort. */
-  switch (s.order) {
-    case "ascending": {
-      root.sort(function(a, b) { return a.size - b.size; });
-      break;
-    }
-    case "descending": {
-      root.sort(function(a, b) { return b.size - a.size; });
-      break;
-    }
-    case "reverse": root.reverse(); break;
-  }
-
-  /* Recursively compute the layout. */
-  root.x = 0;
-  root.y = 0;
-  root.dx = s.width;
-  root.dy = s.height;
-  root.visitBefore(layout);
-};
-
+        # /* correct off-axis rounding error */
+        if (position(row)) 
+          row.each {|r|
+            r.dy+=h
+          }
+        else
+          row.each {|r|
+            r.dx+=w
+          }
+        end
+      end
+    end
+  end
+end
