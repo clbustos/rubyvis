@@ -2,8 +2,9 @@ History.txt
 Manifest.txt
 README.txt
 Rakefile
-examples/antibiotics/antibiotics.rb
 examples/antibiotics/antibiotics_data.rb
+examples/antibiotics/antibiotics_scatter.rb
+examples/antibiotics/antibiotics_wedge.rb
 examples/area.rb
 examples/area_interpolation.rb
 examples/bar_column_chart.rb
