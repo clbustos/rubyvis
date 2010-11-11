@@ -451,17 +451,15 @@ module Rubyvis
       @scale=1
       @scene=nil
       if block
-        block.arity<1 ? self.instance_eval(&block) : block.call(self)
+        execute(&block)
+        #block.arity<1 ? self.instance_eval(&block) : block.call(self)
       end
     end
-    
-    
-    
-    
-
+    # Execute a block using this mark as a reference
+    def execute(&block)
       
-    
-    
+      block.arity<1 ? self.instance_eval(&block) : block.call(self)      
+    end
     # The mark type; a lower name. The type name controls rendering
     # behavior, and unless the rendering engine is extended, must be one of the
     # built-in concrete mark types: area, bar, dot, image, label, line, panel,
