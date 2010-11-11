@@ -254,7 +254,11 @@ module Rubyvis
     # the index is set to the instance that triggered the event.
     # @return [Integer]
     def index
-      @index
+      if @index.nil?
+        Mark.index
+      else
+        @index
+      end
     end
     # Returns true if index attribute is set and not deleted
     def index_defined?
@@ -297,9 +301,10 @@ module Rubyvis
       scene=self.scene
       scene||=self.parent.instance(-1).children[self.child_index]
       
-      index = index_defined? ? self.index : default_index
-      # "defined?: #{index_defined?} : type: #{type}, self.index: #{self.index}, index:#{index}"
-      scene[index<0 ? scene.size-1: index]
+      index = !self.index.nil? ? self.index : default_index
+      
+      #puts "defined?: #{index_defined?} : type: #{type}, self.index: #{self.index}, default_index: #{default_index}, index:#{index}"
+      scene[index < 0 ? scene.size-1: index]
     end
 
     ##
