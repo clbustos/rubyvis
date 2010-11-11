@@ -1,3 +1,17 @@
+=== 0.2.1 / 2010-11-11
+
+* Added Rubyvis.dict() 
+* Added Rubyvis::Scale::Ordinal.split_flush()
+* New example: parallel coordinates on /examples/cars/cars.rb
+* New example: pie chart on /examples/antibiotics/antibiotics_wedge.rb
+* New spec for readme examples (sort of smoke test)
+* Better implementation of Layout
+* Bug fix: raise error Proc.js_apply on Ruby1.9.2 (doesn't accept instance_eval with &proc)
+* Ahhh... how I hate differences on return inside lambdas! Resolved bug on AreaPrototype::area_build_instance removing return inside a lambda
+* Bug fix: Rubyvis::Scale::Linear.scale() returns a value when nil is passed. Now, returns nil 
+* Bug fix: Calling Mark.instance() of a parent mark inside a children returns only the last instance, not the currently parsed instance
+
+
 === 0.2.0 / 2010-11-02
 
 * IMPORTANT: Added 'ruby best practices' API. See README and examples/first_rbp_api.rb to learn how to use
