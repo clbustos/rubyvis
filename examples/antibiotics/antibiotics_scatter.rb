@@ -1,3 +1,4 @@
+# = Antibiotic Effectiveness : Scatterplot
 $:.unshift(File.dirname(__FILE__)+"/../../lib")
 require 'rubyvis'
 load(File.dirname(__FILE__)+"/antibiotics_data.rb")
