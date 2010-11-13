@@ -114,7 +114,7 @@ Rubyvis is designed mainly for off-line operation, like batch creation of graphs
 
 == REQUIREMENTS:
 
-Ruby 1.9.1. Working on total Ruby 1.8.7 compatibility
+Tested on Ruby 1.8.7, 1.9.1, 1.9.2-p0 and ruby-head (future 1.9.3)
 
 == INSTALL:
 
