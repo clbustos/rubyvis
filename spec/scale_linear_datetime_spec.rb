@@ -1,4 +1,4 @@
-require File.dirname(__FILE__)+"/spec_helper.rb"
+require File.expand_path(File.dirname(__FILE__)+"/spec_helper.rb")
 describe "Rubyvis::Scale::Linear with dates" do
   it "should be created as Javascript" do
     h=280
@@ -33,7 +33,7 @@ describe "Rubyvis::Scale::Linear with dates" do
     @y.scale(@ed).should==@h
     @y[@ed].should==@h
     val= (@ed.to_f+@bd.to_f) / 2.0
-    @y.scale(val).should be_close(@h / 2.0, 0.001)
+    @y.scale(val).should be_within( 0.001).of(@h / 2.0)
   end
   it "should returns correct invert" do
     @y.invert(0).should==@bd
@@ -46,7 +46,11 @@ describe "Rubyvis::Scale::Linear with dates" do
     
     #p @y.ticks
   end
-  it "should returns correct tick_format"
+  it "should returns correct tick_format" do
+    pending()
+  end
 
-  it "should nice nicely"
+  it "should nice nicely" do
+    pending()
+  end
 end

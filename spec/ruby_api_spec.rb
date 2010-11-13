@@ -1,4 +1,4 @@
-require File.dirname(__FILE__)+"/spec_helper.rb"
+require File.expand_path(File.dirname(__FILE__)+"/spec_helper.rb")
 describe "Ruby API for Rubyvis" do
   before do
     @h=200

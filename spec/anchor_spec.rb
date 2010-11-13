@@ -1,4 +1,4 @@
-require File.dirname(__FILE__)+"/spec_helper.rb"
+require File.expand_path(File.dirname(__FILE__)+"/spec_helper.rb")
 describe Rubyvis::Anchor do
   describe "inner anchor data should work fine" do
     before  do
