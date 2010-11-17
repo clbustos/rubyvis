@@ -145,7 +145,7 @@ module Rubyvis
 
     def self.defaults
       a=Rubyvis::Colors.category10()
-      Line.new.extend(Mark.defaults).line_join('miter').line_width(1.5).stroke_style( lambda { a.scale(parent.index)}).interpolate('linear').eccentricity(0).tension(0.7)
+      Line.new.mark_extend(Mark.defaults).line_join('miter').line_width(1.5).stroke_style( lambda { a.scale(parent.index)}).interpolate('linear').eccentricity(0).tension(0.7)
     end
   end
 end

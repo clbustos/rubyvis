@@ -4,6 +4,9 @@ module Rubyvis
   end
   class Layout < Rubyvis::Panel
     @properties=Panel.properties.dup
+    def build_properties(s,properties)
+      layout_build_properties(s,properties)
+    end
     def layout_build_properties(s,properties)
       mark_build_properties(s,properties)
     end

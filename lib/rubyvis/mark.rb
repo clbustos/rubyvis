@@ -487,7 +487,7 @@ module Rubyvis
     # type of mark as this mark. (Note that for inheritance to be useful,
     # properties with the same name on different mark types should 
     # have equivalent meaning.)
-    def extend(proto)
+    def mark_extend(proto)
       @proto=proto
       @target=proto.target
       self
@@ -571,9 +571,9 @@ module Rubyvis
     # * @param {function} type the type of mark to add; a constructor, such as
     # +Rubyvis::Bar+
     # * @returns {Mark} the new mark.
-    # * @see #extend
+    # * @see #mark_extend
     def add(type)
-      parent.add(type).extend(self)
+      parent.add(type).mark_extend(self)
     end
     # Returns an anchor with the specified name. All marks support the five
     # standard anchor names:
@@ -929,7 +929,7 @@ module Rubyvis
         mark.index=nil
       end while(mark=mark.parent)
     end
-    def context(scene,index,f) # :nodoc:
+    def context(scene, index, f) # :nodoc:
       proto=Mark
       stack=Mark.stack
       oscene=Mark.scene

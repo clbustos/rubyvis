@@ -36,28 +36,29 @@ module Rubyvis
       @properties=Hierarchy.properties.dup
       def initialize
         super
-        self.node
-        stroke_style("#fff").
-        fill_style("rgba(31, 119, 180, .25)").
-        width(lambda {|n| n.dx}).
-        height(lambda {|n| n.dy })
+        @size=lambda {|d| d.node_value.to_f}
+        @node.stroke_style("#fff").
+          fill_style("rgba(31, 119, 180, .25)").
+          width(lambda {|n| n.dx}).
+          height(lambda {|n| n.dy })
+        
+        @node_label.
+          visible(lambda {|n| !n.first_child }).
+          left(lambda {|n| n.x + (n.dx / 2.0) }).
+          top(lambda {|n| n.y + (n.dy / 2.0) }).
+          text_align("center").
+          text_angle(lambda {|n| n.dx > n.dy ? 0 : -Math::PI / 2.0 })
       
-      self.node_label.
-        visible(lambda {|n| !n.first_child }).
-        left(lambda {|n| n.x + (n.dx / 2.0) }).
-        top(lambda {|n| n.y + (n.dy / 2.0) }).
-        text_align("center").
-        text_angle(lambda {|n| n.dx > n.dy ? 0 : -Math::PI / 2.0 })
       end
       
       def leaf
         m=Rubyvis::Mark.new.
-        extend(self.node).
+        mark_extend(self.node).
         fill_style(nil).
         stroke_style(nil).
         visible(lambda {|n| !n.first_child })
         m.parent = self
-        
+        m
       end
       def link
         nil
@@ -143,8 +144,8 @@ module Rubyvis
       attr_accessor_dsl :round, :padding_left, :padding_right, :padding_top, :padding_bottom, :mode, :order
       
       # Default propertiess for treemap layouts. The default mode is "squarify" and the default order is "ascending".
-      def defaults
-        Rubyvis::Layout::Treemap.new.extend(Rubyvis::Layout::Hierarchy.default).
+      def self.defaults
+        Rubyvis::Layout::Treemap.new.mark_extend(Rubyvis::Layout::Hierarchy.defaults).
         mode("squarify"). # squarify, slice-and-dice, slice, dice
         order('ascending') # ascending, descending, reverse, nil
       end
@@ -155,17 +156,12 @@ module Rubyvis
         padding_left(n).padding_right(n).padding_top(n).padding_bottom(n)
       end
       def _size(d)
-        if @_size.nil?
-          d.node_value.to_f
-        else
-          @_size.call(d)
-        end
+        @size.call(d)
       end
+     
       ##
       # Specifies the sizing function. By default, the size function uses the
-      # <tt>nodeValue</tt> attribute of nodes as a numeric value: <tt>function(d)
-      # Number(d.nodeValue)</tt>.
-      #
+      # +node_value+ attribute of nodes as a numeric value: 
       # <p>The sizing function is invoked for each leaf node in the tree, per the
       # <tt>nodes</tt> property. For example, if the tree data structure represents a
       # file system, with files as leaf nodes, and each file has a <tt>bytes</tt>
@@ -175,175 +171,187 @@ module Rubyvis
       #
       # @param {function} f the new sizing function.
       # @returns {pv.Layout.Treemap} this.
-      
+            
       def size(f)
-        @_size=pv.functor(f)
+        @size=Rubyvis.functor(f)
       end
+      
+      
       def build_implied(s)
-        return nil if super(s)
+        return nil if hierarchy_build_implied(s)
+        
         that=self
         nodes = s.nodes
         root = nodes[0]
         stack = Mark.stack
+        
         left = s.padding_left
         right = s.padding_right
         top = s.padding_top
         bottom = s.padding_bottom
-        size=lamba {|n| n.size}
-        # /** @ignore */ size = function(n) { return n.size; }
-        round = s.round ? lambda {|a| a.round } : lambda {|a| a}
+        left||=0
+        right||=0
+        top||=0
+        bottom||=0
+        size=lambda {|n| n.size}
+        round = s.round ? 
+          lambda {|a| a.round } : 
+          lambda {|a| a.to_f}
         mode = s.mode
         
+        slice=lambda { |row, sum, horizontal, x, y, w, h|
+          # puts "slice:#{sum},#{horizontal},#{x},#{y},#{w},#{h}"
+          d=0
+          row.size.times {|i|
+            n=row[i]
+            # puts "i:#{i},d:#{d}"
+            if horizontal
+              n.x = x + d
+              n.y = y
+              d += n.dx = round.call(w * n.size / sum.to_f)
+              n.dy = h
+            else
+              n.x = x
+              n.y = y + d
+              n.dx = w
+              d += n.dy = round.call(h * n.size / sum.to_f)
+            end
+            # puts "n.x:#{n.x}, n.y:#{n.y}, n.dx:#{n.dx}, n.dy:#{n.dy}"
+          }
+          
+         
+          if (row.last)  # correct on-axis rounding error
+            n=row.last
+            if (horizontal) 
+              n.dx += w - d
+            else 
+              n.dy += h - d
+            end
+          end
+        }
+        
+        ratio=lambda {|row, l|
+          rmax = -Infinity
+          rmin = Infinity
+          s = 0
+          row.each_with_index {|v,i|
+            r = v.size
+            rmin = r if (r < rmin)
+            rmax = r if (r > rmax)
+            s += r
+          }
+          s = s * s
+          l = l * l
+          [l * rmax / s.to_f, s.to_f / (l * rmin)].max
+        }
+        
+        layout=lambda {|n,i| 
+          x = n.x + left
+          y = n.y + top
+          w = n.dx - left - right
+          h = n.dy - top - bottom
+          
+          # puts "Layout: '#{n.node_name}', #{n.x}, #{n.y}, #{n.dx}, #{n.dy}"
+          #/* Assume squarify by default. */
+          if (mode != "squarify")
+            slice.call(n.child_nodes, n.size, ( mode == "slice" ? true : mode == "dice" ? false : (i & 1)!=0), x, y, w, h)
+          else
+            row = []
+            mink = Infinity
+            l = [w,h].min
+            k = w * h / n.size.to_f
+            #/* Abort if the size is nonpositive. */
+            
+            if (n.size > 0) 
+              #/* Scale the sizes to fill the current subregion. */
+              n.visit_before {|n,i| n.size *= k }
+              
+              #/** @private Position the specified nodes along one dimension. */
+              position=lambda {|row| 
+                horizontal = w == l
+                sum = Rubyvis.sum(row, size)
+                r = l>0 ? round.call(sum / l.to_f) : 0
+                slice.call(row, sum, horizontal, x, y, horizontal ? w : r, horizontal ? r : h)
+                if horizontal 
+                  y += r
+                  h -= r
+                else
+                  x += r
+                  w -= r
+                end
+                l = [w, h].min
+                horizontal
+              }
+              
+              children = n.child_nodes.dup # copy
+              while (children.size>0) do
+                child = children[children.size - 1]
+                if (child.size==0) 
+                  children.pop
+                  next
+                end
+                row.push(child)
+                
+                k = ratio.call(row, l)
+                
+                if (k <= mink) 
+                  children.pop
+                  mink = k
+                else 
+                  row.pop
+                  position.call(row)
+                  row.clear
+                  mink = Infinity
+                end
+              end
+              
+              #/* correct off-axis rounding error */
+              
+              if (position.call(row))
+                row.each {|v|
+                  v.dy+=h
+                }
+              else
+                row.each {|v|
+                  v.dx+=w
+                }
+              end              
+            end
+          end
+        }
+        
+               
         stack.unshift(nil)
-        root.visit_after(lambda {|n,i|
-          n.depth = i
-          n.x = n.y = n.dx = n.dy = 0
-          n.size = n.first_child ? Rubyvis.sum(n.child_nodes, lambda {|n| n.size }) : that._size.js_apply(that, (stack[0] = n, stack))
-        })
+        root.visit_after {|nn,i|
+          nn.depth = i
+          nn.x = nn.y = nn.dx = nn.dy = 0
+          if nn.first_child
+            nn.size=Rubyvis.sum(nn.child_nodes, lambda {|v| v.size})
+          else
+            stack[0]=nn
+            nn.size=that._size(stack[0])
+          end
+        }
         stack.shift()
         
         #/* Sort. */
-        case s.order
-        when 'ascending'
-          root.sort(lambda {|a,b| a.size-b.size})
-        when 'descending'
-          root.sort(lambda {|a,b| b.size-a.size})
-        when 'reverse'
-          root.reverse
-        end
         
+        case s.order
+          when 'ascending'
+            root.sort(lambda {|a,b| a.size<=>b.size})
+          when 'descending'
+            root.sort(lambda {|a,b| b.size<=>a.size})
+          when 'reverse'
+            root.reverse
+        end
         # /* Recursively compute the layout. */
         root.x = 0;
         root.y = 0;
-        root.dx = s.width;
+        root.dx = s.width
         root.dy = s.height
-        
-        root.visit_before(lambda {|n,i| that.build_implied_layout(n,i)})
-      end
-      def build_implied_slice(row, sum, horizontal, x, y, w, h) 
-        d=0
-        row.each_with_index {|n,i|
-          if (horizontal)
-            n.x = x + d
-            n.y = y
-            d += n.dx = (w * n.size / sum.to_f).round
-            n.dy = h
-          else
-            n.x = x
-            n.y = y + d
-            n.dx = w
-            d += n.dy = (h * n.size / sum.to_f).round
-          end
-        }
-        
-        if (row.last)  # correct on-axis rounding error
-          if (horizontal) 
-              n.dx += w - d
-          else
-            n.dy += h - d
-          end
-        end
-      end
-      def build_implied_ratio(row,l)
-        
-        rmax = -Infinity
-        rmin = Infinity
-        s = 0
-        rmin=0
-        rmax=0
-        row.each_with_index {|v,i|
-          r = row[i].size
-          rmin = r if (r < rmin) 
-          rmax = r if (r > rmax) 
-          s += r
-        }
-        s = s * s
-        l = l * l
-        
-        [l * rmax / s, s / (l * rmin)].max
+        root.visit_before {|n,i| layout.call(n,i)}
       end
       
-      
-      def build_implied_position(row)
-        horizontal = w == l
-        sum = Rubyvis.sum(row, size)
-        
-        r = l ? round(sum / l.to_f) : 0
-        
-        build_implied_slice(row, sum, horizontal, x, y, horizontal ? w : r, horizontal ? r : h)
-        if (horizontal) 
-          y += r
-          h -= r
-        else 
-          x += r
-          w -= r
-        end
-        l = [w, h].min
-        horizontal
-      end
-      
-      
-      def build_implied_layout(n,i)
-        x = n.x + left
-        y = n.y + top
-        w = n.dx - left - right
-        h = n.dy - top - bottom
-
-        #/* Assume squarify by default. */
-        if (mode != "squarify")
-          build_implied_slice(n.child_nodes, n.size,
-          mode == "slice" ? true
-          : mode == "dice" ? false
-          : (i & 1)!=0, x, y, w, h);
-          return nil;
-        end
-
-        row = []
-        mink = Infinity
-        l = [w, h].min
-        k = w * h / n.size
-        # Abort if the size is nonpositive.
-        return nil if n.size<=0
-        
-        # Scale the sizes to fill the current subregion.
-        n.visit_before(lambda {|n| n.size *= k })
-
-        # /** @private Position the specified nodes along one dimension. */
-        # children = n.child_nodes.slice(); # // copy
-        children = n.child_nodes.dup
-        
-        while (children.size>0) 
-          child = children[children.size - 1]
-          if (child.size==0) 
-            children.pop();
-            next
-          end
-          
-          row.push(child)
-        
-          k = build_implied_ratio(row, l)
-          if (k <= mink)
-            children.pop()
-            mink = k
-          else 
-            row.pop()
-            build_implied_position(row)
-            row.length = 0
-            mink = Infinity
-          end
-        end
-
-        # /* correct off-axis rounding error */
-        if (position(row)) 
-          row.each {|r|
-            r.dy+=h
-          }
-        else
-          row.each {|r|
-            r.dx+=w
-          }
-        end
-      end
     end
   end
 end

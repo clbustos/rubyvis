@@ -258,7 +258,6 @@ module Rubyvis::SvgScene
     d = []
     m = []
     dx = []
-    k = 0
     
     #/* Compute the slopes of the secant lines between successive points. */
     (points.size-1).times {|k|

@@ -61,7 +61,7 @@ module Rubyvis
     # style is a categorical color.
     def self.defaults
       a=Rubyvis.Colors.category20()
-      Bar.new.extend(Mark.defaults).line_width(1.5).fill_style( lambda {
+      Bar.new.mark_extend(Mark.defaults).line_width(1.5).fill_style( lambda {
           a.scale(self.parent.index)
       })
     end

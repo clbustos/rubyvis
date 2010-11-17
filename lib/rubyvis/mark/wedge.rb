@@ -13,7 +13,7 @@ module Rubyvis
     
     def self.defaults
       a=Rubyvis.Colors.category20()
-      Wedge.new.extend(Mark.defaults).start_angle(lambda  {s=self.sibling; s ? s.end_angle: -Math::PI.quo(2) } ).inner_radius( 0 ).line_width( 1.5 ).stroke_style( nil ).fill_style( lambda {a.scale(self.index)})
+      Wedge.new.mark_extend(Mark.defaults).start_angle(lambda  {s=self.sibling; s ? s.end_angle: -Math::PI.quo(2) } ).inner_radius( 0 ).line_width( 1.5 ).stroke_style( nil ).fill_style( lambda {a.scale(self.index)})
     end
     def mid_radius
       (inner_radius+outer_radius) / 2.0

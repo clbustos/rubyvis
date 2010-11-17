@@ -79,7 +79,7 @@ module Rubyvis
     # style is a categorical color. The default shape is "circle" with radius 4.5.
     def self.defaults()
       a=Rubyvis::Colors.category10
-      Dot.new().extend(Mark.defaults).shape("circle"). line_width(1.5). stroke_style(lambda {a.scale(self.parent.index)})
+      Dot.new().mark_extend(Mark.defaults).shape("circle"). line_width(1.5). stroke_style(lambda {a.scale(self.parent.index)})
     end
     # Constructs a new dot anchor with default properties. Dots support five
     # different anchors:<ul>

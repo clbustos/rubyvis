@@ -50,7 +50,7 @@ tick = pv.Rule.new()
 
 #/* X-axis ticks. */
 xtick = plot.add(pv.Rule)
-    .extend(tick)
+    .mark_extend(tick)
     .left(z);
 
 #/* Bottom and top labels. */
@@ -61,7 +61,7 @@ xtick.anchor("top").add(pv.Label)
 
 #/* Y-axis ticks. */
 ytick = plot.add(pv.Rule)
-    .extend(tick)
+    .mark_extend(tick)
     .bottom(z);
 
 #/* Bottom and top labels. */
@@ -95,7 +95,7 @@ dot = plot.add(pv.Dot).
 
 #/* Legend. */
 vis.add(pv.Dot)
-    .extend(dot)
+    .mark_extend(dot)
     .data([{gram:"positive"}, {gram:"negative"}])
     .bottom(-30)
     .left(lambda { index * 100})

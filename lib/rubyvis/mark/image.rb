@@ -36,7 +36,7 @@ module Rubyvis
     
     # Default properties for images. By default, there is no stroke or fill style.
     def self.defaults
-      Image.new.extend(Bar.defaults).fill_style(nil)
+      Image.new.mark_extend(Bar.defaults).fill_style(nil)
     end
     
     # @TODO: NOT IMPLEMENTED YET

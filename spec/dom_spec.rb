@@ -18,6 +18,25 @@ describe Rubyvis::Dom do
     end
     ar.should eq [[nil, nil], [:a, nil], [:aa, 1], [:ab, nil], [:aba, 2], [:b, 4], [:c, nil], [:ca, 5]]
   end
+  it "should treemap example works right" do
+    flare={:a=>{:aa=>1,:ab=>1,:ac=>1},:b=>{:ba=>1,:bb=>1},:c=>3}
+    dom_map=Rubyvis::Dom.new(flare)
+    nodes = dom_map.root("flare").nodes
+    root = nodes[0]
+    root.visit_after {|nn,i|
+      if nn.first_child
+        nn.size=Rubyvis.sum(nn.child_nodes, lambda {|v| v.size})
+       else
+         nn.size=nn.node_value.to_f
+       end
+    }
+    root.sort(lambda {|a,b| a.size<=>b.size})
+    ar=[]
+    root.visit_before {|n,i|
+      ar.push [n.node_name, n.size]
+    }
+    ar.should eq [["flare", 8.0], [:b, 2.0], [:ba, 1.0], [:bb, 1.0], [:a, 3.0], [:aa, 1.0], [:ab, 1.0], [:ac, 1.0], [:c, 3.0]]
+  end
   describe Rubyvis::Dom::Node do
     before do
       @n =Rubyvis::Dom::Node.new(:a)
@@ -161,8 +180,14 @@ describe Rubyvis::Dom do
       @n.append_child(@n4)
       @n.append_child(@n3)
       @n.append_child(@n2)
+      
       @n.sort {|a,b| a.node_value.to_s<=>b.node_value.to_s}
+      
       @n.child_nodes.should eq [@n2,@n3,@n4,@n5]
+      
+      @n.first_child.should eq @n2
+      @n.last_child.should eq @n5
+      
       @n2.next_sibling.should eq @n3
       @n3.next_sibling.should eq @n4
       @n4.next_sibling.should eq @n5

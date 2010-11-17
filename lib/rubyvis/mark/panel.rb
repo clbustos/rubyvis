@@ -30,7 +30,7 @@ module Rubyvis
     end
 
     def self.defaults
-      Panel.new.extend(Bar.defaults).fill_style(nil).overflow('visible')
+      Panel.new.mark_extend(Bar.defaults).fill_style(nil).overflow('visible')
     end
     def add(type)
       child=type.new

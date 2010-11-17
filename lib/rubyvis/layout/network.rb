@@ -77,30 +77,36 @@ module Rubyvis
     # @see Rubyvis::Layout::Rollup
     class Network < Rubyvis::Layout
       @properties=Layout.properties.dup
+      attr_accessor :node, :link, :node_label
       attr_accessor :_id
       def initialize
         super
         @_id=Rubyvis.id()
+        @node=_node
+        @link=_link
+        @node_label=_node_label
       end
       # The node prototype. This prototype is intended to be used with a 
       # Dot mark in conjunction with the link prototype.      
-      def node
-        that=self
-        Mark.new().
-          data(lambda {that.nodes()}).
+      def _node
+        that=self        
+        m=Mark.new().
+          data(lambda {that.nodes}).
           stroke_style("#1f77b4").
           fill_style("#fff").
           left(lambda {|n| n.x }).
-          top(lambda {|n| n.y }).parent = self
+          top(lambda {|n| n.y })
+        m.parent = self
+        m 
       end
       module LinkAdd
         attr_accessor :that
         def add(type)
           that=@that
           return that.add(Rubyvis::Panel).
-          data(lambda { that.links() }).
+          data(lambda {that.links}).
           add(type).
-          extend(self)
+          mark_extend(self)
         end
       end
       
@@ -108,15 +114,15 @@ module Rubyvis
      # nodes. This prototype is intended to be used with a Line mark in
      # conjunction with the node prototype.
       
-      def link
+      def _link
         that=self
         l=Mark.new().
-          extend(self.node).
+          mark_extend(@node).
           data(lambda {|_p| [_p.source_node, p.target_node] }).
           fill_style(nil).
           line_width(lambda {|d,_p| p.link_value * 1.5 }).
           stroke_style("rgba(0,0,0,.2)")
-        l.extends(LinkAdd)
+        l.extend LinkAdd
         l.that=self
         l
       end
@@ -125,11 +131,12 @@ module Rubyvis
       # This prototype is provided as an alternative to using the anchor on the
       # node mark; it is primarily intended to be used with radial node-link
       # layouts, since it provides a convenient mechanism to set the text angle.
+      #
       # NOTE FOR PROTOVIS USERS: The original name of method was +label+
       # but it was replaced to not conflict with Mark.label() 
-      def node_label
+      def _node_label
         that=self
-        Mark.new.extend(self.node).
+        nl=Mark.new.mark_extend(@node).
           text_margin(7).
           text_baseline("middle").
           text(lambda {|n| n.node_name ? n.node_name : n.node_value }).
@@ -139,7 +146,9 @@ module Rubyvis
           }).
           text_align(lambda {|n| 
             Rubyvis::Wedge.upright(n.mid_angle) ? "left" : "right"
-          }).parent = self
+          })
+        nl.parent = self
+        nl
       end
       ##
       # :class: Node
@@ -178,6 +187,7 @@ module Rubyvis
         self._id=Rubyvis.id()
         self
       end
+      
       # @private Skip evaluating properties if cached. */
       
       def build_properties(s, properties)
@@ -193,11 +203,12 @@ module Rubyvis
       end
       def network_build_implied(s)
         layout_build_implied(s)
-        return true if (s._id >= self._id) 
+        return true if (!s._id.nil? and s._id >= self._id)
         s._id= self._id
         s.nodes.each do |d|
           d.link_degree=0
         end
+        
         s.links.each do |d|
           v=d.link_value
           if !d.source_node
@@ -210,6 +221,7 @@ module Rubyvis
           d.target_node.link_degree+=v
           
         end
+        false
       end
     end
   end

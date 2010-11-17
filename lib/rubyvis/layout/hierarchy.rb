@@ -35,19 +35,21 @@ module Rubyvis
       @properties=Network.properties.dup
       def initialize
         super
-        link.stroke_style("#ccc") unless link.nil?
+        @link.stroke_style("#ccc")
       end
-      
-      # @private Compute the implied links. (Links are null by default.) */
       def build_implied(s)
+        hierarchy_build_implied(s)
+      end
+      # @private Compute the implied links. (Links are null by default.) */
+      def hierarchy_build_implied(s)
         s.links=self.links() if !s.links
         network_build_implied(s)
       end
 
       # The implied links; computes links using the <tt>parent_node</tt> attribute.
       def links
-        n=self.nodes().find_all {|n| n.parent_node}
-        n.map {|n|
+        l=self.nodes().find_all {|n| n.parent_node}
+        l.map {|n|
           OpenStruct.new({
               :source_node=>n,
               :target_node=>n.parent_node,

@@ -79,7 +79,7 @@ module Rubyvis
       attr_accessor :_x, :_y, :_values, :prop
 
       def self.defaults
-        Stack.new.extend(Layout.defaults).orient("bottom-left").offset("zero").layers([[]])
+        Stack.new.mark_extend(Layout.defaults).orient("bottom-left").offset("zero").layers([[]])
       end
       
       # Constructs a new, empty stack layout. Layouts are not typically constructed
@@ -288,7 +288,7 @@ module Rubyvis
           end
           def add(type)
             that  = @that
-            that.add( Rubyvis.Panel ).data(lambda { that.layers() }).add(type).extend( self )
+            that.add( Rubyvis.Panel ).data(lambda { that.layers() }).add(type).mark_extend( self )
           end
         end
         

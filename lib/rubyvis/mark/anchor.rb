@@ -75,7 +75,7 @@ module Rubyvis
     # @returns {Rubyvis::Anchor} this anchor.
     # @see Rubyvis.Mark#add
     
-    def extend(proto)
+    def mark_extend(proto)
       @proto=proto
       self
     end

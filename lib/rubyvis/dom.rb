@@ -75,9 +75,11 @@ module Rubyvis
       # key at the given level in the map. Note that the root node has no associated
       # key, and thus has an undefined node name (and no <tt>parentNode</tt>).
       attr_accessor :node_name
-      # The node value. When generated from a map, node value corresponds to the leaf
-      # value for leaf nodes, and is undefined for internal nodes.
+      
+      # The node value. When generated from a map, node value corresponds to 
+      # the leaf value for leaf nodes, and is undefined for internal nodes.
       attr_reader :node_value
+      
       # The array of child nodes. This array is empty for leaf nodes. An easy way to
       # check if child nodes exist is to query <tt>firstChild</tt>.    
       attr_accessor :child_nodes
@@ -88,6 +90,15 @@ module Rubyvis
       attr_accessor :last_child
       attr_accessor :previous_sibling
       attr_accessor :next_sibling
+      
+      attr_accessor :index
+      attr_accessor :link_degree
+      attr_accessor :depth
+      attr_accessor :dx
+      attr_accessor :dy
+      attr_accessor :x
+      attr_accessor :y
+      attr_accessor :size
       
       
       # Constructs a DOM node for the specified value. Instances of this class are
@@ -241,17 +252,17 @@ module Rubyvis
       def sort(f_a=nil,&f)
         f=f_a unless f_a.nil?
         raise "Should pass a Proc" if f.nil?
-        if first_child
-          child_nodes.sort!(&f)
-          _p=first_child = child_nodes[0]
+        if @first_child
+          @child_nodes.sort!(&f)
+          _p=@first_child = child_nodes[0]
           _p.previous_sibling=nil
-          (1...child_nodes.size).each {|i|
+          (1...@child_nodes.size).each {|i|
             _p.sort(&f)
-            c=child_nodes[i]
+            c=@child_nodes[i]
             c.previous_sibling=_p
             _p=_p.next_sibling=c
           }
-          last_child=_p
+          @last_child=_p
           _p.next_sibling=nil
           _p.sort(f)
         end
@@ -284,6 +295,10 @@ module Rubyvis
         array
       end
     # toggle missing
+      def inspect
+        childs=@child_nodes.map{|e| e.inspect}.join(",")
+        "#<#{self.class} #{object_id.to_s(16)} (#{}), name: #{@node_name}, value: #{@node_value} child_nodes: [#{childs}]>"
+      end
     end # End Node
   end # End Dom
   # Given a flat array of values, returns a simple DOM with each value wrapped by
