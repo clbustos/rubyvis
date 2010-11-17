@@ -1,8 +1,8 @@
 module Rubyvis
-  # Returns a {@link pv.Dom} operator for the given map. This is a convenience
-  # factory method, equivalent to <tt>new pv.Dom(map)</tt>. To apply the operator
-  # and retrieve the root node, call {@link pv.Dom#root}; to retrieve all nodes
-  # flattened, use {@link pv.Dom#nodes}.
+  # Returns a Rubyvis::Dom operator for the given map. This is a convenience
+  # factory method, equivalent to Rubyvis::Dom.new(map). To apply the operator
+  # and retrieve the root node, call Rubyvis::Dom.root() to retrieve all nodes
+  # flattened, use Rubyvis::Dom.nodes
   #
   # @see pv.Dom
   # @param map a map from which to construct a DOM.
@@ -43,6 +43,7 @@ module Rubyvis
       end
       @leaf
     end
+    
     def root_recurse(map)
       n = Rubyvis::Dom::Node.new
       map.each_pairs {|k,v|
@@ -65,6 +66,7 @@ module Rubyvis
    def nodes
      self.root().nodes();
    end
+   
    def self.Node(value)
      Node.new(value)
    end
@@ -93,10 +95,10 @@ module Rubyvis
       # not typically created directly; instead they are generated from a JavaScript 
       # map using the {@link pv.Dom} operator.
       def initialize(value)
-      @node_value = value
-      @child_nodes=[]
-      @parent_node=nil
-      @first_child=nil
+        @node_value = value
+        @child_nodes=[]
+        @parent_node=nil
+        @first_child=nil
       end
       # Removes the specified child node from this node.
       def remove_child(n)
@@ -261,21 +263,23 @@ module Rubyvis
       self
       end
       def nodes_flatten(node,array)
-      array.push(node)
-      node.child_nodes.each {|n|
-      nodes_flatten(n,array)
-      }
+        array.push(node)
+        node.child_nodes.each {|n|
+        nodes_flatten(n,array)
+        }
       end
       def nodes
-      array=[]
-      nodes_flatten(self,array)
+        array=[]
+        nodes_flatten(self,array)
       end
     # toggle missing
     end # End Node
   end # End Dom
+  # Given a flat array of values, returns a simple DOM with each value wrapped by
+  # a node that is a child of the root node.  
   def self.nodes(values)
     root=Rubyvis::Dom::Node.new
-    values.each_with_index do |v,i|
+    values.each do |v,i|
       root.append_child(Rubyvis::Dom::Node.new(v))
     end
     root.nodes()
