@@ -17,6 +17,7 @@ require 'rubyvis/color/color'
 require 'rubyvis/color/colors'
 
 require 'rubyvis/layout'
+require 'rubyvis/dom'
 
 require 'rubyvis/scene/svg_scene'
 require 'rubyvis/transform'
