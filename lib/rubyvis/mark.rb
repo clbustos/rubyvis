@@ -1,4 +1,3 @@
-
 module Rubyvis
   # Constructs a new mark with default properties. Marks, with the exception of
   # the root panel, are not typically constructed directly; instead, they are
