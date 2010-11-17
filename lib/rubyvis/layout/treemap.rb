@@ -34,9 +34,9 @@ module Rubyvis
     #
     class Treemap < Hierarchy
       @properties=Hierarchy.properties.dup
-
       def initialize
-        self.node.
+        super
+        self.node
         stroke_style("#fff").
         fill_style("rgba(31, 119, 180, .25)").
         width(lambda {|n| n.dx}).
@@ -55,11 +55,13 @@ module Rubyvis
         extend(self.node).
         fill_style(nil).
         stroke_style(nil).
-        visible(lambda {|n| !n.first_child }))
+        visible(lambda {|n| !n.first_child })
         m.parent = self
         
       end
-      remove_method :link
+      def link
+        nil
+      end
       
       ##
       # :attr: round
@@ -196,9 +198,7 @@ module Rubyvis
         root.visit_after(lambda {|n,i|
           n.depth = i
           n.x = n.y = n.dx = n.dy = 0
-          n.size = n.first_child
-          ? Rubyvis.sum(n.child_nodes, lambda {|n| n.size })
-            : that._size.js_apply(that, (stack[0] = n, stack))
+          n.size = n.first_child ? Rubyvis.sum(n.child_nodes, lambda {|n| n.size }) : that._size.js_apply(that, (stack[0] = n, stack))
         })
         stack.shift()
         

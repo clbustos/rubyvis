@@ -30,6 +30,7 @@ re = ""
 color = pv.Colors.category19().by(lambda {|d| d.parent_node.node_name})
 nodes = pv.dom(flare).root("flare").nodes
 
+
 vis = pv.Panel.new()
     .width(860)
     .height(568)
@@ -44,7 +45,7 @@ treemap.leaf.add(pv.Panel)
     .line_width(1)
     .antialias(false)
 
-treemap.label.add(Rubyvis::Label)
+    treemap.node_label.add(Rubyvis::Label)
 .text_style(lambda {|d| pv.rgb(0, 0, 0, 1)})
 
 vis.render();

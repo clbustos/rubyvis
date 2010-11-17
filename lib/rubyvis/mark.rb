@@ -1035,14 +1035,17 @@ module Rubyvis
       end
     end
     
-    
-    
     # Evaluates the specified array of properties for the specified
     # instance <tt>s</tt> in the scene graph.
     #
     # @param s a node in the scene graph; the instance of the mark to build.
     # @param properties an array of properties.
-    def build_properties(ss, props) # :nodoc:
+    
+    def build_properties(ss,props) # :nodoc:
+      mark_build_properties(ss,props)
+    end
+    
+    def mark_build_properties(ss, props) # :nodoc:
       #p props
       props.each do |prop|
         v=prop.value

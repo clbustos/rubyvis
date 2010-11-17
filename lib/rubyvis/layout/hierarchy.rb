@@ -35,7 +35,7 @@ module Rubyvis
       @properties=Network.properties.dup
       def initialize
         super
-        self.link.stroke_style("#ccc")
+        link.stroke_style("#ccc") unless link.nil?
       end
       
       # @private Compute the implied links. (Links are null by default.) */

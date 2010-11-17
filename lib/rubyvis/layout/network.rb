@@ -75,7 +75,7 @@ module Rubyvis
     # @see Rubyvis::Layout::Matrix
     # @see Rubyvis::Layout::Arc
     # @see Rubyvis::Layout::Rollup
-    class Stack < Rubyvis::Layout
+    class Network < Rubyvis::Layout
       @properties=Layout.properties.dup
       attr_accessor :_id
       def initialize
