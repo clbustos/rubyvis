@@ -151,7 +151,7 @@ module Rubyvis
       attr_accessor_dsl [:nodes, lambda {|v|
         out=[]
         v.each_with_index {|d,i|
-          d=OpenStruct.new({:node_value=>d}) unless d.is_a? OpenStruct
+          d=OpenStruct.new({:node_value=>d}) unless d.respond_to? :node_value
           d.index=i
           out.push(d)
         }
