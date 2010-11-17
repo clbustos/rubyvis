@@ -86,8 +86,7 @@ module Rubyvis
         end
         nodes.length.times {|i|
           n = nodes[i]
-          n.mid_angle = (orient == "radial") ? mid_angle(n)
-        : (horizontal ? Math::PI / 2.0 : 0)
+          n.mid_angle = (orient == "radial") ? mid_angle(n) : (horizontal ? Math::PI / 2.0 : 0)
           n.x = x(n)
           n.y = y(n)
           n.mid_angle+=Math::PI if (n.first_child)

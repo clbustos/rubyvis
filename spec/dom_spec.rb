@@ -9,12 +9,12 @@ describe Rubyvis::Dom do
       :c=>{:ca=>5}
     }
     dom_map=Rubyvis::Dom.new(map)       
-    nodes= dom_map.nodes
     
-    nodes.should be_instance_of Array
-    nodes.size.should eq 8
-    ar=nodes.map do |n|
-      [n.node_name,n.node_value]
+    root=dom_map.root.sort {|a,b| a.node_name.to_s<=>b.node_name.to_s}
+    root.nodes.should be_instance_of Array
+    root.nodes.size.should eq 8
+    ar=root.nodes.map do |n|
+      [n.node_name, n.node_value]
     end
     ar.should eq [[nil, nil], [:a, nil], [:aa, 1], [:ab, nil], [:aba, 2], [:b, 4], [:c, nil], [:ca, 5]]
   end
@@ -30,7 +30,14 @@ describe Rubyvis::Dom do
          nn.size=nn.node_value.to_f
        end
     }
-    root.sort(lambda {|a,b| a.size<=>b.size})
+    root.sort(lambda {|a,b| 
+        if a.size!=b.size
+          a.size<=>b.size 
+        else
+          a.node_name.to_s<=>b.node_name.to_s
+        end
+          
+    })
     ar=[]
     root.visit_before {|n,i|
       ar.push [n.node_name, n.size]
