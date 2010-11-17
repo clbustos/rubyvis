@@ -1,4 +1,4 @@
-require File.dirname(__FILE__)+"/spec_helper.rb"
+require File.expand_path(File.dirname(__FILE__)+"/spec_helper.rb")
 describe Rubyvis::Scale::Ordinal do
   if Rubyvis::JohnsonLoader.available?
     context "direct protovis API comparison" do 

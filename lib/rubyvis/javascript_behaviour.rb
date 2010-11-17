@@ -66,14 +66,9 @@ class Proc
     end
     #puts "#{args}->#{arguments} (#{self.arity})"
     if self.arity==0
-      if RUBY_VERSION <="1.9.2" # CHECK THIS
-        obj.instance_eval(&self)
-      else
         obj.instance_exec(&self)
-        
-      end
     else
-      obj.instance_exec(*arguments,&self)
+      obj.instance_exec(*arguments, &self)
     end
   end
   # Same as js_apply, but using explicit arguments

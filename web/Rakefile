@@ -25,7 +25,7 @@ EXAMPLES.each do |v|
   e=v[1]
   file "examples/#{e}.html"=>["examples.haml", "examples/#{e}.svg", :build_site, v[0]]
   file "examples/#{e}.svg"=>[v[0]] do |t|
-    system "ruby1.9 #{v[0]} > #{t.name}"
+    system "ruby #{v[0]} > #{t.name}"
   end
   file "examples/#{e}.png"=>["examples/#{e}.svg"] do |t|
   system   "rsvg  -w 200 -h 200 -f png examples/#{e}.svg #{t.name}"

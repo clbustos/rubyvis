@@ -1,4 +1,4 @@
-require File.dirname(__FILE__)+"/spec_helper.rb"
+require File.expand_path(File.dirname(__FILE__)+"/spec_helper.rb")
 describe Rubyvis::Area do
   it "should have correct properties" do
     props=[:antialias, :bottom, :cursor, :data, :events, :fill_style, :height, :id, :interpolate, :left, :line_width, :reverse, :right, :segmented, :stroke_style, :tension, :title, :top, :visible, :width].inject({}) {|ac, v| ac[v]=true; ac}

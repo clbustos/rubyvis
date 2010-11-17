@@ -1,3 +1,9 @@
+=== 0.2.2 / 2010-11-13
+
+* Updated to rspec 2. Bug fix: instance_eval raises an error on js_apply
+* Updated antibiotics example
+* Tested on 1.8.7, 1.9.1, 1.9.2 and svn-head.
+
 === 0.2.1 / 2010-11-11
 
 * Added Rubyvis.dict() 

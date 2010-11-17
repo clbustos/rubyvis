@@ -1,4 +1,4 @@
-require File.dirname(__FILE__)+"/spec_helper.rb"
+require File.expand_path(File.dirname(__FILE__)+"/spec_helper.rb")
   describe Rubyvis::Label do
   it "should have correct properties" do
     props=[:antialias, :bottom, :cursor, :data, :events, :font, :id, :left, :reverse, :right, :text, :text_align, :text_angle, :text_baseline, :text_decoration, :text_margin, :text_shadow, :text_style, :title, :top, :visible].inject({}) {|ac, v| ac[v]=true; ac}

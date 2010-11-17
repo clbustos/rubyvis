@@ -1,4 +1,4 @@
-require File.dirname(__FILE__)+"/spec_helper.rb"
+require File.expand_path(File.dirname(__FILE__)+"/spec_helper.rb")
 describe Rubyvis::Scale do
   it "should return a correct numeric interpolator" do
     i=Rubyvis::Scale.interpolator(0,20)

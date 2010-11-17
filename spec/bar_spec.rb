@@ -1,4 +1,4 @@
-require File.dirname(__FILE__)+"/spec_helper.rb"
+require File.expand_path(File.dirname(__FILE__)+"/spec_helper.rb")
   describe Rubyvis::Bar do
   it "should have correct properties" do
     props=[:antialias, :bottom, :cursor, :data, :events, :fill_style, :height, :id, :left, :line_width, :reverse, :right, :stroke_style, :title, :top, :visible, :width].inject({}) {|ac, v| ac[v]=true; ac}

@@ -1,6 +1,6 @@
 $:.unshift(File.dirname(__FILE__)+"/../lib")
-require 'spec'
-require 'spec/autorun'
+require 'rspec'
+#require 'spec/autorun'
 require 'rubyvis'
 require 'pp'
 require 'nokogiri'
@@ -27,14 +27,14 @@ module Rubyvis
   end
 end
 # Spec matcher 
-Spec::Matchers.define :have_svg_attributes do |exp|
+RSpec::Matchers.define :have_svg_attributes do |exp|
   match do |obs|
     exp.each {|k,v|
       obs.attributes[k].value.should==v
     }
   end
 end
-Spec::Matchers.define :have_path_data_close_to do |exp|
+RSpec::Matchers.define :have_path_data_close_to do |exp|
   def path_scan(path)
       path.scan(/([MmCcZzLlHhVvSsQqTtAa, ])(\d+(?:\.\d+)?)/).map {|v|
       v[0]="," if v[0]==" "
