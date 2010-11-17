@@ -1,5 +1,4 @@
 # = Antibiotic Effectiveness : Scatterplot
-#
 # After World War II, antibiotics earned the moniker “wonder drugs” for quickly treating previously-incurable diseases. Data was gathered to determine which drug worked best for each bacterial infection. Comparing drug performance was an enormous aid for practitioners and scientists alike. In the fall of 1951, Will Burtin published this graph showing the effectiveness of three popular antibiotics on 16 different bacteria, measured in terms of minimum inhibitory concentration.
 # Recreating this display revealed some minor errors in the original: a missing grid line at 0.01 μg/ml, and an exaggeration of some values for penicillin. 
 $:.unshift(File.dirname(__FILE__)+"/../../lib")
