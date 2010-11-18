@@ -92,7 +92,7 @@ module Rubyvis
       def radius(n)
         n.parent_node ? (n.depth * (@_or-@_ir)+@_ir) : 0
       end
-      def min_angle(n)
+      def mid_angle(n)
         n.parent_node ? ((n.breadth - 0.25) * 2 * Math::PI ) : 0
       end
       def node_link_x(n)
@@ -211,7 +211,7 @@ module Rubyvis
       end # end method
       def dx(n)
         if @_orient=='left' or @_orient=='right'
-          (n.max_depth - n.min_depth) / (1.0 + depth) * @_w
+          (n.max_depth - n.min_depth) / (1.0 + @_depth) * @_w
         elsif @_orient=='top' or @_orient=='bottom'
           (n.max_breadth - n.min_breadth) * @_w
         elsif @_orient=='radial'
@@ -228,16 +228,16 @@ module Rubyvis
         end        
       end
       def inner_radius(n)
-        [0, scale(n.min_depth, depth/2.0)].max * (@_or - @_ir) + @_ir
+        [0, fill_scale(n.min_depth, @_depth/2.0)].max * (@_or - @_ir) + @_ir
       end
       def outer_radius(n)
-        scale(n.max_depth, depth / 2.0) * (@_or - @_ir) + @_ir
+        fill_scale(n.max_depth, @_depth / 2.0) * (@_or - @_ir) + @_ir
       end
       def start_angle(n)
         (n.parent_node ? n.min_breadth - 0.25 : 0) * 2 * Math::PI
       end
       def angle(n)
-        (n.parent_node ? n.max_breadt - n.min_breadth : 1 ) * 2 * Math::PI
+        (n.parent_node ? n.max_breadth - n.min_breadth : 1 ) * 2 * Math::PI
       end
     end
   end
