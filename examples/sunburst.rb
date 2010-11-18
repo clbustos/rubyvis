@@ -1,5 +1,5 @@
 # = Sunbursts
-# A sunburst is an adjacency diagram: a space-filling variant of the node-link diagram. Rather than drawing a link between parent and child in the hierarchy, nodes are drawn as solid areas (either wedges or bars), and their placement relative to adjacent nodes reveals their position in the hierarchy. Because the nodes are now space-filling, we can use an angle encoding for the size of software classes and packages. This reveals an additional dimension that would be difficult to show in a node-link diagram. 
+# A sunburst is an adjacency diagram: a space-filling variant of the node-link diagram. Rather than drawing a link between parent and child in the hierarchy, nodes are drawn as solid areas (either wedges or bars), and their placement relative to adjacent nodes reveals their position in the hierarchy. Because the nodes are now space-filling, we can use an angle encoding for the size of software files. This reveals an additional dimension that would be difficult to show in a node-link diagram. 
 
 $:.unshift(File.dirname(__FILE__)+"/../lib")
 require 'rubyvis'
