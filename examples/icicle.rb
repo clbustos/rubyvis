@@ -1,7 +1,7 @@
 # = Icicle
 # An icicle is simply a sunburst transformed from polar to cartesian coordinates. Here we show the various files on Rubyvis package; the color of each cell corresponds to the package, while the area encodes the size of the source code in bytes 
 
-$:.unshift(File.dirname(__FILE__)+"/../../lib")
+$:.unshift(File.dirname(__FILE__)+"/../lib")
 require 'rubyvis'
 
 def get_files(path)
@@ -18,11 +18,7 @@ def get_files(path)
   h
 end
 
-$flare=get_files(File.dirname(__FILE__)+"/../../")
-
-
-
-#load(File.dirname(__FILE__)+"/icicle_data.rb")
+$flare=get_files(File.dirname(__FILE__)+"/../")
 
 colors=Rubyvis::Colors.category19
 vis = Rubyvis::Panel.new.
