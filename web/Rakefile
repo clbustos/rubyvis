@@ -1,6 +1,6 @@
 # -*- ruby -*-
 require 'rake'
-
+require 'fileutils'
 directory "examples"
 
 def get_base(f)
@@ -17,6 +17,19 @@ task :build_site do
   ruby "build_site.rb"
 end
 
+
+task :clean do
+  Dir.glob(File.dirname(__FILE__)+"/examples/*.svg").each do |t|
+    FileUtils.rm t
+  end
+  Dir.glob(File.dirname(__FILE__)+"/examples/*.html").each do |t|
+    FileUtils.rm t
+  end
+  Dir.glob(File.dirname(__FILE__)+"/examples/*.png").each do |t|
+    FileUtils.rm t
+  end
+  
+end
 task :default=>["examples", "index.html", "../lib/rubyvis.rb"]+EXAMPLES_BASE.map {|v| "examples/#{v}.html"}
 
 file "index.html"=>["index.haml", :build_site]+EXAMPLES_BASE.map {|v| "examples/#{v}.png"}

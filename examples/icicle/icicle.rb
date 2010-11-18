@@ -1,19 +1,38 @@
-# = Treemap
-# Introduced by Ben Shneiderman in 1991, a treemap recursively subdivides area into rectangles. As with adjacency diagrams, the size of any node in the tree is quickly revealed. This example uses color to encode different packages of the Flare visualization toolkit, and area to encode file size. “Squarified” treemaps use approximately square rectangles, which offer better readability and size estimation than naive “slice-and-dice” subdivision. Fancier algorithms such as Voronoi and jigsaw treemaps also exist but are less common.
+# = Icicle
+# An icicle is simply a sunburst transformed from polar to cartesian coordinates. Here we show the various files on Rubyvis package; the color of each cell corresponds to the package, while the area encodes the size of the source code in bytes 
 
 $:.unshift(File.dirname(__FILE__)+"/../../lib")
 require 'rubyvis'
-load(File.dirname(__FILE__)+"/icicle_data.rb")
+
+def get_files(path)
+  h={}
+  Dir.glob("#{path}/*").each {|e|
+    next if File.expand_path(e)=~/pkg|web|vendor|~/
+    pa=File.expand_path(e) 
+    if File.stat(pa).directory?
+      h[File.basename(pa)]=get_files(pa)
+    else
+      h[File.basename(pa)]=File.stat(pa).size
+    end
+  }
+  h
+end
+
+$flare=get_files(File.dirname(__FILE__)+"/../../")
+
+
+
+#load(File.dirname(__FILE__)+"/icicle_data.rb")
 
 colors=Rubyvis::Colors.category19
 vis = Rubyvis::Panel.new.
-  width(900).
-  height(300).
+  width(600).
+  height(500).
   bottom(30)
 #$flare={:a=>{:b=>1,:c=>2}}
 
 layout = vis.add(Rubyvis::Layout::Partition::Fill).
-  nodes(Rubyvis.dom($flare).root("flare").nodes)
+  nodes(Rubyvis.dom($flare).root("rubyvis").nodes)
 layout.order("descending")
 layout.orient("top")
 layout.size(lambda {|d| d.node_value})
