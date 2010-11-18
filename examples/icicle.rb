@@ -7,7 +7,7 @@ require 'rubyvis'
 def get_files(path)
   h={}
   Dir.glob("#{path}/*").each {|e|
-    next if File.expand_path(e)=~/pkg|web|vendor|~/
+    next if File.expand_path(e)=~/pkg|web|vendor|doc|~/
     pa=File.expand_path(e) 
     if File.stat(pa).directory?
       h[File.basename(pa)]=get_files(pa)
@@ -18,23 +18,22 @@ def get_files(path)
   h
 end
 
-$flare=get_files(File.dirname(__FILE__)+"/../")
+files=get_files(File.dirname(__FILE__)+"/../")
 
 colors=Rubyvis::Colors.category19
 vis = Rubyvis::Panel.new.
   width(600).
   height(500).
   bottom(30)
-#$flare={:a=>{:b=>1,:c=>2}}
 
 layout = vis.add(Rubyvis::Layout::Partition::Fill).
-  nodes(Rubyvis.dom($flare).root("rubyvis").nodes)
+  nodes(Rubyvis.dom(files).root("rubyvis").nodes)
 layout.order("descending")
 layout.orient("top")
 layout.size(lambda {|d| d.node_value})
 
 layout.node.add(pv.Bar).
-  fill_style(lambda {|d| colors.scale(d.parent_node)}).
+  fill_style(lambda {|d| colors.scale(d.parent_node ? d.parent_node.node_name : '')}).
   stroke_style("rgba(255,255,255,.5)").
   line_width(1).
   antialias(false)
