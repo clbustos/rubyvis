@@ -81,7 +81,7 @@ vis.add(pv.Rule)
 
 # A legend showing the year. */
 vis.add(pv.Dot)
-    .extend(dot)
+    .mark_extend(dot)
     .data([{:year=>1931}, {:year=>1932}])
     .left(lambda {|d| 260 + self.index * 40})
     .top(-8)
