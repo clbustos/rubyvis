@@ -13,6 +13,8 @@ require 'rubyvis/javascript_behaviour'
 require 'rubyvis/format'
 require 'rubyvis/mark'
 require 'rubyvis/scale'
+require 'rubyvis/histogram'
+
 require 'rubyvis/color/color'
 require 'rubyvis/color/colors'
 
