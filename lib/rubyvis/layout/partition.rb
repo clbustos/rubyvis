@@ -138,7 +138,6 @@ module Rubyvis
         stack.unshift(nil)
         root.visit_after {|n,i| 
           max_depth=i if i>max_depth
-          
           if n.first_child
             n.size = Rubyvis.sum(n.child_nodes, lambda {|v| v.size})
           else
@@ -146,8 +145,8 @@ module Rubyvis
             n.size=that._size(stack[0])
           end
           }
+          
         stack.shift
-
         # # Order #/
         case s.order
           when 'ascending'
@@ -175,8 +174,8 @@ module Rubyvis
           end
         }
         root.visit_after {|n,i|
-          n.min_depth=i-1
-          n.max_depth=n.depth=i
+          n.min_depth=(i-1)*ds
+          n.max_depth=n.depth=i*ds
         }
         
         node_link_build_implied(s)

@@ -139,8 +139,8 @@ module Rubyvis
         
           @node_label.
             text_align("center").
-            left(lambda {|n| n.nil? ? 0 :  n.x+ (n.dx / 2.0) })
-          top(lambda {|n| n.nil? ? 0 : n.y+(n.dy / 0.2)})
+            left(lambda {|n| n.x+ (n.dx / 2.0) }).
+            top(lambda {|n| n.y+(n.dy / 2.0)})
           @link=nil
         
       end

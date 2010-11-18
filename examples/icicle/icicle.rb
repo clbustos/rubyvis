@@ -26,7 +26,7 @@ layout.node.add(pv.Bar).
 
 layout.node_label.add(pv.Label)
     .text_angle(-Math::PI / 2.0)
-    .visible(lambda {|d| d.dx>6 })
+    .visible(lambda {|d| d.dx >6 })
 vis.render()
 
 puts vis.to_svg
