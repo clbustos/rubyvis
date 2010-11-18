@@ -136,7 +136,9 @@ module Rubyvis
       # but it was replaced to not conflict with Mark.label() 
       def _node_label
         that=self
-        nl=Mark.new.mark_extend(@node).
+        nl=Mark.new().
+          mark_extend(@node).
+          data(lambda {that.nodes}).
           text_margin(7).
           text_baseline("middle").
           text(lambda {|n| n.node_name ? n.node_name : n.node_value }).
@@ -198,7 +200,7 @@ module Rubyvis
         end
       end
       
-      def build_implied(s)
+      def build_implied(s)        
         network_build_implied(s)
       end
       def network_build_implied(s)

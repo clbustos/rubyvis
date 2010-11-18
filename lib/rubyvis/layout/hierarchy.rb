@@ -56,185 +56,182 @@ module Rubyvis
               :link_value=>1
         })}
       end
-      def node_link
-        NodeLink.new(self)
-      end
-      def fill
-        Fill.new(self)
-      end
+      #def node_link
+      #  NodeLink.new(self)
+      #end
+      #def fill
+      #  Fill.new(self)
+      #end
     end
     
-    class NodeLink
-      attr_accessor :ir, :_or, :orient, :w, :h
-      def initialize(obj)
-        @obj=obj
-      end
-      def build_implied(s)
+    module NodeLink
+      attr_accessor :_ir, :_or, :_orient, :_w, :_h
+      def node_link_build_implied(s)
         nodes = s.nodes
-        orient= s.orient
-        orient=~/^(top|bottom)$/
+        @_orient= s.orient
+        @_orient=~/^(top|bottom)$/
         
-        horizontal = $1
-        w = s.width
-        h = s.height
+        horizontal = !$1.nil?
+        @_w = s.width
+        @_h = s.height
         # /* Compute default inner and outer radius. */
-        if (orient == "radial") 
-          ir = s.inner_radius
-          _or = s.outer_radius
-          ir||=0
-          _or||=[w,h].min / 2.0
+        if (@_orient == "radial") 
+          @_ir = s.inner_radius
+          @_or = s.outer_radius
+          @_ir||=0
+          @_or||=[@_w,@_h].min / 2.0
         end
-        nodes.length.times {|i|
-          n = nodes[i]
-          n.mid_angle = (orient == "radial") ? mid_angle(n) : (horizontal ? Math::PI / 2.0 : 0)
-          n.x = x(n)
-          n.y = y(n)
+        nodes.each_with_index{|n,i|
+          n.mid_angle = (@_orient == "radial") ? mid_angle(n) : (horizontal ? Math::PI / 2.0 : 0)
+          n.x = node_link_x(n)
+          n.y = node_link_y(n)
           n.mid_angle+=Math::PI if (n.first_child)
-        }      
+        }
+        false
       end
       def radius(n)
-        n.parent_node ? (n.depth * (_or-ir)+ir) : 0
+        n.parent_node ? (n.depth * (@_or-@_ir)+@_ir) : 0
       end
       def min_angle(n)
         n.parent_node ? ((n.breadth - 0.25) * 2 * Math::PI ) : 0
       end
-      def x(n)
-        case orient
+      def node_link_x(n)
+        case @_orient
           when "left"
-            n.depth*w
+            n.depth*@_w
           when "right"
-            w-n.depth*w
+            @_w-n.depth*@_w
           when "top"
-            n.breadth*w
+            n.breadth*@_w
           when "bottom"
-            w-n.breath*w
+            @_w-n.breath*@_w
           when "radial"
-            w/2.0+radius(n)*Math.cos(n.mid_angle)
+            @_w/2.0+radius(n)*Math.cos(n.mid_angle)
         end
       end
-      def y(n)
-        case orient
+      def node_link_y(n)
+        case @_orient
           when "left"
-            n.breadth*h
+            n.breadth*@_h
           when "right"
-            h-n.depth*h
+            @_h-n.depth*@_h
           when "top"
-            n.depth*h            
+            n.depth*@_h            
           when "bottom"
-            h-n.breath*h
+            @_h-n.breath*@_h
           when "radial"
-            h / 2.0 + radius(n) * Math.sin(n.mid_angle)
+            @_h / 2.0 + radius(n) * Math.sin(n.mid_angle)
         end # end case
       end # end method
     end # end class
     
-    class Fill
-      attr_accessor :ir, :_or, :orient, :w, :h
-      def initialize(obj)
-        @obj=obj
+    module Fill
+      attr_accessor :ir, :_or, :_orient, :_w, :_h
+      def fill_constructor
+        @node.stroke_style("#fff").
+          fill_style("#ccc").
+          width(lambda {|n| n.dx}).
+          height(lambda {|n| n.dy}).
+          inner_radius(lambda {|n| n.inner_radius}).
+          outer_radius(lambda {|n| n.outer_radius}).
+          start_angle(lambda {|n| n.start_angle}).
+          angle(lambda {|n| n.angle})
+        
+          @node_label.
+            text_align("center").
+            left(lambda {|n| n.nil? ? 0 :  n.x+ (n.dx / 2.0) })
+          top(lambda {|n| n.nil? ? 0 : n.y+(n.dy / 0.2)})
+          @link=nil
+        
       end
-      def constructor
-        self.node.
-        stroke_style("#fff").
-        fill_style("#ccc").
-        width(lambda {|n| n.dx}).
-        height(lambda {|n| n.dy}).
-        inner_radius(lambda {|n| n.inner_radius}).
-        outer_radius(lambda {|n| n.outer_radius}).
-        start_angle(lambda {|n| n.start_angle}).
-        angle(lambda {return n.angle})
-      self.node_label.
-        text_align("center").
-        left(lambda {|n| n.x+ (n.dx / 2.0) })
-        top(lambda {|n| n.y+(n.dy / 0.2)})
-        # delete this.link
-      end
-      def build_implied(s)
+      
+      def fill_build_implied(s)
         nodes = s.nodes
-        orient= s.orient
-        orient=~/^(top|bottom)$/
-        horizontal = $1
-        w = s.width
-        h = s.height
-        depth = -nodes[0].min_depth
-        if (orient == "radial") 
-          ir = s.inner_radius
-          _or = s.outer_radius
-          ir||=0
-          depth = depth * 2 if ir!=0
-          _or||=[w,h].min / 2.0
+        @_orient= s.orient
+        @_orient=~/^(top|bottom)$/
+        horizontal = !$1.nil?
+        @_w = s.width
+        @_h = s.height
+        @_depth = -nodes[0].min_depth
+        if (@_orient == "radial") 
+          @_ir = s.inner_radius
+          @_or = s.outer_radius
+          @_ir||=0
+          @_depth = @_depth * 2 if @_ir!=0
+          @_or||=[@_w,@_h].min / 2.0
         end
         nodes.each_with_index {|n,i|
-          n.x = x(n)
-          n.y = y(n)
-          if (orient == "radial") 
+          n.x = fill_x(n)
+          n.y = fill_y(n)
+          if (@_orient == "radial") 
             n.inner_radius = inner_radius(n);
             n.outer_radius = outer_radius(n);
             n.start_angle = start_angle(n);
             n.angle = angle(n);
-            n.mid_Angle = n.start_angle + n.angle / 2.0;
+            n.mid_angle = n.start_angle + n.angle / 2.0
           else 
-            n.mid_angle = horizontal ? -Math::PI / 2.0 : 0;
+            n.mid_angle = horizontal ? -Math::PI / 2.0 : 0
           end
           n.dx = dx(n)
           n.dy = dy(n)
         }
+        false
       end
       
-      def scale(d, depth)
+      def fill_scale(d, depth)
         (d+depth) / (1.0+depth)
       end
-      def x(n)
-        case orient
+      def fill_x(n)
+        case @_orient
           when "left"
-            scale(n.min_depth,depth)*w
+            fill_scale(n.min_depth,@_depth)*@_w
           when "right"
-            (1-scale(n.max_depth,depth))*w
+            (1-fill_scale(n.max_depth,@_depth))*@_w
           when "top"
-            n.min_breadth*w
+            n.min_breadth*@_w
           when "bottom"
-            (1-n.max_breath)*w
+            (1-n.max_breath)*@_w
           when "radial"
-            w / 2.0
+            @_w / 2.0
         end
       end
-      def y(n)
-        case orient
+      def fill_y(n)
+        case @_orient
           when "left"
-            n.min_breadth*h
+            n.min_breadth*@_h
           when "right"
-            (1-n.max_breadth)*h
+            (1-n.max_breadth)*@_h
           when "top"
-            scale(n.min_depth, depth) * h            
+            fill_scale(n.min_depth, @_depth) * @_h            
           when "bottom"
-            (1-scale(n.max_depth, depth)) * h
+            (1-fill_scale(n.max_depth, @_depth)) * @_h
           when "radial"
-            h / 2.0
+            @_h / 2.0
         end # end case
       end # end method
       def dx(n)
-        if orient=='left' or orient=='right'
-          (n.max_depth - n.min_depth) / (1.0 + depth) * w;
-        elsif orient=='top' or orient=='bottom'
-          (n.max_breadth - n.min_breadth) * w
-        elsif orient=='radial'
+        if @_orient=='left' or @_orient=='right'
+          (n.max_depth - n.min_depth) / (1.0 + depth) * @_w
+        elsif @_orient=='top' or @_orient=='bottom'
+          (n.max_breadth - n.min_breadth) * @_w
+        elsif @_orient=='radial'
           n.parent_node ? (n.inner_radius + n.outer_radius) * Math.cos(n.mid_angle) : 0
         end          
       end
       def dy(n)
-        if orient=='left' or orient=='right'
-          (n.max_breadth - n.min_breadth) * h;
-        elsif orient=='top' or orient=='bottom'
-          (n.max_depth - n.min_depth) / (1.0 + depth) * h;
+        if @_orient=='left' or @_orient=='right'
+          (n.max_breadth - n.min_breadth) * @_h
+        elsif @_orient=='top' or @_orient=='bottom'
+          (n.max_depth - n.min_depth) / (1.0 + @_depth) * @_h
         elsif orient=='radial'
           n.parent_node ? (n.inner_radius + n.outer_radius) * Math.sin(n.mid_angle) : 0
         end        
       end
       def inner_radius(n)
-        [0, scale(n.min_depth, depth/2.0)].max * (_or - _ir) + ir
+        [0, scale(n.min_depth, depth/2.0)].max * (@_or - @_ir) + @_ir
       end
       def outer_radius(n)
-        scale(n.max_depth, depth / 2.0) * (_or - ir) + ir
+        scale(n.max_depth, depth / 2.0) * (@_or - @_ir) + @_ir
       end
       def start_angle(n)
         (n.parent_node ? n.min_breadth - 0.25 : 0) * 2 * Math::PI

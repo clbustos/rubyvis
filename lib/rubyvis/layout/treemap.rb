@@ -37,6 +37,7 @@ module Rubyvis
       def initialize
         super
         @size=lambda {|d| d.node_value.to_f}
+        
         @node.stroke_style("#fff").
           fill_style("rgba(31, 119, 180, .25)").
           width(lambda {|n| n.dx}).
@@ -48,7 +49,6 @@ module Rubyvis
           top(lambda {|n| n.y + (n.dy / 2.0) }).
           text_align("center").
           text_angle(lambda {|n| n.dx > n.dy ? 0 : -Math::PI / 2.0 })
-      
       end
       
       def leaf

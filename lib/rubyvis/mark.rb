@@ -979,7 +979,6 @@ module Rubyvis
     def build
       scene=self.scene
       stack=Mark.stack
-
       if(!scene)
         self.scene=SceneElement.new
         scene=self.scene
@@ -1046,7 +1045,7 @@ module Rubyvis
     end
     
     def mark_build_properties(ss, props) # :nodoc:
-      #p props
+      #p "#{type}:"+props.map {|prop| prop.name}.join(",")
       props.each do |prop|
         v=prop.value
 
@@ -1057,6 +1056,7 @@ module Rubyvis
         ss.send((prop.name.to_s+"=").to_sym, v)
       end
     end
+    
     # @todo implement
     def event(type,handler) # :nodoc:
       #@_handlers[type]=handler

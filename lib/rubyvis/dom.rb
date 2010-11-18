@@ -100,7 +100,19 @@ module Rubyvis
       attr_accessor :y
       attr_accessor :size
       
+      attr_accessor :min_breadth
+      attr_accessor :max_breadth
+      attr_accessor :breadth
+      attr_accessor :min_depth
+      attr_accessor :max_depth
       
+      attr_accessor :mid_angle
+      attr_accessor :angle
+      attr_accessor :start_angle
+      attr_accessor :outer_radius
+      attr_accessor :inner_radius      
+      
+
       # Constructs a DOM node for the specified value. Instances of this class are
       # not typically created directly; instead they are generated from a JavaScript 
       # map using the {@link pv.Dom} operator.
