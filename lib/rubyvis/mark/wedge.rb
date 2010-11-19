@@ -1,4 +1,5 @@
 module Rubyvis
+  # Alias for Rubyvis::Wedge
   def self.Wedge
     Rubyvis::Wedge
   end
@@ -7,10 +8,12 @@ module Rubyvis
       "wedge"
     end
     @properties=Mark.properties.dup
+    
     attr_accessor_dsl :start_angle, :end_angle, :angle, :inner_radius, :outer_radius, :line_width, [:stroke_style, lambda {|d| Rubyvis.color(d)}], [:fill_style, lambda {|d| Rubyvis.color(d)}]
+    
     def self.defaults
       a=Rubyvis.Colors.category20()
-      Wedge.new.extend(Mark.defaults).start_angle(lambda  {s=self.sibling; s ? s.end_angle: -Math::PI.quo(2) } ).inner_radius( 0 ).line_width( 1.5 ).stroke_style( nil ).fill_style( lambda {a.scale(self.index)})
+      Wedge.new.mark_extend(Mark.defaults).start_angle(lambda  {s=self.sibling; s ? s.end_angle: -Math::PI.quo(2) } ).inner_radius( 0 ).line_width( 1.5 ).stroke_style( nil ).fill_style( lambda {a.scale(self.index)})
     end
     def mid_radius
       (inner_radius+outer_radius) / 2.0
@@ -20,7 +23,8 @@ module Rubyvis
     end
     
     def anchor(name)
-      partial=lambda {|s| s.inner_radius!=0 ? true : s.angle<2*Math.PI}
+      that=self
+      partial=lambda {|s| s.inner_radius!=0 ? true : s.angle < 2*Math::PI}
       mid_radius=lambda {|s| (s.inner_radius+s.outer_radius) / 2.0}
       mid_angle=lambda {|s| (s.start_angle+s.end_angle) / 2.0 }
       
@@ -65,9 +69,9 @@ module Rubyvis
         if (partial.call(s))
           case (self.name()) 
           when 'outer'
-            return self.upright(mid_angle.call(s)) ? 'right':'left'
+            return that.upright(mid_angle.call(s)) ? 'right':'left'
           when 'inner'
-            return self.upright(mid_angle.call(s)) ? 'left':'right'
+            return that.upright(mid_angle.call(s)) ? 'left':'right'
             
           end
         end
@@ -77,9 +81,9 @@ module Rubyvis
         if (partial.call(s))
           case (self.name()) 
           when 'start'
-            return self.upright(s.start_angle) ? 'top':'bottom'
+            return that.upright(s.start_angle) ? 'top':'bottom'
           when 'end'
-            return self.upright(s.end_angle) ? 'bottom':'top'
+            return that.upright(s.end_angle) ? 'bottom':'top'
             
           end
         end
@@ -101,24 +105,29 @@ module Rubyvis
             a=s.end_angle
           end
         end
-        self.upright(a) ? a: (a+Math::PI) 
+        that.upright(a) ? a: (a+Math::PI) 
       })
       
     end
     
-    
     def self.upright(angle)
       angle=angle % (2*Math::PI)
       angle=(angle<0) ? (2*Math::PI+angle) : angle
-      (angle < Math::PI/2.0) or (angle>=3*Math::PI / 2.0)
+      (angle < Math::PI/2.0) or (angle>=3*Math::PI / 2.0)  
       
     end
+    def upright(angle)
+      self.upright(angle)
+    end
+    
     def build_implied(s)
-      if (s.angle.nil?)
-        s.angle= s.end_angle-s.start_angle 
+      
+      if s.angle.nil?
+        s.angle = s.end_angle - s.start_angle 
       elsif s.end_angle.nil?
-        s.end_angle=s.start_angle+s.angle
+        s.end_angle = s.start_angle + s.angle
       end
+      
       mark_build_implied(s)
     end
   end

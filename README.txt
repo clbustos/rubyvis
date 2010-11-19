@@ -1,4 +1,4 @@
-= protoruby
+= Rubyvis
 
 * http://rubyvis.rubyforge.org/
 
@@ -8,7 +8,7 @@ Ruby port of Protovis[http://vis.stanford.edu/protovis/], a great visualization 
 
 == FEATURES/PROBLEMS:
 
-Implemented: All marks, except transient, image and transition. 
+Implemented: All marks, except transient and transitions. 
 
 Basic protovis examples[http://vis.stanford.edu/protovis/ex/] works exactly like ruby ones with minor sintactic modifications:
 * Area Charts: Ok
@@ -27,10 +27,6 @@ Complex examples requires more works:
 
 
 I try to maintain, when posible, complete compatibility with Javascript API, including camel case naming of functions. Johnson [http://github.com/jbarnette/johnson] - the lovely Javascript wrapper inside Ruby embrace - is our friend to test implementation of basic object. 
-
-Until version 0.1.0, lambdas should always should created explicitly for method you may be temted to call it with a block.
-
-On a second stage, traditional block calling could be using maintaining backwards compatibily with Javascript API. See TODO section for proposal of new API.
 
 User could use +pv+ freely, cause is defined as a global method which call Rubyvis.
 
@@ -69,75 +65,56 @@ User could use +pv+ freely, cause is defined as a global method which call Rubyv
 
 == SYNOPSIS:
 
+The primary API, based on Gregory Brown's Ruby Best Practices, uses blocks and name of marks as methods
+
+    require 'rubyvis'
+    
+    vis = Rubyvis::Panel.new do 
+      width 150
+      height 150
+      bar do
+        data [1, 1.2, 1.7, 1.5, 0.7, 0.3]
+        width 20
+        height {|d| d * 80}
+        bottom(0)
+        left {index * 25}
+      end
+    end
+    
+    vis.render
+    puts vis.to_svg
+
+
+The library allows you to use chain methods API, like original protovis
+
     require 'rubyvis'
     
     vis = Rubyvis::Panel.new.width(150).height(150);
-    vis.add(pv.Bar).data([1, 1.2, 1.7, 1.5, 0.7, 0.3]).
-    width(20).
-    height(lambda {|d| d * 80}).
-    bottom(0).
-    left(lambda {self.index * 25});
+    
+    vis.add(pv.Bar).
+      data([1, 1.2, 1.7, 1.5, 0.7, 0.3]).
+      width(20).
+      height(lambda {|d| d * 80}).
+      bottom(0).
+      left(lambda {self.index * 25});
+    
     vis.render
     puts vis.to_svg
     
-See examples directory for original protovis examples adaptations.
 
-== TODO
+See examples directory for original protovis examples adaptations and others graphics
 
-Implement a ruby-like API, like ReportBuilder[http://ruby-statsample.rubyforge.org/reportbuilder/] or Prawn [http://prawn.majesticseacreature.com/docs/] 
+== THE MOST FREQUENT QUESTION (MFQ)
 
-The examples/area.rb script should like somethink like that
+¿Why use a server-side technology if I can use a client-side, which is faster and more economic for developer?
 
-    require 'rubyvis'
-    vis = Rubyvis::Panel.new {
-      width w 
-      height h 
-      bottom 20 
-      left 20 
-      right 10
-      top 5
-      # Y-axis
-      rule {
-        data y.ticks(5)
-        bottom y
-        stroke_style {|d| d!=0 ? "#eee" : "#000"}
-        anchor("left") {  
-          label {
-            text y.tick_format
-          }
-        }
-      }
-      # X-axis
-      rule {
-        data x.ticks
-        visible {|d| d!=0}
-        left x
-        bottom -5
-        height -5
-        label(:anchor=>'bottom') { # shortcut to create an element inside an anchor
-          text x.tick_format
-        }
-      }
-      
-      # The area with top line.
-      area {
-        data(data)
-        bottom 1
-        left {|d| x.scale(d.x)}
-        height {|d| y.scale(d.y)}
-        fill_style "rgb(121,173,210)"
-        line(:anchor=>"top") {
-          line_width 3
-        }
-      }
-    }
-    
-    puts vis.to_svg
+If you want to present graphs: (a) complex and/or dynamically generated, (b) only on the web and (c) on modern browsers, Protovis[http://vis.stanford.edu/protovis/] is an excellent option. For simpler charts, Protovis is overkill. I recomend jqPlot[http://www.jqplot.com/]
 
+Rubyvis is designed mainly for off-line operation, like batch creation of graphs for use on printed documents (rtf-pdf), with possibility of use easily the script for on-line use.
 
 == REQUIREMENTS:
 
-Ruby 1.8.7 or 1.9.1
+Tested on Ruby 1.8.7, 1.9.1, 1.9.2-p0 and ruby-head (future 1.9.3)
 
 == INSTALL:
 

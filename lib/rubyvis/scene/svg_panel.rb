@@ -110,7 +110,7 @@ module Rubyvis
           "y"=> s.top,
           "width"=> [1E-10, s.width].max,
           "height"=>[1E-10, s.height].max,
-          "fill"=>nil,
+          "fill"=>"none",
           "stroke"=> stroke.color,
           "stroke-opacity"=> stroke.opacity,
           "stroke-width"=> s.line_width / self.scale.to_f

@@ -1,3 +1,7 @@
+# = Bar & Column Charts
+# This simple bar chart is constructed using a bar mark. A linear scale is used to compute the width of the bar, while an ordinal scale sets the top position and height for the categorical dimension. Next, rules and labels are added for reference values.
+# Bars can be used in a variety of ways. For instance, they can be stacked or grouped to show multiple data series, or arranged as vertical columns rather than bars. 
+
 $:.unshift(File.dirname(__FILE__)+"/../lib")
 require 'rubyvis'
 

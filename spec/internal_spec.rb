@@ -1,4 +1,4 @@
-require File.dirname(__FILE__)+"/spec_helper.rb"
+require File.expand_path(File.dirname(__FILE__)+"/spec_helper.rb")
 describe "Rubyvis module methods" do
   describe "from pv.js" do
     it "method identify should always return the same value" do
@@ -124,22 +124,27 @@ describe "Rubyvis module methods" do
       Rubyvis.variance([5,7,9,11], lambda {|x| x+self.index}).should==45
     end
     it "method deviation returns standard deviation" do
-      Rubyvis.deviation([5,7,9,11]).should be_close(2.581, 0.001)
+      Rubyvis.deviation([5,7,9,11]).should be_within( 0.001).of(2.581)
     end
     it "method log" do
-      Rubyvis.log(5,4).should be_close(1.16, 0.001)
+      Rubyvis.log(5,4).should be_within( 0.001).of(1.16)
     end
     it "method log_symmetric" do
-      Rubyvis.log_symmetric(-5,4).should be_close(-1.16, 0.001)
+      Rubyvis.log_symmetric(-5,4).should be_within( 0.001).of(-1.16)
     end
     it "method log_adjusted" do
-      Rubyvis.log_adjusted(6,10).should be_close(0.806, 0.001)
+      Rubyvis.log_adjusted(6,10).should be_within( 0.001).of(0.806)
     end
     it "method log_floor" do
-      Rubyvis.log_floor(-5,4).should be_close(16, 0.001)
+      Rubyvis.log_floor(-5,4).should be_within( 0.001).of(16)
     end
     it "method log_ceil" do
-      Rubyvis.log_ceil(-5,4).should be_close(-4, 0.001)
+      Rubyvis.log_ceil(-5,4).should be_within( 0.001).of(-4)
+    end
+    it "method dict" do
+      Rubyvis.dict(["one", "three", "seventeen"], lambda {|s| s.size}).should=={"one"=> 3, "three"=> 5, "seventeen"=> 9}
+      Rubyvis.dict(["one", "three", nil, "seventeen"], lambda {|s| s.size}).should=={"one"=> 3, "three"=> 5, "seventeen"=> 9}
+      
     end
   end
   

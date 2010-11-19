@@ -1,4 +1,5 @@
 module Rubyvis
+  # Alias for Rubyvis::Panel
   def self.Panel
     Rubyvis::Panel
   end
@@ -11,9 +12,10 @@ module Rubyvis
     attr_accessor_dsl :transform, :overflow, :canvas
     attr_accessor :children, :root
     def initialize
-      super
       @children=[]
       @root=self
+      super
+      
     end
     def children_inspect(level=0)
       out=[]
@@ -28,7 +30,7 @@ module Rubyvis
     end
 
     def self.defaults
-      Panel.new.extend(Bar.defaults).fill_style(nil).overflow('visible')
+      Panel.new.mark_extend(Bar.defaults).fill_style(nil).overflow('visible')
     end
     def add(type)
       child=type.new

@@ -70,8 +70,8 @@ module Rubyvis
     
     ##
     # :attr: fill_style
-    # The fill style; if non-null, the interior of the dot is filled with the
-    # specified color. The default value of this property is null, meaning dots are
+    # The fill style; if non-nil, the interior of the dot is filled with the
+    # specified color. The default value of this property is nil, meaning dots are
     # not filled by default. See Rubyvis.color()
     
     attr_accessor_dsl :shape, :shape_angle, :shape_radius, :shape_size, :line_width, [:stroke_style, lambda {|d| Rubyvis.color(d)}], [:fill_style, lambda {|d| Rubyvis.color(d)}]
@@ -79,7 +79,7 @@ module Rubyvis
     # style is a categorical color. The default shape is "circle" with radius 4.5.
     def self.defaults()
       a=Rubyvis::Colors.category10
-      Dot.new().extend(Mark.defaults).shape("circle"). line_width(1.5). stroke_style(lambda {a.scale(self.parent.index)})
+      Dot.new().mark_extend(Mark.defaults).shape("circle"). line_width(1.5). stroke_style(lambda {a.scale(self.parent.index)})
     end
     # Constructs a new dot anchor with default properties. Dots support five
     # different anchors:<ul>

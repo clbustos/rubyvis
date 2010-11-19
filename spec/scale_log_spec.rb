@@ -1,4 +1,4 @@
-require File.dirname(__FILE__)+"/spec_helper.rb"
+require File.expand_path(File.dirname(__FILE__)+"/spec_helper.rb")
 describe Rubyvis::Scale::Log do
   if Rubyvis::JohnsonLoader.available?
     context "direct protovis API comparison" do 
@@ -86,11 +86,11 @@ describe Rubyvis::Scale::Log do
     @y.scale(@h_dom).should==280
     @y[@h_dom].should==280
     val=20
-    @y.scale(val).should be_close(121.995, 0.001)
+    @y.scale(val).should be_within( 0.001).of(121.995)
   end
   it "should returns correct invert" do
-    @y.invert(100).should be_close(11.601, 0.001)
-    @y.invert(200).should be_close(137.970, 0.001)
+    @y.invert(100).should be_within( 0.001).of(11.601)
+    @y.invert(200).should be_within( 0.001).of(137.970)
   end
   it "should returns correct ticks" do
     t=1,2,3,4,5,6,7,8,9,10,20,30,40,50,60,70,80,90,100,200,300,400,500,600,700,800,900,1000

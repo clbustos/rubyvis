@@ -1,4 +1,4 @@
-require File.dirname(__FILE__)+"/spec_helper.rb"
+require File.expand_path(File.dirname(__FILE__)+"/spec_helper.rb")
 describe Rubyvis::Anchor do
   describe "inner anchor data should work fine" do
     before  do
@@ -11,10 +11,10 @@ describe Rubyvis::Anchor do
       @expected_p2=[]  
       vis = pv.Panel.new().width(w).height(h)      
       cell=vis.add(pv.Panel).
-        data([1,2]).top(lambda {|*args| data_p1.push(args); return 100}).
-        add(pv.Panel). data(['a','b']).top(lambda {|*args| data_p2.push(args); return 100;})
+        data([1,2]).top(lambda {|*args| data_p1.push(args); 100}).
+        add(pv.Panel). data(['a','b']).top(lambda {|*args| data_p2.push(args); 100;})
       
-      cell.anchor('center').add(pv.Bar).top(lambda {|*args| data_l.push args; return 1})
+      cell.anchor('center').add(pv.Bar).top(lambda {|*args| data_l.push args; 1})
 
       [1,2].each {|a| %w{a b}.each {|b| 
         @expected_l.push([b,b,a,nil])
@@ -49,22 +49,22 @@ describe Rubyvis::Anchor do
     adatas=[]
     s = 180
     _p = 20
-    vis = pv.Panel.new()
-    .height(s * antibiotics.size + _p * (antibiotics.size - 1))
-    .width(s * antibiotics.size + _p * (antibiotics.size - 1))
-    .top(14.5)
-    .left(14.5)
-    .bottom(44)
-    .right(14)
+    vis = pv.Panel.new().
+      height(s * antibiotics.size + _p * (antibiotics.size - 1)).
+      width(s * antibiotics.size + _p * (antibiotics.size - 1)).
+      top(14.5).
+      left(14.5).
+      bottom(44).
+      right(14)
 
-    cell = vis.add(pv.Panel)
-    .data(a1)
-    .width(s)
-    .left(lambda {(s + _p) * self.index})
-  .add(pv.Panel)
-    .data(a2)
-    .height(s)
-    .top(lambda {(s + _p) * self.index});
+    cell = vis.add(pv.Panel).
+      data(a1).
+      width(s).
+      left(lambda {(s + _p) * index}).
+    add(pv.Panel).
+      data(a2).
+      height(s).
+      top(lambda {(s + _p) * self.index});
 
     
     cell.anchor("center").add(pv.Label).text(lambda {|*args| adatas.push args})

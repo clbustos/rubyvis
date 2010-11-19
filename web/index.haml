@@ -1,0 +1,113 @@
+!!!
+%html
+  %head
+    %link{:type=>"text/css", :rel=>"stylesheet", :href=>"style.css"}
+    %title Rubyvis: Ruby version of Protovis
+  %body
+    %h1 Rubyvis
+    %h2 Description
+    .description
+      %p 
+        Ruby port of 
+        %a{:href=>"http://vis.stanford.edu/protovis/"} Protovis library
+        According to the protovis site
+        %blockquote
+          Protovis composes custom views of data with simple marks such as bars and dots. Unlike low-level graphics libraries that quickly become tedious for visualization, Protovis defines marks through dynamic properties that encode data, allowing inheritance, scales and layouts to simplify construction.
+        %p As Protovis, Rubyvis is free and open-source, provided under the BSD License. Its delivers SVG natively, which could be exported to PNG, JPEG and others graphics formats 
+        %p 
+          Current Version:
+          %strong=Rubyvis::VERSION
+        %p 
+          Protovis API Version:
+          %strong=Rubyvis::PROTOVIS_API_VERSION
+    %h2 Installation
+    %pre gem install rubyvis
+    %h2 Synopsis
+    .synopsis
+      #ruby_code
+        %h3 Ruby
+        %pre 
+          :preserve
+            require 'rubygems'
+            require 'rubyvis'
+            vis = Rubyvis::Panel.new do 
+              width 150
+              height 150
+              bar do
+                data [1, 1.2, 1.7, 1.5, 0.7, 0.3]
+                width 20
+                height {|d| d * 80}
+                bottom(0)
+                left {index * 25}
+              end
+            end
+            vis.render()
+            puts vis.to_svg # Output final SVG
+      #svg_code
+        %h3 SVG
+        %pre
+          :preserve
+            &lt;svg fill="none" font-family="sans-serif" 
+            font-size="10px" height="150.0" stroke="none" 
+            stroke-width="1.5" width="150.0"&gt;
+            &lt;g transform="translate(0.0,0.0)"&gt;
+            &lt;rect fill="rgb(31,119,180)" height="80" 
+            width="20" y="70"/&gt;
+            &lt;rect fill="rgb(31,119,180)" height="96.0" 
+            width="20" x="25" y="54.0"/&gt;
+            &lt;rect fill="rgb(31,119,180)" height="136.0" 
+            width="20" x="50" y="14.0"/&gt;
+            &lt;rect fill="rgb(31,119,180)" height="120.0" 
+            width="20" x="75" y="30.0"/&gt;
+            &lt;rect fill="rgb(31,119,180)" height="56.0" 
+            width="20"  x="100" y="94.0"/&gt;
+            &lt;rect fill="rgb(31,119,180)" height="24.0" 
+            width="20" x="125" y="126.0"/&gt;
+            &lt;/g&gt;
+            &lt;/svg&gt;
+      #image
+        %div
+          %h3 Image
+          /[if IE]
+            %embed{:src=>"examples/first.svg" ,:width=>"150", :height=>"150"}
+          %object{:data=>"examples/first.svg", :type=>"image/svg+xml", :width=>150,:height=>150}
+    .examples_div
+      %h2 Examples
+      %p 
+        Several based on
+        %a{:href=>"http://vis.stanford.edu/protovis/ex/"}Protovis gallery
+      .examples
+        - examples.each_pair do |name,page|
+          .example
+            .name
+              %a{:href=>"examples/"+name+".html"}=page.title
+            .image
+              %img{:src=>"examples/"+name+".png"}
+    .resources
+      %h2 Resources
+      %ul
+        %li
+          source code on
+          %a{:href=>'http://github.com/clbustos/rubyvis'}
+            Github
+        %li
+          requests and bug reports on 
+          %a{:href=>'http://github.com/clbustos/rubyvis/issues'}
+            Github, too
+        %li
+          gem on 
+          %a{:href=>'http://rubygems.org/gems/rubyvis'}
+            gemcutter
+        %li
+          API documentation on 
+          %a{:href=>'http://rubyvis.rubyforge.org/rubyvis/'}
+            http://rubyvis.rubyforge.org/rubyvis/
+    :javascript
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-5764936-8']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();

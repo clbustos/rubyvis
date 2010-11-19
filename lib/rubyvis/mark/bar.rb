@@ -1,4 +1,5 @@
 module Rubyvis
+  # Alias for Rubyvis::Bar
   def self.Bar
     Rubyvis::Bar
   end
@@ -47,11 +48,11 @@ module Rubyvis
     ##
     # :attr: stroke_style
     # The style of stroked lines; used in conjunction with line_width to
-    # stroke the bar's border. The default value of this property is null, meaning bars are not stroked by default.
+    # stroke the bar's border. The default value of this property is nil, meaning bars are not stroked by default.
     
     ##
     # :attr: fill_style
-    # The bar fill style; if non-null, the interior of the bar is filled with the
+    # The bar fill style; if non-nil, the interior of the bar is filled with the
     # specified color. The default value of this property is a categorical color.
     
     attr_accessor_dsl :width, :height, :line_width, [:stroke_style, lambda {|d| Rubyvis.color(d)}], [:fill_style, lambda {|d| Rubyvis.color(d)}]
@@ -60,7 +61,7 @@ module Rubyvis
     # style is a categorical color.
     def self.defaults
       a=Rubyvis.Colors.category20()
-      Bar.new.extend(Mark.defaults).line_width(1.5).fill_style( lambda {
+      Bar.new.mark_extend(Mark.defaults).line_width(1.5).fill_style( lambda {
           a.scale(self.parent.index)
       })
     end

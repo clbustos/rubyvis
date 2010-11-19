@@ -101,7 +101,7 @@ module Rubyvis
     end
     # Default properties for labels. See the individual properties for the default values.
     def self.defaults
-      Label.new.extend(Mark.defaults).events('none').text(Rubyvis.identity).font("10px sans-serif" ).text_angle( 0 ).text_style( 'black' ).text_align( 'left' ).text_baseline( 'bottom' ).text_margin(3)
+      Label.new.mark_extend(Mark.defaults).events('none').text(Rubyvis.identity).font("10px sans-serif" ).text_angle( 0 ).text_style( 'black' ).text_align( 'left' ).text_baseline( 'bottom' ).text_margin(3)
     end
   end
 end

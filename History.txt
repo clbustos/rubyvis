@@ -1,3 +1,57 @@
+=== 0.3.0 / 2010-11-17
+* Network and Hierarchy classes on module Layout implemented. Require testing
+* Rubyvis::Layout::Treemap fully operational
+* Rubyvis::Dom almost complete, including spec
+* Mark.extend changed to Mark.mark_extend, to avoid clashes with ruby extend
+* Bug fix: Rubyvis::Dom::Node.sort doesn't set first_child and last_child correctly
+* Updated for hoe 1.7.0
+* Updated example of coordinate parallels
+* New example: treemap/treemap.rb
+
+=== 0.2.2 / 2010-11-13
+
+* Updated to rspec 2. Bug fix: instance_eval raises an error on js_apply
+* Updated antibiotics example
+* Tested on 1.8.7, 1.9.1, 1.9.2 and svn-head.
+
+=== 0.2.1 / 2010-11-11
+
+* Added Rubyvis.dict() 
+* Added Rubyvis::Scale::Ordinal.split_flush()
+* New example: parallel coordinates on /examples/cars/cars.rb
+* New example: pie chart on /examples/antibiotics/antibiotics_wedge.rb
+* New spec for readme examples (sort of smoke test)
+* Better implementation of Layout
+* Bug fix: raise error Proc.js_apply on Ruby1.9.2 (doesn't accept instance_eval with &proc)
+* Ahhh... how I hate differences on return inside lambdas! Resolved bug on AreaPrototype::area_build_instance removing return inside a lambda
+* Bug fix: Rubyvis::Scale::Linear.scale() returns a value when nil is passed. Now, returns nil 
+* Bug fix: Calling Mark.instance() of a parent mark inside a children returns only the last instance, not the currently parsed instance
+
+
+=== 0.2.0 / 2010-11-02
+
+* IMPORTANT: Added 'ruby best practices' API. See README and examples/first_rbp_api.rb to learn how to use
+* Added width and height explicitly on examples pages. 
+* Added examples for interpolation on lines and areas
+* Fixed interpolate for lines and areas. 
+* New spec for Line and Area spec.  
+* Added spec for numeric tick_format
+* Added documentation for Rubyvis::Colors, Rubyvis::Color and Rubyvis::Line
+* Bug fix: interpolate "step-after", "step-before" and "basis" on Area marks doesn't work Spec for Area marks
+* Changed API_VERSION for PROTOVIS_API_VERSION
+
+=== 0.1.7 / 2010-10-31
+
+* Added image support
+
+=== 0.1.6 / 2010-10-30
+
+* Improved documentation for examples. Added description from protovis site on the one borrowed from it and added commentary on new ones.
+* Distribution includes 'web' directory, with script to recreate the web site. Use as example of massive creation of graphics
+* Added explicitily "none" to  svg "fill" property. This allows to render properly with librsv (rsgv), without affecting the browser output
+* Added API documentation on many files.
+* Replaced all pv instances on code for Rubyvis
+
 === 0.1.5 / 2010-10-22
 
 * Bug fix: styles considered properly, so font attribute works right now.

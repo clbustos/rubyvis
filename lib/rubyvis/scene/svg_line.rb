@@ -17,14 +17,14 @@ module Rubyvis
 
       d = "M" + s.left.to_s + "," + s.top.to_s
 
-      if (scenes.size > 2 and (s.interpolate == "basis" or s.interpolate == "cardinal" or s.interpolate == "monotone"))
+      if (scenes.size > 2 and (['basis', 'cardinal', 'monotone'].include? s.interpolate))
         case (s.interpolate)
-        when "basis"
-          d = d+ curve_basis(scenes)
-        when "cardinal"
-          d = d+curve_cardinal(scenes, s.tension)
-        when "monotone"
-          d = d+curve_monotone(scenes)
+          when "basis"
+            d = d+ curve_basis(scenes)
+          when "cardinal"
+            d = d+curve_cardinal(scenes, s.tension)
+          when "monotone"
+            d = d+curve_monotone(scenes)
         end
 
       else
@@ -68,7 +68,7 @@ module Rubyvis
         s1 = scenes[i]
         s2 = scenes[i + 1];
 
-        #/* visible */
+        # visible 
         next if (!s1.visible and !s2.visible)
 
         stroke = s1.stroke_style
@@ -76,14 +76,14 @@ module Rubyvis
 
         next if stroke.opacity==0.0
 
-        #/* interpolate */
+        # interpolate
         d=nil
         if ((s1.interpolate == "linear") and (s1.lineJoin == "miter"))
           fill = stroke;
           stroke = Rubyvis.Color.transparent;
           d = path_join(scenes[i - 1], s1, s2, scenes[i + 2]);
         elsif(paths)
-          d = paths[i];
+          d = paths[i]
         else
           d = "M" + s1.left + "," + s1.top + path_segment(s1, s2);
         end
@@ -105,26 +105,28 @@ module Rubyvis
       return e
     end
 
-    #/** @private Returns the path segment for the specified points. */
+    # Returns the path segment for the specified points. */
 
-    def self.path_segment(s1, s2)
+    def self.path_segment(s1, s2) 
       l = 1; # sweep-flag
-      case (s1.interpolate)
-      when "polar-reverse"
-        l = 0;
-      when "polar"
-        dx = s2.left - s1.left,
+      l = 0 if s1.interpolate=='polar-reverse'
+      
+      if s1.interpolate=='polar' or s1.interpolate=='polar-reverse'
+        dx = s2.left - s1.left
         dy = s2.top - s1.top
         e = 1 - s1.eccentricity
         r = Math.sqrt(dx * dx + dy * dy) / (2 * e)
-        if !((e<=0) and (e>1))
+        if !((e<=0) or (e>1))
           return "A#{r},#{r} 0 0,#{l} #{s2.left},#{s2.top}"
         end
-      when "step-before"
+      end
+      
+      if s1.interpolate=="step-before"
         return "V#{s2.top}H#{s2.left}"
-      when "step-after"
+      elsif s1.interpolate=="step-after"
         return "H#{s2.left}V#{s2.top}"
       end
+      
       return "L#{s2.left},#{s2.top}"
     end
 

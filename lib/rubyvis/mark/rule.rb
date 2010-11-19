@@ -1,4 +1,5 @@
 module Rubyvis
+  # Alias for Rubyvis::Rule
   def self.Rule
     Rubyvis::Rule
   end
@@ -7,7 +8,7 @@ module Rubyvis
     @properties=Mark.properties.dup
     attr_accessor_dsl :width, :height, :line_width, [:stroke_style, lambda {|d| Rubyvis.color(d)}]
     def self.defaults
-      Rule.new.extend(Mark.defaults).line_width(1).stroke_style('black').antialias(false)
+      Rule.new.mark_extend(Mark.defaults).line_width(1).stroke_style('black').antialias(false)
     end
     def type
       'rule'

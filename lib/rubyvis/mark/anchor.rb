@@ -1,5 +1,5 @@
 module Rubyvis
-  # Alias por Rubyvis::Anchor.new
+  # Alias por Rubyvis::Anchor.new(target)
   def self.Anchor(target)
     Rubyvis::Anchor.new(target)
   end
@@ -56,9 +56,10 @@ module Rubyvis
     # Create a new Anchor. Use Mark.add instead.
     
     def initialize(target)
-      super()
+      
       self.target=target
       self.parent=target.parent
+      super()
     end
     
     # Sets the prototype of this anchor to the specified mark. Any properties not
@@ -74,7 +75,7 @@ module Rubyvis
     # @returns {Rubyvis::Anchor} this anchor.
     # @see Rubyvis.Mark#add
     
-    def extend(proto)
+    def mark_extend(proto)
       @proto=proto
       self
     end

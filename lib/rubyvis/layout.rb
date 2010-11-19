@@ -3,7 +3,16 @@ module Rubyvis
     Rubyvis::Layout
   end
   class Layout < Rubyvis::Panel
-    @properties=Mark.properties.dup    
+    @properties=Panel.properties.dup
+    def build_properties(s,properties)      
+      layout_build_properties(s,properties)
+    end
+    def layout_build_properties(s,properties)
+      mark_build_properties(s, properties)
+    end
+    def layout_build_implied(s)      
+      panel_build_implied(s)
+    end
     def self.attr_accessor_dsl(*attr)
       attr.each  do |sym|
         if sym.is_a? Array
@@ -23,3 +32,8 @@ module Rubyvis
 end
 
 require 'rubyvis/layout/stack'
+require 'rubyvis/layout/network'
+require 'rubyvis/layout/hierarchy'
+require 'rubyvis/layout/treemap'
+require 'rubyvis/layout/partition'
+

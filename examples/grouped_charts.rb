@@ -1,3 +1,6 @@
+# = Grouped charts
+# In this multi-series bar chart, we group bars together rather than stack them. A grouped chart allows accurate comparison of individual values thanks to an aligned baseline: a position, rather than length, judgment is used.
+# An ordinal scale positions the groups vertically; the bars are then replicated inside a panel, a technique that is also used for small multiples. 
 $:.unshift(File.dirname(__FILE__)+"/../lib")
 require 'rubyvis'
 

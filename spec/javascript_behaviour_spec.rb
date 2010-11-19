@@ -1,4 +1,4 @@
-require File.dirname(__FILE__)+"/spec_helper.rb"
+require File.expand_path(File.dirname(__FILE__)+"/spec_helper.rb")
 describe "Javascript compatibility" do
   it "extends Proc with js_apply and js_call" do
     f=lambda {|a,b| a+b}

@@ -1,3 +1,6 @@
+# = Antibiotic Effectiveness : Scatterplot
+# After World War II, antibiotics earned the moniker “wonder drugs” for quickly treating previously-incurable diseases. Data was gathered to determine which drug worked best for each bacterial infection. Comparing drug performance was an enormous aid for practitioners and scientists alike. In the fall of 1951, Will Burtin published this graph showing the effectiveness of three popular antibiotics on 16 different bacteria, measured in terms of minimum inhibitory concentration.
+# Recreating this display revealed some minor errors in the original: a missing grid line at 0.01 μg/ml, and an exaggeration of some values for penicillin. 
 $:.unshift(File.dirname(__FILE__)+"/../../lib")
 require 'rubyvis'
 load(File.dirname(__FILE__)+"/antibiotics_data.rb")
@@ -47,7 +50,7 @@ tick = pv.Rule.new()
 
 #/* X-axis ticks. */
 xtick = plot.add(pv.Rule)
-    .extend(tick)
+    .mark_extend(tick)
     .left(z);
 
 #/* Bottom and top labels. */
@@ -58,7 +61,7 @@ xtick.anchor("top").add(pv.Label)
 
 #/* Y-axis ticks. */
 ytick = plot.add(pv.Rule)
-    .extend(tick)
+    .mark_extend(tick)
     .bottom(z);
 
 #/* Bottom and top labels. */
@@ -74,20 +77,28 @@ ytick.anchor("left").add(pv.Label)
     .text_align("center");
 
 #/* Dot plot. */
-dot = plot.add(pv.Dot)
-    .data($bacteria)
-    .stroke_style(lambda {|d| color.scale(d[:gram])})
-    .fill_style(lambda {|d| color.scale(d[:gram]).alpha(0.2)})
-    .left(lambda {|d, x, y|  z.scale(d[x.to_sym])})
-    .bottom(lambda {|d, x, y| z.scale(d[y.to_sym])})
-    .title(lambda {|d| d[:name]});
+dot = plot.add(pv.Dot).
+  data($bacteria).
+  stroke_style(lambda { |d|
+    color.scale(d[:gram])
+  }).
+  fill_style(lambda {|d|
+    color.scale(d[:gram]).alpha(0.2)
+  }).
+  left(lambda {|d, x, y|
+    z.scale(d[x.to_sym])
+  }).
+  bottom(lambda {|d, x, y|
+    z.scale(d[y.to_sym])
+  }).
+  title(lambda {|d| d[:name]})
 
 #/* Legend. */
 vis.add(pv.Dot)
-    .extend(dot)
+    .mark_extend(dot)
     .data([{gram:"positive"}, {gram:"negative"}])
     .bottom(-30)
-    .left(lambda { self.index * 100})
+    .left(lambda { index * 100})
     .title(nil)
   .anchor("right").add(pv.Label)
     .text(lambda {|d| "Gram-" + d[:gram]});

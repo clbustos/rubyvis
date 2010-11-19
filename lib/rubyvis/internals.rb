@@ -236,5 +236,34 @@ module Rubyvis
   def self.keys(map)
     map.keys
   end
-    
+  
+  # Returns a map constructed from the specified <tt>keys</tt>, using the
+  # function <tt>f</tt> to compute the value for each key. The single argument to
+  # the value function is the key. The callback is invoked only for indexes of
+  # the array which have assigned values; it is not invoked for indexes which
+  # have been deleted or which have never been assigned values.
+  #
+  # <p>For example, this expression creates a map from strings to string length:
+  #
+  # <pre>pv.dict(["one", "three", "seventeen"], function(s) s.length)</pre>
+  #
+  # The returned value is <tt>{one: 3, three: 5, seventeen: 9}</tt>. Accessor
+  # functions can refer to <tt>this.index</tt>.
+  #
+  # * @param {array} keys an array.
+  # * @param {function} f a value function.
+  # * @returns a map from keys to values.
+
+  
+  def self.dict(keys, f)
+    m = {}
+    keys.size.times do |i|
+      unless keys[i].nil?
+        k=keys[i] 
+        o=o_index(i)
+        m[k]=f.js_call(o,k)
+      end
+    end
+    m
+  end
 end

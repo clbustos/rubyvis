@@ -11,13 +11,13 @@ require 'rubyvis/nest'
 
 require 'rubyvis/javascript_behaviour'
 require 'rubyvis/format'
-require 'rubyvis/label'
 require 'rubyvis/mark'
 require 'rubyvis/scale'
 require 'rubyvis/color/color'
 require 'rubyvis/color/colors'
 
 require 'rubyvis/layout'
+require 'rubyvis/dom'
 
 require 'rubyvis/scene/svg_scene'
 require 'rubyvis/transform'
@@ -26,9 +26,9 @@ require 'rubyvis/transform'
 module Rubyvis
   @document=nil
   # Rubyvis version
-  VERSION = '0.1.5' 
+  VERSION = '0.3.0' 
   # Protovis API on which current Rubyvis is based
-  API_VERSION='3.3'
+  PROTOVIS_API_VERSION='3.3'
   # You actually can do it! http://snipplr.com/view/2137/uses-for-infinity-in-ruby/
   Infinity=1.0 / 0 
   #
@@ -90,4 +90,3 @@ end
 def pv
   Rubyvis
 end
-

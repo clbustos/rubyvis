@@ -6,17 +6,19 @@ require 'rubyvis/scene/svg_line'
 require 'rubyvis/scene/svg_dot'
 require 'rubyvis/scene/svg_area'
 require 'rubyvis/scene/svg_wedge'
+require 'rubyvis/scene/svg_image'
+require 'rubyvis/scene/svg_curve'
 
-class REXML::Element
+class REXML::Element # :nodoc:
   attr_accessor :_scene
 end
 
 module Rubyvis
-  def self.Scene
+  def self.Scene # :nodoc:
     Rubyvis::SvgScene
   end
-  module SvgScene
-    include REXML
+  module SvgScene # :nodoc:
+    #include REXML
     def self.svg
       "http://www.w3.org/2000/svg"
     end;
@@ -45,7 +47,7 @@ module Rubyvis
         "dy"=> 0,
         "text-anchor"=> "start",
         "transform"=> "translate(0,0)",
-        "fill"=> "none",
+        #"fill"=> "none",
         "fill-opacity"=> 1,
         "stroke"=> "none",
         "stroke-opacity"=> 1,
@@ -73,11 +75,11 @@ module Rubyvis
       end
     end
     def self.create(type)
-      el=Element.new "#{type}"
+      el=REXML::Element.new "#{type}"
       if type=='svg'
         el.add_namespace(self.svg)
         #el.add_namespace("xmlns:xmlns", self.xmlns)
-        #el.add_namespace("xlink", self.xlink)
+        el.add_namespace("xmlns:xlink", self.xlink)
       end
       el
     end
