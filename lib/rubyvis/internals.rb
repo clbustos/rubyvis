@@ -1,11 +1,11 @@
 module Rubyvis
   # :section: /pv-internals.js
   @@id=0
-  # Return a unique id each time
+  # Returns a locally-unique positive id.
   def self.id
     @@id+=1
   end
-  # Return a value as a Proc.
+  # Return a proc wrapping specific constant
   def self.functor(f)
     (f.is_a? Proc) ? f : lambda {f}
   end
@@ -30,7 +30,14 @@ module Rubyvis
       array.dup
     end
   end
-  
+  #
+  # Concatenates the specified array with itself <i>n</i> times. For example,
+  # +repeat([1, 2])+ returns [1, 2, 1, 2].
+  #
+  # * @param {array} a an array.
+  # * @param {number} [n] the number of times to repeat; defaults to two.
+  # * @returns {array} an array that repeats the specified array.
+  #
   def self.repeat(array, n=2)
     array*n
   end
