@@ -20,12 +20,14 @@ def get_files(path)
 end
 
 files=get_files(File.dirname(__FILE__)+"/../")
+
+#load(File.dirname(__FILE__)+"/treemap/treemap_data.rb")
+
 colors=Rubyvis::Colors.category19()
 
 vis = Rubyvis::Panel.new do
   width 900
   height 900
-  bottom -80
   layout_partition_fill do    
     nodes Rubyvis.dom(files).root("rubyvis").nodes
     size {|d| d.node_value}
@@ -39,7 +41,7 @@ vis = Rubyvis::Panel.new do
     end
     
     node_label.label do 
-      visible {|d| d.angle * d.outer_radius >= 6}
+      visible {|d| d.angle * d.outer_radius >= 10}
     end
     
   end

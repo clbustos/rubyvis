@@ -156,7 +156,7 @@ module Rubyvis
         end
         # Compute the unit breadth and depth of each node. #/
         ds = 1 / max_depth.to_f
-        root.min_breadth = 0;
+        root.min_breadth = 0
         root.breadth = 0.5
         root.max_breadth = 1
         root.visit_before {|n,i| 

@@ -50,18 +50,13 @@ module Rubyvis
       def links
         l=self.nodes().find_all {|n| n.parent_node}
         l.map {|n|
-          OpenStruct.new({
+          
+          Network::Link.new({
               :source_node=>n,
               :target_node=>n.parent_node,
               :link_value=>1
         })}
       end
-      #def node_link
-      #  NodeLink.new(self)
-      #end
-      #def fill
-      #  Fill.new(self)
-      #end
     end
     
     module NodeLink
@@ -69,11 +64,15 @@ module Rubyvis
       def node_link_build_implied(s)
         nodes = s.nodes
         @_orient= s.orient
-        @_orient=~/^(top|bottom)$/
-        
-        horizontal = !$1.nil?
+        horizontal= case @_orient
+          when /^(top|bottom)$/
+            true
+          else
+            false
+          end
         @_w = s.width
         @_h = s.height
+        
         # /* Compute default inner and outer radius. */
         if (@_orient == "radial") 
           @_ir = s.inner_radius
@@ -123,6 +122,7 @@ module Rubyvis
             @_h / 2.0 + radius(n) * Math.sin(n.mid_angle)
         end # end case
       end # end method
+      private :node_link_y, :node_link_x, :mid_angle, :radius
     end # end class
     
     module Fill
@@ -153,7 +153,7 @@ module Rubyvis
         @_w = s.width
         @_h = s.height
         @_depth = -nodes[0].min_depth
-        if (@_orient == "radial") 
+        if @_orient == "radial"
           @_ir = s.inner_radius
           @_or = s.outer_radius
           @_ir||=0
@@ -163,7 +163,7 @@ module Rubyvis
         nodes.each_with_index {|n,i|
           n.x = fill_x(n)
           n.y = fill_y(n)
-          if (@_orient == "radial") 
+          if @_orient == "radial"
             n.inner_radius = inner_radius(n);
             n.outer_radius = outer_radius(n);
             n.start_angle = start_angle(n);
@@ -179,7 +179,7 @@ module Rubyvis
       end
       
       def fill_scale(d, depth)
-        (d+depth) / (1.0+depth)
+        (d + depth) / (1 + depth).to_f
       end
       def fill_x(n)
         case @_orient
@@ -209,6 +209,7 @@ module Rubyvis
             @_h / 2.0
         end # end case
       end # end method
+      
       def dx(n)
         if @_orient=='left' or @_orient=='right'
           (n.max_depth - n.min_depth) / (1.0 + @_depth) * @_w
@@ -218,6 +219,7 @@ module Rubyvis
           n.parent_node ? (n.inner_radius + n.outer_radius) * Math.cos(n.mid_angle) : 0
         end          
       end
+      
       def dy(n)
         if @_orient=='left' or @_orient=='right'
           (n.max_breadth - n.min_breadth) * @_h
@@ -227,12 +229,15 @@ module Rubyvis
           n.parent_node ? (n.inner_radius + n.outer_radius) * Math.sin(n.mid_angle) : 0
         end        
       end
+      
       def inner_radius(n)
         [0, fill_scale(n.min_depth, @_depth/2.0)].max * (@_or - @_ir) + @_ir
       end
+      
       def outer_radius(n)
         fill_scale(n.max_depth, @_depth / 2.0) * (@_or - @_ir) + @_ir
       end
+      
       def start_angle(n)
         (n.parent_node ? n.min_breadth - 0.25 : 0) * 2 * Math::PI
       end

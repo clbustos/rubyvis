@@ -198,5 +198,19 @@ class Rubyvis::Mark
   # See Mark for examples of use    
   mark_method :layout_treemap, Rubyvis::Layout::Treemap
   
+  ##
+  # :method: layout_cluster(opts,&block)  
+  #
+  # Adds a Layout::Cluster to current mark. 
+  # 
+  # If a block is provided, the context will be defined differently if 
+  # parameter is provided
+  # * Without parameter: block executed inside context of new mark
+  # * With paramenter: block executed inside context of current mark. 
+  #   Paramenter references new mark
+  # 
+  # See Mark for examples of use    
+  mark_method :layout_cluster, Rubyvis::Layout::Cluster
+  
   
 end

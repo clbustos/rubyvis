@@ -36,4 +36,6 @@ require 'rubyvis/layout/network'
 require 'rubyvis/layout/hierarchy'
 require 'rubyvis/layout/treemap'
 require 'rubyvis/layout/partition'
+require 'rubyvis/layout/cluster'
+
 
