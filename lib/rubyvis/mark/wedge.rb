@@ -117,7 +117,9 @@ module Rubyvis
       
     end
     def upright(angle)
-      self.upright(angle)
+      angle=angle % (2*Math::PI)
+      angle=(angle<0) ? (2*Math::PI+angle) : angle
+      (angle < Math::PI/2.0) or (angle>=3*Math::PI / 2.0)  
     end
     
     def build_implied(s)
