@@ -1,19 +1,5 @@
 require File.expand_path(File.dirname(__FILE__)+"/spec_helper.rb")
 describe Rubyvis::Histogram do
-  if Rubyvis::JohnsonLoader.available?
-    context "direct protovis API comparison" do 
-      before(:all) do
-        @rt=  Rubyvis::JohnsonLoader.new().runtime
-      end
-     
-      it "bin implemented equally" do
-        a=100.times.map {|i| rand()+i}
-        hist=Rubyvis::Histogram.new(a)
-        @rt[:a]=a
-        #p @rt.evaluate("hist=pv.histogram(a)").to_a
-      end
-    end
-  end
   describe "bins" do
     before do 
       data = Rubyvis.range(0, 10, 0.1).map {|x| 

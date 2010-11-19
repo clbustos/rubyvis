@@ -8,22 +8,20 @@ Ruby port of Protovis[http://vis.stanford.edu/protovis/], a great visualization 
 
 == FEATURES/PROBLEMS:
 
-Implemented: All marks, except transient and transitions. 
+Implemented: 
+* Marks: All, except transient and transitions.
+* Layout: Partition, Stack and Treemap.
 
-Basic protovis examples[http://vis.stanford.edu/protovis/ex/] works exactly like ruby ones with minor sintactic modifications:
-* Area Charts: Ok
-* Bar & Column Charts: Ok
-* Scatterplots: Ok
-* Pie & Donut: Interaction with mouse not implemented
-* Line & Step Charts: Ok
-* Stacked Charts: Ok
-* Grouped Charts: Ok.
+Using protovis examples[http://vis.stanford.edu/protovis/ex/] as reference
 
-Complex examples requires more works:
-
-* antibiotics: Ok
-* barley: Ok
-* crimea: line and grouped line ok.
+* Conventional: All working
+* Custom: 
+ * Backer's Barley
+ * Burtin's Antibiotics
+* Hierarchies:
+ * Sunbursts
+ * Icicles
+ * Treemaps
 
 
 I try to maintain, when posible, complete compatibility with Javascript API, including camel case naming of functions. Johnson [http://github.com/jbarnette/johnson] - the lovely Javascript wrapper inside Ruby embrace - is our friend to test implementation of basic object. 
@@ -34,16 +32,23 @@ User could use +pv+ freely, cause is defined as a global method which call Rubyv
 
 * pv.js
 * pv-internals.js
-* color/Color.js (incomplete)
+* color/Color.js
 * color/Colors.js
 * data/Arrays.js
+* data/Histogram.js
 * data/Numbers.js
-* data/Scale.js
 * data/LinearScale.js
 * data/LogScale.js (incomplete)
 * data/Nest.js
 * data/QuantitativeScale.js
 * data/OrdinalScale.js
+* data/Scale.js
+* layout/Hierarchy.js
+* layout/Layout.js
+* layout/Hierarchy.js
+* layout/Network.js
+* layout/Partition.js
+* layout/Stack.js
 * mark/Anchor.js
 * mark/Area.js
 * mark/Bar.js 
@@ -60,6 +65,7 @@ User could use +pv+ freely, cause is defined as a global method which call Rubyv
 * scene/SvgPanel.js
 * scene/SvgRule.js
 * scene/SvgScene.js
+* scene/SvgWedge.js
 * text/Format.js (incomplete)
 * text/NumberFormat.js (incomplete)
 
