@@ -3,6 +3,7 @@
 * Added Layout::Partition
 * Added Rubyvis::Histogram
 * Added sunburst and icicle example
+* Added shortcuts methods for layouts
 * Bug fix on Hierarchy
 * Updated README and Histogram spec
 
