@@ -4,7 +4,7 @@ class Rubyvis::Mark
   ##
   
   # Create 
-  def self.mark_method(name,mark) #:nodoc:
+  def self.mark_method(name, mark) #:nodoc:
     define_method(name) do |*args,&block|
       opts=args[0]
       opts||=Hash.new
@@ -126,7 +126,7 @@ class Rubyvis::Mark
   #   Paramenter references new mark
   # 
   # See Mark for examples of use    
-  #    
+
   mark_method :rule, Rubyvis::Rule
   ##
   # :method: wedge(opts,&block)  
@@ -141,6 +141,62 @@ class Rubyvis::Mark
   # 
   # See Mark for examples of use    
 
-  #    
-  mark_method :wedge, Rubyvis::Rule
+  mark_method :wedge, Rubyvis::Wedge
+  ##
+  # :method: layout_stack(opts,&block)  
+  #
+  # Adds a Layout::Stack to current mark. 
+  # 
+  # If a block is provided, the context will be defined differently if 
+  # parameter is provided
+  # * Without parameter: block executed inside context of new mark
+  # * With paramenter: block executed inside context of current mark. 
+  #   Paramenter references new mark
+  # 
+  # See Mark for examples of use    
+  mark_method :layout_stack, Rubyvis::Layout::Stack
+  
+  ##
+  # :method: layout_partition(opts,&block)  
+  #
+  # Adds a Layout::Partition to current mark. 
+  # 
+  # If a block is provided, the context will be defined differently if 
+  # parameter is provided
+  # * Without parameter: block executed inside context of new mark
+  # * With paramenter: block executed inside context of current mark. 
+  #   Paramenter references new mark
+  # 
+  # See Mark for examples of use    
+  mark_method :layout_partition, Rubyvis::Layout::Partition
+  
+  ##
+  # :method: layout_partition_fill(opts,&block)  
+  #
+  # Adds a Layout::Partition::Fill to current mark. 
+  # 
+  # If a block is provided, the context will be defined differently if 
+  # parameter is provided
+  # * Without parameter: block executed inside context of new mark
+  # * With paramenter: block executed inside context of current mark. 
+  #   Paramenter references new mark
+  # 
+  # See Mark for examples of use    
+  mark_method :layout_partition_fill, Rubyvis::Layout::Partition::Fill
+  
+  ##
+  # :method: layout_treemap(opts,&block)  
+  #
+  # Adds a Layout::Treemap to current mark. 
+  # 
+  # If a block is provided, the context will be defined differently if 
+  # parameter is provided
+  # * Without parameter: block executed inside context of new mark
+  # * With paramenter: block executed inside context of current mark. 
+  #   Paramenter references new mark
+  # 
+  # See Mark for examples of use    
+  mark_method :layout_treemap, Rubyvis::Layout::Treemap
+  
+  
 end

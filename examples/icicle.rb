@@ -1,6 +1,6 @@
 # = Icicle
 # An icicle is simply a sunburst transformed from polar to cartesian coordinates. Here we show the various files on Rubyvis package; the color of each cell corresponds to the package, while the area encodes the size of the source code in bytes 
-
+# Uses Protovis API
 $:.unshift(File.dirname(__FILE__)+"/../lib")
 require 'rubyvis'
 
@@ -33,7 +33,9 @@ layout.orient("top")
 layout.size(lambda {|d| d.node_value})
 
 layout.node.add(pv.Bar).
-  fill_style(lambda {|d| colors.scale(d.parent_node ? d.parent_node.node_name : '')}).
+  fill_style( lambda {|d|
+  colors.scale(d.parent_node ? d.parent_node.node_name : '')}
+  ).
   stroke_style("rgba(255,255,255,.5)").
   line_width(1).
   antialias(false)

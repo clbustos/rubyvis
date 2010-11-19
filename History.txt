@@ -1,3 +1,11 @@
+=== 0.3.1 / 2010-11-19
+
+* Added Layout::Partition
+* Added Rubyvis::Histogram
+* Added sunburst and icicle example
+* Bug fix on Hierarchy
+* Updated README and Histogram spec
+
 === 0.3.0 / 2010-11-17
 * Network and Hierarchy classes on module Layout implemented. Require testing
 * Rubyvis::Layout::Treemap fully operational

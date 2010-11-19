@@ -23,6 +23,7 @@ require 'rubyvis/dom'
 
 require 'rubyvis/scene/svg_scene'
 require 'rubyvis/transform'
+require 'rubyvis/mark/shorcut_methods'
 
 
 module Rubyvis

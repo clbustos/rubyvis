@@ -1075,5 +1075,4 @@ require 'rubyvis/mark/rule'
 require 'rubyvis/mark/label'
 require 'rubyvis/mark/dot'
 require 'rubyvis/mark/wedge'
-require 'rubyvis/mark/shorcut_methods'
 

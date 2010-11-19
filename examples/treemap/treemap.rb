@@ -4,7 +4,7 @@
 $:.unshift(File.dirname(__FILE__)+"/../../lib")
 require 'rubyvis'
 load(File.dirname(__FILE__)+"/treemap_data.rb")
-color = pv.Colors.category19()
+color = pv.Colors.category19
 nodes = pv.dom($flare).root("flare").nodes
 
 

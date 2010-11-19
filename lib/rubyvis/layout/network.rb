@@ -138,7 +138,6 @@ module Rubyvis
         that=self
         nl=Mark.new().
           mark_extend(@node).
-          data(lambda {that.nodes}).
           text_margin(7).
           text_baseline("middle").
           text(lambda {|n| n.node_name ? n.node_name : n.node_value }).
