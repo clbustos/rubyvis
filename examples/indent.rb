@@ -23,7 +23,7 @@ end
 files=get_files(File.dirname(__FILE__)+"/../")
 
 
-root = pv.dom(files)
+root = Rubyvis.dom(files)
     .root("rubyvis")
     .sort(lambda {|a,b| a.node_name<=>b.node_name})
 
@@ -51,19 +51,20 @@ layout = vis.add(pv.Layout.Indent)
 layout.link.add(pv.Line)
 
 node = layout.node.add(pv.Panel)
-.top(lambda { n.y - 6})
+.top(lambda {|n| n.y - 6})
     .height(12)
     .right(6)
     .strokeStyle(nil)
     
 node.anchor("left").add(pv.Dot)
     .strokeStyle("#1f77b4")
-    .fillStyle(lambda {n.first_child ? "#aec7e8" : "#ff7f0e"})
+    .fillStyle(lambda {|n| n.first_child ? "#aec7e8" : "#ff7f0e"})
     .title(lambda {|d| t(d)})
   .anchor("right").add(pv.Label)
   .text(lambda {|n| n.node_name})
 
 node.anchor("right").add(pv.Label)
-.text(lambda {|n| (n.node_value >> 10) + "KB"})
+.text(lambda {|n| (n.node_value >> 10).to_s + "KB"})
 
 vis.render()
+puts vis.to_svg
