@@ -1,3 +1,10 @@
+=== 0.3.3 / 2010-11-23
+
+* Implemented Rubyvis::Layout::Pack, Rubyvis::Layout::Indent and Rubyvis::Flatten
+* Implemeted Rubyvis::Mark.title()
+* New examples: bubble charts and circle packing
+* Better documentation for Network
+
 === 0.3.2 / 2010-11-23
 
 * Updated examples

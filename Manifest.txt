@@ -10,8 +10,10 @@ examples/area_interpolation.rb
 examples/bar_column_chart.rb
 examples/barley/barley.rb
 examples/barley/barley_data.rb
+examples/bubble_charts.rb
 examples/cars/cars.rb
 examples/cars/cars_data.rb
+examples/circle_packing.rb
 examples/crimea/crimea_data.rb
 examples/crimea/crimea_grouped_bar.rb
 examples/crimea/crimea_line.rb
@@ -23,6 +25,7 @@ examples/fixtures/tipsy.gif
 examples/grouped_charts.rb
 examples/icicle.rb
 examples/image.rb
+examples/indent.rb
 examples/line.rb
 examples/line_and_step.rb
 examples/line_interpolation.rb
@@ -39,6 +42,7 @@ lib/rubyvis.rb
 lib/rubyvis/color/color.rb
 lib/rubyvis/color/colors.rb
 lib/rubyvis/dom.rb
+lib/rubyvis/flatten.rb
 lib/rubyvis/format.rb
 lib/rubyvis/format/date.rb
 lib/rubyvis/format/number.rb
@@ -48,7 +52,9 @@ lib/rubyvis/javascript_behaviour.rb
 lib/rubyvis/layout.rb
 lib/rubyvis/layout/cluster.rb
 lib/rubyvis/layout/hierarchy.rb
+lib/rubyvis/layout/indent.rb
 lib/rubyvis/layout/network.rb
+lib/rubyvis/layout/pack.rb
 lib/rubyvis/layout/partition.rb
 lib/rubyvis/layout/stack.rb
 lib/rubyvis/layout/treemap.rb
