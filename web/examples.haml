@@ -6,9 +6,7 @@
   %body
     %h1="Rubyvis - Example: #{title}"
     .example_main
-      .description
-        - text.each do |t|
-          %p= t
+      .description=find_and_preserve(text)
       .navigation
         %ul
           %li 

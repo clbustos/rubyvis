@@ -6,6 +6,7 @@ require 'coderay'
 require 'haml'
 require 'ostruct'
 require 'rubyvis'
+require 'RedCloth'
 
 # First, create the examples
 
@@ -64,7 +65,7 @@ files.each do |f|
   # Create an html file with svg included inside
   page.source=CodeRay.scan(source_a.join(), :ruby).div
   page.title=title
-  page.text=text
+  page.text=RedCloth.new(text.join("\n")).to_html
   page.svg_file=base+".svg"
   # Read svg size
   width=350

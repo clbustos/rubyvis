@@ -78,7 +78,7 @@ module Rubyvis
       
       # The node value. When generated from a map, node value corresponds to 
       # the leaf value for leaf nodes, and is undefined for internal nodes.
-      attr_reader :node_value
+      attr_accessor :node_value
       
       # The array of child nodes. This array is empty for leaf nodes. An easy way to
       # check if child nodes exist is to query <tt>firstChild</tt>.    

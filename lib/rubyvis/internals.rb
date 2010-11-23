@@ -157,14 +157,15 @@ module Rubyvis
     return step ? ((rand() * (stop - start).quo(step)).floor * step + start) : (rand() * (stop - start) + start);
   end
 
-  def self.sum(array,f=nil)
+  def self.sum(array, f=nil)
     if f.nil?
-      array.inject(0) {|ac,v| ac+v}
+      array.inject(0) {|ac, v| ac+v}
     else
       i=0
       array.inject(0) {|ac,v|
-        o=o_index(i);i+=1;
-        ac+f.js_call(o,v);
+        o=o_index(i)
+        i+=1
+        ac+f.js_call(o, v)
       }
     end
   end

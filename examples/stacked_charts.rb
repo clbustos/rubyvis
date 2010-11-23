@@ -1,8 +1,10 @@
+# = Stacked Area
+# This example uses the Stack layout to stack areas one over another.
 $:.unshift(File.dirname(__FILE__)+"/../lib")
 require 'rubyvis'
 
 data = pv.range(4).map {|i|
-  pv.range(0, 10, 1).map {|x|
+  pv.range(0, 10, 0.1).map {|x|
     OpenStruct.new({:x=> x, :y=> Math.sin(x) + rand() * 0.5 + 2})
   }
 }

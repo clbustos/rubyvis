@@ -1,5 +1,14 @@
 # = Line Interpolation
-# This example show the 7 types of interpolation available for lines.
+# This example show the 7 types of interpolation available for lines:
+# * linear
+# * step-before
+# * step-after
+# * polar
+# * polar-reverse
+# * basis
+# * cardinal
+# 
+# See also "Area Interpolation":area_interpolation.html
 $:.unshift(File.dirname(__FILE__)+"/../lib")
 require 'rubyvis'
 

@@ -1,5 +1,12 @@
 # = Area Interpolation
-# This example show the 5 types of interpolation available for areas.
+# This example show the 5 types of interpolation available for areas:
+# * linear
+# * step-before
+# * step-after
+# * basis
+# * cardinal
+# 
+# See also "Line Interpolation":line_interpolation.html
 $:.unshift(File.dirname(__FILE__)+"/../lib")
 require 'rubyvis'
 

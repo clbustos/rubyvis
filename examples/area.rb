@@ -1,7 +1,7 @@
 # = Area Charts
 # This simple area chart is constructed using an area mark, with an added line for emphasis on the top edge. Next, rules and labels are added for reference values.
 # Although this example is basic, it provides a good starting point for adding more complex features. For instance, multiple series of data can be added to produce a stacked area chart. 
-# * Protovis version: http://vis.stanford.edu/protovis/ex/area.html
+# * "Protovis version":http://vis.stanford.edu/protovis/ex/area.html
 # * Syntax: RBP
 $:.unshift(File.dirname(__FILE__)+"/../lib")
 require 'rubyvis'

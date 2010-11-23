@@ -1,6 +1,6 @@
 # = Sunbursts
 # A sunburst is an adjacency diagram: a space-filling variant of the node-link diagram. Rather than drawing a link between parent and child in the hierarchy, nodes are drawn as solid areas (either wedges or bars), and their placement relative to adjacent nodes reveals their position in the hierarchy. Because the nodes are now space-filling, we can use an angle encoding for the size of software files. This reveals an additional dimension that would be difficult to show in a node-link diagram.
-# Uses RBP Api
+# This example show files and directory inside rubyvis lib directory and uses RBP API
 
 $:.unshift(File.dirname(__FILE__)+"/../lib")
 require 'rubyvis'
@@ -19,7 +19,7 @@ def get_files(path)
   h
 end
 
-files=get_files(File.dirname(__FILE__)+"/../")
+files=get_files(File.dirname(__FILE__)+"/../lib/rubyvis/")
 
 #load(File.dirname(__FILE__)+"/treemap/treemap_data.rb")
 
