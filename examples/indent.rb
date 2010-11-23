@@ -1,6 +1,7 @@
 # = Indented Tree
 # Indented trees are widely-used to represent file systems, among other applications. Although indented trees require much vertical space and do not easily facilitate multiscale inference, they do allow efficient interactive exploration of the tree to find a specific node.
-# In addition, the indent layout allows rapid scanning of node labels, and multivariate data such as file size can be displayed adjacent to the hierarchy. Click on package nodes to expand and collapse the descendants. . 
+# In addition, the indent layout allows rapid scanning of node labels, and multivariate data such as file size can be displayed adjacent to the hierarchy.
+#
 # Uses Protovis API
 $:.unshift(File.dirname(__FILE__)+"/../lib")
 require 'rubyvis'

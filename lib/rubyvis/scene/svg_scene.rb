@@ -86,14 +86,40 @@ module Rubyvis
 
     def self.append(e,scenes,index)
       e._scene=OpenStruct.new({:scenes=>scenes, :index=>index})
-      #e=self.title
+      e=self.title(e,scenes[index])
 
       if(!e.parent)
         scenes._g.add_element(e)
       end
       return e.next_sibling_node
     end
-
+    
+    # Applies a title tooltip to the specified element <tt>e</tt>, using the
+    # <tt>title</tt> property of the specified scene node <tt>s</tt>. Note that
+    # this implementation does not create an SVG <tt>title</tt> element as a child
+    # of <tt>e</tt>; although this is the recommended standard, it is only
+    # supported in Opera. Instead, an anchor element is created around the element
+    # <tt>e</tt>, and the <tt>xlink:title</tt> attribute is set accordingly.
+    #
+    # @param e an SVG element.
+    # @param s a scene node.
+    
+    def self.title(e,s)
+      a = e.parent
+      a=nil if (a and (a.tag_name != "a"))
+      if (s.title) 
+        if (!a) 
+          a = self.create("a")
+          e.parent.replace_child(a, e) if (e.parent)
+          a.add_element(e)
+        end
+        a.add_attribute('xlink:title',s.title)
+        return a;
+      end
+      a.parent_node.replace_child(e, a) if (a) 
+      e
+    end
+    
     def self.expect(e, type, attributes, style=nil)
 
       if (e)

@@ -110,8 +110,10 @@ module Rubyvis
       attr_accessor :angle
       attr_accessor :start_angle
       attr_accessor :outer_radius
-      attr_accessor :inner_radius      
-      
+      attr_accessor :inner_radius
+      attr_accessor :radius      
+      attr_accessor :_p
+      attr_accessor :n
 
       # Constructs a DOM node for the specified value. Instances of this class are
       # not typically created directly; instead they are generated from a JavaScript 
