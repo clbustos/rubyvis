@@ -1,6 +1,6 @@
 # = Circle Packing
 # Enclosure diagrams are also space-filling, using containment rather than adjacency to represent the hierarchy. As with adjacency diagrams, the size of any node in the tree is quickly revealed. Although circle packing does not use space as efficiently as a treemap, the “wasted” space effectively reveals the hierarchy. At the same time, node sizes can be rapidly compared using area judgments.
-# By flattening the hierarchy, the pack layout can also be used to create bubble charts. 
+# By flattening the hierarchy, the pack layout can also be used to create "bubble charts":bubble_charts.html. 
 
 
 $:.unshift(File.dirname(__FILE__)+"/../lib")
