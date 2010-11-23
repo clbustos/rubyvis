@@ -75,7 +75,22 @@ module Rubyvis
     # @see Rubyvis::Layout::Rollup
     class Network < Rubyvis::Layout
       @properties=Layout.properties.dup
-      attr_accessor :node, :link, :node_label
+      # The node prototype. This prototype is intended to be used with a 
+      # Dot mark in conjunction with the link prototype.
+      attr_accessor :node
+      # The link prototype, which renders edges between source nodes and target
+      # nodes. This prototype is intended to be used with a Line mark in
+      # conjunction with the node prototype.      
+      attr_accessor :link
+      # The node label prototype, which renders the node name adjacent to the node.
+      # This prototype is provided as an alternative to using the anchor on the
+      # node mark; it is primarily intended to be used with radial node-link
+      # layouts, since it provides a convenient mechanism to set the text angle.
+      #
+      # NOTE FOR PROTOVIS USERS: The original name of method was +label+
+      # but it was replaced to not conflict with rubyvis shortcut
+      # method Mark.label()       
+      attr_accessor :node_label
       attr_accessor :_id
       def initialize
         super
@@ -84,9 +99,8 @@ module Rubyvis
         @link=_link
         @node_label=_node_label
       end
-      # The node prototype. This prototype is intended to be used with a 
-      # Dot mark in conjunction with the link prototype.      
-      def _node
+           
+      def _node #:nodoc:
         that=self        
         m=Mark.new().
           data(lambda {that.nodes}).
@@ -97,7 +111,7 @@ module Rubyvis
         m.parent = self
         m 
       end
-      module LinkAdd
+      module LinkAdd # :nodoc:
         attr_accessor :that
         def add(type)
           that=@that
@@ -108,11 +122,9 @@ module Rubyvis
         end
       end
       
-     # The link prototype, which renders edges between source nodes and target
-     # nodes. This prototype is intended to be used with a Line mark in
-     # conjunction with the node prototype.
+    
       
-      def _link
+      def _link # :nodoc:
         that=self
         l=Mark.new().
           mark_extend(@node).
@@ -125,14 +137,8 @@ module Rubyvis
         l
       end
 
-      # The node label prototype, which renders the node name adjacent to the node.
-      # This prototype is provided as an alternative to using the anchor on the
-      # node mark; it is primarily intended to be used with radial node-link
-      # layouts, since it provides a convenient mechanism to set the text angle.
-      #
-      # NOTE FOR PROTOVIS USERS: The original name of method was +label+
-      # but it was replaced to not conflict with Mark.label() 
-      def _node_label
+     
+      def _node_label #:nodoc:
         that=self
         nl=Mark.new().
           mark_extend(@node).
@@ -149,12 +155,17 @@ module Rubyvis
         nl.parent = self
         nl
       end
+      
       ##
-      # :class: Node
-      # Represents a node in a network layout. There is no explicit
-      # constructor; this class merely serves to document the attributes that are
-      # used on nodes in network layouts. (Note that hierarchical nodes place
-      # additional requirements on node representation, vis Rubyvis::Dom::Node
+      # :attr: nodes
+      #
+      # an array of objects representing nodes. Objects in this  array must conform to the Rubyvis::Layout::Network::Node interface; which is
+      # to say, be careful to avoid naming collisions with automatic attributes such
+      # as <tt>index</tt> and <tt>link_degree</tt>. If the nodes property is defined
+      # as an array of 'primitives' (objects which doesn't respond to node_value)
+      # these primitives are automatically wrapped in an OpenStruct object; 
+      # the resulting object's <tt>node_value</tt>
+      # attribute points to the original primitive value.
       
       attr_accessor_dsl [:nodes, lambda {|v|
         out=[]
@@ -165,6 +176,18 @@ module Rubyvis
         }
         out
       }]
+      
+      ##
+      # :attr: links
+      #
+      # an array of objects representing links. Objects in
+      # this array must conform to the Rubyvis::Layout::Network::Link interface; at a
+      # minimum, either <tt>source</tt> and <tt>target</tt> indexes or
+      # <tt>source_node</tt> and <tt>target_node</tt> references must be set. 
+      # Note that if the links property is defined after the nodes property, 
+      # the links can be defined in terms of <tt>self.nodes()</tt>.
+
+
       attr_accessor_dsl [:links, lambda {|v|
         out=[]
         v.map {|d|
@@ -189,7 +212,7 @@ module Rubyvis
       
       # @private Skip evaluating properties if cached. */
       
-      def build_properties(s, properties)
+      def build_properties(s, properties) # :nodoc:
         s_id=s._id
         s_id||=0
         if (s_id < self._id)
@@ -197,10 +220,10 @@ module Rubyvis
         end
       end
       
-      def build_implied(s)        
+      def build_implied(s) # :nodoc:
         network_build_implied(s)
       end
-      def network_build_implied(s)
+      def network_build_implied(s) # :nodoc:
         layout_build_implied(s)
         return true if (!s._id.nil? and s._id >= self._id)
         s._id= self._id
@@ -224,8 +247,8 @@ module Rubyvis
         false
       end
       
-      # Represents a node in a network layout. There is no explicit
-      # constructor; this class merely serves to document the attributes that are
+      # Represents a node in a network layout. 
+      # This class mostly  serves to document the attributes that are
       # used on nodes in network layouts. (Note that hierarchical nodes place
       # additional requirements on node representation, vis Rubyvis::Dom::Node.)
       #
@@ -245,23 +268,19 @@ module Rubyvis
         
         # The node name; optional. If present, this attribute will be used to provide
         # the text for node labels. If not present, the label text will fallback to the
-        # <tt>nodeValue</tt> attribute.
+        # <tt>node_value</tt> attribute.
         #
         # @type string
         attr_accessor :node_name
         
-        # The node value; optional. If present, and no <tt>nodeName</tt> attribute is
-        # present, the node value will be used as the label text. This attribute is
-        # also automatically populated if the nodes are specified as an array of
-        # primitives, such as strings or numbers.
-        #
-        # @type object
+        # The node value; optional. If present, and no <tt>node_name</tt> attribute is present, the node value will be used as the label text.
+        # This attribute is also automatically populated if the nodes are specified as an array of 'primitives', such as strings or numbers.
         attr_accessor :node_value
       end
     
       
-      # Represents a link in a network layout. There is no explicit
-      # constructor; this class merely serves to document the attributes that are
+      # Represents a link in a network layout. 
+      # This class mostly serves to document the attributes that are
       # used on links in network layouts. For hierarchical layouts, this class is
       # used to represent the parent-child links.
       #
@@ -277,21 +296,21 @@ module Rubyvis
         # default value of 1 is used.
         #
         # @type number
-        # @name pv.Layout.Network.Link.prototype.linkValue
-        #/
+
+
         attr_accessor :link_value
       
         # The link's source node. If not set, this value will be derived from the
         # <tt>source</tt> attribute index.
         #
         # @type pv.Layout.Network.Node
-        # @name pv.Layout.Network.Link.prototype.sourceNode
+
         attr_accessor :source_node
         # The link's target node. If not set, this value will be derived from the
         # <tt>target</tt> attribute index.
         #
         # @type pv.Layout.Network.Node
-        # @name pv.Layout.Network.Link.prototype.targetNode
+
         attr_accessor :target_node
         # Alias for <tt>sourceNode</tt>, as expressed by the index of the source node.
         # This attribute is not populated automatically, but may be used as a more
@@ -299,7 +318,7 @@ module Rubyvis
         # representation.
         #
         # @type number
-        # @name pv.Layout.Network.Link.prototype.source
+
         attr_accessor :source
         # Alias for <tt>targetNode</tt>, as expressed by the index of the target node.
         # This attribute is not populated automatically, but may be used as a more
@@ -307,7 +326,7 @@ module Rubyvis
         # representation.
         #
         # @type number
-        # @name pv.Layout.Network.Link.prototype.target
+
         attr_accessor :target
         # Alias for <tt>linkValue</tt>. This attribute is not populated automatically,
         # but may be used instead of the <tt>linkValue</tt> attribute when specifying

@@ -15,6 +15,7 @@ examples/cars/cars_data.rb
 examples/crimea/crimea_data.rb
 examples/crimea/crimea_grouped_bar.rb
 examples/crimea/crimea_line.rb
+examples/dendogram.rb
 examples/dot.rb
 examples/first_protovis_api.rb
 examples/first_rbp_api.rb
@@ -45,6 +46,7 @@ lib/rubyvis/histogram.rb
 lib/rubyvis/internals.rb
 lib/rubyvis/javascript_behaviour.rb
 lib/rubyvis/layout.rb
+lib/rubyvis/layout/cluster.rb
 lib/rubyvis/layout/hierarchy.rb
 lib/rubyvis/layout/network.rb
 lib/rubyvis/layout/partition.rb

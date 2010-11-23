@@ -460,8 +460,12 @@ module Rubyvis
       end
     end
     # Execute a block using this mark as a reference
+    # <b>Example</b>
+    #   bar.execute |b|
+    #     b.width 10
+    #     b.add(Rubyvis::Label)
+    #   end
     def execute(&block)
-      
       block.arity<1 ? self.instance_eval(&block) : block.call(self)      
     end
     # The mark type; a lower name. The type name controls rendering
@@ -486,7 +490,9 @@ module Rubyvis
     # or its prototype, and so on. The prototype mark need not be the same 
     # type of mark as this mark. (Note that for inheritance to be useful,
     # properties with the same name on different mark types should 
-    # have equivalent meaning.)
+    # have equivalent meaning).
+    # On protovis, this method is called +extend+, but it should be changed
+    # because clashed with native +extend+ method
     def mark_extend(proto)
       @proto=proto
       @target=proto.target
