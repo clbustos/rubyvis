@@ -1,3 +1,4 @@
+# Bubble charts, such as those provided by "Many Eyes":http://manyeyes.alphaworks.ibm.com/manyeyes/page/Bubble_Chart.html, encode data in the area of circles. Although less perceptually accurate than bar charts, they can pack hundreds of values into a small space. A similar technique is the Dorling cartogram, where circles are positioned according to geography rather than arbitrarily. Here we compare the file sizes of the Rubyvis library files
 $:.unshift(File.dirname(__FILE__)+"/../lib")
 require 'rubyvis'
 
