@@ -38,8 +38,8 @@ vis = Rubyvis::Panel.new do
         d.first_child ? "rgba(31, 119, 180, 0.25)" : "#ff7f0e"
       }
       title {|d| 
-        d.node_name.to_s + (d.first_child ? "" : ": " + format.format(d.node_value))}
-        
+        d.node_name.to_s + (d.first_child ? "" : ": " + format.format(d.node_value))
+      }
       line_width 1
     end
     node_label.label do

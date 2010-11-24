@@ -1,6 +1,6 @@
 module Rubyvis
   class Layout
-    # Alias for Rubyvis::Layout::Indent 
+    # Alias for Rubyvis::Layout::Indent
     def self.Pack
       Rubyvis::Layout::Pack
     end
@@ -37,7 +37,7 @@ module Rubyvis
     # H. Wang, G. Dai, and H. Wang, ACM CHI 2006.
     #/
     class Pack < Hierarchy
-      @properties=Hierarchy.properties.dup 
+      @properties=Hierarchy.properties.dup
       def initialize
         super
         @node.
@@ -45,15 +45,15 @@ module Rubyvis
         stroke_style("rgb(31, 119, 180)").
         fill_style("rgba(31, 119, 180, 0.25)")
 
-      
-      @node_label.text_align("center")
-        
+
+        @node_label.text_align("center")
+
         @link=nil
-        
+
         @radius = lambda { 1 }
       end
-      
-      
+
+
       ##
       # :attr: spacing
       # The spacing parameter; defaults to 1, which provides a little bit of padding
@@ -62,7 +62,7 @@ module Rubyvis
       # nodes as large as possible, with no padding on enclosing circles.
       #
       # @type number
-      
+
       ##
       # :attr: order
       # The sibling node order. The default order is <tt>null</tt>, which means to
@@ -73,10 +73,10 @@ module Rubyvis
       # beforehand using the {@link pv.Dom} operator.
       #
       # @see pv.Dom.Node#sort
-      
-      
+
+
       attr_accessor_dsl :spacing, :order
-      
+
       ##
       # Default properties for circle-packing layouts. The default spacing parameter
       # is 1 and the default order is "ascending".
@@ -86,11 +86,11 @@ module Rubyvis
         spacing(1).
         order("ascending")
       end
-            
-      
+
+
       # TODO is it possible for spacing to operate in pixel space?
       # Right now it appears to be multiples of the smallest radius.
-      
+
       ##
       # Specifies the sizing function. By default, a sizing function is disabled and
       # all nodes are given constant size. The sizing function is invoked for each
@@ -109,7 +109,7 @@ module Rubyvis
       # @returns {pv.Layout.Pack} this.
       def size(f)
         if f.is_a? Proc
-          @radius=lambda {|*args| Math.sqrt(f.js_apply(self,args))} 
+          @radius=lambda {|*args| Math.sqrt(f.js_apply(self,args))}
         else
           f=Math.sqrt(f)
           @radius=lambda {f}
@@ -117,7 +117,7 @@ module Rubyvis
         self
       end
       ## @private Compute the radii of the leaf nodes. #/
-      
+
       def radii(nodes)
         stack=Mark.stack
         stack.unshift(nil)
@@ -138,7 +138,7 @@ module Rubyvis
           nodes.push(c)
           c=c.next_sibling
         end
-      
+
         # Sort.
         case @s.order
         when "ascending"
@@ -148,7 +148,7 @@ module Rubyvis
         when 'reverse'
           nodes.reverse
         end
-        
+
         return pack_circle(nodes)
       end
       def bound(n)
@@ -164,7 +164,7 @@ module Rubyvis
         b.n = c
         c._p = b
       end
-      def splice(a, b) 
+      def splice(a, b)
         a.n = b
         b._p = a
       end
@@ -174,7 +174,7 @@ module Rubyvis
         dr = a.radius + b.radius
         (dr * dr - dx * dx - dy * dy) > 0.001 # within epsilon
       end
-      
+
       ## @private #/
       def place(a, b, c)
         da = b.radius + c.radius
@@ -183,20 +183,19 @@ module Rubyvis
         dy = b.y - a.y
         dc = Math.sqrt(dx * dx + dy * dy)
         cos = (db * db + dc * dc - da * da) / (2.0 * db * dc)
-        
         theta = Math.acos(cos)
         x = cos * db
         h = Math.sin(theta) * db
-        dx /= dc
-        dy /= dc
+        dx = dx/dc
+        dy = dy/dc
         c.x = a.x + x * dx + h * dy
         c.y = a.y + x * dy - h * dx
       end
-      
+
       # @private #/
-      def transform(n, x, y, k) 
+      def transform(n, x, y, k)
         c=n.first_child
-        while(c) do 
+        while(c) do
           c.x += n.x
           c.y += n.y
           transform(c, x, y, k)
@@ -207,29 +206,29 @@ module Rubyvis
         n.radius *= k
         n.mid_angle=0 # Undefined on protovis
       end
-      
 
-      def pack_circle(nodes) 
+
+      def pack_circle(nodes)
         @x_min = Infinity
         @x_max = -Infinity
         @y_min = Infinity
         @y_max = -Infinity
         a=b=c=j=k=nil
-      
-      
+
+
         # Create first node.
         a = nodes[0];
         a.x = -a.radius
         a.y = 0
         bound(a)
-      
+
         # Create second node. #/
         if (nodes.size > 1)
           b = nodes[1]
           b.x = b.radius
           b.y = 0
           bound(b)
-      
+
           # Create third node and build chain.
           if (nodes.size > 2)
             c = nodes[2]
@@ -239,35 +238,35 @@ module Rubyvis
             a._p = c
             insert(c, b)
             b = a.n
-      
+
             # Now iterate through the rest.
             i=3
-            while(i<nodes.size) do
+            while(i < nodes.size) do
               c=nodes[i]
               place(a, b, c)
-              
+
               # Search for the closest intersection. #/
               isect = 0
               s1 = 1
               s2 = 1
-              
+
               j=b.n
               while(j!=b) do
-                if (intersects(j,c))
-                  isect=1;
-                  break;
+                if (intersects(j, c))
+                  isect=1
+                  break
                 end
                 j=j.n
                 s1+=1
               end
-              
+
               if isect==1
                 k=a._p
-                while(k!=k._p) do
+                while(k!=j._p) do
                   if(intersects(k,c))
-                    if(s2<s1)
+                    if(s2 < s1)
                       isect=-1
-                      k=j
+                      j=k
                     end
                     break
                   end
@@ -275,10 +274,10 @@ module Rubyvis
                   s2+=1
                 end
               end
-              
-      
+
+
               # Update node chain. #/
-              if (isect == 0) 
+              if (isect == 0)
                 insert(a, c)
                 b = c
                 bound(c)
@@ -293,11 +292,11 @@ module Rubyvis
               end
               i+=1
             end
-            
-            
+
+
           end
         end
-      
+
         # Re-center the circles and return the encompassing radius. #/
         cx = (@x_min + @x_max) / 2.0
         cy = (@y_min + @y_max) / 2.0
@@ -309,20 +308,20 @@ module Rubyvis
         end
         cr + @s.spacing
       end
-      
-      
+
+
       def build_implied(s)
         return nil if hierarchy_build_implied(s)
         @s=s
         nodes = s.nodes
         root = nodes[0]
         radii(nodes)
-      
+
         # Recursively compute the layout. #/
         root.x = 0
         root.y = 0
         root.radius = pack_tree(root)
-        
+
         w = self.width
         h = self.height
         k = 1.0 / [2.0 * root.radius / w, 2.0 * root.radius / h].max
