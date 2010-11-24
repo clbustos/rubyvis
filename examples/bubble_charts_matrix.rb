@@ -1,6 +1,7 @@
 # = Bubble charts matrix
 # 
-# Why have one bubble chart when you can have 20?
+# Why have one boring bubble chart when 
+# you can have 20 multicolor charts?
 $:.unshift(File.dirname(__FILE__)+"/../lib")
 require 'rubyvis'
 
@@ -39,7 +40,11 @@ vis = pv.Panel.new()
   
   
   panel.anchor('top').add(Rubyvis::Label).text("n#{i+1}") 
-  pack=panel.add(pv.Layout.Pack).nodes(d).size(lambda {|n| n.node_value})
+  
+  pack=panel.add(pv.Layout.Pack).
+    nodes(d).
+    size(lambda {|n| n.node_value})
+  
   pack.node.add(Rubyvis::Dot).
     visible( lambda {|n| n.parent_node}).
     fill_style(lambda {|n|
@@ -47,7 +52,10 @@ vis = pv.Panel.new()
         lighter((n.node_value) / 5.0)
     }).
     stroke_style(c20)
-  pack.node_label.add(Rubyvis::Label).visible( lambda {|n| n.parent_node}).text(lambda {index})
+  
+  pack.node_label.add(Rubyvis::Label).
+    visible( lambda {|n| n.parent_node}).
+    text(lambda {index})
   
 end
 

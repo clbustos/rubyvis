@@ -32,6 +32,7 @@ module Rubyvis
 end
 
 require 'rubyvis/layout/stack'
+require 'rubyvis/layout/grid'
 require 'rubyvis/layout/network'
 require 'rubyvis/layout/hierarchy'
 require 'rubyvis/layout/treemap'
