@@ -1,9 +1,9 @@
 class Rubyvis::Mark
   ##
-  # :section: Ruby API
+  # :section: RBP Api
   ##
   
-  # Create 
+  # Create a new Mark method shorcut.
   def self.mark_method(name, mark) #:nodoc:
     define_method(name) do |*args,&block|
       opts=args[0]
@@ -240,5 +240,18 @@ class Rubyvis::Mark
   # See Mark for examples of use    
   mark_method :layout_pack, Rubyvis::Layout::Pack
 
+  ##
+  # :method: grid_pack(opts,&block)
+  #
+  # Adds a Layout::Grid to current mark. 
+  # 
+  # If a block is provided, the context will be defined differently if 
+  # parameter is provided
+  # * Without parameter: block executed inside context of new mark
+  # * With paramenter: block executed inside context of current mark. 
+  #   Paramenter references new mark
+  # 
+  # See Mark for examples of use    
+  mark_method :layout_grid, Rubyvis::Layout::Grid
   
 end

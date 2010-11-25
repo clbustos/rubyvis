@@ -174,6 +174,7 @@ module Rubyvis
             
       def size(f)
         @size=Rubyvis.functor(f)
+        self
       end
       
       

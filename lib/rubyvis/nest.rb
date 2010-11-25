@@ -90,6 +90,22 @@ module Rubyvis
       @order = order.nil? ? Rubyvis.natural_order : order
       return self
     end
+    
+    # Returns a hierarchical map of values. Each key adds one level to the
+    # hierarchy. With only a single key, the returned map will have a key for each
+    # distinct value of the key function; the correspond value with be an array of
+    # elements with that key value. If a second key is added, this will be a nested
+    # map. For example:
+    #
+    # <pre>Rubyvis.nest(yields)
+    #     .key(function(d) d.variety)
+    #     .key(function(d) d.site)
+    #     .map()</pre>
+    #
+    # returns a map <tt>m</tt> such that <tt>m[variety][site]</tt> is an array, a subset of
+    # <tt>yields</tt>, with each element having the given variety and site.
+    #
+    # @returns a hierarchical map of values    
     def map
       #i=0
       map={} 
@@ -116,6 +132,19 @@ module Rubyvis
       end
       map
     end
+    
+    # Returns a hierarchical nested array. This method is similar to
+    # {@link pv.entries}, but works recursively on the entire hierarchy. Rather
+    # than returning a map like {@link #map}, this method returns a nested
+    # array. Each element of the array has a <tt>key</tt> and <tt>values</tt>
+    # field. For leaf nodes, the <tt>values</tt> array will be a subset of the
+    # underlying elements array; for non-leaf nodes, the <tt>values</tt> array will
+    # contain more key-values pairs.
+    #
+    # <p>For an example usage, see the {@link Nest} constructor.
+    #
+    # @returns a hierarchical nested array.
+    
     def entries()
       entries_sort(entries_entries(map),0)
     end
@@ -145,13 +174,30 @@ module Rubyvis
         if value.is_a? Array
           map[key]=f.call(value)
         else
-          rollup_rollup(value)
+          rollup_rollup(value,f)
         end
       }
       return map;
     end
+    
+    # Returns a rollup map. The behavior of this method is the same as
+    # {@link #map}, except that the leaf values are replaced with the return value
+    # of the specified rollup function <tt>f</tt>. For example,
+    #
+    # <pre>pv.nest(yields)
+    #      .key(function(d) d.site)
+    #      .rollup(function(v) pv.median(v, function(d) d.yield))</pre>
+    #
+    # first groups yield data by site, and then returns a map from site to median
+    # yield for the given site.
+    #
+    # @see #map
+    # @param {function} f a rollup function.
+    # @returns a hierarchical map, with the leaf values computed by <tt>f</tt>.
+
+    
     def rollup(f)
-      rollup_rollup(self.map,f)
+      rollup_rollup(self.map, f)
     end
   end
 end

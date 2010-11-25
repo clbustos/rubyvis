@@ -6,14 +6,20 @@ describe Rubyvis::Nest do
     { :year=>2010, :city=>'France',:value=>2},
     { :year=>2011, :city=>'London',:value=>5},
     { :year=>2011, :city=>'France',:value=>6},
-    
   ]
   end
   it "should generate correct map" do
-    nest = pv.nest(@data).key(lambda {|d| d[:year]}).key(lambda {|d|  d[:city]}).map();
+    nest = pv.nest(@data).key(lambda {|d| d[:year]}).key(lambda {|d|  d[:city]}).map()
+    
     expected={2010=>{"London"=>[{:year=>2010, :city=>"London", :value=>1}], "France"=>[{:year=>2010, :city=>"France", :value=>2}]}, 2011=>{"London"=>[{:year=>2011, :city=>"London", :value=>5}], "France"=>[{:year=>2011, :city=>"France", :value=>6}]}}
     nest.should==expected
 
+  end
+  it "should generate correct rollup" do
+    nest = pv.nest(@data).key(lambda {|d| d[:year]}).key(lambda {|d|  d[:city]}).rollup(lambda {|d| d.map{|dd| dd[:value]}})
+    expected={2010=>{"London"=>[1], "France"=>[2]}, 2011=>{"London"=>[5], "France"=>[6]}}
+    nest.should==expected
+    
   end
   it "should generate correct entries" do
     nest = pv.nest(@data).key(lambda {|d| d[:year]}).key(lambda {|d|  d[:city]}).entries();

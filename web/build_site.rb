@@ -48,11 +48,13 @@ files.each do |f|
   source_a=[]
   previous_example=""
   next_example=""
+  title_obtained=false
   fp.each do |line|
     if line=~/\s*#\s*(.+)/ and !comment
       t=$1
-      if t=~ /=\s*(.+)/
+      if t=~ /^=\s*(.+)$/ and !title_obtained
         title=$1
+        title_obtained=true
       else
         text << t
       end
