@@ -15,16 +15,17 @@ module Rubyvis
       # Computes the straight path for the range [i, j]
       path=lambda {|ii,j|
         p1 = []
-        p2 = [];
+        p2 = []
         k=j
         (ii..k).each {|i|
           si = scenes[i]
           sj = scenes[j]
           pi = "#{si.left},#{si.top}"
           pj = "#{(sj.left + sj.width)},#{(sj.top + sj.height)}"
-    
+          puts "#{i}:"+pi+","+pj if $DEBUG
           #/* interpolate */
-          if (i < k) 
+          
+          if (i < k)
             sk = scenes[i + 1]
             sl = scenes[j - 1]
             case (s.interpolate) 
@@ -38,8 +39,8 @@ module Rubyvis
             end
           end
     
-          p1.push(pi);
-          p2.push(pj);
+          p1.push(pi)
+          p2.push(pj)
           j=j-1
         }
         (p1+p2).join("L");
@@ -82,17 +83,21 @@ module Rubyvis
       i=0
       # puts "Scenes:#{scenes.size}, interpolation:#{scenes[0].interpolate}"
       
-      while(i<scenes.size)
-      
+      while(i < scenes.size)
         si = scenes[i]
-        next if (si.width==0 and si.height==0)
-        j=0
+        if (si.width==0 and si.height==0)
+          i+=1
+          next
+        end
         
-        j=(i+1).upto(scenes.size-1).find {|jj| 
-          sj=scenes[jj]
-          si.width==0 and si.height==0
-        }
-        j||=scenes.size
+        j=i+1
+        while(j<scenes.size) do
+          sj=scenes[j]
+          break if sj.width==0 and sj.height==0
+          j+=1
+        end
+        
+        puts "j:#{j}" if $DEBUG
         
         i=i-1 if (i!=0 and (s.interpolate != "step-after"))
         
@@ -104,6 +109,7 @@ module Rubyvis
         i+=1
         
       end
+      
       return e if d.size==0
     
       e = self.expect(e, "path", {

@@ -64,7 +64,6 @@ module Rubyvis
       if (scenes.size>0 and scenes[0].reverse and scenes.type!='line' and scenes.type!='area')
         scenes=scenes.reverse
       end
-      
       self.remove_siblings(self.send(scenes.type, scenes))
     end
     def self.remove_siblings(e)

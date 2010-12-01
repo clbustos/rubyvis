@@ -58,6 +58,6 @@ RSpec::Matchers.define :have_path_data_close_to do |exp|
   failure_message_for_should do |obs|
     obs_array=path_scan(obs.attributes["d"].value)
     exp_array=path_scan(exp)
-    "#{obs_array} path should be equal to #{exp_array}"
+    "\n#{obs_array} path should be equal to \n#{exp_array}"
   end
 end

@@ -79,7 +79,10 @@ module Rubyvis
       attr_accessor :_x, :_y, :_values, :prop
 
       def self.defaults
-        Stack.new.mark_extend(Layout.defaults).orient("bottom-left").offset("zero").layers([[]])
+        Stack.new.mark_extend(Layout.defaults).
+          orient("bottom-left").
+          offset("zero").
+          layers([[]])
       end
       
       # Constructs a new, empty stack layout. Layouts are not typically constructed
@@ -90,8 +93,8 @@ module Rubyvis
         @none=lambda {nil}
         @prop = {"t"=> @none, "l"=> @none, "r"=> @none, "b"=> @none, "w"=> @none, "h"=> @none}
         @values=nil
-        @_x=lambda {return 0}
-        @_y=lambda {return 0}
+        @_x=lambda {0}
+        @_y=lambda {0}
         @_values=Rubyvis.identity
       end
       def x(f)
@@ -123,7 +126,7 @@ module Rubyvis
       
       def build_implied(s)
         # puts "Build stack" if $DEBUG
-        panel_build_implied(s)
+        layout_build_implied(s)
         data = s.layers
         n = data.size
         m = nil
@@ -250,11 +253,11 @@ module Rubyvis
         # Propagate the offset to the other series. */
         m.times {|j|
         o = y[_index[0]][j]
-        (1...n).each {|i|
-          
-          o += dy[_index[i - 1]][j]
-          y[_index[i]][j] = o
-        }
+          (1...n).each {|i|
+            
+            o += dy[_index[i - 1]][j]
+            y[_index[i]][j] = o
+          }
         }
         
         # /* Find the property definitions for dynamic substitution. */
@@ -265,7 +268,6 @@ module Rubyvis
         py = orient[0,1]
         
         @values=values
-        
         @prop.each {|k,v|
           @prop[k]=@none
         }

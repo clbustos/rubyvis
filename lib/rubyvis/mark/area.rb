@@ -55,9 +55,9 @@ module Rubyvis
         #    p binds.fixed
         #/* Evaluate all properties on the first instance. */
       else
-        binds.required = binds._required;
-        binds.optional = binds._optional;
-        binds.fixed = nil;
+        binds.required = binds._required
+        binds.optional = binds._optional
+        binds.fixed = nil
       end
       # pp binds
       mark_build_instance(s)
@@ -66,7 +66,7 @@ module Rubyvis
 
 
     def area_bind
-      mark_bind()
+      mark_bind
       binds = self.binds
       
       required = binds.required
@@ -80,8 +80,8 @@ module Rubyvis
       }
       optional.delete_if {|v| v.name=='segmented'}
       # Cache the original arrays so they can be restored on build. */
-      @binds._required = required;
-      @binds._optional = optional;
+      @binds._required = required
+      @binds._optional = optional
     end
 
 

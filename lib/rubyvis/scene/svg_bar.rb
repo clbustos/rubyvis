@@ -6,7 +6,7 @@ module Rubyvis
         next unless s.visible
         fill=s.fill_style
         stroke=s.stroke_style
-        next if(fill.opacity==0.0 and stroke.opacity==0.0)
+        next if(fill.opacity==0 and stroke.opacity==0)
         e=SvgScene.expect(e,'rect', {
           "shape-rendering"=> s.antialias ? nil : "crispEdges",
           "pointer-events"=> s.events,

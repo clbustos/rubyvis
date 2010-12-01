@@ -15,6 +15,7 @@ describe Rubyvis::Layout::Stack do
       @vis = Rubyvis.Panel.new.width(@w).height(@h)
       @stack=@vis.add(Rubyvis::Layout::Stack)
     end
+    
     describe "only with layers()" do
       before do
         x=@x
@@ -43,9 +44,9 @@ describe Rubyvis::Layout::Stack do
       before do
         x=@x
         y=@y
-        @data=[{:aa=>1,:bb=>2},{:aa=>3,:bb=>1},{:aa=>2,:bb=>3}]
+        @data=[{:first=>1,:second=>2},{:first=>3,:second=>1},{:first=>2,:second=>3}]
         @stack.
-        layers([:aa,:bb]).
+          layers([:first,:second]).
         values(@data).
         x(lambda {|d| x.scale(index)}).
         y(lambda {|d,dd| y.scale(d[dd])}).layer.add(Rubyvis::Area)
@@ -65,6 +66,5 @@ describe Rubyvis::Layout::Stack do
       end
       
     end
-    
   end
 end

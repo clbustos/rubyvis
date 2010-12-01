@@ -699,7 +699,11 @@ module Rubyvis
       width=self.parent ? self.parent.width() : (w+(l.nil? ? 0 : l)+(r.nil? ? 0 : r))
       #puts (self.parent)? "parent width: #{self.parent.width}" : "no parent" if $DEBUG
       #p prop.sort if $DEBUG
-      puts "build implied #{type}: l:#{l},r:#{r},t:#{t},b:#{b}, w:#{prop[:width]} #{w},h: #{prop[:height]} #{h}, width:#{width}" if $DEBUG
+      
+      height=self.parent ? self.parent.height(): (h+(t.nil? ? 0 : t )+(b.nil? ? 0 : b))
+      
+      puts "build implied #{type}: l:#{l},r:#{r},t:#{t},b:#{b}, w:#{prop[:width]} #{w},h: #{prop[:height]} #{h}, width:#{width}, height:#{height}" if $DEBUG
+      
       if w.nil?
         r||=0
         l||=0
@@ -715,7 +719,7 @@ module Rubyvis
         l=width-w-r
       end
 
-      height=self.parent ? self.parent.height(): (h+(t.nil? ? 0 : t )+(b.nil? ? 0 : b))
+      
 
       if h.nil?
         t||=0
@@ -739,11 +743,9 @@ module Rubyvis
       s.top=t
       s.bottom=b
 
-      puts "Post->left: #{l},right:#{r},top:#{t},bottom:#{b}, width:#{w}, height:#{h}" if $DEBUG
-
-      s.width=w if prop[:width]
-      #puts "width:#{s.width}" if $DEBUG
-      s.height=h if prop[:height]
+      puts "Post->left: #{l},right:#{r},top:#{t},bottom:#{b}, width:#{w}, height:#{h}\n\n" if $DEBUG
+      s.width  = w if prop[:width]
+      s.height = h if prop[:height]
       s.text_style=Rubyvis::Color.transparent if prop[:text_style] and !s.text_style
       s.fill_style=Rubyvis::Color.transparent if prop[:fill_style] and !s.fill_style
       s.stroke_style=Rubyvis::Color.transparent if prop[:stroke_style] and !s.stroke_style
@@ -874,7 +876,7 @@ module Rubyvis
             @types[2].push(@seen[name])
           end
         }
-      end while(mark=mark.proto)
+      end while(mark = mark.proto)
       @binds=OpenStruct.new({:properties=>@seen, :data=>@_data, :required=>@_required, :optional=>@types[1]+@types[2]+@types[3]
       })
     end

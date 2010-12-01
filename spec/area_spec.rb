@@ -15,6 +15,18 @@ describe Rubyvis::Area do
         left(lambda {index*20}).
         bottom(0)
     end
+    it "should return correct path with 0 on one value" do
+      
+      @area.data([1,0,2])
+      @vis.render
+
+
+      doc=Nokogiri::XML(@vis.to_svg)
+      # <svg font-size="10px" font-family="sans-serif" fill="none" stroke="none" stroke-width="1.5" width="200" height="200"><g><path d="M0,180L20,200L20,200L0,200ZM20,200L40,160L40,200L20,200Z" fill="rgb(31,119,180)"/></g></svg>
+      doc.at_xpath("//xmlns:path").should have_path_data_close_to  "M0,180L20,200L20,200L0,200ZM20,200L40,160L40,200L20,200Z"
+    end
+    
+    
     it "should return correct default (linear) path" do
       @vis.render
       doc=Nokogiri::XML(@vis.to_svg)
