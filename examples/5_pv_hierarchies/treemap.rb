@@ -22,7 +22,7 @@ end
 files=get_files(File.dirname(__FILE__)+"/../../")
 
 format=Rubyvis::Format.number
-color = pv.Colors.category19
+color = pv.Colors.category20
 nodes = pv.dom(files).root("rubyvis").nodes
 
 

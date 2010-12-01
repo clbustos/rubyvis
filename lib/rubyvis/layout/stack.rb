@@ -149,20 +149,20 @@ module Rubyvis
         stack.unshift(nil)
         values = []
         n.times {|i|
-        dy[i] = []
-        y[i] = []
-        o.parent.index = i
-        stack[0] = data[i]
-        values[i] = self._values.js_apply(o.parent, stack);
-        m = values[i].size if (i==0) 
-        stack.unshift(nil)
-        m.times {|j|
-          stack[0] = values[i][j]
-          o.index = j
-          x[j] = self._x.js_apply(o, stack) if i==0
-          dy[i][j] = self._y.js_apply(o, stack)
-        }
-        stack.shift()
+          dy[i] = []
+          y[i] = []
+          o.parent.index = i
+          stack[0] = data[i]
+          values[i] = self._values.js_apply(o.parent, stack)
+          m = values[i].size if (i==0) 
+          stack.unshift(nil)
+          m.times {|j|
+            stack[0] = values[i][j]
+            o.index = j
+            x[j] = self._x.js_apply(o, stack) if i==0
+            dy[i][j] = self._y.js_apply(o, stack)
+          }
+          stack.shift()
         }
         stack.shift()
         
