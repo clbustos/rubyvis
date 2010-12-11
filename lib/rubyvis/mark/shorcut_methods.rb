@@ -241,7 +241,7 @@ class Rubyvis::Mark
   mark_method :layout_pack, Rubyvis::Layout::Pack
 
   ##
-  # :method: grid_pack(opts,&block)
+  # :method: layout_grid(opts,&block)
   #
   # Adds a Layout::Grid to current mark. 
   # 
@@ -253,5 +253,19 @@ class Rubyvis::Mark
   # 
   # See Mark for examples of use    
   mark_method :layout_grid, Rubyvis::Layout::Grid
+
+  ##
+  # :method: tree_grid(opts,&block)
+  #
+  # Adds a Layout::Tree to current mark. 
+  # 
+  # If a block is provided, the context will be defined differently if 
+  # parameter is provided
+  # * Without parameter: block executed inside context of new mark
+  # * With paramenter: block executed inside context of current mark. 
+  #   Paramenter references new mark
+  # 
+  # See Mark for examples of use    
+  mark_method :layout_tree, Rubyvis::Layout::Tree
   
 end
