@@ -102,10 +102,7 @@ module Rubyvis
       # puts "Segundo #{(@l[j + 1] - @l[j])}"
       @i[j].call((@f.call(x) - @l[j]) .quo(@l[j + 1] - @l[j]));
     end
-    # Alias for scale(x)
-    def [](x)
-      scale(x)
-    end
+    alias :[] :scale      
     def transform(forward, inverse)
       @f=lambda {|x| @n ? -forward.call(-x) : forward.call(x); }
       @g=lambda {|y| @n ? -inverse.call(-y) : inverse.call(y); }
