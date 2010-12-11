@@ -115,14 +115,13 @@ module Rubyvis
     # Sets the range from the given continuous interval. The interval [<i>
     # min</i>, <i>max</i>] is subdivided into <i>n</i> equispaced bands,
     # where <i>n</i> is the number of (unique) values in the domain. The first
-    # and last band are offset from the edge of the range by the distance between
-    # bands.
-    #
+    # and last band are offset from the edge of the range by the distance between bands.
+    # 
     # <p>The band width argument, <tt>band</tt>, is typically in the range [0, 1]
     # and defaults to 1. This fraction corresponds to the amount of space in the
-    # range to allocate to the bands, as opposed to padding. A value of 0.5 means
-    # that the band width will be equal to the padding width. The computed
-    # absolute band width can be retrieved from the range as
+    # range to allocate to the bands, as opposed to padding. A value of 0.5
+    # means  that the band width will be equal to the padding width. 
+    # The computed  absolute band width can be retrieved from the range as
     # <tt>scale.range_band</tt>.
     #
     # <p>If the band width argument is negative, this method will allocate bands

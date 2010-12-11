@@ -21,7 +21,7 @@ module Rubyvis
     # :attr: shape_size
     # The size of the shape, in square pixels. Square pixels are used such that the
     # area of the shape is linearly proportional to the value of the
-    # <tt>shapeSize</tt> property, facilitating representative encodings. This is
+    # <tt>shape_size</tt> property, facilitating representative encodings. This is
     # an alternative to using shape_radius
     #
     

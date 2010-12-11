@@ -169,17 +169,24 @@ describe Rubyvis::Dom do
       end
       
       it "method visit_before" do
-      @n.visit_before {|n,d|
-        @a.push([n.node_value,d])
-      }
-      @a.should eq [[:a, 0], [:b, 1], [:e, 2], [:c, 1], [:d, 2]]
+        @n.visit_before {|n,d|
+          @a.push([n.node_value,d])
+        }
+        @a.should eq [[:a, 0], [:b, 1], [:e, 2], [:c, 1], [:d, 2]]
       end
       
       it "method visit_after" do
-      @n.visit_after {|n,d|
-        @a.push([n.node_value,d])
-      }
-      @a.should eq [[:e, 2], [:b, 1], [:d, 2], [:c, 1], [:a, 0]]
+        @n.visit_after {|n,d|
+          @a.push([n.node_value,d])
+        }
+        @a.should eq [[:e, 2], [:b, 1], [:d, 2], [:c, 1], [:a, 0]]
+      end
+      it "method each_child" do
+        @n.append_child(@n5)        
+        @n.each_child {|d|
+          @a.push(d.node_value)
+        }
+        @a.should eq [:b, :c,:e]
       end
     end
     it "should sort correctly" do

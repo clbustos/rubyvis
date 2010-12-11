@@ -62,6 +62,10 @@ describe Rubyvis::Scale::Ordinal do
       @y.scale(9).should==pv.color('blue')
       @y.scale(1).should==pv.color('red')      
     end
+    it "should return the same using [] and scale()" do
+      a=rand()
+      @y[a].should==@y.scale(a)
+    end
     it "should returns correct scale with known values" do
       @y.scale('a').should==pv.color('red')
       @y.scale('b').should==pv.color('white')

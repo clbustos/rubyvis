@@ -123,8 +123,8 @@ module Rubyvis
   def self.range(*arguments)
     start, stop, step=arguments
     if (arguments.size == 1)
-      stop = start;
-      start = 0;
+      stop = start
+      start = 0
     end
     step||= 1
     raise "range must be finite" if ((stop - start) / step.to_f).infinite?

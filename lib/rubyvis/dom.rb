@@ -115,6 +115,12 @@ module Rubyvis
       attr_accessor :_p
       attr_accessor :n
 
+      ##
+      # Created for Tree
+      
+      attr_accessor :ancestor, :prelim, :mod, :change, :shift, :number, :thread
+      
+      
       # Constructs a DOM node for the specified value. Instances of this class are
       # not typically created directly; instead they are generated from a JavaScript 
       # map using the {@link pv.Dom} operator.
@@ -228,7 +234,16 @@ module Rubyvis
         block.call(n,i) if moment==:after
       end
       private :visit_visit
-      
+      # Yield block on each child
+      # Replaces the javascript formula
+      #   for (var c = o.first_child; c; c = c.nextSibling)
+      def each_child
+        c=@first_child
+        while c
+          yield c
+          c=c.next_sibling
+        end
+      end
       # Visits each node in the tree in preorder traversal, applying the specified
       # proc <i>block</i>. The arguments to the function are:<ol>
       #

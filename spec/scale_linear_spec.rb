@@ -119,6 +119,12 @@ describe Rubyvis::Scale::Linear do
     @y.range(0.000001,0.0001)
     @y.ticks.should==[1.quo(100000), 1.quo(50000), 3.quo(100000), 1.quo(25000), 1.quo(20000), 3.quo(50000), 7.quo(100000), 1.quo(12500), 9.quo(100000), 1.quo(10000)]
     @y.tick_format.call(0.2).should=='0.20000'
-    
   end
+  it "should return correct by" do
+    by=@y.by(lambda {|v| v.value})
+    a=OpenStruct.new({:value=>rand})
+    by.call(a).should==@y[a.value]
+  end
+  
+  
 end

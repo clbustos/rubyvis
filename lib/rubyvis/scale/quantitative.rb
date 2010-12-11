@@ -417,20 +417,29 @@ module Rubyvis
     #
     # This method must be invoked each time after setting the domain.
     def nice
-      if (@d.size!=2)
-        return self;
-      end
+      return self if @d.size!=2
       start=@d.first
       _end=@d[@d.size-1]
       reverse=_end<start
       min=reverse ? _end : start
       max = reverse ? start : _end
       span=max-min
+      
       return self if(!span or span.infinite?)
+      
       step=10**((Math::log(span).quo(Math::log(10))).round-1)
       @d=[(min.quo(step)).floor*step, (max.quo(step)).ceil*step]
       @d.reverse if  reverse
       @l=@d.map {|v| @f.call(v)}
+      self
     end
+    def by(f)
+      that=self
+      lambda {|*args|
+        that.scale(f.js_apply(self,args))
+      }
+    end
+    
+    
   end
 end
