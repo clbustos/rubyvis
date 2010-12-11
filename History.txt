@@ -1,3 +1,11 @@
+=== 0.3.4 / 2010-12-11
+
+* Implemented Layout::Grid and Layout::Tree
+* New example: census treemap. Added spec for layout
+* Examples reordered
+* Bug fix: Area with 0 on height create infinite loop
+* Bug fix: Layout::Pack overlaps circles on NE position
+
 === 0.3.3 / 2010-11-23
 
 * Implemented Rubyvis::Layout::Pack, Rubyvis::Layout::Indent and Rubyvis::Flatten
