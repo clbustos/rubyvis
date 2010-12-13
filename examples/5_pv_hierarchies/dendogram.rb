@@ -19,7 +19,7 @@ def get_files(path)
   h
 end
 
-files=get_files(File.dirname(__FILE__)+"/../../")
+files=get_files(File.dirname(__FILE__)+"/../../lib/")
 
 
 vis = Rubyvis::Panel.new do
@@ -31,7 +31,7 @@ vis = Rubyvis::Panel.new do
   bottom 10 
   layout_cluster do
     nodes pv.dom(files).root("rubyvis").sort(lambda {|a,b| a.node_name<=>b.node_name}).nodes
-    group 1
+    group 0.2
     orient "left"
 
     link.line  do

@@ -46,7 +46,7 @@ module Rubyvis
           i = Array.new(mins - i.size + 1).join(@padi) + i.to_s
         end
         
-        s[0] = x < 0 ? np + i + ns : i
+        s[0] = x < 0 ? @np + i + @ns : i
         
         #/* Pad the fractional part. */
         f = s[1].nil? ? "" : s[1]

@@ -71,18 +71,6 @@
           /[if IE]
             %embed{:src=>"examples/1_basic_1a_bar_rbp_api.svg" ,:width=>"150", :height=>"150"}
           %object{:data=>"examples/1_basic_1a_bar_rbp_api.svg", :type=>"image/svg+xml", :width=>150,:height=>150}
-    .examples_div
-      %h2 Examples
-      %p 
-        Several based on
-        %a{:href=>"http://vis.stanford.edu/protovis/ex/"}Protovis gallery
-      .examples
-        - examples.each_pair do |name,page|
-          .example
-            .name
-              %a{:href=>"examples/"+name+".html"}=page.title
-            .image
-              %img{:src=>"examples/"+name+".png"}
     .resources
       %h2 Resources
       %ul
@@ -102,6 +90,26 @@
           API documentation on 
           %a{:href=>'http://rubyvis.rubyforge.org/rubyvis/'}
             http://rubyvis.rubyforge.org/rubyvis/
+    .adsense_1
+      :javascript
+        google_ad_client = "ca-pub-8946586062292381";
+        /* rubyvis_1 */
+        google_ad_slot = "8253377596";
+        google_ad_width = 728;
+        google_ad_height = 90;
+      %script{:type=>'text/javascript', :src=>"http://pagead2.googlesyndication.com/pagead/show_ads.js"}
+    .examples_div
+      %h2 Examples
+      %p 
+        Several based on
+        %a{:href=>"http://vis.stanford.edu/protovis/ex/"}Protovis gallery
+      .examples
+        - examples.each_pair do |name,page|
+          .example
+            .name
+              %a{:href=>"examples/"+name+".html"}=page.title
+            .image
+              %img{:src=>"examples/"+name+".png"}
     :javascript
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-5764936-8']);
