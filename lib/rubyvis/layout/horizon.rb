@@ -9,8 +9,7 @@ module Rubyvis
     # area chart where the area is folded into multiple bands. Color is used to
     # encode band, allowing the size of the chart to be reduced significantly
     # without impeding readability. This layout algorithm is based on the work of
-    # J. Heer, N. Kong and M. Agrawala in <a
-    # href="http://hci.stanford.edu/publications/2009/heer-horizon-chi09.pdf">"Sizing
+    # J. Heer, N. Kong and M. Agrawala in <a  href="http://hci.stanford.edu/publications/2009/heer-horizon-chi09.pdf">"Sizing
     # the Horizon: The Effects of Chart Size and Layering on the Graphical
     # Perception of Time Series Visualizations"</a>, CHI 2009.
     #
@@ -41,61 +40,65 @@ module Rubyvis
       # The band prototype. This prototype is intended to be used with an Area
       # mark to render the horizon bands.
       attr_accessor :band
+      attr_accessor :_bands, :_mode, :_size, :_fill, :_red, :_blue
       def initialize
         super
-        @_bands=nil # cached bands
+        @_bands=nil
         @_mode=nil # cached mode
         @_size=nil # cached height
         @_fill=nil # cached background style
         @_red=nil # cached negative color (ramp)
         @_blue=nil # cached positive color (ramp)
-        @bands=_bands
+        @_bands_panel=_bands_panel
         @band=_band
       end
       def build_implied(s)
         layout_build_implied(s) 
         @_bands=s.bands
         @_mode=s.mode
-        @_size=((mode == "color" ? 0.5 : 1) * s.height).round
+        @_size=((@_mode == "color" ? 0.5 : 1) * s.height).round
         @_fill=s.background_style
         @_red=Rubyvis.ramp(@_fill, s.negative_style).domain(0,@_bands)
         @_blue=Rubyvis.ramp(@_fill, s.positive_style).domain(0,@_bands)
         
       end
-      def _bands
+      def _bands_panel
+        that=self
         Rubyvis::Panel.new().
-        data(lambda {Rubyvis.range(@_bands * 2)}).
-        overflow("hidden").
-        height(lambda {@_size}).
-        top(lambda {|i| @_mode=='color' ? (i & 1) * @_size : 0 }).
-        fill_style(lambda {|i| i ? nil : @_fill})
+          data(lambda {Rubyvis.range(that._bands.to_f * 2)}).
+          overflow("hidden").
+          height(lambda {that._size}).
+          top(lambda {|i| that._mode=='color' ? (i & 1) * that._size : 0 }).
+          fill_style(lambda {|i| i!=0 ? nil : that._fill})
       end
       
       def _band
+        that=self
         m=Rubyvis::Mark.new().
         top(lambda  {|d,i|
-            @_mode == ("mirror" and (i & 1)!=0) ? (i + 1 >> 1) * @_size : nil
+          (that._mode == "mirror" and (i & 1)!=0) ? (i + 1 >> 1) * that._size : nil
         }).
         bottom(lambda {|d,i|
-            @_mode == "mirror" ? ((i & 1)!=0 ? nil : (i + 1 >> 1) * -@_size)
-              : ((i & 1 or -1) * (i + 1 >> 1) * @_size)
+            crit= (i & 1)!= 0 ? i & 1 : -1
+          (that._mode == "mirror") ? ((i & 1)!=0 ? nil : (i + 1 >> 1) * -that._size) : (crit * (i + 1 >> 1) * that._size)
         }).
         fill_style(lambda {|d,i|
-          return ((i & 1)!=0 ? @_red : @_blue)[(i >> 1) + 1]
+            ((i & 1)!=0 ? that._red : that._blue).scale((i >> 1) + 1)
         })
         
         class << m # :nodoc:
-          def that=(v)
-            @that = v
+          def that_and_bands(that,bands)
+            @that = that
+            @bands=bands
           end
           def add(type)
-            bands=@_bands
-            that  = @that
+            bands=@bands
+            that = @that
             that.add( Rubyvis.Panel ).mark_extend(bands). add(type). mark_extend(self)
           end
         end
         
-        m.that=self
+        m.that_and_bands(self, @_bands_panel)
         m
       end
       
