@@ -35,16 +35,15 @@ module Rubyvis
       end
 
       if ['hsla','hsl'].include? $1
-        h=m2[0].to_f
-        s=m2[0].to_f.quo(100)
-        l=m2[0].to_f.quo(100)
-        return Color::Hsl.new(h,s,l,a).rgb()
+        h=m2[0].to_i
+        s=m2[1].to_f / 100
+        l=m2[2].to_f / 100
+        return Color::Hsl.new(h,s,l,a).rgb
       end
 
       if ['rgba','rgb'].include? $1
         parse=lambda {|c|
-          f=c.to_f
-          return (c[c.size-1]=='%') ? (f*2.55).round : f
+          return (c[c.size-1]=='%') ? (c.to_f*2.55).round : c.to_i
         }
         r=parse.call(m2[0])
         g=parse.call(m2[1])
@@ -69,7 +68,7 @@ module Rubyvis
         g = format[3,2]
         b = format[5,2]
       end
-      return Rubyvis.rgb(r.to_i(16), g.to_i(16), b.to_i(16), 1);
+      return Rubyvis.rgb(r.to_i(16), g.to_i(16), b.to_i(16), 1)
     end
 
     # Otherwise, pass-through unsupported colors. */
@@ -292,14 +291,10 @@ module Rubyvis
         @g=g
         @a=a
         @opacity=a
-        if @a>0
-          @color="rgb(#{r.to_i},#{g.to_i},#{b.to_i})"
-        else
-          @color="none"
-        end
+        @color= @a > 0 ? "rgb(#{r.to_i},#{g.to_i},#{b.to_i})" : "none"
       end
       def ==(v)
-        self.class==v.class and @r==v.r and @b==v.b and @g=v.g and @a=v.a
+        self.class==v.class and @r==v.r and @b==v.b and @g==v.g and @a==v.a
       end
       
       # Constructs a new RGB color with the same green, blue and alpha channels
@@ -333,20 +328,20 @@ module Rubyvis
       # darker are inverse operations, the results of a series of invocations of
       # these two methods might be inconsistent because of rounding errors.
       def lighter(k=1)
-          k = 0.7**k
-          i = 30
-          r=self.r
-          g=self.g
-          b=self.b
-          return Rubyvis.rgb(i, i, i, a) if (!r and !g and !b) 
-          r = i if (r and (r < i)) 
-          g = i if (g and (g < i)) 
-          b = i if (b and (b < i))
-          Rubyvis.rgb(
-            [255, (r/k).floor].min,
-            [255, (g/k).floor].min,
-            [255, (b/k).floor].min,
-            a)
+        k = 0.7**k
+        i = 30
+        r=self.r
+        g=self.g
+        b=self.b
+        return Rubyvis.rgb(i, i, i, a) if (!r and !g and !b) 
+        r = i if (r and (r < i)) 
+        g = i if (g and (g < i)) 
+        b = i if (b and (b < i))
+        Rubyvis.rgb(
+          [255, (r/k).floor].min,
+          [255, (g/k).floor].min,
+          [255, (b/k).floor].min,
+        a)
       end
       # Returns a new color that is a darker version of this color. This method
       # applies an arbitrary scale factor to each of the three RGB components of this
@@ -368,7 +363,6 @@ module Rubyvis
     end
     # Represents a color in HSL space.
     class Hsl < Color
-      
       # The hue, an integer in [0, 360].
       attr_accessor :h
       # The saturation, a float in [0, 1].
@@ -385,6 +379,9 @@ module Rubyvis
         @s=s
         @l=l
         @a=a
+      end
+      def ==(v)
+        self.class==v.class and @h==v.h and @s==v.s and @l==v.l and @a==v.a
       end
       
       # Returns the RGB color equivalent to this HSL color.
@@ -416,7 +413,7 @@ module Rubyvis
           return m1
         }
         vv=lambda {|h1|
-          (v(h1) * 255).round
+          (v.call(h1) * 255).round
         }
         
         Rubyvis.rgb(vv.call(h + 120), vv.call(h), vv.call(h - 120), a)
