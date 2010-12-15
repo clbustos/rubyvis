@@ -1,7 +1,7 @@
 # = Horizon
 # Horizon graphs increase data density while preserving resolution. 
 # While horizon graphs may require learning, they have been found to be more effective than standard line and area plots when chart sizes are small. For more, see "Sizing the Horizon: The Effects of Chart Size and Layering on the Graphical Perception of Time Series Visualizations" by Heer et al., CHI 2009.
-# This example shows +offset+ and +mirror+ modes
+# This example shows +offset+ and +mirror+ modes for the quadratic equation x^2-10
 $:.unshift(File.dirname(__FILE__)+"/../../lib")
 require 'rubyvis'
 
