@@ -8,20 +8,31 @@ Ruby port of Protovis[http://vis.stanford.edu/protovis/], a great visualization 
 
 == FEATURES/PROBLEMS:
 
+This library implements almost completely the core API of protovis, including all static marks, SVG builder class and data classes.
+
 Implemented: 
+
 * Marks: All, except transient and transitions.
-* Layout: Partition, Stack and Treemap.
+* Layout: Cluster, Grid, Horizon, Indent, Pack, Partition, Stack, Tree and Treemap. To implement: Bullet, Arc, Force, Matrix, Rollup.
 
 Using protovis examples[http://vis.stanford.edu/protovis/ex/] as reference
 
 * Conventional: All working
 * Custom: 
  * Backer's Barley
- * Burtin's Antibiotics
+ * Burtin's Antibiotics: Scatterplot matrix
+ * Cars: Parallel Coordinates
+ * Crimea war: Grouped bar chart and line chart
 * Hierarchies:
- * Sunbursts
- * Icicles
- * Treemaps
+ * Treemap
+ * Bubble Charts
+ * Circle Packing
+ * Dendogram
+ * Icicle
+ * Indent
+ * Node-Link Tree
+ * Sunburst
+ * Treemap
 
 
 I try to maintain, when posible, complete compatibility with Javascript API, including camel case naming of functions. Johnson [http://github.com/jbarnette/johnson] - the lovely Javascript wrapper inside Ruby embrace - is our friend to test implementation of basic object. 
@@ -43,12 +54,18 @@ User could use +pv+ freely, cause is defined as a global method which call Rubyv
 * data/QuantitativeScale.js
 * data/OrdinalScale.js
 * data/Scale.js
-* layout/Hierarchy.js
 * layout/Layout.js
+* layout/Cluster.js
+* layout/Grid.js
 * layout/Hierarchy.js
+* layout/Horizon.js
+* layout/Indent.js
 * layout/Network.js
+* layout/Pack.js
 * layout/Partition.js
 * layout/Stack.js
+* layout/Tree.js
+* layout/Treemap.js
 * mark/Anchor.js
 * mark/Area.js
 * mark/Bar.js 
