@@ -17,7 +17,7 @@ describe Rubyvis::Layout::Stack do
     end
     
     describe "only with layers()" do
-      before do
+      before(:all) do
         x=@x
         y=@y
         @data=[[1,3,2],[2,1,3]]
@@ -41,7 +41,7 @@ describe Rubyvis::Layout::Stack do
       end
     end
     describe "using layers() and values()" do
-      before do
+      before(:all) do
         x=@x
         y=@y
         @data=[{:first=>1,:second=>2},{:first=>3,:second=>1},{:first=>2,:second=>3}]

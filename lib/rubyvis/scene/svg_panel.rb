@@ -45,16 +45,15 @@ module Rubyvis
           e=e.next_sibling_node
 
         end
+        # fill
         e=self.fill(e,scenes, i)
+        # transform
         k=self.scale
         t=s.transform
-
         x=s.left+t.x
         y=s.top+t.y
-
-
         SvgScene.scale=SvgScene.scale*t.k
-
+        # children
         s.children.each_with_index {|child, i2|
           child._g=e=SvgScene.expect(e, "g", {
             "transform"=> "translate(" + x.to_s + "," + y.to_s + ")" + (t.k != 1 ? " scale(" + t.k.to_s + ")" : "")
@@ -63,8 +62,11 @@ module Rubyvis
           g.add_element(e) if(!e.parent)
           e=e.next_sibling_node
         }
+        # transform (pop)
         SvgScene.scale=k
+        # stroke
         e=SvgScene.stroke(e,scenes,i)
+        # clip
         if (s.overflow=='hidden')
           scenes._g=g=c.parent
           e=c.next_sibling_node

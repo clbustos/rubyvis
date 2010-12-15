@@ -5,8 +5,8 @@
 $:.unshift(File.dirname(__FILE__)+"/../../lib")
 require 'rubyvis'
 
-data = Rubyvis.range(0, 10, 0.1).map {|x| 
-  OpenStruct.new({:x=> x, :y=>  Math.sin(x)*rand()})
+data = Rubyvis.range(-5, 5, 0.1).map {|x|
+  OpenStruct.new({:x=> x, :y=>  x**2-10})
 }
 
 
@@ -15,7 +15,7 @@ data = Rubyvis.range(0, 10, 0.1).map {|x|
 w = 400
 h = 100
 x = pv.Scale.linear(data, lambda {|d| d.x}).range(0, w)
-y = pv.Scale.linear(data, lambda {|d| d.y}).range(0-h*2, h*2);
+y = pv.Scale.linear(data, lambda {|d| d.y}).range(-50, h*2);
 
 #/* The root panel. */
 vis = pv.Panel.new()
@@ -32,8 +32,15 @@ types=["offset","mirror"]
 pan=vis.add(Rubyvis::Panel).
 data(types).
 height(80).
-top(lambda { index*100+20})
-
+top(lambda { index*110+30})
+pan.add(Rubyvis::Rule).
+  data(x.ticks).
+  left(x).
+  anchor("bottom").
+  add(Rubyvis::Label).
+  text(x.tick_format)
+  
+  
 pan.add(Rubyvis::Layout::Horizon)
          .bands(3)
          .mode(lambda {|d| d})         
