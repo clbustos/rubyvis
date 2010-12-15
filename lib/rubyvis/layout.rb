@@ -23,7 +23,7 @@ module Rubyvis
         end
         @properties[name]=true
         self.property_method(name,false, func, self)        
-        define_method(name.to_s+"=") {|v|
+        define_method(name.to_s + "=") {|v|
           self.send(name,v)
         }
       end
@@ -32,6 +32,7 @@ module Rubyvis
 end
 
 require 'rubyvis/layout/stack'
+require 'rubyvis/layout/horizon'
 require 'rubyvis/layout/grid'
 require 'rubyvis/layout/network'
 require 'rubyvis/layout/hierarchy'
