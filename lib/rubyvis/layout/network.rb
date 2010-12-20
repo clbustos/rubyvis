@@ -15,7 +15,7 @@ module Rubyvis
     # Network layouts require the graph data structure to be defined using two
     # properties:<ul>
     #
-    # <li><tt>nodes</tt> - an array of objects representing nodes. Objects in this array must conform to the {@link pv.Layout.Network.Node} interface; which is
+    # <li><tt>nodes</tt> - an array of objects representing nodes. Objects in this array must conform to the Rubyvis::Layout::Network::Node interface; which is
     # to say, be careful to avoid naming collisions with automatic attributes such
     # as <tt>index</tt> and <tt>link_degree</tt>.
     # If the nodes property is defined
@@ -24,7 +24,7 @@ module Rubyvis
     # attribute points to the original primitive value.
     #
     # <p><li><tt>links</tt> - an array of objects representing links. Objects in
-    # this array must conform to the {@link pv.Layout.Network.Link} interface; at a minimum, either <tt>source</tt> and <tt>target</tt> indexes or
+    # this array must conform to the Rubyvis::Layout::Network::Link interface; at a minimum, either <tt>source</tt> and <tt>target</tt> indexes or
     # <tt>source_node</tt> and <tt>target_node</tt> references must be set. Note that
     # if the links property is defined after the nodes property, the links can be defined in terms of <tt>this.nodes()</tt>.
     #
@@ -32,22 +32,18 @@ module Rubyvis
     #
     # <p>Three standard mark prototypes are provided:<ul>
     #
-    # <li><tt>node</tt> - for rendering nodes; typically a {@link pv.Dot}. The node
-    # mark is added directly to the layout, with the data property defined via the
-    # layout's <tt>nodes</tt> property. Properties such as <tt>strokeStyle</tt> and
-    # <tt>fillStyle</tt> can be overridden to compute properties from node data
-    # dynamically.
+    # <li><tt>node</tt> - for rendering nodes; typically a Rubyvis::Dot. The node mark is added directly to the layout, with the data property defined via the layout's <tt>nodes</tt> property. Properties such as <tt>stroke_style</tt> and <tt>fillStyle</tt> can be overridden to compute properties from node data dynamically.
     #
-    # <p><li><tt>link</tt> - for rendering links; typically a {@link pv.Line}. The
+    # <p><li><tt>link</tt> - for rendering links; typically a Rubyvis::Line. The
     # link mark is added to a child panel, whose data property is defined as
     # layout's <tt>links</tt> property. The link's data property is then a
     # two-element array of the source node and target node. Thus, poperties such as
-    # <tt>strokeStyle</tt> and <tt>fillStyle</tt> can be overridden to compute
+    # <tt>stroke_style</tt> and <tt>fill_style</tt> can be overridden to compute
     # properties from either the node data (the first argument) or the link data
     # (the second argument; the parent panel data) dynamically.
     #
-    # <p><li><tt>label</tt> - for rendering node labels; typically a
-    # {@link pv.Label}. The label mark is added directly to the layout, with the
+    # <p><li><tt>node_label</tt> - for rendering node labels; typically a
+    # Rubyvis::Label. The label mark is added directly to the layout, with the
     # data property defined via the layout's <tt>nodes</tt> property. Properties
     # such as <tt>strokeStyle</tt> and <tt>fillStyle</tt> can be overridden to
     # compute properties from node data dynamically.

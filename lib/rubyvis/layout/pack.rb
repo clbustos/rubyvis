@@ -9,13 +9,13 @@ module Rubyvis
     # the exported mark prototypes changes slightly in the space-filling
     # implementation:<ul>
     #
-    # <li><tt>node</tt> - for rendering nodes; typically a {@link pv.Dot}.
+    # <li><tt>node</tt> - for rendering nodes; typically a Rubyvis::Dot.
     #
     # <p><li><tt>link</tt> - unsupported; undefined. Links are encoded implicitly
     # in the arrangement of the space-filling nodes.
     #
     # <p><li><tt>label</tt> - for rendering node labels; typically a
-    # {@link pv.Label}.
+    # Rubyvis::Label.
     #
     # </ul>The pack layout support dynamic sizing for leaf nodes, if a
     # {@link #size} psuedo-property is specified. The default size function returns
@@ -29,7 +29,7 @@ module Rubyvis
     # operator.
     #
     # <p>For more details on how to use this layout, see
-    # {@link pv.Layout.Hierarchy}.
+    # Rubyvis::Layout::Hierarchy.
     #
     # @extends pv.Layout.Hierarchy
     # @see <a href="http://portal.acm.org/citation.cfm?id=1124772.1124851"

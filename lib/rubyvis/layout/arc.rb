@@ -5,7 +5,7 @@ module Rubyvis
       Rubyvis::Layout::Arc
     end
     
-    # @class Implements a layout for arc diagrams. An arc diagram is a network
+    # Implements a layout for arc diagrams. An arc diagram is a network
     # visualization with a one-dimensional layout of nodes, using circular arcs to
     # render links between nodes. For undirected networks, arcs are rendering on a
     # single side; this makes arc diagrams useful as annotations to other
@@ -16,28 +16,27 @@ module Rubyvis
     # <p>Arc layouts are particularly sensitive to node ordering; for best results,
     # order the nodes such that related nodes are close to each other. A poor
     # (e.g., random) order may result in large arcs with crossovers that impede
-    # visual processing. A future improvement to this layout may include automatic
-    # reordering using, e.g., spectral graph layout or simulated annealing.
+    # visual processing. A future improvement to this layout may include automatic reordering using, e.g., spectral graph layout or simulated annealing.
     #
-    # <p>This visualization technique is related to that developed by
-    # M. Wattenberg, <a
-    # href="http://www.research.ibm.com/visual/papers/arc-diagrams.pdf">"Arc
-    # Diagrams: Visualizing Structure in Strings"</a> in <i>IEEE InfoVis</i>, 2002.
+    # This visualization technique is related to that developed by  M. Wattenberg, {Arc Diagrams: Visualizing Structure in Strings}[http://www.research.ibm.com/visual/papers/arc-diagrams.pdf] in IEEE InfoVis, 2002.
     # However, this implementation is limited to simple node-link networks, as
     # opposed to structures with hierarchical self-similarity (such as strings).
+    # As with other network layouts, three mark prototypes are provided:<ul>
     #
-    # <p>As with other network layouts, three mark prototypes are provided:<ul>
+    # <li><tt>node</tt> - for rendering nodes; typically a Rubyvis::Dot
+    # <li><tt>link</tt> - for rendering links; typically a Rubyvis::Line
+    # <li><tt>node_label</tt> - for rendering node labels; typically a Rubyvis::Label
     #
-    # <li><tt>node</tt> - for rendering nodes; typically a {@link pv.Dot}.
-    # <li><tt>link</tt> - for rendering links; typically a {@link pv.Line}.
-    # <li><tt>label</tt> - for rendering node labels; typically a {@link pv.Label}.
-    #
-    # </ul>For more details on how this layout is structured and can be customized,
-    # see {@link pv.Layout.Network}.
+    # </ul>
+    # For more details on how this layout is structured and can be customized,
+    # see Rubyvis::Layout::Network
     
     class Arc < Network
-      @properties=Network.properties.dup      
-      attr_accessor :_interpolate, :_directed, :_reverse
+      @properties=Network.properties.dup
+      
+      attr_accessor :_interpolate # :nodoc:
+      attr_accessor :_directed    # :nodoc:
+      attr_accessor :_reverse     # :nodoc:
       def initialize
         super
         @_interpolate=nil # cached interpolate
@@ -51,7 +50,7 @@ module Rubyvis
         }).interpolate(lambda{ that._interpolate})
       end
       
-      def build_implied(s)
+      def build_implied(s) # :nodoc:
         return true if network_build_implied(s)
         # Cached
         
@@ -135,8 +134,7 @@ module Rubyvis
       
       ##
       # :attr: orient
-      # The orientation. The default orientation is "left", which means that nodes
-      # will be positioned from left-to-right in the order they are specified in the
+      # The orientation. The default orientation is "bottom", which means that nodes  will be positioned from bottom-to-top in the order they are specified in the
       # <tt>nodes</tt> property. The following orientations are supported:<ul>
       #
       # <li>left - left-to-right.
@@ -155,26 +153,23 @@ module Rubyvis
       # respectively), while reverse links are drawn on the opposite side.
       
       attr_accessor_dsl :orient, :directed
-      
+      # Default properties for arc layouts. By default, the orientation is "bottom".
       def self.defaults
         Arc.new.mark_extend(Network.defaults).
           orient("bottom")
       end
       
       # Specifies an optional sort function. The sort function follows the same
-      # comparator contract required by {@link pv.Dom.Node#sort}. Specifying a sort
+      # comparator contract required by Rubyvis::Dom::Node.sort(). Specifying a sort
       # function provides an alternative to sort the nodes as they are specified by
       # the <tt>nodes</tt> property; the main advantage of doing this is that the
       # comparator function can access implicit fields populated by the network
-      # layout, such as the <tt>linkDegree</tt>.
+      # layout, such as the <tt>link_degree</tt>.
       #
       # <p>Note that arc diagrams are particularly sensitive to order. This is
       # referred to as the seriation problem, and many different techniques exist to
       # find good node orders that emphasize clusters, such as spectral layout and
       # simulated annealing.
-      #
-      # @param {function} f comparator function for nodes.
-      # @returns {pv.Layout.Arc} this.
       def sort(f=nil,&block)
         f||=block
         @_sort=f

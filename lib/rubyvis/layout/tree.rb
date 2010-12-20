@@ -18,7 +18,7 @@ module Rubyvis
     # dimensions, similar to the indent layout.
     #
     # <p>For more details on how to use this layout, see
-    # {@link pv.Layout.Hierarchy}
+    # Rubyvis::Layout::Hierarchy
     class Tree < Hierarchy
       @properties=Hierarchy.properties.dup
       def initialize

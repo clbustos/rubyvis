@@ -33,6 +33,8 @@ Using protovis examples[http://vis.stanford.edu/protovis/ex/] as reference
  * Node-Link Tree
  * Sunburst
  * Treemap
+* Networks:
+ * Arc
 
 
 I try to maintain, when posible, complete compatibility with Javascript API, including camel case naming of functions. Johnson [http://github.com/jbarnette/johnson] - the lovely Javascript wrapper inside Ruby embrace - is our friend to test implementation of basic object. 
@@ -54,6 +56,7 @@ User could use +pv+ freely, cause is defined as a global method which call Rubyv
 * data/QuantitativeScale.js
 * data/OrdinalScale.js
 * data/Scale.js
+* layout/Arc.js
 * layout/Layout.js
 * layout/Cluster.js
 * layout/Grid.js

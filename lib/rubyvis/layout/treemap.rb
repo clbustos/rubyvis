@@ -1,5 +1,6 @@
 module Rubyvis
   class Layout
+    # Alias for Rubyvis::Layout::Treemap
     def self.Treemap
       Rubyvis::Layout::Treemap
     end
@@ -21,16 +22,16 @@ module Rubyvis
     # the standard <tt>x</tt> and <tt>y</tt> position attributes.
     #
     # <p><li><tt>leaf</tt> - for rendering leaf nodes only, with no fill or stroke
-    # style by default; typically a {@link pv.Panel} or another layout!
+    # style by default; typically a Rubyvis::Panel or another layout!
     #
     # <p><li><tt>link</tt> - unsupported; undefined. Links are encoded implicitly
     # in the arrangement of the space-filling nodes.
     #
     # <p><li><tt>label</tt> - for rendering node labels; typically a
-    # {@link pv.Label}.
+    # Rubyvis::Label.
     #
     # </ul>For more details on how to use this layout, see
-    # {@link pv.Layout.Hierarchy}.
+    # Rubyvis::Layout::Hierarchy.
     #
     class Treemap < Hierarchy
       @properties=Hierarchy.properties.dup

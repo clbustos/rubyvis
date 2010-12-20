@@ -18,7 +18,7 @@ module Rubyvis
     # sizing for leaf nodes; all leaf nodes are the same size.
     #
     # <p>For more details on how to use this layout, see
-    # {@link pv.Layout.Hierarchy}.
+    # Rubyvis::Layout::Hierarchy.
     #
     # @see pv.Layout.Cluster.Fill
     # @extends pv.Layout.Hierarchy
@@ -179,7 +179,7 @@ module Rubyvis
       # in the arrangement of the space-filling nodes.
       #
       # <p><li><tt>label</tt> - for rendering node labels; typically a
-      # {@link pv.Label}.
+      # Rubyvis::Label.
       #
       # </ul>For more details on how to use this layout, see
       # {@link pv.Layout.Cluster}.

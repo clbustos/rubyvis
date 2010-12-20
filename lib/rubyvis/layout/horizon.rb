@@ -9,9 +9,9 @@ module Rubyvis
     # area chart where the area is folded into multiple bands. Color is used to
     # encode band, allowing the size of the chart to be reduced significantly
     # without impeding readability. This layout algorithm is based on the work of
-    # J. Heer, N. Kong and M. Agrawala in <a  href="http://hci.stanford.edu/publications/2009/heer-horizon-chi09.pdf">"Sizing
+    # J. Heer, N. Kong and M. Agrawala in {Sizing
     # the Horizon: The Effects of Chart Size and Layering on the Graphical
-    # Perception of Time Series Visualizations"</a>, CHI 2009.
+    # Perception of Time Series Visualizations}[http://hci.stanford.edu/publications/2009/heer-horizon-chi09.pdf], CHI 2009.
     #
     # <p>This layout exports a single <tt>band</tt> mark prototype, which is
     # intended to be used with an area mark. The band mark is contained in a panel
