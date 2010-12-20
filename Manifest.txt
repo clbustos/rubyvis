@@ -17,6 +17,7 @@ examples/2_medium/censo_agropecuario/censo_agropecuario_chile_data.rb
 examples/2_medium/censo_agropecuario/census_treemap.rb
 examples/2_medium/censo_agropecuario/create_data.rb
 examples/2_medium/censo_agropecuario/resultset.csv
+examples/2_medium/horizon.rb
 examples/2_medium/nested_grid.rb
 examples/3_pv_conventional/area.rb
 examples/3_pv_conventional/bar_column_chart.rb
@@ -44,6 +45,8 @@ examples/5_pv_hierarchies/indent.rb
 examples/5_pv_hierarchies/node_link_tree.rb
 examples/5_pv_hierarchies/sunburst.rb
 examples/5_pv_hierarchies/treemap.rb
+examples/6_pv_networks/arc.rb
+examples/6_pv_networks/miserables_data.rb
 lib/rubyvis.rb
 lib/rubyvis/color/color.rb
 lib/rubyvis/color/colors.rb
@@ -56,9 +59,11 @@ lib/rubyvis/histogram.rb
 lib/rubyvis/internals.rb
 lib/rubyvis/javascript_behaviour.rb
 lib/rubyvis/layout.rb
+lib/rubyvis/layout/arc.rb
 lib/rubyvis/layout/cluster.rb
 lib/rubyvis/layout/grid.rb
 lib/rubyvis/layout/hierarchy.rb
+lib/rubyvis/layout/horizon.rb
 lib/rubyvis/layout/indent.rb
 lib/rubyvis/layout/network.rb
 lib/rubyvis/layout/pack.rb
@@ -101,11 +106,13 @@ lib/rubyvis/transform.rb
 spec/anchor_spec.rb
 spec/area_spec.rb
 spec/bar_spec.rb
+spec/color_spec.rb
 spec/dom_spec.rb
 spec/histogram_spec.rb
 spec/internal_spec.rb
 spec/javascript_behaviour_spec.rb
 spec/label_spec.rb
+spec/layout_horizon_spec.rb
 spec/layout_stack_spec.rb
 spec/line_spec.rb
 spec/mark_spec.rb

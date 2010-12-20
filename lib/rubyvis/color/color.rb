@@ -27,23 +27,24 @@ module Rubyvis
   def self.color(format)
     return format.rgb if format.respond_to? :rgb
     if (format =~/([a-z]+)\((.*)\)/)
-      m2 = $2.split(",")
+      color_type,color_data=$1,$2
+      m2 = color_data.split(",")
       a = 1
-      if ['hsla','rgba'].include? $1
+      if ['hsla','rgba'].include? color_type
         a = m2[3].to_f
         return Color.transparent if (a==0)
       end
 
-      if ['hsla','hsl'].include? $1
+      if ['hsla','hsl'].include? color_type
         h=m2[0].to_i
         s=m2[1].to_f / 100
         l=m2[2].to_f / 100
         return Color::Hsl.new(h,s,l,a).rgb
       end
-
-      if ['rgba','rgb'].include? $1
+     
+      if ['rgba','rgb'].include? color_type
         parse=lambda {|c|
-          return (c[c.size-1]=='%') ? (c.to_f*2.55).round : c.to_i
+          (c[c.size-1,1]=='%') ? (c.to_f*2.55).round : c.to_i
         }
         r=parse.call(m2[0])
         g=parse.call(m2[1])
