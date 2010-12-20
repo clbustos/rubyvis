@@ -17,12 +17,11 @@ describe Rubyvis::Layout::Stack do
     end
     
     describe "only with layers()" do
-      before(:all) do
+      before do
         x=@x
         y=@y
         @data=[[1,3,2],[2,1,3]]
-        @stack.
-        layers(@data).
+        @stack.layers(@data).
         x(lambda {|d| x.scale(index)}).
         y(lambda {|d| y.scale(d)}).layer.add(Rubyvis::Area)
         @vis.render
@@ -41,12 +40,11 @@ describe Rubyvis::Layout::Stack do
       end
     end
     describe "using layers() and values()" do
-      before(:all) do
+      before do
         x=@x
         y=@y
         @data=[{:first=>1,:second=>2},{:first=>3,:second=>1},{:first=>2,:second=>3}]
-        @stack.
-          layers([:first,:second]).
+        @stack.layers([:first,:second]).
         values(@data).
         x(lambda {|d| x.scale(index)}).
         y(lambda {|d,dd| y.scale(d[dd])}).layer.add(Rubyvis::Area)
