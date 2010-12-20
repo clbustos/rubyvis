@@ -1,3 +1,11 @@
+=== 0.3.5 / 2010-12-20
+
+* Horizon and Arc layouts implemented
+* Bug fix: Error on Layout::Stack spec
+* Bug fix: Inconsistent behaviour of Rubyvis.color and Rubyvis::Hsl
+* Bug fix: Rubyvis::Color.color fails on ruby 1.8.7
+* Bug fix: Raise error with negative number on Format.format
+
 === 0.3.4 / 2010-12-11
 
 * Implemented Layout::Grid and Layout::Tree
