@@ -280,5 +280,20 @@ class Rubyvis::Mark
   #   Paramenter references new mark
   # 
   # See Mark for examples of use    
-  mark_method :layout_horizon, Rubyvis::Layout::Horizon  
+  mark_method :layout_horizon, Rubyvis::Layout::Horizon
+  
+  ##
+  # :method: layout_arc(opts,&block)
+  #
+  # Adds a Layout::Arc to current mark. 
+  # 
+  # If a block is provided, the context will be defined differently if 
+  # parameter is provided
+  # * Without parameter: block executed inside context of new mark
+  # * With paramenter: block executed inside context of current mark. 
+  #   Paramenter references new mark
+  # 
+  # See Mark for examples of use    
+  mark_method :layout_arc, Rubyvis::Layout::Arc    
+  
 end

@@ -18,13 +18,7 @@ describe Rubyvis::Layout::Horizon do
       y = Rubyvis::Scale.linear(@data, lambda {|d| d.y}).range(-50, h*2);
       
       #/* The root panel. */
-      @vis = pv.Panel.new()
-      .width(w)
-      .height(h*2+20)
-      .bottom(20)
-      .left(20)
-      .right(10)
-      .top(5)
+      @vis = pv.Panel.new().width(w).height(h*2+20).bottom(20).left(20).right(10).top(5)
 
       
       
@@ -32,12 +26,12 @@ describe Rubyvis::Layout::Horizon do
       height(80).
       top(30)  
       
-      @pan.add(Rubyvis::Layout::Horizon)
-       .bands(3)
-      .band.add(Rubyvis::Area)
-       .data(@data)
-       .left(lambda {|d| x[d.x]})
-       .height(lambda {|d| y[d.y]})
+      @pan.add(Rubyvis::Layout::Horizon).
+      bands(3).
+      band.add(Rubyvis::Area).
+      data(@data).
+      left(lambda {|d| x[d.x]}).
+      height(lambda {|d| y[d.y]})
       @vis.render
       
       html_out=<<EOF

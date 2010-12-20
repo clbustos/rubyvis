@@ -64,7 +64,7 @@ module Rubyvis
         r = [w,h].min / 2.0 
         # /* Sort the nodes. */
         if (sort)
-          index.sort! {|a,b| sort.call(a,b)}
+          index.sort! {|a,b| sort.call(nodes[a],nodes[b])}
         end
         
         
@@ -121,10 +121,10 @@ module Rubyvis
         nodes.each_with_index do |nod, i|
           n=nodes[index[i]]
           n.breadth=(i+0.5) / nodes.size
-          b=n.breadt
+          b=n.breadth
           n.x=x[b]
           n.y=y[b]
-          n.mid_angle=min_angle[b]
+          n.mid_angle=mid_angle[b]
         end        
         
         @_directed = s.directed
@@ -132,6 +132,27 @@ module Rubyvis
         @_reverse = s.orient == "right" or s.orient == "top"
         
       end
+      
+      ##
+      # :attr: orient
+      # The orientation. The default orientation is "left", which means that nodes
+      # will be positioned from left-to-right in the order they are specified in the
+      # <tt>nodes</tt> property. The following orientations are supported:<ul>
+      #
+      # <li>left - left-to-right.
+      # <li>right - right-to-left.
+      # <li>top - top-to-bottom.
+      # <li>bottom - bottom-to-top.
+      # <li>radial - radially, starting at 12 o'clock and proceeding clockwise.</ul>
+      
+      ##
+      # :attr: directed
+      # Whether this arc digram is directed (bidirectional); only applies to
+      # non-radial orientations. By default, arc digrams are undirected, such that
+      # all arcs appear on one side. If the arc digram is directed, then forward
+      # links are drawn on the conventional side (the same as as undirected
+      # links--right, left, bottom and top for left, right, top and bottom,
+      # respectively), while reverse links are drawn on the opposite side.
       
       attr_accessor_dsl :orient, :directed
       
@@ -154,11 +175,11 @@ module Rubyvis
       #
       # @param {function} f comparator function for nodes.
       # @returns {pv.Layout.Arc} this.
-      def sort(f)
+      def sort(f=nil,&block)
+        f||=block
         @_sort=f
         self
       end
-      
       
       
     end
