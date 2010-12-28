@@ -48,8 +48,19 @@ module Rubyvis
         @_n = s.nodes.size
         @_dx = s.width.to_f / @_n
         @_dy = s.height.to_f / @_n
-        @_labels = s._matrix._labels
-        @_pairs = s._matrix._pairs
+        @_labels = s._matrix.labels
+        @_pairs = s._matrix.pairs
+      end
+      # Deletes special add from network
+      def _link # :nodoc:
+        that=self
+        l=Mark.new().
+          mark_extend(@node).
+          data(lambda {|d| [d.source_node, d.target_node] }).
+          fill_style(nil).
+          line_width(lambda {|d,_p| _p.link_value * 1.5 }).
+          stroke_style("rgba(0,0,0,.2)")
+        l
       end
       
       def initialize
@@ -69,8 +80,10 @@ module Rubyvis
         .line_width(1.5)
         .stroke_style("#fff")
         .fill_style(lambda {|l| l.link_value!=0 ? "#555" : "#eee" })
-        .parent = self
+        
+        @link.parent = self
         #/* No special add for links! */
+        
         # delete this.link.add;
 
         #/* Labels are duplicated for top & left. */
@@ -123,24 +136,23 @@ module Rubyvis
           self
         end
         def build_implied(s) # :nodoc:
-          return nil if network_build_implied(s)
-          
+          return nil if network_build_implied(s)          
           nodes = s.nodes
           links = s.links
           sort = @sort
+          
           n = nodes.size
           index = Rubyvis.range(n)
           labels = []
           pairs = []
           map = {}
           
-          s._matrix = OpenStruct.new({:_labels=> labels, :_pairs=> pairs})
+          s._matrix = OpenStruct.new({:labels=> labels, :pairs=> pairs})
           
           #/* Sort the nodes. */
           if sort
             index.sort! {|a,b| sort.call(nodes[a],nodes[b])}
           end
-          
           #/* Create pairs. */
           n.times {|i|
             n.times {|j|
@@ -151,8 +163,9 @@ module Rubyvis
                   :col=> j,
                   :source_node=> nodes[a],
                   :target_node=> nodes[b],
-                  :link_value=> 0});
-            pairs.push(map["#{a}.#{b}"] = _p)
+                  :link_value=> 0})
+            map["#{a}.#{b}"] = _p
+            pairs.push(map["#{a}.#{b}"])
             }
           }
           #/* Create labels. */
@@ -160,7 +173,6 @@ module Rubyvis
             a = index[i]
             labels.push(nodes[a], nodes[a])
           }
-          
           #/* Accumulate link values. */
           links.each_with_index {|l,i|
             source = l.source_node.index

@@ -219,6 +219,7 @@ module Rubyvis
       def build_implied(s) # :nodoc:
         network_build_implied(s)
       end
+      
       def network_build_implied(s) # :nodoc:
         layout_build_implied(s)
         return true if (!s._id.nil? and s._id >= self._id)

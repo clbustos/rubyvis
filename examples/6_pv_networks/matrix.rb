@@ -5,38 +5,26 @@
 $:.unshift(File.dirname(__FILE__)+"/../../lib")
 require 'rubyvis'
 load(File.dirname(__FILE__)+"/miserables_data.rb")
-color=Rubyvis::Colors.category10()
+color=Rubyvis::Colors.category19()
 
-$miserables=OpenStruct.new({:nodes=>[
-    OpenStruct.new({:node_value=>"A", :group=>1}),
-    OpenStruct.new({:node_value=>"B", :group=>1}),
-    OpenStruct.new({:node_value=>"C", :group=>1}),
-    OpenStruct.new({:node_value=>"D", :group=>1})
-    
-    ],
-    :links=>[
-    OpenStruct.new({:source=>1, :target=>0, :value=>1})
-   
-    ]
-    
-})
 
 vis = Rubyvis::Panel.new() do 
   width 693
   height 693
-  bottom 90
+  top 90
   left 90
   layout_matrix do
     nodes $miserables.nodes
     links $miserables.links
-    sort {|a,b| a.group<=>b.group }
+    sort {|a,b| b.group<=>a.group }
+    directed (false)
     link.bar do
-      fill_style {|l| l.link_value!=0 ? ((l.target_node.group == l.source_node.group) ? color[l.source_node] : "#555") : "#eee"}
+      fill_style {|l| l.link_value!=0 ? ((l.target_node.group == l.source_node.group) ? color[l.source_node.group] : "#555") : "#eee"}
       antialias(false)
       line_width(1)
     end
     node_label.label do 
-      text_style(color)
+      text_style {|l| color[l.group]}
     end
   end
 end

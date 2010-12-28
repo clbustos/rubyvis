@@ -47,7 +47,11 @@ end
 Rspec::Matchers.define :have_same_position do |exp|
   match do |obs|
     correct=true
-    ['cx','cy','r'].each do |attr|
+    attrs={
+      "circle"=>['cx','cy','r'],
+      "rect"=>["x","y","width","height"]
+    }
+    attrs[exp.name].each do |attr|
       if (obs[attr].to_f -  exp[attr].to_f)>0.0001
         correct=false
         break

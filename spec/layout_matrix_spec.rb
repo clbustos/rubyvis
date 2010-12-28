@@ -64,8 +64,17 @@ EOF
       @pv_svg=Nokogiri::XML(html_out)
     end
     
-    it "should render correct number of rects" do
+    it "should render correct number of rects(links)" do
       @rv_svg.xpath("//xmlns:rect").size.should eq @pv_svg.xpath("//rect").size
     end
+    it "should render equal intersections (links)" do
+      pv_rects=@pv_svg.xpath("//rect")
+      @rv_svg.xpath("//xmlns:rect").each_with_index {|rv_rect,i|
+        rv_rect.should have_same_position pv_rects[i]
+      }
+      
+    end
+    
+    
   end
 end
