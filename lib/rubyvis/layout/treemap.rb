@@ -266,14 +266,14 @@ module Rubyvis
             
             if (n.size > 0) 
               #/* Scale the sizes to fill the current subregion. */
-              n.visit_before {|n,i| n.size *= k }
+              n.visit_before {|n1,i1| n1.size *= k }
               
               #/** @private Position the specified nodes along one dimension. */
-              position=lambda {|row| 
+              position=lambda {|row1| 
                 horizontal = w == l
-                sum = Rubyvis.sum(row, size)
+                sum = Rubyvis.sum(row1, size)
                 r = l>0 ? round.call(sum / l.to_f) : 0
-                slice.call(row, sum, horizontal, x, y, horizontal ? w : r, horizontal ? r : h)
+                slice.call(row1, sum, horizontal, x, y, horizontal ? w : r, horizontal ? r : h)
                 if horizontal 
                   y += r
                   h -= r

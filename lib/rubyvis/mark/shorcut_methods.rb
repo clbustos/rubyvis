@@ -295,5 +295,19 @@ class Rubyvis::Mark
   # 
   # See Mark for examples of use    
   mark_method :layout_arc, Rubyvis::Layout::Arc    
+
+  ##
+  # :method: layout_matrix(opts,&block)
+  #
+  # Adds a Layout::Matrix to current mark. 
+  # 
+  # If a block is provided, the context will be defined differently if 
+  # parameter is provided
+  # * Without parameter: block executed inside context of new mark
+  # * With paramenter: block executed inside context of current mark. 
+  #   Paramenter references new mark
+  # 
+  # See Mark for examples of use    
+  mark_method :layout_matrix, Rubyvis::Layout::Matrix    
   
 end

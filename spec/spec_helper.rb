@@ -1,9 +1,19 @@
 $:.unshift(File.dirname(__FILE__)+"/../lib")
+begin
+  require 'simplecov'
+  SimpleCov.start do
+    add_filter "/spec/"
+    add_group "Libraries", "lib"
+  end
+rescue LoadError
+end
 require 'rspec'
 #require 'spec/autorun'
 require 'rubyvis'
 require 'pp'
 require 'nokogiri'
+
+
 $PROTOVIS_DIR=File.dirname(__FILE__)+"/../vendor/protovis/src"
 module Rubyvis
   class JohnsonLoader

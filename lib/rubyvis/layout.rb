@@ -43,4 +43,5 @@ require 'rubyvis/layout/cluster'
 require 'rubyvis/layout/indent'
 require 'rubyvis/layout/pack'
 require 'rubyvis/layout/arc'
+require 'rubyvis/layout/matrix'
 

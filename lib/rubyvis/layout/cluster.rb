@@ -141,9 +141,9 @@ module Rubyvis
           if (n.first_child) 
               n.breadth = Rubyvis.mean(n.child_nodes, lambda {|nn| nn.breadth })
            else 
-             if (group!=0 and (par != n.parent_node)) 
-              par = n.parent_node
-              leaf_index += group
+            if (group!=0 and (par != n.parent_node)) 
+            par = n.parent_node
+            leaf_index += group
             end
             n.breadth = breadth * leaf_index
             leaf_index+=1

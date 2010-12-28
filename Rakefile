@@ -13,7 +13,6 @@ Hoe.plugin :git
 
 h=Hoe.spec 'rubyvis' do
   self.testlib=:rspec
-  #self.test_globs="spec/*_spec.rb"
   self.rspec_options << "-c" << "-b"
   self.developer('Claudio Bustos', 'clbustos_at_gmail.com')
   self.version=Rubyvis::VERSION
@@ -34,5 +33,6 @@ task :publicar_docs => [:clean, :docs] do
   }
   sh %{rsync #{h.rsync_args} #{local_dir}/ #{host}:#{remote_dir}}
 end
+
 
 # vim: syntax=ruby

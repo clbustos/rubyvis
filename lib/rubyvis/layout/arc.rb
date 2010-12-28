@@ -86,17 +86,17 @@ module Rubyvis
         
         # /** @private Returns the x-position, given the breadth. */
         x= lambda do |b|
-        case orient 
-          when "top"
-            b * w
-          when "bottom"
-           b * w
-          when "left"
-          0;
-          when "right"
-          w;
-          when "radial"
-            w / 2.0 + r * Math.cos(mid_angle.call(b))
+          case orient 
+            when "top"
+              b * w
+            when "bottom"
+             b * w
+            when "left"
+            0;
+            when "right"
+            w;
+            when "radial"
+              w / 2.0 + r * Math.cos(mid_angle.call(b))
           end
         end
         
