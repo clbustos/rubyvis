@@ -43,6 +43,9 @@ RSpec::Matchers.define :have_svg_attributes do |exp|
       obs.attributes[k].value.should==v
     }
   end
+  failure_message_for_should do |obs|
+    "\n#{exp} attributes expected, but xml doesn't contains them \n#{obs.to_s}"
+  end
 end
 Rspec::Matchers.define :have_same_position do |exp|
   match do |obs|

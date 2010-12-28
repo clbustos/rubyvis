@@ -20,5 +20,16 @@ describe Rubyvis::Panel do
     doc=Nokogiri::XML(@vis.to_svg)
     doc.at_xpath("//xmlns:svg").should have_svg_attributes({"font-size"=>"10px", "font-family"=>"sans-serif", "fill"=>"none", "stroke"=>"none", "stroke-width"=>"1.5", "width"=>"200.0", "height"=>"200.0"})
   end
-  
+  it "should allow multiple panel definitions" do
+    vis2 = Rubyvis.Panel.new.width(@w+100).height(@h+100)
+    @vis.render
+    vis2.render
+    doc1=Nokogiri::XML(@vis.to_svg)
+    doc2=Nokogiri::XML(vis2.to_svg)
+
+    doc1.at_xpath("//xmlns:svg").should have_svg_attributes({"font-size"=>"10px", "font-family"=>"sans-serif", "fill"=>"none", "stroke"=>"none", "stroke-width"=>"1.5", "width"=>"200.0", "height"=>"200.0"})
+    
+    doc2.at_xpath("//xmlns:svg").should have_svg_attributes({"font-size"=>"10px", "font-family"=>"sans-serif", "fill"=>"none", "stroke"=>"none", "stroke-width"=>"1.5", "width"=>"300.0", "height"=>"300.0"})
+    
+  end
 end
