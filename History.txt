@@ -1,3 +1,8 @@
+=== 0.3.6 / 2010-12-28
+
+* Matrix layout implemented. Example and spec available.
+* Added spec for Layout::Arc
+
 === 0.3.5 / 2010-12-20
 
 * Horizon and Arc layouts implemented

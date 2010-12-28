@@ -46,6 +46,7 @@ examples/5_pv_hierarchies/node_link_tree.rb
 examples/5_pv_hierarchies/sunburst.rb
 examples/5_pv_hierarchies/treemap.rb
 examples/6_pv_networks/arc.rb
+examples/6_pv_networks/matrix.rb
 examples/6_pv_networks/miserables_data.rb
 lib/rubyvis.rb
 lib/rubyvis/color/color.rb
@@ -65,6 +66,7 @@ lib/rubyvis/layout/grid.rb
 lib/rubyvis/layout/hierarchy.rb
 lib/rubyvis/layout/horizon.rb
 lib/rubyvis/layout/indent.rb
+lib/rubyvis/layout/matrix.rb
 lib/rubyvis/layout/network.rb
 lib/rubyvis/layout/pack.rb
 lib/rubyvis/layout/partition.rb
@@ -112,7 +114,9 @@ spec/histogram_spec.rb
 spec/internal_spec.rb
 spec/javascript_behaviour_spec.rb
 spec/label_spec.rb
+spec/layout_arc_spec.rb
 spec/layout_horizon_spec.rb
+spec/layout_matrix_spec.rb
 spec/layout_stack_spec.rb
 spec/line_spec.rb
 spec/mark_spec.rb
