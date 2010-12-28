@@ -96,18 +96,23 @@ module Rubyvis
           end
           if s.width.nil?
             w=Rubyvis.css(c,'width')
-            s.width=w-s.left-s.right
+            s.width=w - s.left - s.right
           end
           if s.height.nil?
             w=Rubyvis.css(c,'height')
-            s.height=h-s.top-s.bottom
+            s.height=h - s.top - s.bottom
           end
 
         else
           @_canvas||={}
           cache=@_canvas
           if(!(c=cache[self.index]))
-            c=cache[self.index]=Rubyvis.document.add_element('span')
+            document=REXML::Document.new
+            document.add_element("document")
+            cache[self.index]=document.root
+            c=cache[self.index]
+            
+            #c=cache[self.index]=Rubyvis.document.add_element('span')
           end
         end
         s.canvas=c

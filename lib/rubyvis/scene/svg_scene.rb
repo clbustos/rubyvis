@@ -9,7 +9,7 @@ require 'rubyvis/scene/svg_wedge'
 require 'rubyvis/scene/svg_image'
 require 'rubyvis/scene/svg_curve'
 
-class REXML::Element # :nodoc:
+class REXML::Element #:nodoc:
   attr_accessor :_scene
 end
 
@@ -58,7 +58,6 @@ module Rubyvis
 
       {:svg=>svg,:css=>css}
     end
-
     def self.update_all(scenes)
       puts "update_all: #{scenes.inspect}" if $DEBUG
       if (scenes.size>0 and scenes[0].reverse and scenes.type!='line' and scenes.type!='area')
@@ -85,12 +84,11 @@ module Rubyvis
 
     def self.append(e,scenes,index)
       e._scene=OpenStruct.new({:scenes=>scenes, :index=>index})
-      e=self.title(e,scenes[index])
-
+      e=self.title(e, scenes[index])
       if(!e.parent)
         scenes._g.add_element(e)
       end
-      return e.next_sibling_node
+      e.next_sibling_node
     end
     
     # Applies a title tooltip to the specified element <tt>e</tt>, using the

@@ -18,7 +18,7 @@ h=Hoe.spec 'rubyvis' do
   self.version=Rubyvis::VERSION
   self.extra_dev_deps << ["coderay",">=0"] << ["haml",">=0"] << ["nokogiri", ">=0"] << ["rspec",">=2.0"]
 end
-
+desc "Publicar docs en rubyforge"
 task :publicar_docs => [:clean, :docs] do
   #ruby %{agregar_adsense_a_doc.rb}
   path = File.expand_path("~/.rubyforge/user-config.yml")

@@ -71,22 +71,6 @@ module Rubyvis
   def self.parent
     lambda {|*args| self.parent.index}
   end
-  def self.clear_document
-    @document=REXML::Document.new
-    @document.add_element("document")
-  end
-  def self.document
-    if @document.nil?
-      @document=REXML::Document.new
-      @document.add_element("document")
-    end
-    @document.root
-  end
-  def self.to_svg
-    s=""
-    @document.write(s)
-    s
-  end
 end
 
 # Alias for Rubyvis module
