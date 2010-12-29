@@ -90,17 +90,90 @@ RSpec::Matchers.define :have_svg_attributes do |exp|
   end
 end
 
-
-
+# Include
+# * rect
+# * circle
+# * text
+# Using attributes and content
+Rspec::Matchers.define :have_same_svg_elements do |exp|
+  def equal_float(a,b)
+    a||=0
+    b||=0
+    (a.to_f-b.to_f).abs<0.0001
+  end
+  def equal_string_nil(a,b)
+    a||="none"
+    b||="none"
+    a.to_s==b.to_s
+  end
+  def equal_string(a,b)
+    a.to_s==b.to_s
+  end
+  def path_scan(path)
+    path.scan(/([MmCcZzLlHhVvSsQqTtAa, ])(\d+(?:\.\d+)?)/).map {|v|
+      v[0]="," if v[0]==" "
+      v[1]=v[1].to_f
+      v
+    }
+  end
+  
+  def equal_path(a,b)
+    path_a=path_scan(a)
+    path_b=path_scan(b)
+    correct=true
+    path_a.each_with_index do |v,i|
+      if (v[0]!=path_b[i][0]) or (v[1]-path_b[i][1]).abs>0.001
+        correct=false
+        break
+      end
+      
+    end
+    correct
+  end
+  match do |obs|
+    obs_xml=Nokogiri::XML(obs)
+    exp_xml=Nokogiri::XML(exp)
+    correct=true
+    attrs={
+      "circle"=>{'fill'=>:string_nil, 'fill-opacity'=>:float, 'cx'=>:float,'stroke'=>:string_nil, 'stroke-opacity'=>:string, 'cy'=>:float,'r'=>:float},
+      "rect"=>{"x"=>:float,"y"=>:float,"width"=>:float,"height"=>:float, 'fill'=>:string_nil, 'fill-opacity'=>:float, 'stroke'=>:string_nil, 'stroke-opacity'=>:float},
+      "text"=>{"x"=>:float,"dx"=>:float,"y"=>:float,"dy"=>:float},
+      'path'=>{'d'=>:path, 'fill'=>:string_nil, 'fill-opacity'=>:float, 'stroke'=>:string_nil, 'stroke-opacity'=>:float}
+    }
+    @error={}
+    attrs.each_pair do |key,attrs| 
+      exp_elements=exp_xml.xpath("//#{key}")
+      obs_xml.xpath("//xmlns:#{key}").each_with_index {|obs_data,i|
+        exp_data=exp_elements[i]
+        exp_data.content.should==obs_data.content
+        attrs.each do |attr,method|
+          eq=send("equal_#{method}",obs_data[attr],exp_data[attr])
+          if !eq
+            @error={:exp=>exp_data, :obs=>obs_data, :attr=>attr, :exp_attr=>exp_data[attr], :obs_attr=>obs_data[attr],:i=>i}
+            correct=false
+            break
+          end
+        end
+      }
+    end
+    
+    correct
+  end
+  failure_message_for_should do |obs|
+    "#{@error[:exp].to_s} expected, but #{@error[:obs]} retrieved, on attr #{@error[:attr]} -> #{@error[:i]} : #{@error[:exp_attr]} <> #{@error[:obs_attr]}"
+  end
+  
+end
 Rspec::Matchers.define :have_same_position do |exp|
   match do |obs|
     correct=true
     attrs={
       "circle"=>['cx','cy','r'],
-      "rect"=>["x","y","width","height"]
+      "rect"=>["x","y","width","height"],
+      "text"=>["x","dx","y","dy","transform"]
     }
     attrs[exp.name].each do |attr|
-      if (obs[attr].to_f -  exp[attr].to_f)>0.0001
+      if (obs[attr].to_f -  exp[attr].to_f).abs>0.0001
         correct=false
         break
       end
@@ -108,6 +181,8 @@ Rspec::Matchers.define :have_same_position do |exp|
     correct
   end
 end
+
+
 RSpec::Matchers.define :have_path_data_close_to do |exp|
   def path_scan(path)
       path.scan(/([MmCcZzLlHhVvSsQqTtAa, ])(\d+(?:\.\d+)?)/).map {|v|
@@ -115,7 +190,7 @@ RSpec::Matchers.define :have_path_data_close_to do |exp|
       v[1]=v[1].to_f
       v
       }
-    end
+  end
   match do |obs|
     correct=true
     obs_array=path_scan(obs.attributes["d"].value)

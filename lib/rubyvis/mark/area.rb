@@ -67,13 +67,15 @@ module Rubyvis
 
     def area_bind
       mark_bind
-      binds = self.binds
       
+      binds = self.binds
       required = binds.required
       optional = binds.optional
+      
       optional.size.times {|i|
         prop = optional[i]
-        prop.fixed = fixed.include? prop.name
+        prop.fixed = fixed.keys.include? prop.name
+        
         if (prop.name == "segmented")
           required.push(prop)
         end

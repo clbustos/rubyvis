@@ -31,21 +31,11 @@ describe Rubyvis::Layout::Treemap do
       
       @vis.render
 
-      html_out=fixture_svg_read("layout_treemap.svg")
-      @rv_svg=Nokogiri::XML(@vis.to_svg)
-      @pv_svg=Nokogiri::XML(html_out)
+      @pv_out=fixture_svg_read("layout_treemap.svg")
     end
     
-    it "should render correct number of rect" do
-      
-      @rv_svg.xpath("//xmlns:rect").size.should eq @pv_svg.xpath("//rect").size
-    end
-    it "should render equal nodes (rects)" do
-      pv_rects=@pv_svg.xpath("//rect")
-      @rv_svg.xpath("//xmlns:rect").each_with_index {|rv_rect,i|
-        rv_rect.should have_same_position pv_rects[i]
-      }
-      
+    it "should render equal to protovis version " do
+      @vis.to_svg.should have_same_svg_elements(@pv_out)
     end
   end
 end

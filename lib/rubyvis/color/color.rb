@@ -36,9 +36,9 @@ module Rubyvis
       end
 
       if ['hsla','hsl'].include? color_type
-        h=m2[0].to_i
-        s=m2[1].to_f / 100
-        l=m2[2].to_f / 100
+        h=m2[0].to_f
+        s=m2[1].to_f / 100.0
+        l=m2[2].to_f / 100.0
         return Color::Hsl.new(h,s,l,a).rgb
       end
      
@@ -390,7 +390,6 @@ module Rubyvis
         h = self.h
         s = self.s
         l = self.l
-        
         # Some simple corrections for h, s and l. */
         h = h % 360
         h += 360 if (h < 0)
@@ -402,22 +401,21 @@ module Rubyvis
         m1 = 2 * l - m2
         v=lambda {|h1|
           if (h1 > 360)
-            h1 -= 360;
+            h1 -= 360
           elsif (h1 < 0)
              h1 += 360
           end
           
           
-          return m1 + (m2 - m1) * h1 / 60 if (h1 < 60)
-          return m2 if (h1 < 180) 
-          return m1 + (m2 - m1) * (240 - h1) / 60 if (h1 < 240)
+          return m1 + (m2 - m1) * h1 / 60.0 if (h1 < 60.0)
+          return m2 if (h1 < 180.0) 
+          return m1 + (m2 - m1) * (240.0 - h1) / 60.0 if (h1 < 240.0)
           return m1
         }
-        vv=lambda {|h1|
-          (v.call(h1) * 255).round
-        }
         
+        vv=lambda {|h1| (v.call(h1) * 255).round}
         Rubyvis.rgb(vv.call(h + 120), vv.call(h), vv.call(h - 120), a)
+       
       end
     end
 

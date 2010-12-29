@@ -4,7 +4,7 @@ module Rubyvis
       e = scenes._g.elements[1]
       return e if scenes.size==0
       s=scenes[0]
-      # segmented 
+      # segmented
       return self.area_segment(scenes) if (s.segmented) 
       # visible
       return e if (!s.visible)
@@ -127,12 +127,10 @@ module Rubyvis
     end
         
     def self.area_segment(scenes)
-          
       e = scenes._g.elements[1]
       s = scenes[0]
-      pathsT=[]
-      pathsB=[]
-      
+      pathsT=nil
+      pathsB=nil
       if (s.interpolate == "basis" or s.interpolate == "cardinal" or s.interpolate == "monotone") 
         pointsT = []
         pointsB = []
@@ -154,6 +152,7 @@ module Rubyvis
           pathB = Rubyvis.SvgScene.curve_monotone_segments(pointsB);
         end
       end
+      
       n=scenes.size-1
       n.times {|i|
         
@@ -163,8 +162,8 @@ module Rubyvis
         # /* visible */
         next if (!s1.visible or !s2.visible)
         
-        fill = s.fill_style
-        stroke = s.stroke_style            
+        fill = s1.fill_style
+        stroke = s1.stroke_style            
         next e if (fill.opacity==0 and stroke.opacity==0) 
         d=nil
         if (pathsT) 

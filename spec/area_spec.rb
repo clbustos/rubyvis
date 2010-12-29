@@ -1,8 +1,31 @@
 require File.expand_path(File.dirname(__FILE__)+"/spec_helper.rb")
 describe Rubyvis::Area do
+  include Rubyvis::GeneralSpec
   it "should have correct properties" do
     props=[:antialias, :bottom, :cursor, :data, :events, :fill_style, :height, :id, :interpolate, :left, :line_width, :reverse, :right, :segmented, :stroke_style, :tension, :title, :top, :visible, :width].inject({}) {|ac, v| ac[v]=true; ac}
     Rubyvis::Area.properties.should==props
+  end
+  
+  it "should render equal to protovis 'area-segmented.html' test" do
+    data=Rubyvis.range(0, 6, 0.1).map {|x| Math.sin(x)}
+    vis = Rubyvis.Panel.new()
+    .width(500)
+    .height(200)
+    .top(50)
+    .bottom(50)
+    .left(10)
+    .right(10)
+
+    vis.add(Rubyvis::Area)
+    .segmented(true)
+    .data(data)
+    .bottom(0)
+    .left(lambda {self.index / 59.0 * 500})
+    .height(lambda {|d| (d + 1) / 2.0 * 200 + 50})
+    .fill_style(lambda {|d| "hsl(#{(d + 1) * 180.0},50,50)"})
+     vis.render()
+     pv_out=fixture_svg_read("area_segmented.svg")
+     vis.to_svg.should have_same_svg_elements(pv_out)
   end
   context "rendered" do
     before do

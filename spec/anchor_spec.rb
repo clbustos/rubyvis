@@ -1,5 +1,6 @@
 require File.expand_path(File.dirname(__FILE__)+"/spec_helper.rb")
 describe Rubyvis::Anchor do
+  include Rubyvis::GeneralSpec
   describe "inner anchor data should work fine" do
     before  do
       w=200
@@ -93,6 +94,23 @@ describe Rubyvis::Anchor do
       @values.each {|a| @values.each {|b| expected.push([b,b,a,nil])}}
       datas.should==expected
     end
+  end
+  it "should render equal to protovis 'anchor.html' example" do
+      @vis = Rubyvis::Panel.new()
+      .width(200)
+      .height(200)
+      
+      @vis.add(Rubyvis::Bar).
+        fill_style("#ccc").
+        anchor("top").add(Rubyvis::Label).
+        text("top").
+        target.
+        anchor("bottom").
+        add(pv.Label).
+        text("bottom")
+      @vis.render
+      @pv_out=fixture_svg_read("anchor.svg")
+      @vis.to_svg.should have_same_svg_elements(@pv_out)
   end
   context "Panel-bar assigment" do 
     before do

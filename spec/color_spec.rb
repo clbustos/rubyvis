@@ -43,8 +43,14 @@ describe "Rubyvis color methods" do
     end
     it "should return correct Rubyvis.color hsla" do
       h,s,l,a=rand(360),rand(100),rand(100), rand()
-      
       Rubyvis.color("hsla(#{h},#{s},#{l},#{a})").should eq Rubyvis::Color::Hsl.new(h,s/100.0,l/100.0, "#{a}".to_f).rgb
+    end
+  end
+  describe Rubyvis::Color::Hsl do
+    it "convert some extreme value" do
+      Rubyvis.color("hsl(96,50,50)").should eq Rubyvis.color("rgb(115,191,64)")
+      Rubyvis.color("hsl(112.5,50.0,50.0)").should eq Rubyvis.color("rgb(80,191,64)")
+
     end
   end
   describe Rubyvis::Color::Rgb do

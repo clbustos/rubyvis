@@ -173,7 +173,7 @@ module Rubyvis
       end
 
       #/* Similarly, for end join. */
-      if (s3 && s3.visible)
+      if (s3 and s3.visible)
         v2 = Rubyvis.vector(s3.left, s3.top).minus(p2).perp().norm().plus(v);
         c = line_intersect(p2, v2, c, p);
         b = line_intersect(p2, v2, b, p);

@@ -32,54 +32,25 @@ describe Rubyvis::Layout::Treemap do
       @tree.node_label.add(Rubyvis::Label).text(lambda {|d| d.node_name})
       
     end
-    describe "should render correctly orient('top')" do
-      before do
-        @tree.orient("top")
-        @vis.render
-        @rv_svg=Nokogiri::XML(@vis.to_svg)
-        html_out=fixture_svg_read("layout_tree_orient_top.svg")
-        @pv_svg=Nokogiri::XML(html_out)
-      end
-      it "should have correct dots (nodes)" do
-        pv_dots=@pv_svg.xpath("//circle")
-        @rv_svg.xpath("//xmlns:circle").each_with_index {|rv_dot,i|
-          rv_dot.should have_same_position pv_dots[i]
-        }
-      end
+    it "should render equal to protovis with orient 'top'" do
+      @tree.orient("top")
+      @vis.render
+      pv_out=fixture_svg_read("layout_tree_orient_top.svg")
+      @vis.to_svg.should have_same_svg_elements(pv_out)
     end
     
-    describe "should render correctly orient('left')" do
-      before do
-        @tree.orient("left")
-        @vis.render
-        @rv_svg=Nokogiri::XML(@vis.to_svg)
-        html_out=fixture_svg_read("layout_tree_orient_left.svg")
-        @pv_svg=Nokogiri::XML(html_out)
-      end
-      it "should have correct dots (nodes)" do
-        pv_dots=@pv_svg.xpath("//circle")
-        @rv_svg.xpath("//xmlns:circle").each_with_index {|rv_dot,i|
-          rv_dot.should have_same_position pv_dots[i]
-        }
-      end
+    it  "should render correctly orient('left')" do
+      @tree.orient("left")
+      @vis.render
+      pv_out=fixture_svg_read("layout_tree_orient_left.svg")
+      @vis.to_svg.should have_same_svg_elements(pv_out)
     end
     
-    describe "should render correctly orient('radial'), breadth(20) and massive amounts of data" do
-      before do
+    it "should render equal to pv with orient('radial') and breadth(20)" do
         @tree.nodes(hier_nodes_big).orient("radial").breadth(20)
         @vis.render
-        @rv_svg=Nokogiri::XML(@vis.to_svg)
-        html_out=fixture_svg_read("layout_tree_orient_radial_breadth_20.svg")
-        @pv_svg=Nokogiri::XML(html_out)
-      end
-      it "should have correct dots (nodes)" do
-        pv_dots=@pv_svg.xpath("//circle")
-        @rv_svg.xpath("//xmlns:circle").each_with_index {|rv_dot,i|
-          rv_dot.should have_same_position pv_dots[i]
-        }
-      end
+        pv_out=fixture_svg_read("layout_tree_orient_radial_breadth_20.svg")
+        @vis.to_svg.should have_same_svg_elements(pv_out)
     end
-    
-    
   end
 end
