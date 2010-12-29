@@ -64,5 +64,22 @@ describe Rubyvis::Layout::Treemap do
       end
     end
     
+    describe "should render correctly orient('radial'), breadth(20) and massive amounts of data" do
+      before do
+        @tree.nodes(hier_nodes_big).orient("radial").breadth(20)
+        @vis.render
+        @rv_svg=Nokogiri::XML(@vis.to_svg)
+        html_out=fixture_svg_read("layout_tree_orient_radial_breadth_20.svg")
+        @pv_svg=Nokogiri::XML(html_out)
+      end
+      it "should have correct dots (nodes)" do
+        pv_dots=@pv_svg.xpath("//circle")
+        @rv_svg.xpath("//xmlns:circle").each_with_index {|rv_dot,i|
+          rv_dot.should have_same_position pv_dots[i]
+        }
+      end
+    end
+    
+    
   end
 end

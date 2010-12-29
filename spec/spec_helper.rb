@@ -51,6 +51,12 @@ module Rubyvis
     def hier_nodes
       Rubyvis.dom({:a=>1,:b=>{:ba=>2,:bb=>{:bba=>3}, :bc=>4}, :c=>5}).root("test").nodes
     end
+    def hier_nodes_big
+      subtree={:a=>1,:b=>2,:c=>3,:d=>4}
+
+      Rubyvis.dom({:a=>subtree,:b=>subtree, :c=>subtree, :d=>subtree,:e=>subtree,:f=>subtree}).root("test").nodes()
+
+    end
   end
   class JohnsonLoader
     begin

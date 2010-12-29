@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <title>Test: Layout tree, orient radial</title>
+    <script type="text/javascript" src="protovis-r3.3.js"></script>
+  </head>
+  <body>
+  <h1>Test: Layout tree, orient radial</h1>
+    <script type="text/javascript">
+color=pv.Colors.category19()
+w=200
+h=200
+
+subtree={a:1,b:2,c:3,d:4}
+
+hier_nodes=pv.dom({a:subtree,b:subtree, c:subtree, d:subtree,e:subtree,f:subtree}).root("test").nodes()
+
+
+vis = new pv.Panel()
+    .width(w)
+    .height(h)
+    .top(20)
+    .bottom(10)
+    .left(10)
+
+treemap = vis.add(pv.Layout.Tree).
+  nodes(hier_nodes) .breadth(20).orient("radial")
+
+treemap.node.add(pv.Dot).
+  fillStyle(function(d) {return color(d.nodeValue);}).
+  strokeStyle("black").
+  lineWidth(1).
+  antialias(false)
+treemap.link.add(pv.Line)  
+treemap.label.add(pv.Label).
+text(function(d) {return d.nodeName})
+vis.render()
+</script>
+    </body>
+    </html>
