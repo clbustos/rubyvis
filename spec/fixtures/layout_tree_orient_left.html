@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <title>Test: Layout tree, orient left</title>
+    <script type="text/javascript" src="protovis-r3.3.js"></script>
+  </head>
+  <body>
+  <h1>Test: Layout tree, orient left</h1>
+    <script type="text/javascript">
+color=pv.Colors.category19()
+w=200
+h=200
+hier_nodes=pv.dom({a:1,b:{ba:2,bb:{bba:3}, bc:4}, c:5}).root("test").nodes()
+
+
+vis = new pv.Panel()
+    .width(w)
+    .height(h)
+    .top(20)
+    .bottom(10)
+    .left(10)
+
+treemap = vis.add(pv.Layout.Tree).
+  nodes(hier_nodes) .breadth(40).orient("left")
+
+treemap.node.add(pv.Dot).
+  fillStyle(function(d) {return color(d.nodeValue);}).
+  strokeStyle("black").
+  lineWidth(1).
+  antialias(false)
+treemap.link.add(pv.Line)  
+treemap.label.add(pv.Label).
+text(function(d) {return d.nodeName})
+vis.render()
+</script>
+    </body>
+    </html>

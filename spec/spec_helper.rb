@@ -16,6 +16,42 @@ require 'nokogiri'
 
 $PROTOVIS_DIR=File.dirname(__FILE__)+"/../vendor/protovis/src"
 module Rubyvis
+  module GeneralSpec
+    def fixture_svg_read(filename)
+      File.read(File.dirname(__FILE__)+"/fixtures/#{filename}")
+    end
+  end
+  module LayoutSpec
+    include GeneralSpec
+    def net_nodes
+      [
+      OpenStruct.new({:node_value=>'A', :group=>1}),
+      OpenStruct.new({:node_value=>'B', :group=>1}),
+      OpenStruct.new({:node_value=>'C', :group=>2}),
+      OpenStruct.new({:node_value=>'D',:group=>2}),
+      OpenStruct.new({:node_value=>'E',:group=>3}),
+      OpenStruct.new({:node_value=>'F',:group=>3})
+      
+      ]
+    end
+    def net_links
+      [
+      OpenStruct.new({:source=>0,:target=>1, :value=>1}),
+      OpenStruct.new({:source=>1,:target=>2, :value=>1}),
+      OpenStruct.new({:source=>2,:target=>3, :value=>1}),
+      OpenStruct.new({:source=>3,:target=>4, :value=>1}),
+      OpenStruct.new({:source=>4,:target=>5, :value=>1}),
+      OpenStruct.new({:source=>1,:target=>0, :value=>1}),
+      OpenStruct.new({:source=>2,:target=>1, :value=>1}),
+      OpenStruct.new({:source=>3,:target=>2, :value=>1}),
+      OpenStruct.new({:source=>4,:target=>3, :value=>1}),
+      OpenStruct.new({:source=>5,:target=>4, :value=>1}),
+      ]
+    end
+    def hier_nodes
+      Rubyvis.dom({:a=>1,:b=>{:ba=>2,:bb=>{:bba=>3}, :bc=>4}, :c=>5}).root("test").nodes
+    end
+  end
   class JohnsonLoader
     begin
       require 'johnson'
@@ -47,6 +83,9 @@ RSpec::Matchers.define :have_svg_attributes do |exp|
     "\n#{exp} attributes expected, but xml doesn't contains them \n#{obs.to_s}"
   end
 end
+
+
+
 Rspec::Matchers.define :have_same_position do |exp|
   match do |obs|
     correct=true
