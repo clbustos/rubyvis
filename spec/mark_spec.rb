@@ -12,5 +12,9 @@ describe Rubyvis::Mark do
     props[0].name.should==:antialias
     props[2].name.should==:events
   end
+  it "should have 'mark' as type" do
+    m=Rubyvis::Mark.new
+    m.type.should eql "mark"
+  end
   
 end

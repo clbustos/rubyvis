@@ -5,6 +5,9 @@ describe Rubyvis::Layout::Arc do
     props=[:antialias, :bottom, :canvas, :cursor, :data, :directed, :events, :fill_style, :height, :id, :left, :line_width, :links, :nodes, :orient, :overflow, :reverse, :right, :stroke_style, :title, :top, :transform, :visible, :width].inject({}) {|ac, v| ac[v]=true; ac}
     Rubyvis::Layout::Arc.properties.should==props 
   end
+  it "should be called using Rubyvis.Layout.Arc" do
+    Rubyvis.Layout.Arc.should eql Rubyvis::Layout::Arc
+  end  
   describe "rendered" do
     before do
       

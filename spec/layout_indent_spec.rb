@@ -5,6 +5,9 @@ describe Rubyvis::Layout::Indent do
     props=[:antialias, :bottom, :breadth, :canvas, :cursor, :data, :depth, :events, :fill_style, :height, :id, :left, :line_width, :links,  :nodes,  :overflow, :reverse, :right, :stroke_style, :title, :top, :transform, :visible, :width].inject({}) {|ac, v| ac[v]=true; ac}
     Rubyvis::Layout::Indent.properties.should==props 
   end
+  it "should be called using Rubyvis.Layout.Indent" do
+    Rubyvis.Layout.Indent.should eql Rubyvis::Layout::Indent
+  end  
   describe "rendered" do
     before do
     color=pv.Colors.category19

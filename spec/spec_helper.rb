@@ -140,27 +140,47 @@ Rspec::Matchers.define :have_same_svg_elements do |exp|
       "text"=>{"x"=>:float,"dx"=>:float,"y"=>:float,"dy"=>:float},
       'path'=>{'d'=>:path, 'fill'=>:string_nil, 'fill-opacity'=>:float, 'stroke'=>:string_nil, 'stroke-opacity'=>:float}
     }
-    @error={}
+    
+    @error={:type=>"Undefined error"}
     attrs.each_pair do |key,attrs| 
+      
       exp_elements=exp_xml.xpath("//#{key}")
-      obs_xml.xpath("//xmlns:#{key}").each_with_index {|obs_data,i|
-        exp_data=exp_elements[i]
+      obs_elements=obs_xml.xpath("//xmlns:#{key}")
+      if exp_elements.size!=obs_elements.size
+        @error={:type=>"Different number of #{key} elements",:exp=>exp_elements.size, :obs=>obs_elements.size}
+        correct=false
+        break
+      end
+      exp_elements.each_with_index {|exp_data,i|
+        obs_data=obs_elements[i]
+        
+        if obs_data.nil?
+          @error={:type=>"Missing obs", :exp=>exp_data, :i=>i}
+          correct=false
+          break
+        end
+        
         exp_data.content.should==obs_data.content
         attrs.each do |attr,method|
+          
           eq=send("equal_#{method}",obs_data[attr],exp_data[attr])
           if !eq
-            @error={:exp=>exp_data, :obs=>obs_data, :attr=>attr, :exp_attr=>exp_data[attr], :obs_attr=>obs_data[attr],:i=>i}
+            puts "Uneql attr: #{method}->#{attr}"
+
+            @error={:type=>"Incorrect data", :exp=>exp_data, :obs=>obs_data, :attr=>attr, :exp_attr=>exp_data[attr], :obs_attr=>obs_data[attr],:i=>i}
             correct=false
             break
           end
         end
+        if !correct
+          break
+        end
       }
     end
-    
     correct
   end
   failure_message_for_should do |obs|
-    "#{@error[:exp].to_s} expected, but #{@error[:obs]} retrieved, on attr #{@error[:attr]} -> #{@error[:i]} : #{@error[:exp_attr]} <> #{@error[:obs_attr]}"
+    "#{@error[:type]}: #{@error[:exp].to_s} expected, but #{@error[:obs]} retrieved, on attr #{@error[:attr]} -> #{@error[:i]} : #{@error[:exp_attr]} <> #{@error[:obs_attr]}"
   end
   
 end
