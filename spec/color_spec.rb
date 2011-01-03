@@ -80,6 +80,12 @@ describe "Rubyvis color methods" do
     it "return correct alpha()" do
       @rgb.alpha(0.5).should eq Rubyvis::Color::Rgb.new(@r,@g,@b,0.5)
     end
+    it "return correct darker()" do
+      Rubyvis.color("red").darker().should eq Rubyvis::Color::Rgb.new(178,0,0,1)
+    end
+    it "return correct brighter()" do
+      Rubyvis.color("rgb(100,110,120)").brighter().should eq Rubyvis::Color::Rgb.new(142,157,171,1)
+    end    
     
   end
 end

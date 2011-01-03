@@ -106,7 +106,7 @@ module Rubyvis
     # errors.
     # * @param [k] {number} an optional scale factor; defaults to 1.
     def brighter(k)
-      self.rgb.lighter(k)
+      self.rgb.brighter(k)
     end
     
     # Returns a new color that is a brighter version of this color. The behavior of
@@ -328,7 +328,7 @@ module Rubyvis
       # color to create a brighter version of this color. Although brighter and
       # darker are inverse operations, the results of a series of invocations of
       # these two methods might be inconsistent because of rounding errors.
-      def lighter(k=1)
+      def brighter(k=1)
         k = 0.7**k
         i = 30
         r=self.r

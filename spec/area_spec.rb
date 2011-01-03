@@ -29,6 +29,64 @@ describe Rubyvis::Area do
      pv_out=fixture_svg_read("area_segmented.svg")
      vis.to_svg.should have_same_svg_elements(pv_out)
   end
+  
+  it "should render correctly 'area_interpolation.html' example" do
+    data = pv.range(0, 10, 1).map {|x|
+    OpenStruct.new({:x=>x, :y=>Math.sin(x) + 2})}
+      
+      p_w=200
+      p_h=150
+      w = 20+p_w*2
+      h = 20+p_h*4
+      
+      p_w=200
+      p_h=150
+      #p data
+      w = 20+p_w*2
+      h = 20+p_h*4
+      
+      x = pv.Scale.linear(data, lambda {|d| d.x}).range(0, p_w-30)
+      
+      
+      y = pv.Scale.linear(data, lambda {|d| d.y}).range(0, p_h-20);
+      color=pv.Colors.category19();
+      interpolations=["linear","step-before","step-after", "basis", "cardinal", "monotone"]
+      
+      #/* The root panel. */
+      vis = pv.Panel.new()
+      .width(w)
+      .height(h)
+      .bottom(20)
+      .left(20)
+      .right(10)
+      .top(5)
+      
+      interpolations.each_with_index do |inter,i|
+      n=i%2
+      m=(i/2).floor
+      panel=vis.add(Rubyvis::Panel).
+      left(n*(p_w+10)).
+      top(m*(p_h+10)).
+      width(p_w).
+      height(p_h)
+      panel.anchor('top').add(Rubyvis::Label).text(inter)
+      
+      panel.add(Rubyvis::Area).data(data).
+      bottom(0).
+      segmented(true).
+      fill_style(lambda {return color[self.index]}).
+      left(lambda {|d| x.scale(d.x)}).
+      height(lambda {|d| y.scale(d.y)}).
+      interpolate(inter)
+  
+    end
+    vis.render()
+    pv_out=fixture_svg_read("area_interpolation.svg")
+    vis.to_svg.should have_same_svg_elements(pv_out)
+  end
+  
+  
+  
   context "rendered" do
     before do
       @h=200

@@ -63,8 +63,8 @@ module Rubyvis
         }
         
         if (s.interpolate == "basis") 
-          pathT = Rubyvis::SvgScene.curve_basis(pointsT);
-          pathB = Rubyvis::SvgScene.curve_basis(pointsB);
+          pathT = Rubyvis::SvgScene.curve_basis(pointsT)
+          pathB = Rubyvis::SvgScene.curve_basis(pointsB)
         elsif (s.interpolate == "cardinal") 
             pathT = Rubyvis::SvgScene.curve_cardinal(pointsT, s.tension);
             pathB = Rubyvis::SvgScene.curve_cardinal(pointsB, s.tension);
@@ -142,14 +142,14 @@ module Rubyvis
         }
     
         if (s.interpolate == "basis") 
-          pathT = Rubyvis.SvgScene.curve_basis_segments(pointsT);
-          pathB = Rubyvis.SvgScene.curve_basis_segments(pointsB);
-        elsif (s.interpolate == "cardinal") 
-            pathT = Rubyvis.SvgScene.curve_cardinal_segments(pointsT, s.tension);
-            pathB = Rubyvis.SvgScene.curve_cardinal_segments(pointsB, s.tension);
+          pathsT = Rubyvis::SvgScene.curve_basis_segments(pointsT)
+          pathsB = Rubyvis::SvgScene.curve_basis_segments(pointsB)
+        elsif (s.interpolate == "cardinal")
+            pathsT = Rubyvis::SvgScene.curve_cardinal_segments(pointsT, s.tension);
+            pathsB = Rubyvis::SvgScene.curve_cardinal_segments(pointsB, s.tension);
         elsif # monotone
-          pathT = Rubyvis.SvgScene.curve_monotone_segments(pointsT);
-          pathB = Rubyvis.SvgScene.curve_monotone_segments(pointsB);
+          pathsT = Rubyvis::SvgScene.curve_monotone_segments(pointsT)
+          pathsB = Rubyvis::SvgScene.curve_monotone_segments(pointsB)
         end
       end
       
@@ -164,7 +164,8 @@ module Rubyvis
         
         fill = s1.fill_style
         stroke = s1.stroke_style            
-        next e if (fill.opacity==0 and stroke.opacity==0) 
+        next if (fill.opacity==0 and stroke.opacity==0)
+        
         d=nil
         if (pathsT) 
           pathT = pathsT[i]
