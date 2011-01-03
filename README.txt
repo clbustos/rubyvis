@@ -4,16 +4,16 @@
 
 == DESCRIPTION:
 
-Ruby port of Protovis[http://vis.stanford.edu/protovis/], a great visualization toolkit
+Ruby port of Protovis[http://vis.stanford.edu/protovis/], a Javascript visualization toolkit.
 
 == FEATURES/PROBLEMS:
 
-This library implements almost completely the core API of protovis, including all static marks, SVG builder class and data classes.
+This library implements almost completely core API of protovis, including all static marks, SVG builder class and data classes. Spec coverage is near 90%
 
 Implemented: 
 
 * Marks: All, except transient and transitions.
-* Layout: Cluster, Grid, Horizon, Indent, Pack, Partition, Stack, Tree and Treemap. To implement: Bullet, Arc, Force, Matrix, Rollup.
+* Layout: Arc, Cluster, Grid, Horizon, Indent, Matrix, Pack, Partition, Stack, Tree and Treemap. To implement: Bullet, Force, and Rollup.
 
 Using protovis examples[http://vis.stanford.edu/protovis/ex/] as reference
 
@@ -35,8 +35,8 @@ Using protovis examples[http://vis.stanford.edu/protovis/ex/] as reference
  * Treemap
 * Networks:
  * Arc
-
-
+ * Matrix
+ 
 I try to maintain, when posible, complete compatibility with Javascript API, including camel case naming of functions. Johnson [http://github.com/jbarnette/johnson] - the lovely Javascript wrapper inside Ruby embrace - is our friend to test implementation of basic object. 
 
 User could use +pv+ freely, cause is defined as a global method which call Rubyvis.
@@ -48,6 +48,7 @@ User could use +pv+ freely, cause is defined as a global method which call Rubyv
 * color/Color.js
 * color/Colors.js
 * data/Arrays.js
+* data/Flatten.js
 * data/Histogram.js
 * data/Numbers.js
 * data/LinearScale.js
@@ -57,12 +58,13 @@ User could use +pv+ freely, cause is defined as a global method which call Rubyv
 * data/OrdinalScale.js
 * data/Scale.js
 * layout/Arc.js
-* layout/Layout.js
 * layout/Cluster.js
 * layout/Grid.js
 * layout/Hierarchy.js
 * layout/Horizon.js
 * layout/Indent.js
+* layout/Layout.js
+* layout/Matrix.js
 * layout/Network.js
 * layout/Pack.js
 * layout/Partition.js
@@ -144,7 +146,7 @@ Tested on Ruby 1.8.7, 1.9.1, 1.9.2-p0 and ruby-head (future 1.9.3)
 
 == INSTALL:
 
-$ sudo gem install rubyvis
+$ gem install rubyvis
 
 == LICENSE:
 

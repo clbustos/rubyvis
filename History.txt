@@ -1,3 +1,19 @@
+=== 0.4.0 / 2011-01-03
+
+Massive bug fix. Please, update ASAP
+
+* Implemented Vector, used on segmented lines
+* Bug fix: Segmented areas with basis, cardinal and monotone interpolation was parsed using linear interpolation
+* Bug fix: Incorrect color when using hsl with decimal h 
+* Bug fix: Segmented areas doesn't change color
+* Bug fix: Wedge without inner radius return incorrect path
+* Bug fix: Stack layout with 'inside-out' order crash.
+* Bug fix: Incorrect marks properties evaluation order
+* Bug fix: Segmented lines raises an Exception
+* New specs: Flatten, Grid, Dot, Vector, Rule, Cluster, Partition, Wedge, Indent, Tree, Treemap
+* Improved specs: Area, Line, Panel
+* Deleted dependence of Rubyvis.document. Each panel without parent have an independent REXML::Document
+
 === 0.3.6 / 2010-12-28
 
 * Matrix layout implemented. Example and spec available.
