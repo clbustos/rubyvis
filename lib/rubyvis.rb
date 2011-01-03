@@ -5,6 +5,8 @@ require 'rexml/formatters/default'
 
 require 'pp'
 require 'rubyvis/internals'
+require 'rubyvis/vector'
+
 require 'rubyvis/sceneelement'
 require 'rubyvis/property'
 require 'rubyvis/nest'

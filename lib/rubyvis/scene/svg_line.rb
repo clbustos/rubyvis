@@ -63,7 +63,7 @@ module Rubyvis
         paths = curve_monotone_segments(scenes)
       end
 
-      (scenes.length-1).times {|i|
+      (scenes.size-1).times {|i|
 
         s1 = scenes[i]
         s2 = scenes[i + 1];
@@ -72,20 +72,20 @@ module Rubyvis
         next if (!s1.visible and !s2.visible)
 
         stroke = s1.stroke_style
-        fill = Rubyvis.Color.transparent
+        fill = Rubyvis::Color.transparent
 
         next if stroke.opacity==0.0
 
         # interpolate
         d=nil
-        if ((s1.interpolate == "linear") and (s1.lineJoin == "miter"))
-          fill = stroke;
-          stroke = Rubyvis.Color.transparent;
-          d = path_join(scenes[i - 1], s1, s2, scenes[i + 2]);
+        if ((s1.interpolate == "linear") and (s1.line_join == "miter"))
+          fill = stroke
+          stroke = Rubyvis::Color.transparent
+          d = path_join(scenes[i - 1], s1, s2, scenes[i + 2])
         elsif(paths)
           d = paths[i]
         else
-          d = "M" + s1.left + "," + s1.top + path_segment(s1, s2);
+          d = "M#{s1.left},#{s1.top}#{path_segment(s1, s2)}"
         end
 
         e = SvgScene.expect(e, "path", {
@@ -102,7 +102,7 @@ module Rubyvis
         });
         e = SvgScene.append(e, scenes, i);
       }
-      return e
+      e
     end
 
     # Returns the path segment for the specified points. */
@@ -152,7 +152,7 @@ module Rubyvis
 
       v = p.perp().norm()
 
-      w = v.times(s1.lineWidth / (2 * this.scale))
+      w = v.times(s1.line_width / (2.0 * self.scale))
 
       a = p1.plus(w)
       b = p2.plus(w)
@@ -179,7 +179,7 @@ module Rubyvis
         b = line_intersect(p2, v2, b, p);
       end
 
-      return "M" + a.x + "," + a.y+ "L" + b.x + "," + b.y+ " " + c.x + "," + c.y+ " " + d.x + "," + d.y
+      "M#{a.x},#{a.y}L#{b.x},#{b.y} #{c.x},#{c.y} #{d.x},#{d.y}"
     end
   end
 end

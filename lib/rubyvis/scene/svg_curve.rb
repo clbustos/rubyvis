@@ -102,7 +102,7 @@ module Rubyvis::SvgScene
     p1 = p2;
     p2 = p3;
     p3 = points[2];
-    paths.push(firstPath + self.path_basis(p0, p1, p2, p3)); # merge first & second path
+    paths.push(firstPath + self.path_basis(p0, p1, p2, p3).to_s) # merge first & second path
     3.upto(points.size-1) {|i|
       p0 = p1;
       p1 = p2;
@@ -112,7 +112,7 @@ module Rubyvis::SvgScene
     }
     
     # merge last & second-to-last path
-    paths.push(path_basis(p1, p2, p3, p3).segment + path_basis(p2, p3, p3, p3))
+    paths.push(path_basis(p1, p2, p3, p3).segment + path_basis(p2, p3, p3, p3).to_s)
     paths
   end
 

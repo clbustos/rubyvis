@@ -1,0 +1,63 @@
+<html>
+  <head>
+    <title>Test: Line interpolation</title>
+    <script type="text/javascript" src="protovis-r3.3.js"></script>
+  </head>
+  <body>
+  <h1>Test: Line interpolation</h1>
+    <script type="text/javascript">
+
+data = pv.range(0, 10, 0.2).map(function(x) {
+  return {x:x, y:Math.sin(x) + 2};
+});
+
+
+p_w=200
+p_h=150
+w = 20+p_w*2
+h = 20+p_h*4
+
+x = pv.Scale.linear(data, function(d) {return d.x;}).range(0, p_w-30)
+
+
+y = pv.Scale.linear(data, function(d) {return d.y;}).range(0, p_h-20);
+
+interpolations=["linear","step-before","step-after","polar","polar-reverse", "basis", "cardinal"]
+
+vis = new pv.Panel()
+  .width(w)
+  .height(h)
+  .bottom(20)
+  .left(20)
+  .right(10)
+  .top(5)
+
+for(var i=0; i<interpolations.length;i++) {
+var inter=interpolations[i];
+  n=i%2
+  m=Math.floor(i/2)
+  panel=vis.add(pv.Panel).
+  left(n*(p_w+10)).
+  top(m*(p_h+10)).
+  width(p_w).
+  height(p_h)
+  
+  panel.anchor('top').add(pv.Label).text(inter)
+  
+  panel.add(pv.Line).data(data).
+  lineWidth(2).
+  left(function(d){return x(d.x)}).
+  bottom(function(d){ return y(d.y)}).
+  interpolate(inter);
+  }
+  
+  
+     
+
+vis.render()
+
+
+
+</script>
+    </body>
+    </html>

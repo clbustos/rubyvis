@@ -138,7 +138,7 @@ Rspec::Matchers.define :have_same_svg_elements do |exp|
       "circle"=>{'fill'=>:string_nil, 'fill-opacity'=>:float, 'cx'=>:float,'stroke'=>:string_nil, 'stroke-opacity'=>:string, 'cy'=>:float,'r'=>:float},
       "rect"=>{"x"=>:float,"y"=>:float,"width"=>:float,"height"=>:float, 'fill'=>:string_nil, 'fill-opacity'=>:float, 'stroke'=>:string_nil, 'stroke-opacity'=>:float},
       "text"=>{"x"=>:float,"dx"=>:float,"y"=>:float,"dy"=>:float},
-      'path'=>{'d'=>:path, 'fill'=>:string_nil, 'fill-opacity'=>:float, 'stroke'=>:string_nil, 'stroke-opacity'=>:float}
+      'path'=>{'d'=>:path, 'fill'=>:string_nil, 'fill-opacity'=>:float, 'stroke'=>:string_nil, 'stroke-opacity'=>:float, 'stroke-width'=>:float}
     }
     
     @error={:type=>"Undefined error"}
