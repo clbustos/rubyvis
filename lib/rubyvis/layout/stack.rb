@@ -107,7 +107,7 @@ module Rubyvis
       end
       def values(f=nil)
         if f.nil?
-          @values
+          return @values
         else
           @_values=Rubyvis.functor(f)
           return self
@@ -171,17 +171,20 @@ module Rubyvis
         
         # order
         _index=nil
-        case (s.order) 
-        when "inside-out" 
-          max  = dy.map {|v| Rubyvis.max.index(v) }
-          map  = pv.range(n).sort {|a,b| return max[a] - max[b]}
+        case s.order
+        when "inside-out"
+          
+          max  = dy.map {|v| Rubyvis.max_index(v) }          
+          _map  = Rubyvis.range(n).sort {|a,b| max[a] <=> max[b]}
+          
           sums = dy.map {|v| Rubyvis.sum(v)}
           top = 0
           bottom = 0
           tops = []
           bottoms = []
+          
           n.times {|i|
-            j = map[i]
+            j = _map[i]
             if (top < bottom) 
               top += sums[j];
               tops.push(j);
@@ -190,8 +193,9 @@ module Rubyvis
               bottoms.push(j);
             end
           }
-          _index = bottoms.reverse+tops
           
+          _index = bottoms.reverse+tops
+
         when "reverse"
           _index = Rubyvis.range(n - 1, -1, -1)
         else
@@ -237,13 +241,13 @@ module Rubyvis
             y[_index[0]][j] = 0
             
             k = 0
-            n.times {|i|k += dy[i][j]}
+            n.times {|i| k += dy[i][j]}
             if (k!=0) 
               k = h / k.to_f
               n.times {|i| dy[i][j] *= k}
             else 
               k = h / n.to_f
-              n.times { dy[i][j] = k}
+              n.times {|i| dy[i][j] = k}
             end
           }
         else
@@ -267,6 +271,7 @@ module Rubyvis
         px = i < 0 ? (horizontal ? "l" : "b") : orient[i + 1,1]
         py = orient[0,1]
         
+        
         @values=values
         @prop.each {|k,v|
           @prop[k]=@none
@@ -279,7 +284,7 @@ module Rubyvis
       
       def layer
         that=self
-        value = Rubyvis::Mark.new().data(lambda { that.values[self.parent.index] }).top(proxy("t")).left(proxy("l")).right(proxy("r")).
+        value = Rubyvis::Mark.new().data(lambda {  that.values[self.parent.index] }).top(proxy("t")).left(proxy("l")).right(proxy("r")).
           bottom(proxy("b")).
         width(proxy("w")).
         height(proxy("h"))

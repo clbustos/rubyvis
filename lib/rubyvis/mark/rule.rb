@@ -10,6 +10,7 @@ module Rubyvis
     def self.defaults
       Rule.new.mark_extend(Mark.defaults).line_width(1).stroke_style('black').antialias(false)
     end
+    
     def type
       'rule'
     end

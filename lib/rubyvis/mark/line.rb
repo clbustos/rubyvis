@@ -7,12 +7,13 @@ module Rubyvis
   module LinePrototype  # :nodoc:
     include AreaPrototype
     def line_anchor(name)
+      
       anchor=area_anchor(name).text_align(lambda {|d|
-          {'left'=>'right','bottom'=>'center', 'top'=>'center','center'=>'center','right'=>'left'}[self.name]
+          {'left'=>'right', 'bottom'=>'center', 'top'=>'center', 'center'=>'center','right'=>'left'}[self.name()]
       }).text_baseline(lambda{|d|
-        {'top'=>'bottom', 'right'=>'middle', 'left'=>'middle','center'=>'middle','bottom'=>'top'}[self.name]
+        {'top'=>'bottom', 'right'=>'middle', 'left'=>'middle','center'=>'middle', 'bottom'=>'top'}[self.name()]
       })
-      return anchor
+      anchor
     end
   end
   

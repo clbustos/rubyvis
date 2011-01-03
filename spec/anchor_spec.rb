@@ -1,6 +1,12 @@
 require File.expand_path(File.dirname(__FILE__)+"/spec_helper.rb")
 describe Rubyvis::Anchor do
   include Rubyvis::GeneralSpec
+  
+  it "should have correct properties" do
+    props=[:antialias, :bottom, :cursor, :data, :events, :id,  :left, :name, :reverse, :right,  :title, :top, :visible].inject({}) {|ac, v| ac[v]=true; ac}
+    Rubyvis::Anchor.properties.should==props
+  end
+  
   describe "inner anchor data should work fine" do
     before  do
       w=200

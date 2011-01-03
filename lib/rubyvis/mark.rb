@@ -618,6 +618,7 @@ module Rubyvis
           p a if $DEBUG
           a 
         }).visible(lambda {
+          
           self.scene.target[index].visible
         }).id(lambda {
             self.scene.target[index].id
@@ -660,6 +661,7 @@ module Rubyvis
           'left'
         end
       }).text_baseline(lambda {
+
         if ['right','left','center'].include? self.name
           'middle'
         elsif self.name=='top'
@@ -833,7 +835,10 @@ module Rubyvis
     end
     def bind_bind(mark)
       begin
-        mark._properties.each {|v|
+        #puts "Binding:#{mark.type}->#{mark._properties.map {|v| v.name}}"
+        
+        mark._properties.reverse.each {|v|
+          
           #p v.name
           k=v.name
           if !@seen.has_key?(k)
@@ -864,10 +869,14 @@ module Rubyvis
       @types={1=>[],2=>[],3=>[]}
       @_data=nil
       @_required=[]
+      #puts "Binding!"
       bind_bind(self)
       bind_bind((self.class).defaults)
       @types[1].reverse!
       @types[3].reverse!
+      #puts "***"
+      #pp @types[3]
+      #puts "***"
       mark=self
       begin
         properties.each {|name,v|
@@ -1056,7 +1065,6 @@ module Rubyvis
       #p "#{type}:"+props.map {|prop| prop.name}.join(",")
       props.each do |prop|
         v=prop.value
-
         # p "#{prop.name}=#{v}"
         if prop._type==3
           v=v.js_apply(self, Mark.stack)

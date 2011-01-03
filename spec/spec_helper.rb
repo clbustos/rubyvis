@@ -23,6 +23,18 @@ module Rubyvis
   end
   module LayoutSpec
     include GeneralSpec
+    def waves(n, m) 
+    Rubyvis.range(n).map {|i| 
+      Rubyvis.range(m).map {|j| 
+        x = 20 * j / m.to_f - i / 3.0
+        x > 0 ? 2 * x * Math.exp(-0.5 * x) : 0
+      }
+    }
+    end
+
+    
+    
+    
     def net_nodes
       [
       OpenStruct.new({:node_value=>'A', :group=>1}),

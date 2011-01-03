@@ -97,7 +97,7 @@ module Rubyvis
       }).tension(lambda {
         self.scene.target[self.index].tension
       })
-      return anchor
+      anchor
     end
   end
   

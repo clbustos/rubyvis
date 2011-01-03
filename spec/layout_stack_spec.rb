@@ -1,8 +1,68 @@
 require File.expand_path(File.dirname(__FILE__)+"/spec_helper.rb")
 describe Rubyvis::Layout::Stack do
+  include Rubyvis::LayoutSpec
   it "should have correct properties" do
     props=[:antialias, :bottom, :canvas, :cursor, :data, :events, :fill_style, :height, :id, :layers, :left, :line_width, :offset, :order, :orient, :overflow, :reverse, :right, :stroke_style, :title, :top, :transform, :visible, :width].inject({}) {|ac, v| ac[v]=true; ac}
     Rubyvis::Layout::Stack.properties.should==props
+  end
+  it "Rubyvis.Dot be the same as Rubyvis::Dot" do
+    Rubyvis.Layout.Stack.should eql Rubyvis::Layout::Stack
+  end
+  describe "html examples" do 
+    before do
+      w = 300
+      @h = 300
+      
+      n = 20 # // number of layers
+      m = 75 # // number of samples per layer
+      x = pv.Scale.linear(2, m - 1).range(0, w)
+      @y = pv.Scale.linear(0, 20).range(0, @h/2.0)
+      
+      fill=pv.ramp("#ada", "#656").domain(n, 0)
+      
+      @vis = Rubyvis::Panel.new()
+      .width(w)
+      .height(@h)
+      
+      dat=waves(n,m)
+      @stack=@vis.add(Rubyvis::Layout::Stack)
+      .layers(dat)
+      .x(lambda {|d| x[self.index]})
+      .y(lambda {|d| d})
+      
+      @stack.layer.add(Rubyvis::Area)
+      .fill_style(lambda {fill[self.parent.index]})
+      .stroke_style("#797")
+    end
+    
+    it "should render 'stack-expand.html' example correctly" do
+      @stack.order("inside-out").
+      offset("expand")
+      @vis.render()
+      pv_out=fixture_svg_read("stack_expand.svg")
+      @vis.to_svg.should have_same_svg_elements(pv_out)
+    end
+    it "should render 'stack-silohouette.html' example correctly" do
+      y=@y
+      @stack.order("reverse").
+      offset("silohouette").
+      y(lambda {|d| y[d]})
+    
+      @vis.render()
+      pv_out=fixture_svg_read("stack_silohouette.svg")
+      @vis.to_svg.should have_same_svg_elements(pv_out)
+    end
+    it "should render 'stack-wiggle.html' example correctly" do
+      y=@y
+      @stack.order("reverse").
+        offset("wiggle").
+      y(lambda {|d| y[d]})
+    
+      @vis.render()
+      pv_out=fixture_svg_read("stack_wiggle.svg")
+      @vis.to_svg.should have_same_svg_elements(pv_out)
+    end
+    
   end
   describe "rendered" do
     before do
