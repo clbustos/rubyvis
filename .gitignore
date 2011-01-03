@@ -5,6 +5,7 @@ test.svg
 *~
 doc/*
 pkg/*
+spec/fixtures/protovis-d3.3.js
 .yardoc
 vendor/protovis/tests
 vendor/protovis/lib

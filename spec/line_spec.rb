@@ -76,8 +76,7 @@ describe Rubyvis::Line do
       
       y = pv.Scale.linear(data, lambda {|d| d.y}).range(0, p_h-20);
       
-      interpolations=["linear","step-before","step-after","polar","polar-reverse", "basis", "cardinal"]
-      
+      interpolations=["linear","step-before","step-after","polar","polar-reverse", "basis", "cardinal","monotone"]
       #/* The root panel. */
       vis = pv.Panel.new()
       .width(w)
@@ -95,10 +94,12 @@ describe Rubyvis::Line do
       top(m*(p_h+10)).
       width(p_w).
       height(p_h)
+    
       panel.anchor('top').add(Rubyvis::Label).text(inter)
+      
       panel.add(Rubyvis::Line).data(data).
       segmented(true).
-      line_width(lambda {|d|d.y*2+self.index*0.5}).
+      line_width(lambda {|d|d.y*2.0+self.index*0.5}).
       left(lambda {|d| x.scale(d.x)}).
       bottom(lambda {|d| y.scale(d.y)}).
       interpolate(inter)
@@ -107,7 +108,20 @@ describe Rubyvis::Line do
     pv_out=fixture_svg_read("line_interpolation_segmented.svg")
     vis.to_svg.should have_same_svg_elements(pv_out)
   end
+  it "SvgScene.path_join should return correct value" do
+    s0=OpenStruct.new({:left=>1,:top=>2,:visible=>true, :line_width=>2.5})
+    s1=OpenStruct.new({:left=>3,:top=>4,:visible=>true, :line_width=>2.5})
+    s2=OpenStruct.new({:left=>5,:top=>6,:visible=>true, :line_width=>2.5})
+    s3=OpenStruct.new({:left=>7,:top=>8,:visible=>true, :line_width=>2.5})
+    Rubyvis::SvgScene.path_join(s0,s1,s2,s3).should=="M2.1161165235168156,4.883883476483184L4.116116523516816,6.883883476483184 5.883883476483184,5.116116523516816 3.8838834764831844,3.1161165235168156"
+    s0=OpenStruct.new({:left=>1.5,:top=>2,:visible=>true, :line_width=>3})
+    s1=OpenStruct.new({:left=>3.5,:top=>4,:visible=>true, :line_width=>3.5})
+    s2=OpenStruct.new({:left=>5.5,:top=>6,:visible=>true, :line_width=>4.0})
+    s3=OpenStruct.new({:left=>7.5,:top=>8,:visible=>true, :line_width=>4.5})
+    
+  Rubyvis::SvgScene.path_join(s0,s1,s2,s3).should=="M2.2625631329235425,5.2374368670764575L4.2625631329235425,7.2374368670764575 6.7374368670764575,4.7625631329235425 4.7374368670764575,2.7625631329235425"
   
+  end
   context "rendered" do
     before do
       @h=200

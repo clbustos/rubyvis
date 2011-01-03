@@ -15,7 +15,7 @@ module Rubyvis
       return e if (fill.opacity==0.0 and  stroke.opacity==0.0)
       #/* points */
 
-      d = "M" + s.left.to_s + "," + s.top.to_s
+      d = "M#{s.left},#{s.top}"
 
       if (scenes.size > 2 and (['basis', 'cardinal', 'monotone'].include? s.interpolate))
         case (s.interpolate)
@@ -55,21 +55,21 @@ module Rubyvis
       s = scenes[0];
       paths=nil
       case s.interpolate
-      when "basis"
-        paths = curve_basis_segments(scenes)
-      when "cardinal"
-        paths=curve_cardinal_segments(scenes, s.tension)
-      when "monotone"
-        paths = curve_monotone_segments(scenes)
+        when "basis"
+          paths = curve_basis_segments(scenes)
+        when "cardinal"
+          paths=curve_cardinal_segments(scenes, s.tension)
+        when "monotone"
+          paths = curve_monotone_segments(scenes)
       end
 
-      (scenes.size-1).times {|i|
+      (0...(scenes.size-1)).each {|i|
 
         s1 = scenes[i]
         s2 = scenes[i + 1];
-
+        #p "#{s1.top} #{s1.left} #{s1.line_width} #{s1.interpolate} #{s1.line_join}"
         # visible 
-        next if (!s1.visible and !s2.visible)
+        next if (!s1.visible or !s2.visible)
 
         stroke = s1.stroke_style
         fill = Rubyvis::Color.transparent
@@ -81,7 +81,10 @@ module Rubyvis
         if ((s1.interpolate == "linear") and (s1.line_join == "miter"))
           fill = stroke
           stroke = Rubyvis::Color.transparent
-          d = path_join(scenes[i - 1], s1, s2, scenes[i + 2])
+          s0=((i-1) < 0) ? nil : scenes[i-1]
+          s3=((i+2) >= scenes.size) ? nil : scenes[i+2]
+          
+          d = path_join(s0, s1, s2, s3)
         elsif(paths)
           d = paths[i]
         else
@@ -148,17 +151,16 @@ module Rubyvis
 
       p2 = Rubyvis.vector(s2.left, s2.top)
 
-      p = p2.minus(p1)
+      _p = p2.minus(p1)
 
-      v = p.perp().norm()
-
+      v = _p.perp().norm()
+      
       w = v.times(s1.line_width / (2.0 * self.scale))
 
       a = p1.plus(w)
       b = p2.plus(w)
       c = p2.minus(w)
       d = p1.minus(w)
-
       #/*
       # * Start join. P0 is the previous line segment's start point. We define the
       # * cutting plane as the average of the vector perpendicular to P0-P1, and
@@ -167,19 +169,20 @@ module Rubyvis
       # * Note that we don't implement miter limits, so these can get wild.
       # */
       if (s0 and s0.visible)
-        v1 = p1.minus(s0.left, s0.top).perp().norm().plus(v);
-        d = line_intersect(p1, v1, d, p);
-        a = line_intersect(p1, v1, a, p);
+        v1 = p1.minus(s0.left, s0.top).perp().norm().plus(v)
+        d = line_intersect(p1, v1, d, _p)
+        a = line_intersect(p1, v1, a, _p)
       end
 
       #/* Similarly, for end join. */
       if (s3 and s3.visible)
         v2 = Rubyvis.vector(s3.left, s3.top).minus(p2).perp().norm().plus(v);
-        c = line_intersect(p2, v2, c, p);
-        b = line_intersect(p2, v2, b, p);
+        c = line_intersect(p2, v2, c, _p);
+        b = line_intersect(p2, v2, b, _p);
       end
 
-      "M#{a.x},#{a.y}L#{b.x},#{b.y} #{c.x},#{c.y} #{d.x},#{d.y}"
+      d="M#{a.x},#{a.y}L#{b.x},#{b.y} #{c.x},#{c.y} #{d.x},#{d.y}"
+      d
     end
   end
 end

@@ -258,11 +258,14 @@ module Rubyvis::SvgScene
     d = []
     m = []
     dx = []
+    k=0
     
     #/* Compute the slopes of the secant lines between successive points. */
-    (points.size-1).times {|k|
+    
+    while(k < points.size-1) do 
       d[k] = (points[k+1].top - points[k].top) / (points[k+1].left - points[k].left).to_f
-    }
+      k+=1
+    end
     
     #/* Initialize the tangents at every point as the average of the secants. */
     m[0] = d[0]
@@ -320,7 +323,7 @@ module Rubyvis::SvgScene
   # * @param points the array of points.
   #/
   def self.curve_monotone_segments(points) 
-     return "" if (points.length <= 2)
+    return "" if (points.size <= 2)
      self.curve_hermite_segments(points, self.monotone_tangents(points))
   end
 

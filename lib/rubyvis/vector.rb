@@ -29,6 +29,9 @@ module Rubyvis
       @x=x
       @y=y
     end
+    def ==(v)
+      @x==v.x and @y==v.y
+    end
     # Returns a vector perpendicular to this vector: <i>&#x27e8;-y, x&#x27e9;</i>.
     #
     # @returns {pv.Vector} a perpendicular vector.
@@ -43,7 +46,7 @@ module Rubyvis
     # @returns {pv.Vector} a unit vector.
     def norm 
       l=length()
-      times(l!=0 ? (1.0 / l) : 1)
+      times(l!=0 ? (1.0 / l) : 1.0)
     end
     
     # Returns the magnitude of this vector, defined as <i>sqrt(x * x + y * y)</i>.

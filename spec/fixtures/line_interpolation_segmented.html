@@ -22,7 +22,8 @@ x = pv.Scale.linear(data, function(d) {return d.x;}).range(0, p_w-30)
 
 y = pv.Scale.linear(data, function(d) {return d.y;}).range(0, p_h-20);
 
-interpolations=["linear","step-before","step-after","polar","polar-reverse", "basis", "cardinal"]
+interpolations=["linear","step-before","step-after","polar","polar-reverse", "basis", "cardinal","monotone"]
+
 
 vis = new pv.Panel()
   .width(w)
@@ -46,7 +47,7 @@ var inter=interpolations[i];
   
   panel.add(pv.Line).data(data).
   segmented(true).
-  lineWidth(function(d) {return d.y*2+this.index*0.5}).
+  lineWidth(function(d) {return d.y * 2+this.index*0.5}).
   left(function(d){return x(d.x)}).
   bottom(function(d){ return y(d.y)}).
   interpolate(inter);

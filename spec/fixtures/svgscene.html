@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <title>Anchor</title>
+    <script type="text/javascript" src="protovis-r3.3.js"></script>
+  </head>
+  <body>
+    <script type="text/javascript+protovis">
+
+    var s0={left:1,top:2,visible:1,lineWidth:2.5},
+    s1={left:3,top:4,visible:1,lineWidth:2.5},
+    s2={left:5,top:6,visible:1,lineWidth:2.5},
+    s3={left:7,top:8,visible:1,lineWidth:2.5}
+    
+    document.write(pv.SvgScene.pathJoin(s0,s1,s2,s3))
+    
+    
+    var s0={left:1.5,top:2,visible:1,lineWidth:3},
+    s1={left:3.5,top:4,visible:1,lineWidth:3.5},
+    s2={left:5.5,top:6,visible:1,lineWidth:4},
+    s3={left:7.5,top:8,visible:1,lineWidth:4.5}
+    document.write("<br />")
+    document.write(pv.SvgScene.pathJoin(s0,s1,s2,s3))
+    
+    </script>
+  </body>
+</html>
