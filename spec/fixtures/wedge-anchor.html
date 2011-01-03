@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <title>Donut</title>
+    <script type="text/javascript" src="protovis-r3.3.js"></script>
+  </head>
+  <body>
+    <script type="text/javascript+protovis">
+
+    var data = pv.range(5).map(function(x) {return x;}),
+    w = 400,
+    h = 400,
+    r = w / 2,
+    t = 30,
+    a = pv.Scale.linear(0, pv.sum(data)).range(0, 2 * Math.PI);
+
+var vis = new pv.Panel()
+    .width(w)
+    .height(h);
+
+anchors=["outer","inner","start","center","end"]
+    
+vis.add(pv.Wedge)
+    .data(data)
+    .outerRadius(r)
+    .angle(a)
+    .anchor(function() { return anchors[this.index]}).add(pv.Label)
+    .text(function(d) {return anchors[this.index];})
+
+vis.render();
+
+    </script>
+  </body>
+</html>

@@ -4,6 +4,9 @@ require File.expand_path(File.dirname(__FILE__)+"/spec_helper.rb")
     props=[:antialias, :bottom, :cursor, :data, :events, :fill_style, :height, :id, :left, :line_width, :reverse, :right, :stroke_style, :title, :top, :visible, :width].inject({}) {|ac, v| ac[v]=true; ac}
     Rubyvis::Bar.properties.should==props
   end
+  it "Rubyvis.Bar be the same as Rubyvis::Bar" do
+    Rubyvis.Bar.should eql Rubyvis::Bar
+  end
   it "should return correct defaults" do
     props=Rubyvis::Bar.defaults._properties
     props.size.should==2

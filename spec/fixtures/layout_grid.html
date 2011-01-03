@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <title>Grid Layout</title>
+    <script type="text/javascript" src="protovis-d3.3.js"></script>
+  </head>
+  <body>
+    <script type="text/javascript+protovis">
+
+var vis = new pv.Panel()
+    .data(["A"])
+    .width(800)
+    .height(800)
+    .margin(10)
+    .fillStyle("#eee")
+    .strokeStyle("#ccc");
+
+vis.add(pv.Layout.Grid)
+    .rows(3)
+    .cols(3)
+  .cell.add(pv.Layout.Grid)
+    .rows(pv.index)
+    .cols(pv.index)
+  .cell.add(pv.Bar)
+    .strokeStyle("#fff")
+  .anchor("center").add(pv.Label)
+    .textStyle("rgba(255, 255, 255, .4)")
+    .font("24px sans");
+
+vis.render();
+
+    </script>
+  </body>
+</html>
+

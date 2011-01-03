@@ -28,7 +28,6 @@ describe Rubyvis::Rule do
     
     vis.render();
     pv_out=fixture_svg_read("rule_anchor.svg")
-    File.open("test.svg","w") {|fp| fp.write(vis.to_svg)}
     vis.to_svg.should have_same_svg_elements(pv_out)
   end  
   

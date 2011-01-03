@@ -8,6 +8,33 @@ describe Rubyvis::Wedge do
   it "Rubyvis.Wedge be the same as Rubyvis::Wedge" do
     Rubyvis.Wedge.should eql Rubyvis::Wedge
   end
+  it "should render equal to protovis 'wedge-anchor.html' test" do
+    
+    data = Rubyvis.range(5).map {|x| x}
+    w = 400
+    h = 400
+    r = w / 2.0
+    t = 30
+    a = Rubyvis::Scale.linear(0, Rubyvis.sum(data)).range(0, 2 * Math::PI);
+
+    vis = Rubyvis::Panel.new()
+    .width(w)
+    .height(h)
+
+    anchors=["outer","inner","start","center","end"]
+    
+    vis.add(Rubyvis::Wedge)
+    .data(data)
+    .outer_radius(r)
+    .angle(a)
+    .anchor(lambda {anchors[self.index]}).add(pv.Label)
+    .text(lambda {anchors[self.index]})
+
+    vis.render();
+    pv_out=fixture_svg_read("wedge_anchor.svg")
+    vis.to_svg.should have_same_svg_elements(pv_out)
+    
+  end
   it "should render equal to protovis 'wedge-donut.html' test" do
     data = Rubyvis.range(10).map {|x| (Math.sin(x)).abs}
     w = 400

@@ -62,16 +62,14 @@ module Rubyvis
     # @returns {pv.Nest} this.
     
     def key(k, f=nil)
-      @keys.push(OpenStruct.new({:name=>key,:value=>f}))
+      @keys.push(OpenStruct.new({:name=>k, :value=>f}))
       @leaf=nil
       self
     end
 
     # Flattens using the specified leaf function. This is an alternative to
-    # specifying an explicit set of keys; the tiers of the underlying tree will be
-    # determined dynamically by recursing on the values, and the resulting keys
-    # will be stored in the entries <tt>keys</tt> attribute. The leaf function must
-    # return true for leaves, and false for internal nodes.
+    # specifying an explicit set of keys; the tiers of the underlying tree 
+    # will be determined dynamically by recursing on the values, and the resulting keys will be stored in the entries +:keys+ attribute. The leaf function must return true for leaves, and false for internal nodes.
     #
     # @param {function} f a leaf function.
     # @returns {pv.Nest} this.
@@ -99,7 +97,7 @@ module Rubyvis
           @stack.pop
         }
       else 
-        @entries.push(@stack+value)
+        @entries.push(@stack+[value])
       end
     end
     # Returns the flattened array. Each entry in the array is an object; each
@@ -117,7 +115,7 @@ module Rubyvis
       @entries.map {|stack|
         m={}
         @keys.each_with_index {|k,i|
-          v=@stack[i]
+          v=stack[i]
           m[k.name]=k.value ? k.value.js_call(self,v) : v
         }
         m

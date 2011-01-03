@@ -6,7 +6,12 @@ describe Rubyvis::Anchor do
     props=[:antialias, :bottom, :cursor, :data, :events, :id,  :left, :name, :reverse, :right,  :title, :top, :visible].inject({}) {|ac, v| ac[v]=true; ac}
     Rubyvis::Anchor.properties.should==props
   end
-  
+  it "should be initialized with an object which respond to parent" do
+    my_mock=mock('mark')
+    my_mock.should_receive(:parent).with(no_args())
+    Rubyvis.Anchor(my_mock)
+    
+  end
   describe "inner anchor data should work fine" do
     before  do
       w=200

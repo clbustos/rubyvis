@@ -11,11 +11,12 @@ module Rubyvis
         
         r1 = s.inner_radius
         r2 = s.outer_radius
+
         a = (s.angle).abs
         _p=nil
         
         if (a >= 2 * Math::PI) 
-          if (r1) 
+          if (r1!=0) 
             _p = "M0,#{r2 }A#{r2},#{r2} 0 1,1 0,#{-r2}A#{r2 },#{r2 } 0 1,1 0,#{r2}M0,#{r1}A#{r1},#{r1} 0 1,1 0,#{-r1}A#{r1},#{r1} 0 1,1 0,#{r1 }Z"
           else 
             _p = "M0,#{r2}A#{r2},#{r2} 0 1,1 0,#{-r2}A#{r2},#{r2} 0 1,1 0,#{r2 }Z"
@@ -27,10 +28,10 @@ module Rubyvis
           c2 = Math.cos(ea)
           s1 = Math.sin(sa)
           s2 = Math.sin(ea)
-          if (r1)
+          if (r1!=0)
             _p = "M#{r2 * c1},#{r2 * s1}A#{r2},#{r2} 0 #{((a < Math::PI) ? "0" : "1")},1 #{r2 * c2},#{r2 * s2}L#{r1 * c2},#{r1 * s2}A#{r1},#{r1} 0 #{((a < Math::PI) ? "0" : "1")},0 #{r1 * c1},#{r1 * s1}Z"
           else 
-            _p = "M#{r2 * c1},#{r2 * s1}A#{r2},#{r2} 0 #{((a < Math.PI) ? "0" : "1")},1 #{r2 * c2},#{r2 * s2}L0,0Z"
+            _p = "M#{r2 * c1},#{r2 * s1}A#{r2},#{r2} 0 #{((a < Math::PI) ? "0" : "1")},1 #{r2 * c2},#{r2 * s2}L0,0Z"
           end
         end
         

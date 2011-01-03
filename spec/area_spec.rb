@@ -5,7 +5,9 @@ describe Rubyvis::Area do
     props=[:antialias, :bottom, :cursor, :data, :events, :fill_style, :height, :id, :interpolate, :left, :line_width, :reverse, :right, :segmented, :stroke_style, :tension, :title, :top, :visible, :width].inject({}) {|ac, v| ac[v]=true; ac}
     Rubyvis::Area.properties.should==props
   end
-  
+  it "Rubyvis.Area be the same as Rubyvis::Area" do
+    Rubyvis.Area.should eql Rubyvis::Area
+  end
   it "should render equal to protovis 'area-segmented.html' test" do
     data=Rubyvis.range(0, 6, 0.1).map {|x| Math.sin(x)}
     vis = Rubyvis.Panel.new()
