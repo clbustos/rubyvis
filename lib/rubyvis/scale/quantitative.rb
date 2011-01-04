@@ -393,7 +393,8 @@ module Rubyvis
       
       @tick_format= Rubyvis.Format.number.fraction_digits([0, -(Rubyvis.log(step, 10) + 0.01).floor].max).to_proc
       
-      ticks = Rubyvis.range(start, _end + step, step);
+      ticks = Rubyvis.range(start, _end + step, step)
+      
       return reverse ? ticks.reverse() : ticks;
     end
     

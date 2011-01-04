@@ -40,8 +40,9 @@ module Rubyvis
           "fill-opacity"=> fill.opacity==0 ? nil : fill.opacity,
           "text-anchor"=> anchor
         }, {
-        "font"=> s.font, "text-shadow"=> s.text_shadow, "text-decoration"=> s.text_decoration      })
-        e.text=s.text
+        "font"=> s.font, "text-shadow"=> s.text_shadow, "text-decoration"=> s.text_decoration})
+        
+        e.text=s.text.frozen? ? s.text.dup : s.text
 
 
         e=SvgScene.append(e,scenes,i)

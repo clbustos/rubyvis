@@ -49,7 +49,7 @@ vis = pv.Panel.new()
     visible( lambda {|n| n.parent_node}).
     fill_style(lambda {|n|
       colors20.scale(n.parent_node).
-        lighter((n.node_value) / 5.0)
+        brighter((n.node_value) / 5.0)
     }).
     stroke_style(c20)
   

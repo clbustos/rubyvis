@@ -16,7 +16,7 @@ h=Hoe.spec 'rubyvis' do
   self.rspec_options << "-c" << "-b"
   self.developer('Claudio Bustos', 'clbustos_at_gmail.com')
   self.version=Rubyvis::VERSION
-  self.extra_dev_deps << ["coderay",">=0"] << ["haml",">=0"] << ["nokogiri", ">=0"] << ["rspec",">=2.0"]
+  self.extra_dev_deps << ["coderay",">=0"] << ["haml",">=0"] << ["nokogiri", ">=0"] << ["rspec",">=2.0"] << ["RedCloth",">=0"]
 end
 desc "Publicar docs en rubyforge"
 task :publicar_docs => [:clean, :docs] do

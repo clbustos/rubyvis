@@ -19,7 +19,7 @@ def get_files(path)
   h
 end
 
-files=get_files(File.dirname(__FILE__)+"/../../lib/rubyvis/")
+files=get_files(File.expand_path(File.dirname(__FILE__)+"/../../lib/rubyvis/"))
 
 #load(File.dirname(__FILE__)+"/treemap/treemap_data.rb")
 

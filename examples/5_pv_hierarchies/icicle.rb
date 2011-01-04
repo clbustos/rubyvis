@@ -18,7 +18,7 @@ def get_files(path)
   h
 end
 
-files=get_files(File.dirname(__FILE__)+"/../../")
+files=get_files(File.expand_path(File.dirname(__FILE__)+"/../../lib/"))
 
 colors=Rubyvis::Colors.category19
 vis = Rubyvis::Panel.new.

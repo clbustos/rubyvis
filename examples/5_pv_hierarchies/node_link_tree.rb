@@ -20,7 +20,7 @@ end
 
 
 
-files=get_files(File.dirname(__FILE__)+"/../../")
+files=get_files(File.expand_path(File.dirname(__FILE__)+"/../../"))
 #files={:b=>{:c=>1,:d=>2}}
 
 

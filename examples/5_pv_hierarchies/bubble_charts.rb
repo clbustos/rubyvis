@@ -18,7 +18,7 @@ def get_files(path)
   h
 end
 
-files=get_files(File.dirname(__FILE__)+"/../../lib")
+files=get_files(File.expand_path(File.dirname(__FILE__)+"/../../lib/"))
 
 classes = Rubyvis.nodes(Rubyvis.flatten(files).leaf(lambda {|v| v.is_a? Numeric}).array)
 

@@ -127,7 +127,7 @@ module Rubyvis
       start = 0
     end
     step||= 1
-    raise "range must be finite" if ((stop - start) / step.to_f).infinite?
+    raise "range must be finite" if ((stop.to_f - start.to_f) / step.to_f).infinite?
     array = []
     i = 0
     stop = stop- (stop - start) * 1e-10 #// floating point precision!
