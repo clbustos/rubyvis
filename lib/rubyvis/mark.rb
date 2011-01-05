@@ -803,8 +803,8 @@ module Rubyvis
         stack.shift
       else
         mark.build
-        Rubyvis.Scene.scale = scale;
-        Rubyvis.Scene.update_all(mark.scene);
+        Rubyvis::SvgScene.scale = scale;
+        Rubyvis::SvgScene.update_all(mark.scene);
       end
       mark.scale=nil
     end

@@ -14,9 +14,6 @@ class REXML::Element #:nodoc:
 end
 
 module Rubyvis
-  def self.Scene # :nodoc:
-    Rubyvis::SvgScene
-  end
   module SvgScene # :nodoc:
     #include REXML
     def self.svg
@@ -38,8 +35,7 @@ module Rubyvis
     def self.scale=(v)
       @scale=v
     end
-    def self.implicit
-      svg={
+    IMPLICIT={:svg=>{
         "shape-rendering"=> "auto",
         "pointer-events"=> "painted",
         "x"=> 0,
@@ -53,11 +49,9 @@ module Rubyvis
         "stroke-opacity"=> 1,
         "stroke-width"=> 1.5,
         "stroke-linejoin"=> "miter"
-      }
-      css={"font"=>"10px sans-serif"}
-
-      {:svg=>svg,:css=>css}
-    end
+      },:css=>{"font"=>"10px sans-serif"}
+    }
+    
     def self.update_all(scenes)
       puts "update_all: #{scenes.inspect}" if $DEBUG
       if (scenes.size>0 and scenes[0].reverse and scenes.type!='line' and scenes.type!='area')
@@ -130,7 +124,7 @@ module Rubyvis
         e = self.create(type)
       end
       attributes.each {|name,value|
-        value = nil if (value == self.implicit[:svg][name])
+        value = nil if (value == IMPLICIT[:svg][name])
         if (value.nil?)
           e.delete_attribute(name)
         else
@@ -147,7 +141,7 @@ module Rubyvis
           array_styles[$1]=$2
         }
         style.each {|name,value|
-          value=nil if value==self.implicit[:css][name]
+          value=nil if value==IMPLICIT[:css][name]
           if (value.nil?)
             array_styles.delete(name)
           else

@@ -53,7 +53,7 @@ module Rubyvis
       end
     end
     
-    named = Rubyvis::Color.names[format.to_sym]
+    named = Rubyvis::Color::NAMES[format.to_sym]
 
 
     return Rubyvis.color(named) if (named)
@@ -88,41 +88,9 @@ module Rubyvis
   # space is dependent on the implementing class; all colors support the
   # Color.rgb() method to convert to RGB color space for interpolation.
   class Color
-    # An opaque color format string, such as "#f00".
-    attr_reader :color
-    # The opacity, a float in [0, 1].
-    attr_reader :opacity
-    
-    # Constructs a color with the specified color format string and opacity. This
-    # constructor should not be invoked directly; use Rubyvis.color instead.
-    def initialize(color,opacity)
-      @color=color
-      @opacity=opacity
-    end
-    # Returns a new color that is a brighter version of this color. The behavior of
-    # this method may vary slightly depending on the underlying color space.
-    # Although brighter and darker are inverse operations, the results of a series
-    # of invocations of these two methods might be inconsistent because of rounding
-    # errors.
-    # * @param [k] {number} an optional scale factor; defaults to 1.
-    def brighter(k)
-      self.rgb.brighter(k)
-    end
-    
-    # Returns a new color that is a brighter version of this color. The behavior of
-    # this method may vary slightly depending on the underlying color space.
-    # Although brighter and darker are inverse operations, the results of a series
-    # of invocations of these two methods might be inconsistent because of rounding
-    # errors.
-    #
-    # * @param [k] {number} an optional scale factor; defaults to 1.
-    def darker(k)
-      self.rgb.darker(k)
-    end
     
     # Association between names and colors
-    def self.names # :nodoc:
-      {
+    NAMES={
         :aliceblue=>"#f0f8ff",
         :antiquewhite=>"#faebd7",
         :aqua=>"#00ffff",
@@ -271,7 +239,40 @@ module Rubyvis
         :yellow=>"#ffff00",
         :yellowgreen=>"#9acd32",
       }
+    
+    
+    # An opaque color format string, such as "#f00".
+    attr_reader :color
+    # The opacity, a float in [0, 1].
+    attr_reader :opacity
+    
+    # Constructs a color with the specified color format string and opacity. This
+    # constructor should not be invoked directly; use Rubyvis.color instead.
+    def initialize(color,opacity)
+      @color=color
+      @opacity=opacity
     end
+    # Returns a new color that is a brighter version of this color. The behavior of
+    # this method may vary slightly depending on the underlying color space.
+    # Although brighter and darker are inverse operations, the results of a series
+    # of invocations of these two methods might be inconsistent because of rounding
+    # errors.
+    # * @param [k] {number} an optional scale factor; defaults to 1.
+    def brighter(k)
+      self.rgb.brighter(k)
+    end
+    
+    # Returns a new color that is a brighter version of this color. The behavior of
+    # this method may vary slightly depending on the underlying color space.
+    # Although brighter and darker are inverse operations, the results of a series
+    # of invocations of these two methods might be inconsistent because of rounding
+    # errors.
+    #
+    # * @param [k] {number} an optional scale factor; defaults to 1.
+    def darker(k)
+      self.rgb.darker(k)
+    end
+    
     def self.transparent
       Rubyvis.rgb(0,0,0,0)
     end
