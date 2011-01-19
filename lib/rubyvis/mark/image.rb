@@ -61,7 +61,7 @@ module Rubyvis
     # though this typically results in slower performance.
     
     def dynamic_image(f)
-      f,dummy=arguments
+      #f,dummy=arguments
       @_image = lambda {|*args|
         c=f.js_apply(self,args)
         c.nil? ? pv.Color.transparent : (c.is_a?(String) ? Rubyvis.color(c) : c )

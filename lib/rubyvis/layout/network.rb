@@ -121,7 +121,7 @@ module Rubyvis
     
       
       def _link # :nodoc:
-        that=self
+        #that=self
         l=Mark.new().
           mark_extend(@node).
           data(lambda {|d| [d.source_node, d.target_node] }).
@@ -135,7 +135,7 @@ module Rubyvis
 
      
       def _node_label #:nodoc:
-        that=self
+        #that=self
         nl=Mark.new().
           mark_extend(@node).
           text_margin(7).
@@ -185,7 +185,7 @@ module Rubyvis
 
 
       attr_accessor_dsl [:links, lambda {|v|
-        out=[]
+       # out=[]
         v.map {|d|
           if !d.link_value.is_a? Numeric
             d.link_value = !d.value.is_a?(Numeric) ? 1 : d.value

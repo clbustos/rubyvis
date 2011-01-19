@@ -22,7 +22,10 @@ module Rubyvis
           func=nil
         end
         @properties[name]=true
-        self.property_method(name,false, func, self)        
+        self.property_method(name,false, func, self)
+
+        remove_method(name.to_s+"=") if public_method_defined? name.to_s+"="
+        
         define_method(name.to_s + "=") {|v|
           self.send(name,v)
         }

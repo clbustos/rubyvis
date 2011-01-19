@@ -39,7 +39,7 @@ module Rubyvis
       "pointer-events"=> s.events,
       "cursor"=> s.cursor,
       "fill"=> fill.color,
-      "fill-opacity"=> (fill.opacity==0) ? nil :fill.opacity,
+      "fill-opacity"=> (fill.opacity==0) ? nil : fill.opacity,
       "stroke"=> stroke.color,
       "stroke-opacity"=> (stroke.opacity==0) ? nil : stroke.opacity,
       "stroke-width"=> (stroke.opacity!=0) ? s.line_width / self.scale : nil

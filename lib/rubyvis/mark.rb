@@ -184,7 +184,8 @@ module Rubyvis
     def self.property_method(name, _def, func=nil, klass=nil)
       return if klass.method_defined? name
       klass.send(:define_method, name) do |*arguments,&block|
-        v,dummy = arguments
+        v=arguments[0]
+        #v,dummy = arguments
         if block
           v=block
         end
@@ -947,7 +948,7 @@ module Rubyvis
       end while(mark=mark.parent)
     end
     def context(scene, index, f) # :nodoc:
-      proto=Mark
+      #proto=Mark
       stack=Mark.stack
       oscene=Mark.scene
       oindex=Mark.index

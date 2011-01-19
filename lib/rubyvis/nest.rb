@@ -18,7 +18,7 @@ module Rubyvis
       @values=opts[:values]
     end
     def ==(var)
-      key==var.key and values=var.values
+      key==var.key and values==var.values
     end
   end
   # :startdoc: 

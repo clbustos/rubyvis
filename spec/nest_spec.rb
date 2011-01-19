@@ -34,9 +34,9 @@ describe Rubyvis::Nest do
     Rubyvis::NestedArray.new(:key=>2011, :values=>
       [
         Rubyvis::NestedArray.new(:key=>'London', :values=>
-          [{:year=>2011, :city=>'London',:value=>3}]),
+          [{:year=>2011, :city=>'London',:value=>5}]),
         Rubyvis::NestedArray.new(:key=>'France', :values=>
-          [{:year=>2011, :city=>'France',:value=>4}])
+          [{:year=>2011, :city=>'France',:value=>6}])
       ])
     ]
     

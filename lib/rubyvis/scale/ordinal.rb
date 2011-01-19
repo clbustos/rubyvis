@@ -82,7 +82,7 @@ module Rubyvis
       end
       @r[@i[x] % @r.size]
     end
-    alias :[] :scale    
+    alias :[] :scale      
     # Sets or gets the input domain. This method can be invoked several ways:
     #
     # <p>1. <tt>domain(values...)</tt>

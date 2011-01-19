@@ -21,8 +21,8 @@ module Rubyvis
     def build_implied(s)
       l=s.left
       r=s.right
-      t=s.top
-      b=s.bottom
+      #t=s.top
+      #b=s.bottom
       
       if((!s.width.nil?) or ((l.nil?) and (r.nil?)) or ((!r.nil?) and (!l.nil?)))
         s.height=0

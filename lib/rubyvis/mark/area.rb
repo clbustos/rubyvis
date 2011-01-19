@@ -88,7 +88,7 @@ module Rubyvis
 
 
     def area_anchor(name)
-      scene=nil
+      #scene=nil
       anchor=mark_anchor(name)
       anchor.interpolate(lambda {
         self.scene.target[self.index].interpolate

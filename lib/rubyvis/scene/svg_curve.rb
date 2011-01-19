@@ -258,11 +258,14 @@ module Rubyvis::SvgScene
     d = []
     m = []
     dx = []
-    k=0
+    #k=0
     
     #/* Compute the slopes of the secant lines between successive points. */
     
-    while(k < points.size-1) do 
+    
+    0.upto(points.size-2) do |k| 
+    
+#    while(k < points.size-1) do 
       d[k] = (points[k+1].top - points[k].top) / (points[k+1].left - points[k].left).to_f
       k+=1
     end
@@ -270,31 +273,38 @@ module Rubyvis::SvgScene
     #/* Initialize the tangents at every point as the average of the secants. */
     m[0] = d[0]
     dx[0] = points[1].left - points[0].left
+    
+    
     1.upto(points.size-2) {|k|
       m[k] = (d[k-1]+d[k]) / 2.0
       dx[k] = (points[k+1].left - points[k-1].left) / 2.0
     }
+    
+    k=points.size-1
+    
     m[k] = d[k-1];
     dx[k] = (points[k].left - points[k-1].left);
     
     # /* Step 3. Very important, step 3. Yep. Wouldn't miss it. */
-    (points.size-1).times {|k|
-      if d[k] == 0 
-        m[ k ] = 0;
-        m[k+1] = 0;
+    (points.size-1).times {|kk|
+      if d[kk] == 0 
+        m[ kk ] = 0;
+        m[kk + 1] = 0;
       end
     }
     
     # /* Step 4 + 5. Out of 5 or more steps. */
-    (points.size-1).times {|k|
-      next if ((m[k].abs < 1e-5) or (m[k+1].abs < 1e-5))
-      ak = m[k] / d[k].to_f
-      bk = m[k + 1] / d[k].to_f
-      s = ak * ak + bk * bk; # monotone constant (?)
+    
+    
+    (points.size-1).times {|kk|
+      next if ((m[kk].abs < 1e-5) or (m[kk+1].abs < 1e-5))
+      akk = m[kk] / d[kk].to_f
+      bkk = m[kk + 1] / d[kk].to_f
+      s = akk * akk + bkk * bkk; # monotone constant (?)
       if (s > 9) 
-        tk = 3.0 / Math.sqrt(s)
-        m[k] = tk * ak * d[k]
-        m[k + 1] = tk * bk * d[k]
+        tkk = 3.0 / Math.sqrt(s)
+        m[kk] = tkk * akk * d[kk]
+        m[kk + 1] = tkk * bkk * d[kk]
       end
     }
     len=nil;

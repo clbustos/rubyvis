@@ -9,7 +9,7 @@ module Rubyvis
   #
   # <pre>    pv.Scale.linear().domain(0, 1).range(...)</pre>  
   def self.ramp(*arguments)
-    start, _end, dummy = arguments
+    #start, _end, dummy = arguments
     scale = Rubyvis.Scale.linear
     scale.range(*arguments)
     scale

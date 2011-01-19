@@ -70,7 +70,7 @@ module Rubyvis
     norm.map {|x| x.quo(sum)}
   end
   def self.o_index(i)
-    o=OpenStruct.new :index=>i
+    OpenStruct.new :index=>i
   end
   def self.permute(array,indexes, f=nil)
     f=Rubyvis.identity if f.nil?
