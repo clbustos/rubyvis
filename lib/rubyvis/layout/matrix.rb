@@ -72,14 +72,14 @@ module Rubyvis
         @_pairs=nil, # cached pairs (array of links)
         that=self
         #/* Links are all pairs of nodes. */
-        @link.data(lambda  {that._pairs})
-        .left(lambda { that._dx * (self.index % that._n) })
-        .top(lambda  { that._dy * (self.index / that._n.to_f).floor })
-        .width(lambda  { that._dx })
-        .height(lambda  { that._dy })
-        .line_width(1.5)
-        .stroke_style("#fff")
-        .fill_style(lambda {|l| l.link_value!=0 ? "#555" : "#eee" })
+        @link.data(lambda  {that._pairs}).
+          left(lambda { that._dx * (self.index % that._n) }).
+          top(lambda  { that._dy * (self.index / that._n.to_f).floor }).
+          width(lambda  { that._dx }).
+          height(lambda  { that._dy }).
+          line_width(1.5).
+          stroke_style("#fff").
+        fill_style(lambda {|l| l.link_value!=0 ? "#555" : "#eee" })
 
         @link.parent = self
         #/* No special add for links! */

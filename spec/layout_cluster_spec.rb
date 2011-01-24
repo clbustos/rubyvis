@@ -15,12 +15,12 @@ describe Rubyvis::Layout::Cluster do
       w=400
       h=400
       
-      @vis = Rubyvis.Panel.new()
-      .width(w)
-      .height(h)
-      .top(20)
-      .bottom(10)
-      .left(10)
+      @vis = Rubyvis.Panel.new().
+        width(w).
+        height(h).
+        top(20).
+        bottom(10).
+        left(10)
       
       @cluster = @vis.add(Rubyvis::Layout::Cluster).
       nodes(hier_nodes_big).

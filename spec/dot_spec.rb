@@ -14,16 +14,16 @@ require File.expand_path(File.dirname(__FILE__)+"/spec_helper.rb")
     w = 400
     h = 400
     
-    vis = Rubyvis::Panel.new()
-    .width(w)
-    .height(h)
-    .margin(20)
-    .stroke_style("#ccc");
+    vis = Rubyvis::Panel.new().
+      width(w).
+      height(h).
+      margin(20).
+      stroke_style("#ccc");
     
-    dot = vis.add(Rubyvis::Dot)
-    .top(w / 2.0)
-    .left(w / 2.0)
-    .shape_radius(w >> 2)
+    dot = vis.add(Rubyvis::Dot).
+      top(w / 2.0).
+      left(w / 2.0).
+      shape_radius(w >> 2)
     
     dot.anchor("top").add(Rubyvis::Label).text("top");
     dot.anchor("left").add(Rubyvis::Label).text("left");

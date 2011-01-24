@@ -11,12 +11,12 @@ describe Rubyvis::Layout::Treemap do
       w=200
       h=200
       
-      @vis = pv.Panel.new()
-      .width(w)
-      .height(h)
-      .top(20)
-      .bottom(10)
-      .left(10)
+      @vis = pv.Panel.new().
+        width(w).
+        height(h).
+        top(20).
+        bottom(10).
+        left(10)
       
       @tree= @vis.add(pv.Layout.Tree).
       nodes(hier_nodes).breadth(40)

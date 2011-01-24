@@ -12,11 +12,11 @@ describe Rubyvis::Layout::Matrix do
       h = 700
       
       color=Rubyvis::Colors.category19()
-      @vis = Rubyvis::Panel.new()
-        .width(w)
-        .height(h)
-        .top(50)
-        .left(50)
+      @vis = Rubyvis::Panel.new().
+        width(w).
+        height(h).
+        top(50).
+        left(50)
       
       mat=@vis.add(Rubyvis::Layout.Matrix)
       .directed(true)

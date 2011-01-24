@@ -20,19 +20,19 @@ describe Rubyvis::Layout::Stack do
       
       fill=pv.ramp("#ada", "#656").domain(n, 0)
       
-      @vis = Rubyvis::Panel.new()
-      .width(w)
-      .height(@h)
+      @vis = Rubyvis::Panel.new().
+        width(w).
+        height(@h)
       
       dat=waves(n,m)
-      @stack=@vis.add(Rubyvis::Layout::Stack)
-      .layers(dat)
-      .x(lambda {|d| x[self.index]})
-      .y(lambda {|d| d})
+      @stack=@vis.add(Rubyvis::Layout::Stack).
+        layers(dat).
+        x(lambda {|d| x[self.index]}).
+        y(lambda {|d| d})
       
-      @stack.layer.add(Rubyvis::Area)
-      .fill_style(lambda {fill[self.parent.index]})
-      .stroke_style("#797")
+      @stack.layer.add(Rubyvis::Area).
+        fill_style(lambda {fill[self.parent.index]}).
+        stroke_style("#797")
     end
     
     it "should render 'stack-expand.html' example correctly" do

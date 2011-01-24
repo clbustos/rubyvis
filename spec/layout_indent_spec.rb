@@ -14,12 +14,12 @@ describe Rubyvis::Layout::Indent do
     w=200
     h=200
     
-    @vis = pv.Panel.new()
-    .width(w)
-    .height(h)
-    .top(20)
-    .bottom(10)
-    .left(10)
+    @vis = pv.Panel.new().
+      width(w).
+      height(h).
+      top(20).
+      bottom(10).
+      left(10)
     
     indent = @vis.add(pv.Layout.Indent).
     nodes(hier_nodes_big).

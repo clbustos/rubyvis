@@ -10,25 +10,25 @@ describe Rubyvis::Layout::Grid do
   end
   it "should render equal to protovis 'layout_grid.html' test" do
    
-    vis = pv.Panel.new()
-    .data(["A"])
-    .width(800)
-    .height(800)
-    .margin(10)
-    .fill_style("#eee")
-    .stroke_style("#ccc");
+    vis = pv.Panel.new().
+      data(["A"]).
+      width(800).
+      height(800).
+      margin(10).
+      fill_style("#eee").
+    stroke_style("#ccc");
 
-    vis.add(Rubyvis::Layout::Grid)
-    .rows(3)
-    .cols(3)
-  .cell.add(Rubyvis::Layout::Grid)
-    .rows(Rubyvis.index)
-    .cols(Rubyvis.index)
-  .cell.add(Rubyvis::Bar)
-    .stroke_style("#fff")
-  .anchor("center").add(Rubyvis::Label)
-    .textStyle("rgba(255, 255, 255, .4)")
-    .font("24px sans");
+    vis.add(Rubyvis::Layout::Grid).
+      rows(3).
+      cols(3).
+      cell.add(Rubyvis::Layout::Grid).
+      rows(Rubyvis.index).
+      cols(Rubyvis.index).
+      cell.add(Rubyvis::Bar).
+      stroke_style("#fff").
+    anchor("center").add(Rubyvis::Label).
+      textStyle("rgba(255, 255, 255, .4)").
+      font("24px sans");
 
 vis.render();
     
