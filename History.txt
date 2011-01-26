@@ -1,3 +1,9 @@
+=== 0.4.1 / 2011-01-26
+* All tests run on ruby 1.8.7. Not all pass, because on ruby<1.9 hash order are not preserved
+* Removed warnings for Ruby 1.9+
+* Changed SvgScene.implicit and Color.names with constants
+* Bug gix: Examples crashes on Ruby 1.9.3 because names of files are freezed and REXML try to change it
+
 === 0.4.0 / 2011-01-03
 
 Massive bug fix. Please, update ASAP

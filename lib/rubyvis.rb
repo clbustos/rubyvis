@@ -32,7 +32,7 @@ require 'rubyvis/mark/shorcut_methods'
 module Rubyvis
   @document=nil
   # Rubyvis version
-  VERSION = '0.4.0' 
+  VERSION = '0.4.1' 
   # Protovis API on which current Rubyvis is based
   PROTOVIS_API_VERSION='3.3'
   # You actually can do it! http://snipplr.com/view/2137/uses-for-infinity-in-ruby/
