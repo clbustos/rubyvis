@@ -154,8 +154,7 @@ Rspec::Matchers.define :have_same_svg_elements do |exp|
     }
     
     @error={:type=>"Undefined error"}
-    attrs.each_pair do |key,attrs| 
-      
+    attrs.each_pair do |key,attrs|
       exp_elements=exp_xml.xpath("//#{key}")
       obs_elements=obs_xml.xpath("//xmlns:#{key}")
       if exp_elements.size!=obs_elements.size
@@ -163,22 +162,24 @@ Rspec::Matchers.define :have_same_svg_elements do |exp|
         correct=false
         break
       end
+      
       exp_elements.each_with_index {|exp_data,i|
-        obs_data=obs_elements[i]
-        
+        obs_data=obs_elements[i]  
         if obs_data.nil?
           @error={:type=>"Missing obs", :exp=>exp_data, :i=>i}
           correct=false
           break
         end
+        if exp_data.content!=obs_data.content
+          @error={:type=>"Content", :exp=>exp_data, :i=>i, :obs=>obs_data, :exp_attr=>exp_data.content, :obs_attr=>obs_data.content}
+          correct=false
+          break;
+        end
         
-        exp_data.content.should==obs_data.content
         attrs.each do |attr,method|
-          
           eq=send("equal_#{method}",obs_data[attr],exp_data[attr])
           if !eq
             puts "Uneql attr: #{method}->#{attr}"
-
             @error={:type=>"Incorrect data", :exp=>exp_data, :obs=>obs_data, :attr=>attr, :exp_attr=>exp_data[attr], :obs_attr=>obs_data[attr],:i=>i}
             correct=false
             break

@@ -17,18 +17,18 @@ describe Rubyvis::Wedge do
     t = 30
     a = Rubyvis::Scale.linear(0, Rubyvis.sum(data)).range(0, 2 * Math::PI);
 
-    vis = Rubyvis::Panel.new()
-    .width(w)
-    .height(h)
+    vis = Rubyvis::Panel.new().
+width(w).
+height(h)
 
     anchors=["outer","inner","start","center","end"]
     
-    vis.add(Rubyvis::Wedge)
-    .data(data)
-    .outer_radius(r)
-    .angle(a)
-    .anchor(lambda {anchors[self.index]}).add(pv.Label)
-    .text(lambda {anchors[self.index]})
+    vis.add(Rubyvis::Wedge).
+data(data).
+outer_radius(r).
+angle(a).
+anchor(lambda {anchors[self.index]}).add(pv.Label).
+text(lambda {anchors[self.index]})
 
     vis.render();
     pv_out=fixture_svg_read("wedge_anchor.svg")
@@ -43,20 +43,20 @@ describe Rubyvis::Wedge do
     t = 30
     a = Rubyvis.Scale.linear(0, Rubyvis.sum(data)).range(0, 2 * Math::PI)
     
-    @vis = Rubyvis::Panel.new()
-    .width(w)
-    .height(h)
+    @vis = Rubyvis::Panel.new().
+width(w).
+height(h)
     
-    @vis.add(Rubyvis::Wedge)
-    .data(data)
-    .inner_radius(r - t)
-    .outer_radius(r)
-    .angle(a)
-    .title(lambda {|d| d})
-    .anchor("outer").add(Rubyvis::Label)
-    .visible(lambda {|d| d>0.05})
-    .text_margin(t + 5)
-    .text(lambda {|d| "%0.2f" % d})
+    @vis.add(Rubyvis::Wedge).
+data(data).
+inner_radius(r - t).
+outer_radius(r).
+angle(a).
+title(lambda {|d| d}).
+anchor("outer").add(Rubyvis::Label).
+visible(lambda {|d| d>0.05}).
+text_margin(t + 5).
+text(lambda {|d| "%0.2f" % d})
     @vis.render();
 
     @pv_out=fixture_svg_read("wedge_donut.svg")

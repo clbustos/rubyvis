@@ -10,21 +10,21 @@ describe Rubyvis::Area do
   end
   it "should render equal to protovis 'area-segmented.html' test" do
     data=Rubyvis.range(0, 6, 0.1).map {|x| Math.sin(x)}
-    vis = Rubyvis.Panel.new()
-    .width(500)
-    .height(200)
-    .top(50)
-    .bottom(50)
-    .left(10)
-    .right(10)
+    vis = Rubyvis.Panel.new().
+width(500).
+height(200).
+top(50).
+bottom(50).
+left(10).
+right(10)
 
-    vis.add(Rubyvis::Area)
-    .segmented(true)
-    .data(data)
-    .bottom(0)
-    .left(lambda {self.index / 59.0 * 500})
-    .height(lambda {|d| (d + 1) / 2.0 * 200 + 50})
-    .fill_style(lambda {|d| "hsl(#{(d + 1) * 180.0},50,50)"})
+    vis.add(Rubyvis::Area).
+segmented(true).
+data(data).
+bottom(0).
+left(lambda {self.index / 59.0 * 500}).
+height(lambda {|d| (d + 1) / 2.0 * 200 + 50}).
+fill_style(lambda {|d| "hsl(#{(d + 1) * 180.0},50,50)"})
      vis.render()
      pv_out=fixture_svg_read("area_segmented.svg")
      vis.to_svg.should have_same_svg_elements(pv_out)
@@ -53,13 +53,13 @@ describe Rubyvis::Area do
       interpolations=["linear","step-before","step-after", "basis", "cardinal", "monotone"]
       
       #/* The root panel. */
-      vis = pv.Panel.new()
-      .width(w)
-      .height(h)
-      .bottom(20)
-      .left(20)
-      .right(10)
-      .top(5)
+      vis = pv.Panel.new().
+width(w).
+height(h).
+bottom(20).
+left(20).
+right(10).
+top(5)
       
       interpolations.each_with_index do |inter,i|
       n=i%2
@@ -74,7 +74,7 @@ describe Rubyvis::Area do
       panel.add(Rubyvis::Area).data(data).
       bottom(0).
       segmented(true).
-      fill_style(lambda {return color[self.index]}).
+      fill_style(lambda {color[self.index]}).
       left(lambda {|d| x.scale(d.x)}).
       height(lambda {|d| y.scale(d.y)}).
       interpolate(inter)

@@ -107,9 +107,9 @@ describe Rubyvis::Anchor do
     end
   end
   it "should render equal to protovis 'anchor.html' example" do
-      @vis = Rubyvis::Panel.new()
-      .width(200)
-      .height(200)
+      @vis = Rubyvis::Panel.new().
+        width(200).
+        height(200)
       
       @vis.add(Rubyvis::Bar).
         fill_style("#ccc").

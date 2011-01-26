@@ -13,12 +13,12 @@ describe Rubyvis::Layout::Partition do
     w=400
     h=400
     
-    @vis = pv.Panel.new()
-    .width(w)
-    .height(h)
-    .top(20)
-    .bottom(10)
-    .left(10)
+    @vis = pv.Panel.new().
+width(w).
+height(h).
+top(20).
+bottom(10).
+left(10)
     
     pack = @vis.add(Rubyvis::Layout::Partition::Fill).
     nodes(hier_nodes_big).

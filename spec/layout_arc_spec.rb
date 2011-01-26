@@ -19,15 +19,15 @@ describe Rubyvis::Layout::Arc do
       
       color=Rubyvis::Colors.category19
       
-      @vis = Rubyvis::Panel.new()
-      .width(w)
-      .height(h)
-      .bottom(50)
-      .left(0)
+      @vis = Rubyvis::Panel.new().
+        width(w).
+        height(h).
+        bottom(50).
+        left(0)
       
-      mat=@vis.add(Rubyvis::Layout::Arc)
-      .nodes(net_nodes).links(net_links)
-      .sort(lambda {|a,b| a.group<=>b.group})
+      mat=@vis.add(Rubyvis::Layout::Arc).
+        nodes(net_nodes).links(net_links).
+        sort(lambda {|a,b| a.group<=>b.group})
       
       mat.link.add(Rubyvis::Line).
       antialias(false).

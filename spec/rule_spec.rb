@@ -9,22 +9,21 @@ describe Rubyvis::Rule do
     Rubyvis.Rule.should eql Rubyvis::Rule
   end
   it "should render equal to protovis 'rule-anchor.html' test" do
-    vis = Rubyvis::Panel.new()
-    .width(400)
-    .height(300)
+    vis = Rubyvis::Panel.new().
+      width(400).
+      height(300)
     
     
-    bar=vis.add(pv.Bar)
-    .data(["left", "top", "right", "bottom", "center"])
-    .width(300)
-    .height(30)
-    .left(40)
-    .right(40)
-    .top(lambda {self.index*60}).fill_style('red')
+    bar=vis.add(pv.Bar).
+      data(["left", "top", "right", "bottom", "center"]).
+      width(300).
+      height(30).
+      left(40).
+      right(40).
+      top(lambda {self.index*60}).fill_style('red')
     
     rule = bar.add(pv.Rule)
-    rule.anchor(lambda {|d| d}).add(pv.Label)
-    .text(lambda {|d| d})
+    rule.anchor(lambda {|d| d}).add(pv.Label).text(lambda {|d| d})
     
     vis.render();
     pv_out=fixture_svg_read("rule_anchor.svg")

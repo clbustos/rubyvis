@@ -28,13 +28,13 @@ describe Rubyvis::Line do
       interpolations=["linear","step-before","step-after","polar","polar-reverse", "basis", "cardinal"]
       
       #/* The root panel. */
-      vis = pv.Panel.new()
-      .width(w)
-      .height(h)
-      .bottom(20)
-      .left(20)
-      .right(10)
-      .top(5)
+      vis = pv.Panel.new().
+width(w).
+height(h).
+bottom(20).
+left(20).
+right(10).
+top(5)
       
       interpolations.each_with_index do |inter,i|
       n=i%2
@@ -78,13 +78,13 @@ describe Rubyvis::Line do
       
       interpolations=["linear","step-before","step-after","polar","polar-reverse", "basis", "cardinal","monotone"]
       #/* The root panel. */
-      vis = pv.Panel.new()
-      .width(w)
-      .height(h)
-      .bottom(20)
-      .left(20)
-      .right(10)
-      .top(5)
+      vis = pv.Panel.new().
+width(w).
+height(h).
+bottom(20).
+left(20).
+right(10).
+top(5)
       
       interpolations.each_with_index do |inter,i|
       n=i%2

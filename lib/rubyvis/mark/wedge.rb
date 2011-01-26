@@ -31,63 +31,72 @@ module Rubyvis
       mark_anchor(name).left(lambda {
         s = self.scene.target[self.index];
         if (partial.call(s))
-          
           case (self.name()) 
           when "outer"
-            return s.left + s.outer_radius * Math.cos(mid_angle.call(s))
+            s.left + s.outer_radius * Math.cos(mid_angle.call(s))
           when "inner"
-            return s.left + s.inner_radius * Math.cos(mid_angle.call(s))
+            s.left + s.inner_radius * Math.cos(mid_angle.call(s))
           when "start"
-            return s.left + mid_radius.call(s) * Math.cos(s.start_angle)
+            s.left + mid_radius.call(s) * Math.cos(s.start_angle)
           when "center"
-            return s.left + mid_radius.call(s) * Math.cos(mid_angle.call(s))
+            s.left + mid_radius.call(s) * Math.cos(mid_angle.call(s))
           when "end"
-            return s.left + mid_radius.call(s) * Math.cos(s.end_angle)
+            s.left + mid_radius.call(s) * Math.cos(s.end_angle)
+          else
+            s.left
           end
-        end
-        return s.left;
+        else
+          s.left
+        end        
       }).top(lambda {
         s = self.scene.target[self.index];
         if (partial.call(s))
           case (self.name()) 
           when "outer"
-            return s.top + s.outer_radius * Math.sin(mid_angle.call(s))
+            s.top + s.outer_radius * Math.sin(mid_angle.call(s))
           when "inner"
-            return s.top + s.inner_radius * Math.sin(mid_angle.call(s))
+            s.top + s.inner_radius * Math.sin(mid_angle.call(s))
           when "start"
-            return s.top + mid_radius.call(s) * Math.sin(s.start_angle)
+            s.top + mid_radius.call(s) * Math.sin(s.start_angle)
           when "center"
-            return s.top + mid_radius.call(s) * Math.sin(mid_angle.call(s))
+            s.top + mid_radius.call(s) * Math.sin(mid_angle.call(s))
           when "end"
-            return s.top + mid_radius.call(s) * Math.sin(s.end_angle)
+            s.top + mid_radius.call(s) * Math.sin(s.end_angle)
+          else
+            s.top
           end
+        else
+          s.top
         end
-        return s.top;
           
       }).text_align(lambda {
       s = self.scene.target[self.index];
         if (partial.call(s))
           case (self.name()) 
           when 'outer'
-            return that.upright(mid_angle.call(s)) ? 'right':'left'
+            that.upright(mid_angle.call(s)) ? 'right':'left'
           when 'inner'
-            return that.upright(mid_angle.call(s)) ? 'left':'right'
-            
+            that.upright(mid_angle.call(s)) ? 'left':'right'
+          else 
+            'center'
           end
+        else
+          'center'
         end
-        return 'center'
       }).text_baseline(lambda {
       s = self.scene.target[self.index];
         if (partial.call(s))
           case (self.name()) 
           when 'start'
-            return that.upright(s.start_angle) ? 'top':'bottom'
+            that.upright(s.start_angle) ? 'top':'bottom'
           when 'end'
-            return that.upright(s.end_angle) ? 'bottom':'top'
-            
+            that.upright(s.end_angle) ? 'bottom':'top'
+          else
+            'middle'
           end
+        else
+          'middle'
         end
-        return 'middle'
       }).text_angle(lambda {
         s = self.scene.target[self.index];
         a=0

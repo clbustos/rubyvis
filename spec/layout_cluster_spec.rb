@@ -40,6 +40,7 @@ describe Rubyvis::Layout::Cluster do
     it "should render correctly 'cluster.html' custom test" do
       @vis.render
       @pv_out=fixture_svg_read("layout_cluster.svg")
+      File.open("test.svg","w") {|fp| fp.write(@vis.to_svg)}
       @vis.to_svg.should have_same_svg_elements(@pv_out)
     end
     it "should render correctly 'cluster_left_group_2.html' custom test" do

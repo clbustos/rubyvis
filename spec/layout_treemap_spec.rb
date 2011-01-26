@@ -11,9 +11,9 @@ describe Rubyvis::Layout::Treemap do
     w=200
     h=200
 
-    @vis = pv.Panel.new()
-    .width(w)
-    .height(h)
+    @vis = pv.Panel.new().
+      width(w).
+      height(h)
     
     treemap = @vis.add(pv.Layout.Treemap).
     nodes(hier_nodes).
@@ -34,7 +34,7 @@ describe Rubyvis::Layout::Treemap do
       @pv_out=fixture_svg_read("layout_treemap.svg")
     end
     
-    it "should render equal to protovis version " do
+    it "should render equal to protovis version " do 
       @vis.to_svg.should have_same_svg_elements(@pv_out)
     end
   end

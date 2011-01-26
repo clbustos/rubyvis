@@ -18,10 +18,10 @@ describe Rubyvis::Layout::Matrix do
         top(50).
         left(50)
       
-      mat=@vis.add(Rubyvis::Layout.Matrix)
-      .directed(true)
-      .nodes(net_nodes).links(net_links)
-      .sort(lambda {|a,b| a.group<=>b.group})
+      mat=@vis.add(Rubyvis::Layout.Matrix).
+directed(true).
+nodes(net_nodes).links(net_links).
+sort(lambda {|a,b| a.group<=>b.group})
       
       mat.link.add(pv.Bar).
       fill_style(lambda {|l| l.link_value!=0 ? 
