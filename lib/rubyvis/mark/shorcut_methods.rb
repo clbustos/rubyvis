@@ -17,6 +17,7 @@ class Rubyvis::Mark
       if block
         block.arity<1 ? a.instance_eval(&block) : block.call(a)
       end
+      a
     end
   end
   ##
