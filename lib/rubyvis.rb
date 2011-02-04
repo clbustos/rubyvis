@@ -2,6 +2,7 @@ require 'date'
 require 'ostruct'
 require 'rexml/document'
 require 'rexml/formatters/default'
+require 'nokogiri'
 
 require 'pp'
 require 'rubyvis/internals'
@@ -50,7 +51,15 @@ module Rubyvis
   def self.identity
     lambda {|x,*args| x}
   end
-  
+  def self.xml_engine
+    :nokogiri
+  end
+  def self.nokogiri_document(v=nil)
+    if !v.nil?
+      @@nokogiri_document=v
+    end
+    @@nokogiri_document
+  end
  # Returns <tt>self.index</tt>. This method is provided for convenience for use
  # with scales. For example, to color bars by their index, say:
  #

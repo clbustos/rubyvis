@@ -11,8 +11,48 @@ require 'rubyvis/scene/svg_curve'
 
 class REXML::Element #:nodoc:
   attr_accessor :_scene
+  # 1 number based
+  def get_element(i)
+    elements[i]
+  end
+  def set_attributes(h)
+    h.each do |k,v|
+      attributes[k]=v
+    end
+  end
+  #private :attributes
+  #private :elements
 end
 
+class Nokogiri::XML::Node
+  attr_accessor :_scene
+  def add_element(c)
+    add_child(c)
+  end
+  
+  def set_attributes(h)
+    h.each do |k,v|
+      set_attribute(k,v.to_s)
+    end
+  end
+  def get_element(i)
+    elements[i-1]
+  end
+  private :elements
+  #private :attributes
+  def next_sibling_node
+    next_sibling
+  end
+  def delete_attribute(name)
+    remove_attribute(name)
+  end
+  def text
+    content
+  end
+  def text=(v)
+    self.content=v
+  end
+end
 module Rubyvis
   module SvgScene # :nodoc:
     #include REXML
@@ -67,11 +107,19 @@ module Rubyvis
       end
     end
     def self.create(type)
-      el=REXML::Element.new "#{type}"
-      if type=='svg'
-        el.add_namespace(self.svg)
-        #el.add_namespace("xmlns:xmlns", self.xmlns)
-        el.add_namespace("xmlns:xlink", self.xlink)
+      if Rubyvis.xml_engine==:nokogiri
+        el=Rubyvis.nokogiri_document.create_element("#{type}")
+        if type=='svg'
+          el.add_namespace(nil, self.svg)
+          el.add_namespace('xlink', self.xlink)
+        end
+      else
+        el=REXML::Element.new "#{type}"
+        if type=='svg'
+          el.add_namespace(self.svg)
+          #el.add_namespace("xmlns:xmlns", self.xmlns)
+          el.add_namespace("xmlns:xlink", self.xlink)
+        end
       end
       el
     end
@@ -104,7 +152,9 @@ module Rubyvis
           e.parent.replace_child(a, e) if (e.parent)
           a.add_element(e)
         end
-        a.add_attribute('xlink:title',s.title)
+        #a.add_attribute('xlink:title',s.title)
+        a.set_attributes('xlink:title' => s.title)
+
         return a;
       end
       a.parent_node.replace_child(e, a) if (a) 
@@ -114,7 +164,8 @@ module Rubyvis
     def self.expect(e, type, attributes, style=nil)
 
       if (e)
-        e = e.elements[1] if (e.name == "a")
+        #e = e.elements[1] if (e.name == "a")
+        e=e.get_element(1) if (e.name == 'a')
         if (e.name != type)
           n = self.create(type);
           e.parent.replace_child(e, n);
@@ -128,7 +179,8 @@ module Rubyvis
         if (value.nil?)
           e.delete_attribute(name)
         else
-          e.attributes[name]=value
+          e.set_attributes(name=>value)
+          #e.attributes[name]=value
         end
       }
       
@@ -145,12 +197,12 @@ module Rubyvis
           if (value.nil?)
             array_styles.delete(name)
           else
-            
             array_styles[name]=value
           end
         }
         if array_styles.size>0
-          e.attributes["style"]=array_styles.map {|k,v| "#{k}:#{v}"}.join(";")
+          #e.attributes["style"]=array_styles.map {|k,v| "#{k}:#{v}"}.join(";")
+          e.set_attributes('style'=> array_styles.map {|k,v| "#{k}:#{v}"}.join(";"))
         end
       end
       e

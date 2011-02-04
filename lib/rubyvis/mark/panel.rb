@@ -77,11 +77,17 @@ module Rubyvis
     end
 
     def to_svg
-      @_canvas.sort.map {|v|
-        bar = REXML::Formatters::Default.new
-        out = String.new
-        bar.write(v[1].elements[1], out)
-      }.join
+      if Rubyvis.xml_engine==:nokogiri
+        @_canvas.sort.map {|v|
+          v[1].get_element(1).to_xml(:indent => 5, :encoding => 'UTF-8')
+        }.join
+      else
+        @_canvas.sort.map {|v|
+          bar = REXML::Formatters::Default.new
+          out = String.new
+          bar.write(v[1].elements[1], out)
+        }.join
+      end
     end
     def build_implied(s)
       panel_build_implied(s)
@@ -107,8 +113,15 @@ module Rubyvis
           @_canvas||={}
           cache=@_canvas
           if(!(c=cache[self.index]))
+          
+          if Rubyvis.xml_engine==:nokogiri
+            document=Nokogiri::XML::Document.new
+            document.root=document.create_element('document')
+            Rubyvis.nokogiri_document(document)
+          else
             document=REXML::Document.new
-            document.add_element("document")
+            document.add_element("document")            
+          end
             cache[self.index]=document.root
             c=cache[self.index]
             

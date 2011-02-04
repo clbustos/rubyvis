@@ -7,7 +7,7 @@ require 'hoe'
 require 'rubyvis'
 require 'rspec'
 require 'rspec/core/rake_task'
-
+require 'rubyforge'
 
 Hoe.plugin :git
 

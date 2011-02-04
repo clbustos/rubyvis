@@ -1,7 +1,8 @@
 module Rubyvis
   module SvgScene
     def self.wedge(scenes)
-      e=scenes._g.elements[1]
+      #e=scenes._g.elements[1]
+      e=scenes._g.get_element(1)
       scenes.each_with_index do |s,i|
         next unless s.visible
         fill=s.fill_style

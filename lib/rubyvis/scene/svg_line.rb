@@ -1,7 +1,8 @@
 module Rubyvis
   module SvgScene
     def self.line(scenes)
-      e=scenes._g.elements[1]
+      #e=scenes._g.elements[1]
+      e=scenes._g.get_element(1)
       return e if (scenes.size < 2)
       s = scenes[0]
       # segmented */
@@ -50,8 +51,8 @@ module Rubyvis
 
     def self.line_segment(scenes)
 
-      e=scenes._g.elements[1]
-
+      #e=scenes._g.elements[1]
+      e=scenes._g.get_element(1)
       s = scenes[0];
       paths=nil
       case s.interpolate

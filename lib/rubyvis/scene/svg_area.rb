@@ -1,7 +1,8 @@
 module Rubyvis
   module SvgScene
     def self.area(scenes)
-      e = scenes._g.elements[1]
+      #e = scenes._g.elements[1]
+      e=scenes._g.get_element(1)
       return e if scenes.size==0
       s=scenes[0]
       # segmented
@@ -127,7 +128,8 @@ module Rubyvis
     end
         
     def self.area_segment(scenes)
-      e = scenes._g.elements[1]
+      e=scenes._g.get_element(1)
+      #e = scenes._g.elements[1]
       s = scenes[0]
       pathsT=nil
       pathsB=nil

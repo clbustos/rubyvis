@@ -94,6 +94,7 @@ end
 RSpec::Matchers.define :have_svg_attributes do |exp|
   match do |obs|
     exp.each {|k,v|
+      obs.attributes[k].should be_true
       obs.attributes[k].value.should==v
     }
   end
@@ -193,7 +194,7 @@ Rspec::Matchers.define :have_same_svg_elements do |exp|
     correct
   end
   failure_message_for_should do |obs|
-    "#{@error[:type]}: #{@error[:exp].to_s} expected, but #{@error[:obs]} retrieved, on attr #{@error[:attr]} -> #{@error[:i]} : #{@error[:exp_attr]} <> #{@error[:obs_attr]}"
+    "#{@error[:type]}: #{@error[:exp].to_s} expected, but #{@error[:obs]} retrieved, on #{@error[:attr]} -> #{@error[:i]} : '#{@error[:exp_attr]}' <> '#{@error[:obs_attr]}'"
   end
   
 end

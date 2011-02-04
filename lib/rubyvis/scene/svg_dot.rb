@@ -1,7 +1,8 @@
 module Rubyvis
   module SvgScene
     def self.dot(scenes)
-      e = scenes._g.elements[1]
+      #e = scenes._g.elements[1]
+      e=scenes._g.get_element(1)
       scenes.each_with_index {|s,i|
       s = scenes[i];
       
