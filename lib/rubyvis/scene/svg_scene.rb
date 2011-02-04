@@ -24,7 +24,9 @@ class REXML::Element #:nodoc:
   #private :elements
 end
 
-class Nokogiri::XML::Node
+module Nokogiri
+  module XML
+    class Node
   attr_accessor :_scene
   def add_element(c)
     add_child(c)
@@ -38,7 +40,7 @@ class Nokogiri::XML::Node
   def get_element(i)
     elements[i-1]
   end
-  private :elements
+  #private :elements
   #private :attributes
   def next_sibling_node
     next_sibling
@@ -52,7 +54,10 @@ class Nokogiri::XML::Node
   def text=(v)
     self.content=v
   end
+  end
 end
+end
+
 module Rubyvis
   module SvgScene # :nodoc:
     #include REXML

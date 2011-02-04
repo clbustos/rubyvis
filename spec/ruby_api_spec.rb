@@ -1,5 +1,5 @@
 require File.expand_path(File.dirname(__FILE__)+"/spec_helper.rb")
-describe "Ruby API for Rubyvis" do
+shared_examples_for "Ruby API for Rubyvis" do
   before do
     @h=200
     @w=200
@@ -42,6 +42,29 @@ describe "Ruby API for Rubyvis" do
     vis2.render
     svg2=vis2.to_svg
     svg1.should==svg2
+    
+  end
+end
+
+describe "Rubyvis with REXML" do
+  before(:all) do
+    $rubyvis_no_nokogiri=true
+  end
+  after(:all) do
+    $rubyvis_no_nokogiri=false    
+  end
+  it_should_behave_like "Ruby API for Rubyvis"
+end
+
+if Rubyvis.has_nokogiri? 
+  describe "Rubyvis with Nokogiri" do
+
+    before(:all) do
+      $rubyvis_no_nokogiri=false
+    end
+    
+    it_should_behave_like "Ruby API for Rubyvis"
+
     
   end
 end

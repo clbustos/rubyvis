@@ -41,6 +41,8 @@ I try to maintain, when posible, complete compatibility with Javascript API, inc
 
 User could use +pv+ freely, cause is defined as a global method which call Rubyvis.
 
+Nokogiri is used as XML library. If not available, or $rubyvis_no_nokogiri is set to true, REXML is used. Nokogiri is 30%-35% faster that REXML on our test.
+
 == CURRENT PROGRESS
 
 * pv.js

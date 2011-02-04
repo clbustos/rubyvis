@@ -2,7 +2,6 @@ require 'date'
 require 'ostruct'
 require 'rexml/document'
 require 'rexml/formatters/default'
-require 'nokogiri'
 
 require 'pp'
 require 'rubyvis/internals'
@@ -29,9 +28,11 @@ require 'rubyvis/scene/svg_scene'
 require 'rubyvis/transform'
 require 'rubyvis/mark/shorcut_methods'
 
-
+# = Rubyvis
+# Ruby port of Protovis
+# 
 module Rubyvis
-  @document=nil
+  @@nokogiri=nil
   # Rubyvis version
   VERSION = '0.4.1' 
   # Protovis API on which current Rubyvis is based
@@ -51,9 +52,27 @@ module Rubyvis
   def self.identity
     lambda {|x,*args| x}
   end
-  def self.xml_engine
-    :nokogiri
+  def self.has_nokogiri?
+    if @@nokogiri.nil?
+      begin
+        require 'nokogiri'
+        @@nokogiri=true
+      rescue LoadError
+        @@nokogiri=false
+      end
+    end
+    @@nokogiri
   end
+  def self.xml_engine
+    if has_nokogiri? and !$rubyvis_no_nokogiri
+      :nokogiri
+    else
+      puts "rexml"
+      :rexml
+    end
+  end
+
+  
   def self.nokogiri_document(v=nil)
     if !v.nil?
       @@nokogiri_document=v
