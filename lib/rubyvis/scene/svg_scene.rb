@@ -38,7 +38,7 @@ module Nokogiri
     end
   end
   def get_element(i)
-    elements[i-1]
+    elements.empty? ? nil : elements[i-1]
   end
   #private :elements
   #private :attributes
