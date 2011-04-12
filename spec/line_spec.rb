@@ -113,13 +113,21 @@ top(5)
     s1=OpenStruct.new({:left=>3,:top=>4,:visible=>true, :line_width=>2.5})
     s2=OpenStruct.new({:left=>5,:top=>6,:visible=>true, :line_width=>2.5})
     s3=OpenStruct.new({:left=>7,:top=>8,:visible=>true, :line_width=>2.5})
-    Rubyvis::SvgScene.path_join(s0,s1,s2,s3).should=="M2.1161165235168156,4.883883476483184L4.116116523516816,6.883883476483184 5.883883476483184,5.116116523516816 3.8838834764831844,3.1161165235168156"
+    # obj.attributes["d"].value
+    exp_data="M2.1161165235168156,4.883883476483184L4.116116523516816,6.883883476483184 5.883883476483184,5.116116523516816 3.8838834764831844,3.1161165235168156"
+    obs=""
+    obs.stub!(:attributes).and_return({'d'=>OpenStruct.new({:value=>Rubyvis::SvgScene.path_join(s0,s1,s2,s3)})})
+    
+    obs.should have_path_data_close_to exp_data
+    
     s0=OpenStruct.new({:left=>1.5,:top=>2,:visible=>true, :line_width=>3})
     s1=OpenStruct.new({:left=>3.5,:top=>4,:visible=>true, :line_width=>3.5})
     s2=OpenStruct.new({:left=>5.5,:top=>6,:visible=>true, :line_width=>4.0})
     s3=OpenStruct.new({:left=>7.5,:top=>8,:visible=>true, :line_width=>4.5})
-    
-  Rubyvis::SvgScene.path_join(s0,s1,s2,s3).should=="M2.2625631329235425,5.2374368670764575L4.2625631329235425,7.2374368670764575 6.7374368670764575,4.7625631329235425 4.7374368670764575,2.7625631329235425"
+    exp_data="M2.2625631329235425,5.2374368670764575L4.2625631329235425,7.2374368670764575 6.7374368670764575,4.7625631329235425 4.7374368670764575,2.7625631329235425"
+    obs=""
+    obs.stub!(:attributes).and_return({'d'=>OpenStruct.new({:value=>Rubyvis::SvgScene.path_join(s0,s1,s2,s3)})})
+    obs.should have_path_data_close_to exp_data
   
   end
   context "rendered" do

@@ -117,7 +117,7 @@ describe "Rubyvis module methods" do
     it "method median returns median of values" do
       Rubyvis.median([1,2,4,3]).should==2.5
       Rubyvis.median([1,3,2,5,3]).should==3
-      Rubyvis.median([1,3,2,5,3].map(&:to_s), lambda(&:to_f)).should==3
+      Rubyvis.median([1,3,2,5,3].map {|v| v.to_s}, lambda {|v| v.to_f}).should==3
     end
     it "method variance returns sum of squares" do
       Rubyvis.variance([5,7,9,11]).should==20
