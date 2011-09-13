@@ -219,7 +219,7 @@ module Rubyvis
       area_anchor(name)
     end
     def build_implied(s)
-      s.heigth=0 if s.height.nil?
+      s.height=0 if s.height.nil?
       s.width=0 if s.width.nil?
       mark_build_implied(s)
     end
