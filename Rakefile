@@ -10,6 +10,7 @@ require 'rspec/core/rake_task'
 require 'rubyforge'
 
 Hoe.plugin :git
+Hoe.plugin :gemspec
 
 h=Hoe.spec 'rubyvis' do
   self.testlib=:rspec
