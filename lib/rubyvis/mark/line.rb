@@ -73,7 +73,13 @@ module Rubyvis
     # Whether the line is segmented; whether variations in stroke style, line width and the other properties are treated as fixed. Rendering segmented lines is noticeably slower than non-segmented lines.
     # <p>This property is <i>fixed</i>. See Rubyvis.Mark    
     
+
+    ##
+    # :attr: stroke_dasharray
+    # Whether the line is dashed using the strokeDasharray SVG property.
+    # <p>This property is <i>fixed</i>. See Rubyvis.Mark    
     
+
     ##
     # :attr: interpolate
     # How to interpolate between values. Linear interpolation ("linear") is the
@@ -105,7 +111,7 @@ module Rubyvis
     #
     # <p>This property is <i>fixed</i>. See Rubyvis.Mark    
     
-    attr_accessor_dsl :line_width, :line_join, [:stroke_style, lambda {|d| Rubyvis.color(d)}], [:fill_style, lambda {|d| Rubyvis.color(d)}], :segmented, :interpolate, :eccentricity, :tension
+    attr_accessor_dsl :line_width, :line_join, [:stroke_style, lambda {|d| Rubyvis.color(d)}], [:fill_style, lambda {|d| Rubyvis.color(d)}], :stroke_dasharray, :segmented, :interpolate, :eccentricity, :tension
     # Type of line
     def type
       "line"
@@ -146,7 +152,14 @@ module Rubyvis
 
     def self.defaults
       a=Rubyvis::Colors.category10()
-      Line.new.mark_extend(Mark.defaults).line_join('miter').line_width(1.5).stroke_style( lambda { a.scale(parent.index)}).interpolate('linear').eccentricity(0).tension(0.7)
+      Line.new.mark_extend(Mark.defaults).
+        line_join('miter').
+        line_width(1.5).
+        stroke_style( lambda { a.scale(parent.index)}).
+        stroke_dasharray('').
+        interpolate('linear').
+        eccentricity(0).
+        tension(0.7)
     end
   end
 end
