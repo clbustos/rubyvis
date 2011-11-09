@@ -1,8 +1,9 @@
+require File.expand_path(File.dirname(__FILE__)+"/../lib/rspec/expectations/differ.rb")
 require File.expand_path(File.dirname(__FILE__)+"/spec_helper.rb")
 describe Rubyvis::Area do
   include Rubyvis::GeneralSpec
   it "should have correct properties" do
-    props=[:antialias, :bottom, :cursor, :data, :events, :fill_style, :height, :id, :interpolate, :left, :line_width, :reverse, :right, :segmented, :stroke_style, :tension, :title, :top, :visible, :width].inject({}) {|ac, v| ac[v]=true; ac}
+    props=[:antialias, :bottom, :cursor, :data, :events, :fill_style, :height, :id, :interpolate, :left, :line_width, :reverse, :right, :segmented, :stroke_dasharray, :stroke_style, :tension, :title, :top, :visible, :width].inject({}) {|ac, v| ac[v]=true; ac}
     Rubyvis::Area.properties.should==props
   end
   it "Rubyvis.Area be the same as Rubyvis::Area" do

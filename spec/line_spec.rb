@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__)+"/spec_helper.rb")
 describe Rubyvis::Line do
   include Rubyvis::GeneralSpec
   it "should have correct properties" do
-    props=[:antialias, :bottom, :cursor, :data, :eccentricity, :events, :fill_style, :id, :interpolate, :left, :line_join, :line_width, :reverse, :right, :segmented, :stroke_style, :tension, :title, :top, :visible].inject({}) {|ac, v| ac[v]=true; ac}
+    props=[:antialias, :bottom, :cursor, :data, :eccentricity, :events, :fill_style, :id, :interpolate, :left, :line_join, :line_width, :reverse, :right, :segmented, :stroke_dasharray, :stroke_style, :tension, :title, :top, :visible].inject({}) {|ac, v| ac[v]=true; ac}
     Rubyvis::Line.properties.should==props
   end
   it "should render correctly 'line_interpolation.html' example" do
