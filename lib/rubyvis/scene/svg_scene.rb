@@ -150,7 +150,7 @@ module Rubyvis
     
     def self.title(e,s)
       a = e.parent
-      a=nil if (a and (a.tag_name != "a"))
+      a=nil if (a and (a.name != "a"))
       if (s.title) 
         if (!a) 
           a = self.create("a")
