@@ -95,7 +95,16 @@ describe Rubyvis::Scale::Log do
   it "should returns correct ticks" do
     t=1,2,3,4,5,6,7,8,9,10,20,30,40,50,60,70,80,90,100,200,300,400,500,600,700,800,900,1000
     @y.ticks.should==t
-
+  end
+  it "should returns correct ticks with subdivisions" do
+    t=1,5,10,50,100,500,1000
+    @y.ticks(2).should==t
+    t=1,2.5,5,7.5,10,25,50,75,100,250,500,750,1000
+    @y.ticks(4).should==t
+    t=1,2,4,6,8,10,20,40,60,80,100,200,400,600,800,1000
+    @y.ticks(5).should==t
+    t=1,10,100,1000
+    @y.ticks(1).should==t
   end
   it "should nice nicely" do
     @y.domain([0.20147987687960267, 0.996679553296417])

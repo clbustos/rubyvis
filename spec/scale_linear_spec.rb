@@ -99,8 +99,11 @@ describe Rubyvis::Scale::Linear do
     @y.ticks.should==[0,100,200,300,400,500,600,700,800,900,1000]
     @y.ticks(13).should==[0,100,200,300,400,500,600,700,800,900,1000]
     @y.ticks(5).should==[0,200,400,600,800,1000]
-
   end
+  it "should return correct tick when domain is a scalar" do
+    @y.domain(1,1,1).ticks.should==[1]
+  end
+
   it "should nice nicely" do
     @y.domain([0.20147987687960267, 0.996679553296417])
     @y.nice
@@ -125,6 +128,5 @@ describe Rubyvis::Scale::Linear do
     a=OpenStruct.new({:value=>rand})
     by.call(a).should==@y[a.value]
   end
-  
   
 end

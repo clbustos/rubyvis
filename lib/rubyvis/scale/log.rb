@@ -27,10 +27,17 @@ module Rubyvis
       d=domain
       domain(Rubyvis.log_floor(d[0],@b), Rubyvis.log_ceil(d[1],@b))
     end
-    def ticks
+    # Returns an array of evenly-spaced, suitably-rounded values in the input
+    # domain. These values are frequently used in conjunction with
+    # Rule to display tick marks or grid lines.
+    # 
+    # Subdivisions set the number of division inside each base^x
+    # By default, is set to base
+    def ticks(subdivisions=nil)
       d = domain
       n = d[0] < 0
-      
+      subdivisions||=@b
+      span=@b.to_f/subdivisions
      # puts "dom: #{d[0]} -> #{n}"
       
       i = (n ? -log(-d[0]) : log(d[0])).floor
@@ -45,16 +52,21 @@ module Rubyvis
         }
       else
         (i...j).each {|ii|
-          (1...@b).each {|k|
-            ticks.push(pow(ii) * k)
+          (1..subdivisions).each {|k|
+            if k==1
+              ticks.push(pow(ii))
+            else
+              next if subdivisions==@b and k==2
+              ticks.push(pow(ii)*span*(k-1))
+            end
           }
         }
         ticks.push(pow(j));
       end
       
-      #for (i = 0; ticks[i] < d[0]; i++); // strip small values
-      #for (j = ticks.length; ticks[j - 1] > d[1]; j--); // strip big values
-      #return ticks.slice(i, j);
+      # for (i = 0; ticks[i] < d[0]; i++); // strip small values
+      # for (j = ticks.length; ticks[j - 1] > d[1]; j--); // strip big values
+      # return ticks.slice(i, j);
       ticks.find_all {|v| v>=d[0] and v<=d[1]}
     end
   end
