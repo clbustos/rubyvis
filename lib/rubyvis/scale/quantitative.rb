@@ -359,7 +359,7 @@ module Rubyvis
           step = (n > 1000) ? 250 : ((n > 200) ? 100 : ((n > 100) ? 50 : ((n > 50) ? 25 : 5)));
           date.setMilliseconds(Math.floor(date.getMilliseconds() / step) * step);
         else
-          step = Rubyvis.logCeil(n / 15, 10);
+          step = Rubyvis.log_ceil(n / 15, 10);
           if (n / step < 2) 
             step =step.quo(5)
           elsif (n / step < 5)
