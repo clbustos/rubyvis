@@ -67,7 +67,6 @@ module Rubyvis
     if has_nokogiri? and !$rubyvis_no_nokogiri
       :nokogiri
     else
-
       :rexml
     end
   end
