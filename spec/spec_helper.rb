@@ -107,6 +107,7 @@ end
 # * rect
 # * circle
 # * text
+# * path
 # Using attributes and content
 Rspec::Matchers.define :have_same_svg_elements do |exp|
   def equal_float(a,b)
@@ -136,6 +137,7 @@ Rspec::Matchers.define :have_same_svg_elements do |exp|
     correct=true
     path_a.each_with_index do |v,i|
       if (v[0]!=path_b[i][0]) or (v[1]-path_b[i][1]).abs>0.001
+        @path_error=[v[0],path_b[i][0], v[1],path_b[i][1]]
         correct=false
         break
       end
@@ -178,10 +180,11 @@ Rspec::Matchers.define :have_same_svg_elements do |exp|
         end
         
         attrs.each do |attr,method|
-          eq=send("equal_#{method}",obs_data[attr],exp_data[attr])
+          eq=send("equal_#{method}", obs_data[attr], exp_data[attr])
           if !eq
-            puts "Uneql attr: #{method}->#{attr}"
-            @error={:type=>"Incorrect data", :exp=>exp_data, :obs=>obs_data, :attr=>attr, :exp_attr=>exp_data[attr], :obs_attr=>obs_data[attr],:i=>i}
+            ty=(method=='path' ? "!= path:#{@path_error.join(',')}" : "!=attr(#{method})" )
+            #puts "Uneql attr: #{method}->#{attr}"
+            @error={:type=>"!= attr", :exp=>exp_data, :obs=>obs_data, :attr=>attr, :exp_attr=>exp_data[attr], :obs_attr=>obs_data[attr],:i=>i}
             correct=false
             break
           end
