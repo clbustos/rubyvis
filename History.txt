@@ -1,3 +1,8 @@
+=== 0.5.2 / 2012-07-21
+
+- Fixed image bug (#13), and updated example for image. Web creation is updated, too
+- Fixed logCeil on quantitative.rb:362
+  
 === 0.5.1 / 2011-11-19
 + Implemented subdivisions on Scale::Log.ticks() 
 * Implemented test for issue #7 

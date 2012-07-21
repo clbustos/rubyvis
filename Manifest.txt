@@ -120,6 +120,7 @@ spec/fixtures/area_interpolation.svg
 spec/fixtures/area_segmented.svg
 spec/fixtures/dot-anchor.html
 spec/fixtures/dot_anchor.svg
+spec/fixtures/image.svg
 spec/fixtures/layers.js
 spec/fixtures/layout_arc.svg
 spec/fixtures/layout_cluster.html
@@ -156,12 +157,14 @@ spec/fixtures/stack_expand.svg
 spec/fixtures/stack_silohouette.svg
 spec/fixtures/stack_wiggle.svg
 spec/fixtures/svgscene.html
+spec/fixtures/tipsy.gif
 spec/fixtures/wedge-anchor.html
 spec/fixtures/wedge-donut.html
 spec/fixtures/wedge_anchor.svg
 spec/fixtures/wedge_donut.svg
 spec/flatten_spec.rb
 spec/histogram_spec.rb
+spec/image_spec.rb
 spec/internal_spec.rb
 spec/javascript_behaviour_spec.rb
 spec/label_spec.rb
