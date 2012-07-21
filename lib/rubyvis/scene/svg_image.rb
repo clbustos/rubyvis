@@ -15,9 +15,8 @@ module Rubyvis
           "x"=> s.left,
           "y"=> s.top,
           "width"=> s.width,
-          "height"=> s.height
+          "height"=> s.height,
           })
-          
           e.set_attributes("xlink:href"=>s.url);
         end
         e = self.append(e, scenes, i);
