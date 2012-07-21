@@ -34,7 +34,7 @@ require 'rubyvis/mark/shorcut_methods'
 module Rubyvis
   @@nokogiri=nil
   # Rubyvis version
-  VERSION = '0.5.0' 
+  VERSION = '0.5.1' 
   # Protovis API on which current Rubyvis is based
   PROTOVIS_API_VERSION='3.3'
   # You actually can do it! http://snipplr.com/view/2137/uses-for-infinity-in-ruby/
@@ -67,7 +67,6 @@ module Rubyvis
     if has_nokogiri? and !$rubyvis_no_nokogiri
       :nokogiri
     else
-
       :rexml
     end
   end

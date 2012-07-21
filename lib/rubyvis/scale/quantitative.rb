@@ -278,11 +278,12 @@ module Rubyvis
     # values are frequently used in conjunction with Rule to display
     # tick marks or grid lines.
     #
+    # If start and end of domain are the same, returns only one tick value
     # @todo: fix for dates and n>10
-    def ticks(*arguments) # :args: (number_of_ticks=nil)
-      m = arguments[0]
+    def ticks(m=nil) # :args: (number_of_ticks=nil)
       start = @d.first
       _end = @d.last
+      return [start] if start==_end
       reverse = _end < start
       min = reverse ? _end : start
       max = reverse ? start : _end
@@ -358,7 +359,7 @@ module Rubyvis
           step = (n > 1000) ? 250 : ((n > 200) ? 100 : ((n > 100) ? 50 : ((n > 50) ? 25 : 5)));
           date.setMilliseconds(Math.floor(date.getMilliseconds() / step) * step);
         else
-          step = Rubyvis.logCeil(n / 15, 10);
+          step = Rubyvis.log_ceil(n / 15, 10);
           if (n / step < 2) 
             step =step.quo(5)
           elsif (n / step < 5)
@@ -377,16 +378,16 @@ module Rubyvis
       end
       
       # Normal case: numbers. 
-      m = 10 if (arguments.size==0)
+      m||= 10
       
       step = Rubyvis.log_floor(span.quo(m), 10)
       err = m.quo(span.quo(step))
       if (err <= 0.15)
-      step = step*10
+        step = step*10
       elsif (err <= 0.35)
-      step = step*5
+        step = step*5
       elsif (err <= 0.75)
-      step = step*2
+        step = step*2
       end
       start = (min.quo(step)).ceil * step
       _end = (max.quo(step)).floor * step

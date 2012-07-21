@@ -109,7 +109,7 @@ end
 # * text
 # * path
 # Using attributes and content
-Rspec::Matchers.define :have_same_svg_elements do |exp|
+RSpec::Matchers.define :have_same_svg_elements do |exp|
   def equal_float(a,b)
     a||=0
     b||=0
@@ -201,7 +201,7 @@ Rspec::Matchers.define :have_same_svg_elements do |exp|
   end
   
 end
-Rspec::Matchers.define :have_same_position do |exp|
+RSpec::Matchers.define :have_same_position do |exp|
   match do |obs|
     correct=true
     attrs={

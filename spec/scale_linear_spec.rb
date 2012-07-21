@@ -91,6 +91,14 @@ describe Rubyvis::Scale::Linear do
     val=20
     @y.scale(val).should be_within( 0.001).of(val.quo(@h_dom)*@h.to_f)
   end
+  it "should return correct scale when values are extracted from data " do
+    data = pv.range(0, 10, 0.1).map {|x| OpenStruct.new({:x=> x, :y=> Math.sin(x) + 2+rand()}) }
+    w = 400
+    h = 200
+    x = pv.Scale.linear(data, lambda {|d| d.x}).range(0, w)
+    y = pv.Scale.linear(data, lambda {|d| d.y}).range(0, h)
+    lambda {y.scale 0.5}.should_not raise_error
+  end
   it "should returns correct invert" do
     @y.invert(100).should be_within( 0.001).of(357.1428)
     @y.invert(200).should be_within( 0.001).of(714.2857)
@@ -99,8 +107,11 @@ describe Rubyvis::Scale::Linear do
     @y.ticks.should==[0,100,200,300,400,500,600,700,800,900,1000]
     @y.ticks(13).should==[0,100,200,300,400,500,600,700,800,900,1000]
     @y.ticks(5).should==[0,200,400,600,800,1000]
-
   end
+  it "should return correct tick when domain is a scalar" do
+    @y.domain(1,1,1).ticks.should==[1]
+  end
+
   it "should nice nicely" do
     @y.domain([0.20147987687960267, 0.996679553296417])
     @y.nice
@@ -125,6 +136,5 @@ describe Rubyvis::Scale::Linear do
     a=OpenStruct.new({:value=>rand})
     by.call(a).should==@y[a.value]
   end
-  
   
 end

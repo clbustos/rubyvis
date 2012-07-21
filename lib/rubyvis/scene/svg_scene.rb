@@ -27,35 +27,35 @@ end
 module Nokogiri
   module XML
     class Node
-  attr_accessor :_scene
-  def add_element(c)
-    add_child(c)
-  end
+      attr_accessor :_scene
+      def add_element(c)
+        add_child(c)
+      end
   
-  def set_attributes(h)
-    h.each do |k,v|
-      set_attribute(k,v.to_s)
+      def set_attributes(h)
+        h.each do |k,v|
+          set_attribute(k,v.to_s)
+        end
+      end
+      def get_element(i)
+        elements.empty? ? nil : elements[i-1]
+      end
+      #private :elements
+      #private :attributes
+      def next_sibling_node
+        next_sibling
+      end
+      def delete_attribute(name)
+        remove_attribute(name)
+      end
+      def text
+        content
+      end
+      def text=(v)
+        self.content=v
+      end
     end
   end
-  def get_element(i)
-    elements.empty? ? nil : elements[i-1]
-  end
-  #private :elements
-  #private :attributes
-  def next_sibling_node
-    next_sibling
-  end
-  def delete_attribute(name)
-    remove_attribute(name)
-  end
-  def text
-    content
-  end
-  def text=(v)
-    self.content=v
-  end
-  end
-end
 end
 
 module Rubyvis
@@ -150,7 +150,7 @@ module Rubyvis
     
     def self.title(e,s)
       a = e.parent
-      a=nil if (a and (a.tag_name != "a"))
+      a=nil if (a and (a.name != "a"))
       if (s.title) 
         if (!a) 
           a = self.create("a")
