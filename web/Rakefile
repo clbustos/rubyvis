@@ -3,6 +3,8 @@ require 'rake'
 require 'fileutils'
 directory "examples"
 
+rsvg_bin="rsvg-convert"
+
 def get_base(f)
   f.sub(File.dirname(__FILE__)+"/../examples/","").gsub("/","_").gsub(".rb","")
 end
@@ -44,7 +46,7 @@ EXAMPLES.each do |v|
     end
   end
   file "examples/#{e}.png"=>["examples/#{e}.svg"] do |t|
-  system   "rsvg  -w 200 -h 200 -f png examples/#{e}.svg #{t.name}"
+    system   "#{rsvg_bin}  -w 200 -h 200 -f png -o #{t.name} examples/#{e}.svg "
   end
 end
 

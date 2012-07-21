@@ -15,13 +15,14 @@ vis = pv.Panel.new()
   .right(0)
   .top(0)
 
-  arrays=10.times.map {|i| 10.times.map {|j| i/10.0+j/100.0}}
+  arrays=10.times.map {|i| 10.times.map {|j| i.quo(10)+j.quo(100)}}
 
   vis.add(Rubyvis::Layout::Grid).rows(arrays).
     cell.add(Rubyvis::Bar).
     fill_style(Rubyvis.ramp("white", "black")).anchor("center").
     add(Rubyvis::Label).
-    text_style(Rubyvis.ramp("black","white"))
+    text_style(Rubyvis.ramp("black","white")).
+    text(lambda{|v| "%0.2f" % v })
 
 vis.render();
 

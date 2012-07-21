@@ -77,10 +77,10 @@ files.each do |f|
   if File.exists? "examples/#{page.svg_file}"
     File.open("examples/#{page.svg_file}","r") {|fp|
       header=fp.gets(">")
-      if header=~/\sheight='([^']+)'/ 
+      if header=~/\sheight=['"]([^']+)['"]/ 
         height=$1
       end
-      if header=~/\swidth='([^']+)'/
+      if header=~/\swidth=['"]([^']+)['"]/
         width=$1
       end
     }
