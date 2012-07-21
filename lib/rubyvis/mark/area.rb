@@ -12,6 +12,7 @@ module Rubyvis
         :stroke_style=> true,
         :fill_style=> true,
         :segmented=> true,
+        :stroke_dasharray => true, # SVG strokeDasharray (Jamie Love protovis mod)
         :interpolate=> true,
         :tension=> true
       }
@@ -201,7 +202,7 @@ module Rubyvis
     
     
     
-    attr_accessor_dsl :width, :height, :line_width, [:stroke_style, lambda {|d| Rubyvis.color(d)}], [:fill_style, lambda {|d| Rubyvis.color(d)}], :segmented, :interpolate, :tension
+    attr_accessor_dsl :width, :height, :line_width, [:stroke_style, lambda {|d| Rubyvis.color(d)}], [:fill_style, lambda {|d| Rubyvis.color(d)}], :segmented, :stroke_dasharray, :interpolate, :tension
     def type
       'area'
     end
