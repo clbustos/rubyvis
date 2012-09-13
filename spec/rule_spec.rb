@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__)+"/spec_helper.rb")
 describe Rubyvis::Rule do
   include Rubyvis::GeneralSpec
   it "should have correct properties" do
-    props=[:antialias, :bottom, :cursor, :data, :events, :height,  :id, :left, :line_width, :reverse, :right, :stroke_style, :title, :top, :visible, :width].inject({}) {|ac, v| ac[v]=true; ac}
+    props=[:antialias, :bottom, :cursor, :data, :events, :height,  :id, :left, :line_width, :reverse, :right, :stroke_style, :stroke_dasharray, :title, :top, :visible, :width].inject({}) {|ac, v| ac[v]=true; ac}
     Rubyvis::Rule.properties.should==props
   end
   it "Rubyvis.Rule be the same as Rubyvis::Rule" do

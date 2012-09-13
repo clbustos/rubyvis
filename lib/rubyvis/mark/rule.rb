@@ -6,7 +6,7 @@ module Rubyvis
   class Rule < Mark
     include LinePrototype
     @properties=Mark.properties.dup
-    attr_accessor_dsl :width, :height, :line_width, [:stroke_style, lambda {|d| Rubyvis.color(d)}]
+    attr_accessor_dsl :width, :height, :line_width, [:stroke_style, lambda {|d| Rubyvis.color(d)}], :stroke_dasharray
     def self.defaults
       Rule.new.mark_extend(Mark.defaults).line_width(1).stroke_style('black').antialias(false)
     end
