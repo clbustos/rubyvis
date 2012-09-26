@@ -94,7 +94,7 @@ module Rubyvis
     # See {CSS3 text}[http://www.w3.org/TR/css3-text/#text-decoration]
     
     
-    attr_accessor_dsl :text, :font, :text_angle, [:text_style, lambda {|d| Rubyvis.color(d)}], :text_align, :text_baseline, :text_margin, :text_decoration, :text_shadow
+    attr_accessor_dsl :text, :font, :text_angle, [:text_style, lambda {|d| Rubyvis.color(d)}], :text_align, :text_baseline, :text_margin, :text_decoration, :text_shadow, :font_family, :font_style, :font_variant, :font_weight, :font_size
     # Mark type
     def type
       'label'

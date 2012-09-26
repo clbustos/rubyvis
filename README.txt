@@ -37,7 +37,7 @@ Using protovis examples[http://vis.stanford.edu/protovis/ex/] as reference
  * Arc
  * Matrix
  
-I try to maintain, when posible, complete compatibility with Javascript API, including camel case naming of functions. Johnson [http://github.com/jbarnette/johnson] - the lovely Javascript wrapper inside Ruby embrace - is our friend to test implementation of basic object. 
+I try to maintain, when posible, complete compatibility with Javascript API, including camel case naming of functions.  
 
 User could use +pv+ freely, cause is defined as a global method which call Rubyvis.
 

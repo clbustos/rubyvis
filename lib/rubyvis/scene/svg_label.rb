@@ -41,7 +41,14 @@ module Rubyvis
           "fill-opacity"=> fill.opacity==0 ? nil : fill.opacity,
           "text-anchor"=> anchor
         }, {
-        "font"=> s.font, "text-shadow"=> s.text_shadow, "text-decoration"=> s.text_decoration})
+        "font"=> s.font, 
+        "font-family"=> s.font_family.nil? ? nil : s.font_family,
+        "font-style"=> s.font_style.nil? ? nil: s.font_style,
+        "font-variant"=> s.font_variant.nil? ? nil : s.font_variant,
+        "font-weight"=>  s.font_weight.nil? ? nil: s.font_weight,
+        "font-size"=>    s.font_size.nil? ? nil: s.font_size,
+        "text-shadow"=> s.text_shadow, 
+        "text-decoration"=> s.text_decoration})
         
         e.text=s.text.frozen? ? s.text.dup : s.text
 
