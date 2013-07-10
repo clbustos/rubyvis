@@ -106,6 +106,8 @@ lib/rubyvis/scene/svg_wedge.rb
 lib/rubyvis/sceneelement.rb
 lib/rubyvis/transform.rb
 lib/rubyvis/vector.rb
+lib/rspec/expectations/differ.rb
+lib/rspec/expectations/differ_spec.rb
 spec/anchor_spec.rb
 spec/area_spec.rb
 spec/bar_spec.rb

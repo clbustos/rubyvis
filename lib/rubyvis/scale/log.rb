@@ -3,9 +3,9 @@ module Rubyvis
   class Scale::Log < Rubyvis::Scale::Quantitative
     def initialize(*args)
       super(*args)
+      raise(ArgumentError,"left side of domain should be >0") if(@d.first<=0)
       @b=nil
       @_p=nil
-      
       base(10)
     end
     def log(x)
@@ -37,7 +37,7 @@ module Rubyvis
       d = domain
       n = d[0] < 0
       subdivisions||=@b
-      span=@b.to_f/subdivisions
+      span=@b.to_f / subdivisions
      # puts "dom: #{d[0]} -> #{n}"
       
       i = (n ? -log(-d[0]) : log(d[0])).floor

@@ -8,7 +8,99 @@ module Rubyvis
     end
     include Enumerable
     attr_accessor :visible
-    attr_accessor :mark, :type, :child_index, :parent, :parent_index, :target, :defs, :data,  :antialias, :line_width, :fill_style, :overflow, :width, :height, :top, :bottom, :left, :right, :title, :reverse, :stroke_style, :transform, :canvas, :_g, :events, :cursor, :children, :id, :segmented, :interpolate, :tension, :name, :text_baseline, :text_align, :text, :font, :font_family, :font_style, :font_variant, :font_weight, :font_size, :text_angle, :text_style, :text_margin, :text_decoration, :text_shadow, :line_join, :eccentricity, :shape_size, :shape, :shape_angle, :shape_radius, :start_angle, :end_angle, :angle, :inner_radius, :outer_radius, :layers, :orient, :offset, :order,:url, :image_width, :image_height, :image, :_id, :nodes, :round, :links, :padding_left, :padding_right, :padding_top, :padding_bottom, :mode, :group, :depth, :breadth, :spacing, :rows, :cols, :_grid,:bands, :background_style, :positive_style, :negative_style,:directed, :_matrix
+
+    ## ACCESSOR 
+    ## If you implement new accessor on a scene element
+    ## you should add it here
+    
+    attr_accessor :_g
+    attr_accessor :_grid
+    attr_accessor :_id
+    attr_accessor :_matrix
+    attr_accessor :angle
+    attr_accessor :antialias
+    attr_accessor :background_style
+    attr_accessor :bands
+    attr_accessor :bottom
+    attr_accessor :breadth
+    attr_accessor :canvas
+    attr_accessor :child_index
+    attr_accessor :children
+    attr_accessor :cols
+    attr_accessor :cursor
+    attr_accessor :data
+    attr_accessor :defs
+    attr_accessor :depth
+    attr_accessor :directed
+    attr_accessor :eccentricity
+    attr_accessor :end_angle
+    attr_accessor :events
+    attr_accessor :fill_style
+    attr_accessor :font
+    attr_accessor :font_family
+    attr_accessor :font_size
+    attr_accessor :font_style
+    attr_accessor :font_variant
+    attr_accessor :font_weight
+    attr_accessor :group
+    attr_accessor :height
+    attr_accessor :id
+    attr_accessor :image
+    attr_accessor :image_height
+    attr_accessor :image_width
+    attr_accessor :inner_radius
+    attr_accessor :interpolate
+    attr_accessor :layers
+    attr_accessor :left
+    attr_accessor :line_join
+    attr_accessor :line_width
+    attr_accessor :links
+    attr_accessor :mark
+    attr_accessor :mode
+    attr_accessor :name
+    attr_accessor :negative_style
+    attr_accessor :nodes
+    attr_accessor :offset
+    attr_accessor :order
+    attr_accessor :orient
+    attr_accessor :outer_radius
+    attr_accessor :overflow
+    attr_accessor :padding_bottom
+    attr_accessor :padding_left
+    attr_accessor :padding_right
+    attr_accessor :padding_top
+    attr_accessor :parent
+    attr_accessor :parent_index
+    attr_accessor :positive_style
+    attr_accessor :reverse
+    attr_accessor :right
+    attr_accessor :round
+    attr_accessor :rows
+    attr_accessor :segmented
+    attr_accessor :shape
+    attr_accessor :shape_angle
+    attr_accessor :shape_radius
+    attr_accessor :shape_size
+    attr_accessor :spacing
+    attr_accessor :start_angle
+    attr_accessor :stroke_dasharray
+    attr_accessor :stroke_style
+    attr_accessor :target
+    attr_accessor :tension
+    attr_accessor :text
+    attr_accessor :text_align
+    attr_accessor :text_angle
+    attr_accessor :text_baseline
+    attr_accessor :text_decoration
+    attr_accessor :text_margin
+    attr_accessor :text_shadow
+    attr_accessor :text_style
+    attr_accessor :title
+    attr_accessor :top
+    attr_accessor :transform
+    attr_accessor :type
+    attr_accessor :url
+    attr_accessor :width
     
     def []=(v,i)
       if v.is_a? Numeric

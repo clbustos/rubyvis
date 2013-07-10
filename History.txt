@@ -1,3 +1,7 @@
+=== 0.6.0 / 2013-07-10
++ Added support for dashed lines (ex.: stroke_dasharray('9,5,3'))
+- Raises an exception on log scale when domain includes 0 or negative values
+
 === 0.5.2 / 2012-07-21
 
 - Fixed image bug (#13), and updated example for image. Web creation is updated, too

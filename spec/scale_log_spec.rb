@@ -96,6 +96,12 @@ describe Rubyvis::Scale::Log do
     t=1,2,3,4,5,6,7,8,9,10,20,30,40,50,60,70,80,90,100,200,300,400,500,600,700,800,900,1000
     @y.ticks.should==t
   end
+  it "should return :ArgumentError on domain that includes 0 or less" do
+    h=280
+    h_dom=1000
+    expect {Rubyvis.Scale.log(-1, @h_dom)}.to raise_error(ArgumentError)
+    
+  end
   it "should returns correct ticks with subdivisions" do
     t=1,5,10,50,100,500,1000
     @y.ticks(2).should==t
