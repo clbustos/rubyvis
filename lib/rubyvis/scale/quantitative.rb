@@ -249,17 +249,17 @@ module Rubyvis
       #p ar
       # [ sec, min, hour, day, month, year, wday, yday, isdst, zone ]
       case(prec) 
-        when 31536e6
+        when 31536e6,:month
           ar[4]=1
-        when 2592e6
+        when 2592e6,:month_day
           ar[3]=1
-        when 6048e5
-          ar[3]=ar[3]-ar[6] if (prec == 6048e5)
-        when 864e5
+        when 6048e5,:week_day
+          ar[3]=ar[3]-ar[6]
+        when 864e5,:hour
           ar[2]=0
-        when 36e5
+        when 36e5,:minute
           ar[1]=0
-        when 6e4
+        when 6e4,:second
           ar[0]=0
         when 1e3
           # do nothing

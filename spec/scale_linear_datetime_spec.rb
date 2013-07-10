@@ -3,6 +3,7 @@ describe "Rubyvis::Scale::Linear with dates" do
   it "should be created as Javascript" do
     h=280
     y = Rubyvis.Scale.linear(Time.utc(2010,1,1), Time.utc(2010,2,1))
+    
   end
   
   before do
@@ -10,6 +11,9 @@ describe "Rubyvis::Scale::Linear with dates" do
     @ed=Time.utc(2010,2,1)
     @h=280
     @y = Rubyvis.Scale.linear(@bd, @ed).range(0,@h)
+    def @y.mock_ticks_floor(d,prec) 
+      ticks_floor(d,prec)
+    end
   end
   it "y should be a Scale" do
     @y.should be_a(Rubyvis::Scale::Linear)
@@ -46,6 +50,17 @@ describe "Rubyvis::Scale::Linear with dates" do
     
     #p @y.ticks
   end
+  it "should return correct tick_floor" do
+    ct=Time.utc(2012,04,05,10,10,10)
+    @y.mock_ticks_floor(ct,:month).should==Time.utc(2012,01,05,10,10,10)
+    @y.mock_ticks_floor(ct,:month_day).should==Time.utc(2012,04,01,10,10,10)
+    @y.mock_ticks_floor(ct,:week_day).should==Time.utc(2012,04,01,10,10,10)
+    @y.mock_ticks_floor(ct,:hour).should==Time.utc(2012,04,05,00,10,10)
+    @y.mock_ticks_floor(ct,:minute).should==Time.utc(2012,04,05,10,00,10)
+    @y.mock_ticks_floor(ct,:second).should==Time.utc(2012,04,05,10,10,00)
+    
+  end 
+  
   it "should returns correct tick_format" do
     pending()
   end
