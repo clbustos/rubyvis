@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__)+"/spec_helper.rb")
 describe Rubyvis::Layout::Partition do
   include Rubyvis::LayoutSpec
   it "subclass Fill should have correct properties" do
-    props=[:antialias, :bottom, :canvas, :cursor, :data, :events, :fill_style, :height, :id, :inner_radius, :left, :line_width, :links,  :nodes,  :order, :orient, :outer_radius, :overflow, :reverse, :right, :stroke_style, :title, :top, :transform, :visible, :width].inject({}) {|ac, v| ac[v]=true; ac}
+    props=[:antialias, :bottom, :canvas, :cursor, :data, :events, :fill_style, :height, :id, :inner_radius, :left, :line_width, :links,  :nodes,  :order, :orient, :outer_radius, :overflow, :reverse, :right, :stroke_style, :title, :top, :transform, :visible, :view_box, :width].inject({}) {|ac, v| ac[v]=true; ac}
     Rubyvis::Layout::Partition::Fill.properties.should==props 
   end
   it "should be called using Rubyvis.Layout.Partition" do

@@ -101,6 +101,7 @@ module Rubyvis
     attr_accessor :type
     attr_accessor :url
     attr_accessor :width
+    attr_accessor :view_box
     
     def []=(v,i)
       if v.is_a? Numeric

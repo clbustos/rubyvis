@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__)+"/spec_helper.rb")
 describe Rubyvis::Layout::Treemap do
   include Rubyvis::LayoutSpec
   it "should have correct properties" do
-    props=[:antialias, :bottom, :canvas, :cursor, :data, :events, :fill_style, :height, :id, :left, :line_width, :links, :mode, :nodes, :order, :overflow, :padding_bottom, :padding_left, :padding_right, :padding_top, :reverse, :right, :round, :stroke_style, :title, :top, :transform, :visible, :width].inject({}) {|ac, v| ac[v]=true; ac}
+    props=[:antialias, :bottom, :canvas, :cursor, :data, :events, :fill_style, :height, :id, :left, :line_width, :links, :mode, :nodes, :order, :overflow, :padding_bottom, :padding_left, :padding_right, :padding_top, :reverse, :right, :round, :stroke_style, :title, :top, :transform, :visible, :view_box, :width].inject({}) {|ac, v| ac[v]=true; ac}
     Rubyvis::Layout::Treemap.properties.should==props 
   end
   describe "rendered" do

@@ -3,7 +3,7 @@ describe Rubyvis::Layout::Horizon do
   include Rubyvis::LayoutSpec
   
   it "should have correct properties" do
-    props=[:antialias, :background_style, :bands,  :bottom, :canvas, :cursor, :data, :events, :fill_style, :height, :id, :left, :line_width, :mode, :negative_style, :overflow, :positive_style, :reverse, :right, :stroke_style, :title, :top, :transform, :visible, :width].inject({}) {|ac, v| ac[v]=true; ac}
+    props=[:antialias, :background_style, :bands,  :bottom, :canvas, :cursor, :data, :events, :fill_style, :height, :id, :left, :line_width, :mode, :negative_style, :overflow, :positive_style, :reverse, :right, :stroke_style, :title, :top, :transform, :visible, :view_box, :width].inject({}) {|ac, v| ac[v]=true; ac}
     Rubyvis::Layout::Horizon.properties.should==props 
   end
   it "should be called using Rubyvis.Layout.Horizon" do

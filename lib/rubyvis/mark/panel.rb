@@ -9,7 +9,7 @@ module Rubyvis
     end
 
     @properties=Bar.properties.dup
-    attr_accessor_dsl :transform, :overflow, :canvas
+    attr_accessor_dsl :transform, :overflow, :canvas, :view_box
     attr_accessor :children, :root
     def initialize
       @children=[]
