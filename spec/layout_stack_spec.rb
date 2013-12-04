@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__)+"/spec_helper.rb")
 describe Rubyvis::Layout::Stack do
   include Rubyvis::LayoutSpec
   it "should have correct properties" do
-    props=[:antialias, :bottom, :canvas, :cursor, :data, :events, :fill_style, :height, :id, :layers, :left, :line_width, :offset, :order, :orient, :overflow, :reverse, :right, :stroke_style, :title, :top, :transform, :visible, :width].inject({}) {|ac, v| ac[v]=true; ac}
+    props=[:antialias, :bottom, :canvas, :cursor, :data, :events, :fill_style, :height, :id, :layers, :left, :line_width, :offset, :order, :orient, :overflow, :reverse, :right, :stroke_style, :title, :top, :transform, :visible, :view_box, :width].inject({}) {|ac, v| ac[v]=true; ac}
     Rubyvis::Layout::Stack.properties.should==props
   end
   it "Rubyvis.Dot be the same as Rubyvis::Dot" do

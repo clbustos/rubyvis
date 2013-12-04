@@ -44,6 +44,9 @@ module Rubyvis
               'width'=>s.width+s.left+s.right,
               'height'=>s.height+s.top+s.bottom
           })
+          if not s.view_box.nil?
+            g.set_attribute('viewBox', s.view_box)
+          end
           #g.attributes['width']=s.width+s.left+s.right
           #g.attributes['height']=s.height+s.top+s.bottom
         end

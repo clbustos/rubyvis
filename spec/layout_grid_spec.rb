@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__)+"/spec_helper.rb")
 describe Rubyvis::Layout::Grid do
   include Rubyvis::LayoutSpec
   it "should have correct properties" do
-    props=[:antialias, :bottom, :canvas, :cols, :cursor, :data, :events, :fill_style, :height,  :id, :left, :line_width, :overflow, :reverse, :right, :rows, :stroke_style, :title, :top, :transform, :visible, :width].inject({}) {|ac, v| ac[v]=true; ac}
+    props=[:antialias, :bottom, :canvas, :cols, :cursor, :data, :events, :fill_style, :height,  :id, :left, :line_width, :overflow, :reverse, :right, :rows, :stroke_style, :title, :top, :transform, :visible, :view_box, :width].inject({}) {|ac, v| ac[v]=true; ac}
     Rubyvis::Layout::Grid.properties.should==props
   end
   it "Rubyvis.Layout.Grid be the same as Rubyvis::Layout::Grid" do
