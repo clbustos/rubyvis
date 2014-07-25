@@ -8,7 +8,7 @@ require 'rubyvis'
 require 'rspec'
 require 'rspec/core/rake_task'
 require './lib/rspec/expectations/differ'
-require 'rubyforge'
+#require 'rubyforge'
 
 Hoe.plugin :git
 Hoe.plugin :gemspec
