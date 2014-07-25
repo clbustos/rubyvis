@@ -8,6 +8,7 @@ begin
 rescue LoadError
 end
 require 'rspec'
+require 'rspec/mocks'
 #require 'spec/autorun'
 require 'rubyvis'
 require 'pp'

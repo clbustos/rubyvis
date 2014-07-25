@@ -116,7 +116,7 @@ top(5)
     # obj.attributes["d"].value
     exp_data="M2.1161165235168156,4.883883476483184L4.116116523516816,6.883883476483184 5.883883476483184,5.116116523516816 3.8838834764831844,3.1161165235168156"
     obs=""
-    obs.stub!(:attributes).and_return({'d'=>OpenStruct.new({:value=>Rubyvis::SvgScene.path_join(s0,s1,s2,s3)})})
+    obs.stub(:attributes).and_return({'d'=>OpenStruct.new({:value=>Rubyvis::SvgScene.path_join(s0,s1,s2,s3)})})
     
     obs.should have_path_data_close_to exp_data
     
@@ -126,7 +126,7 @@ top(5)
     s3=OpenStruct.new({:left=>7.5,:top=>8,:visible=>true, :line_width=>4.5})
     exp_data="M2.2625631329235425,5.2374368670764575L4.2625631329235425,7.2374368670764575 6.7374368670764575,4.7625631329235425 4.7374368670764575,2.7625631329235425"
     obs=""
-    obs.stub!(:attributes).and_return({'d'=>OpenStruct.new({:value=>Rubyvis::SvgScene.path_join(s0,s1,s2,s3)})})
+    obs.stub(:attributes).and_return({'d'=>OpenStruct.new({:value=>Rubyvis::SvgScene.path_join(s0,s1,s2,s3)})})
     obs.should have_path_data_close_to exp_data
   
   end

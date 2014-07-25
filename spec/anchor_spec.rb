@@ -7,7 +7,8 @@ describe Rubyvis::Anchor do
     Rubyvis::Anchor.properties.should==props
   end
   it "should be initialized with an object which respond to parent" do
-    my_mock=mock('mark')
+    my_mock=double('mark')
+    my_mock.stub(:parent)
     my_mock.should_receive(:parent).with(no_args())
     Rubyvis.Anchor(my_mock)
     
