@@ -37,3 +37,4 @@ DEPENDENCIES
   nokogiri
   rake
   rspec
+  rspec-mocks
