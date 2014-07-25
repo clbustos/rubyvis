@@ -152,4 +152,4 @@ $ gem install rubyvis
 
 == LICENSE:
 
-GPL-2
+BSD 2-Clause (see LICENSE.txt)
