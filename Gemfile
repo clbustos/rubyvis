@@ -1,0 +1,6 @@
+source 'https://rubygems.org'
+gem 'nokogiri'
+gem 'coderay'
+gem 'haml'
+gem 'rspec'
+gem 'RedCloth'
