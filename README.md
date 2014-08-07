@@ -1,12 +1,12 @@
-= Rubyvis
+# Rubyvis
 
-* http://rubyvis.rubyforge.org/
+* https://github.com/clbustos/rubyvis
 
-== DESCRIPTION:
+## DESCRIPTION:
 
 Ruby port of Protovis[http://vis.stanford.edu/protovis/], a Javascript visualization toolkit.
 
-== FEATURES/PROBLEMS:
+## FEATURES/PROBLEMS:
 
 This library implements almost completely core API of protovis, including all static marks, SVG builder class and data classes. Spec coverage is near 90%
 
@@ -43,7 +43,7 @@ User could use +pv+ freely, cause is defined as a global method which call Rubyv
 
 Nokogiri is used as XML library. If not available, or $rubyvis_no_nokogiri is set to true, REXML is used. Nokogiri is 30%-35% faster that REXML on our test.
 
-== CURRENT PROGRESS
+## CURRENT PROGRESS
 
 * pv.js
 * pv-internals.js
@@ -93,7 +93,7 @@ Nokogiri is used as XML library. If not available, or $rubyvis_no_nokogiri is se
 * text/Format.js (incomplete)
 * text/NumberFormat.js (incomplete)
 
-== SYNOPSIS:
+## SYNOPSIS:
 
 The primary API, based on Gregory Brown's Ruby Best Practices, uses blocks and name of marks as methods
 
@@ -134,7 +134,7 @@ The library allows you to use chain methods API, like original protovis
 
 See examples directory for original protovis examples adaptations and others graphics
 
-== THE MOST FREQUENT QUESTION (MFQ)
+## THE MOST FREQUENT QUESTION (MFQ)
 
 ¿Why use a server-side technology if I can use a client-side, which is faster and more economic for developer?
 
@@ -142,14 +142,14 @@ If you want to present graphs: (a) complex and/or dynamically generated, (b) onl
 
 Rubyvis is designed mainly for off-line operation, like batch creation of graphs for use on printed documents (rtf-pdf), with possibility of use easily the script for on-line use.
 
-== REQUIREMENTS:
+## REQUIREMENTS:
 
 Tested on Ruby 1.8.7, 1.9.1, 1.9.2-p0 and ruby-head (future 1.9.3)
 
-== INSTALL:
+## INSTALL:
 
 $ gem install rubyvis
 
-== LICENSE:
+## LICENSE:
 
 BSD 2-Clause (see LICENSE.txt)

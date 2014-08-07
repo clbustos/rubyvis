@@ -270,7 +270,6 @@ module Rubyvis
     private :ticks_floor
     
     def to_date(d) # :nodoc:
-      
       Time.utc(*d)
     end
     # Returns an array of evenly-spaced, suitably-rounded values in the input
@@ -331,7 +330,6 @@ module Rubyvis
         format = "%S.%Qs";
         increment = lambda {|d|  Time.at(d.to_f+(step/1000.0)) }
       end
-      
       @tick_format = Rubyvis.Format.date(format);
       date = Time.at(min.to_f)
       dates = []

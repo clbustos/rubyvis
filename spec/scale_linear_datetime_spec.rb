@@ -15,6 +15,10 @@ describe "Rubyvis::Scale::Linear with dates" do
       ticks_floor(d,prec)
     end
   end
+  it "should not crash on :week_day precision (bug #15)" do
+    ct=Time.utc(2012,02,01,10,10,10)
+    @y.mock_ticks_floor(ct,:week_day).should==Time.utc(2012,01,01,10,10,10)
+  end
   it "y should be a Scale" do
     @y.should be_a(Rubyvis::Scale::Linear)
   end
@@ -62,6 +66,6 @@ describe "Rubyvis::Scale::Linear with dates" do
   end 
   
   it "should returns correct tick_format"
-
   it "should nice nicely"
+  
 end
