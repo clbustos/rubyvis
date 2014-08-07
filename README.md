@@ -2,6 +2,9 @@
 
 * https://github.com/clbustos/rubyvis
 
+[![Build Status](https://travis-ci.org/clbustos/rubyvis.svg?branch=master)](https://travis-ci.org/clbustos/rubyvis)
+
+
 ## DESCRIPTION:
 
 Ruby port of Protovis[http://vis.stanford.edu/protovis/], a Javascript visualization toolkit.
@@ -144,7 +147,7 @@ Rubyvis is designed mainly for off-line operation, like batch creation of graphs
 
 ## REQUIREMENTS:
 
-Tested on Ruby 1.8.7, 1.9.1, 1.9.2-p0 and ruby-head (future 1.9.3)
+Tested on Ruby 1.9.2, 1.9.3, 2.0.0, 2.1.1, Jruby (mode 1.9) and 
 
 ## INSTALL:
 
