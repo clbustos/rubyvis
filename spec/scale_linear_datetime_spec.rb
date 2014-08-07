@@ -61,11 +61,7 @@ describe "Rubyvis::Scale::Linear with dates" do
     
   end 
   
-  it "should returns correct tick_format" do
-    pending()
-  end
+  it "should returns correct tick_format"
 
-  it "should nice nicely" do
-    pending()
-  end
+  it "should nice nicely"
 end

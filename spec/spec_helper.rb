@@ -95,7 +95,7 @@ end
 RSpec::Matchers.define :have_svg_attributes do |exp|
   match do |obs|
     exp.each {|k,v|
-      obs.attributes[k].should be_true
+      obs.attributes[k].should be_truthy
       obs.attributes[k].value.should==v
     }
   end
