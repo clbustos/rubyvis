@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-gem 'hoe'
 gem 'rake'
 gem 'nokogiri'
 gem 'coderay'

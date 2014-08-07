@@ -245,26 +245,24 @@ module Rubyvis
       end
     end
     def ticks_floor(d,prec) # :nodoc:
-      ar=d.to_a
-      #p ar
-      # [ sec, min, hour, day, month, year, wday, yday, isdst, zone ]
+      dfloor=d
       case(prec) 
-        when 31536e6,:month
-          ar[4]=1
-        when 2592e6,:month_day
-          ar[3]=1
-        when 6048e5,:week_day
-          ar[3]=ar[3]-ar[6]
-        when 864e5,:hour
-          ar[2]=0
-        when 36e5,:minute
-          ar[1]=0
-        when 6e4,:second
-          ar[0]=0
+        when 31536e6, :month
+          dfloor = Time.utc(d.year,1,d.day,d.hour,d.min,d.sec)
+        when 2592e6, :month_day
+          dfloor = Time.utc(d.year,d.month,1,d.hour,d.min,d.sec)
+        when 6048e5, :week_day
+          dfloor = dfloor - d.wday*864e2 # TODO
+        when 864e5, :hour
+          dfloor = Time.utc(d.year,d.month,d.day,0,d.min,d.sec)
+        when 36e5, :minute
+          dfloor = Time.utc(d.year,d.month,d.day,d.hour,0,d.sec)
+        when 6e4, :second
+          dfloor = Time.utc(d.year,d.month,d.day,d.hour,d.min,0)
         when 1e3
           # do nothing
       end
-      to_date(ar)
+      return dfloor
     end
     
     private :ticks_floor
