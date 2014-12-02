@@ -17,7 +17,6 @@ module Rubyvis
           'y2'=>s.top+s.height,
           "stroke"=> stroke.color,
           "stroke-opacity"=> stroke.opacity,
-          "stroke-dasharray"=> s.stroke_dasharray,
           "stroke-width"=> s.line_width / self.scale
         })
 

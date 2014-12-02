@@ -43,7 +43,6 @@ module Rubyvis
         "fill-opacity"=> (fill.opacity==0.0) ? nil : fill.opacity,
         "stroke"=> stroke.color,
         "stroke-opacity"=> (stroke.opacity==0.0) ? nil : stroke.opacity,
-        "stroke-dasharray"=> s.stroke_dasharray, # strokeDasharray from Jamie Love (protovis mod)
         "stroke-width"=> (stroke.opacity>0) ? s.line_width / self.scale : nil,
         "stroke-linejoin"=> s.line_join
       });
