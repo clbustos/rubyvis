@@ -4,24 +4,25 @@ GEM
     RedCloth (4.2.9)
     coderay (1.1.0)
     diff-lcs (1.2.5)
-    haml (4.0.5)
+    haml (4.0.7)
       tilt
-    mini_portile (0.6.0)
-    nokogiri (1.6.3.1)
-      mini_portile (= 0.6.0)
-    rake (10.3.2)
-    rspec (3.0.0)
-      rspec-core (~> 3.0.0)
-      rspec-expectations (~> 3.0.0)
-      rspec-mocks (~> 3.0.0)
-    rspec-core (3.0.3)
-      rspec-support (~> 3.0.0)
-    rspec-expectations (3.0.3)
+    mini_portile2 (2.0.0)
+    nokogiri (1.6.7)
+      mini_portile2 (~> 2.0.0.rc2)
+    rake (10.4.2)
+    rspec (3.4.0)
+      rspec-core (~> 3.4.0)
+      rspec-expectations (~> 3.4.0)
+      rspec-mocks (~> 3.4.0)
+    rspec-core (3.4.1)
+      rspec-support (~> 3.4.0)
+    rspec-expectations (3.4.0)
       diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.0.0)
-    rspec-mocks (3.0.3)
-      rspec-support (~> 3.0.0)
-    rspec-support (3.0.3)
+      rspec-support (~> 3.4.0)
+    rspec-mocks (3.4.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.4.0)
+    rspec-support (3.4.1)
     tilt (2.0.1)
 
 PLATFORMS
@@ -35,3 +36,6 @@ DEPENDENCIES
   rake
   rspec
   rspec-mocks
+
+BUNDLED WITH
+   1.10.6
