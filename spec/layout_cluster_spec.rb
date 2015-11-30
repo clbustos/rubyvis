@@ -3,10 +3,10 @@ describe Rubyvis::Layout::Cluster do
   include Rubyvis::LayoutSpec
   it "should have correct properties" do
     props=[:antialias, :bottom, :canvas, :cursor, :data, :events, :fill_style,:group,  :height, :id, :inner_radius, :left, :line_width, :links,  :nodes,   :orient, :outer_radius, :overflow, :reverse, :right, :stroke_style, :title, :top, :transform, :visible, :width].inject({}) {|ac, v| ac[v]=true; ac}
-    Rubyvis::Layout::Cluster.properties.should==props 
+    expect(Rubyvis::Layout::Cluster.properties).to eq(props) 
   end
   it "should be called using Rubyvis.Layout.Cluster" do
-    Rubyvis.Layout.Cluster.should eql Rubyvis::Layout::Cluster
+    expect(Rubyvis.Layout.Cluster).to eql Rubyvis::Layout::Cluster
   end
   describe "html tests" do
     
@@ -41,13 +41,13 @@ describe Rubyvis::Layout::Cluster do
       @vis.render
       @pv_out=fixture_svg_read("layout_cluster.svg")
       File.open("test.svg","w") {|fp| fp.write(@vis.to_svg)}
-      @vis.to_svg.should have_same_svg_elements(@pv_out)
+      expect(@vis.to_svg).to have_same_svg_elements(@pv_out)
     end
     it "should render correctly 'cluster_left_group_2.html' custom test" do
       @cluster.orient("left").group(2)
       @vis.render
       @pv_out=fixture_svg_read("layout_cluster_left_group_2.svg")
-      @vis.to_svg.should have_same_svg_elements(@pv_out)
+      expect(@vis.to_svg).to have_same_svg_elements(@pv_out)
     end
   end
 end

@@ -21,17 +21,17 @@ describe Rubyvis::Scale::Ordinal do
       it "domain() implemented equally" do
         @y.domain(@base[0])
         @rt.evaluate("y.domain(domain[0])")
-        @y.domain.should==@rt.evaluate("y.domain()").to_a
+        expect(@y.domain).to eq(@rt.evaluate("y.domain()").to_a)
         @y.domain(@base[0],@base[1])
         @rt.evaluate("y.domain(domain[0],domain[1])")
-        @y.domain.should==@rt.evaluate("y.domain()").to_a        
+        expect(@y.domain).to eq(@rt.evaluate("y.domain()").to_a)        
       end
       
     end
   end
   describe "on ruby domain" do 
     it "should be created as Javascript" do
-      lambda {y = Rubyvis.Scale.ordinal(%w{a b c}).range(%w{red blue black})}.should_not raise_exception
+      expect {y = Rubyvis.Scale.ordinal(%w{a b c}).range(%w{red blue black})}.not_to raise_exception
     end
     
     before do
@@ -40,45 +40,45 @@ describe Rubyvis::Scale::Ordinal do
       @y = Rubyvis.Scale.ordinal(@domain).range(@range)
     end
     it "y should be a Scale::Ordinal" do
-      @y.should be_a(Rubyvis::Scale::Ordinal)
+      expect(@y).to be_a(Rubyvis::Scale::Ordinal)
     end
     it "should respond to domain" do
-      @y.domain.should==%w{a b c}
+      expect(@y.domain).to eq(%w{a b c})
       @y.domain(%w{a})
-      @y.domain.should==%w{a}
+      expect(@y.domain).to eq(%w{a})
       @y.domain(1,100,300)
-      @y.domain.should==[1,100,300]
+      expect(@y.domain).to eq([1,100,300])
     end
     it "should respond to range" do
-      @y.range.should==@range.map {|c| pv.color(c)}
+      expect(@y.range).to eq(@range.map {|c| pv.color(c)})
       @y.range('red')
-      @y.range.should==[pv.color('red')]
+      expect(@y.range).to eq([pv.color('red')])
       @y.range('black','white')
-      @y.range.should==[pv.color('black'), pv.color('white')]
+      expect(@y.range).to eq([pv.color('black'), pv.color('white')])
     end
     it "should returns correct scale with unknown values" do
-      @y.scale(1).should==pv.color('red')
-      @y.scale('x').should==pv.color('white')
-      @y.scale(9).should==pv.color('blue')
-      @y.scale(1).should==pv.color('red')      
+      expect(@y.scale(1)).to eq(pv.color('red'))
+      expect(@y.scale('x')).to eq(pv.color('white'))
+      expect(@y.scale(9)).to eq(pv.color('blue'))
+      expect(@y.scale(1)).to eq(pv.color('red'))      
     end
     it "should return the same using [] and scale()" do
       a=rand()
-      @y[a].should==@y.scale(a)
+      expect(@y[a]).to eq(@y.scale(a))
     end
     it "should returns correct scale with known values" do
-      @y.scale('a').should==pv.color('red')
-      @y.scale('b').should==pv.color('white')
-      @y.scale('c').should==pv.color('blue')
+      expect(@y.scale('a')).to eq(pv.color('red'))
+      expect(@y.scale('b')).to eq(pv.color('white'))
+      expect(@y.scale('c')).to eq(pv.color('blue'))
     end
     it "should return correct by" do
       @y = Rubyvis.Scale.ordinal(@domain).range(@range).by(lambda {|v| v.nombre})
       a=OpenStruct.new({:nombre=>'c'})
       b=OpenStruct.new({:nombre=>'b'})
       c=OpenStruct.new({:nombre=>'a'})
-      @y.call(a).should==pv.color('blue')
-      @y.call(b).should==pv.color('white')
-      @y.call(c).should==pv.color('red')
+      expect(@y.call(a)).to eq(pv.color('blue'))
+      expect(@y.call(b)).to eq(pv.color('white'))
+      expect(@y.call(c)).to eq(pv.color('red'))
       
     end
   end

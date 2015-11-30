@@ -3,10 +3,10 @@ describe Rubyvis::Layout::Stack do
   include Rubyvis::LayoutSpec
   it "should have correct properties" do
     props=[:antialias, :bottom, :canvas, :cursor, :data, :events, :fill_style, :height, :id, :layers, :left, :line_width, :offset, :order, :orient, :overflow, :reverse, :right, :stroke_style, :title, :top, :transform, :visible, :width].inject({}) {|ac, v| ac[v]=true; ac}
-    Rubyvis::Layout::Stack.properties.should==props
+    expect(Rubyvis::Layout::Stack.properties).to eq(props)
   end
   it "Rubyvis.Dot be the same as Rubyvis::Dot" do
-    Rubyvis.Layout.Stack.should eql Rubyvis::Layout::Stack
+    expect(Rubyvis.Layout.Stack).to eql Rubyvis::Layout::Stack
   end
   describe "html examples" do 
     before do
@@ -40,7 +40,7 @@ describe Rubyvis::Layout::Stack do
       offset("expand")
       @vis.render()
       pv_out=fixture_svg_read("stack_expand.svg")
-      @vis.to_svg.should have_same_svg_elements(pv_out)
+      expect(@vis.to_svg).to have_same_svg_elements(pv_out)
     end
     it "should render 'stack-silohouette.html' example correctly" do
       y=@y
@@ -50,7 +50,7 @@ describe Rubyvis::Layout::Stack do
     
       @vis.render()
       pv_out=fixture_svg_read("stack_silohouette.svg")
-      @vis.to_svg.should have_same_svg_elements(pv_out)
+      expect(@vis.to_svg).to have_same_svg_elements(pv_out)
     end
     it "should render 'stack-wiggle.html' example correctly" do
       y=@y
@@ -60,7 +60,7 @@ describe Rubyvis::Layout::Stack do
     
       @vis.render()
       pv_out=fixture_svg_read("stack_wiggle.svg")
-      @vis.to_svg.should have_same_svg_elements(pv_out)
+      expect(@vis.to_svg).to have_same_svg_elements(pv_out)
     end
     
   end
@@ -90,13 +90,13 @@ describe Rubyvis::Layout::Stack do
         # <svg font-size="10px" font-family="sans-serif" fill="none" stroke="none" stroke-width="1.5" width="200" height="200"><g><g><g><path d="M0,180L66.66666666666666,140L133.33333333333331,160L133.33333333333331,200L66.66666666666666,200L0,200Z" fill="rgb(31,119,180)"/></g><g><path d="M0,140L66.66666666666666,120L133.33333333333331,100L133.33333333333331,160L66.66666666666666,140L0,180Z" fill="rgb(174,199,232)"/></g></g></g></svg>        
       end
       it "should return correct number of areas" do
-        @paths.size.should eq 2
+        expect(@paths.size).to eq 2
       end
       it "should return correct path 1" do
-        @paths[0].should have_path_data_close_to "M0 180L66.66666666666666 140L133.33333333333331 160L133.33333333333331 200L66.66666666666666 200L0 200Z"
+        expect(@paths[0]).to have_path_data_close_to "M0 180L66.66666666666666 140L133.33333333333331 160L133.33333333333331 200L66.66666666666666 200L0 200Z"
       end
       it "should return correct path 2" do
-        @paths[1].should have_path_data_close_to "M0 140L66.66666666666666 120L133.33333333333331 100L133.33333333333331 160L66.66666666666666 140L0 180Z"
+        expect(@paths[1]).to have_path_data_close_to "M0 140L66.66666666666666 120L133.33333333333331 100L133.33333333333331 160L66.66666666666666 140L0 180Z"
       end
     end
     describe "using layers() and values()" do
@@ -114,13 +114,13 @@ describe Rubyvis::Layout::Stack do
         # <svg font-size="10px" font-family="sans-serif" fill="none" stroke="none" stroke-width="1.5" width="200" height="200"><g><g><g><path d="M0,180L66.66666666666666,140L133.33333333333331,160L133.33333333333331,200L66.66666666666666,200L0,200Z" fill="rgb(31,119,180)"/></g><g><path d="M0,140L66.66666666666666,120L133.33333333333331,100L133.33333333333331,160L66.66666666666666,140L0,180Z" fill="rgb(174,199,232)"/></g></g></g></svg>       
       end
       it "should return correct number of areas" do
-        @paths.size.should eq 2
+        expect(@paths.size).to eq 2
       end
       it "should return correct path 1" do
-        @paths[0].should have_path_data_close_to "M0 180L66.66666666666666 140L133.33333333333331 160L133.33333333333331 200L66.66666666666666 200L0 200Z"
+        expect(@paths[0]).to have_path_data_close_to "M0 180L66.66666666666666 140L133.33333333333331 160L133.33333333333331 200L66.66666666666666 200L0 200Z"
       end
       it "should return correct path 2" do
-        @paths[1].should have_path_data_close_to "M0 140L66.66666666666666 120L133.33333333333331 100L133.33333333333331 160L66.66666666666666 140L0 180Z"
+        expect(@paths[1]).to have_path_data_close_to "M0 140L66.66666666666666 120L133.33333333333331 100L133.33333333333331 160L66.66666666666666 140L0 180Z"
       end
       
     end

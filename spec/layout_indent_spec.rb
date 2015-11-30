@@ -3,10 +3,10 @@ describe Rubyvis::Layout::Indent do
   include Rubyvis::LayoutSpec
   it "should have correct properties" do
     props=[:antialias, :bottom, :breadth, :canvas, :cursor, :data, :depth, :events, :fill_style, :height, :id, :left, :line_width, :links,  :nodes,  :overflow, :reverse, :right, :stroke_style, :title, :top, :transform, :visible, :width].inject({}) {|ac, v| ac[v]=true; ac}
-    Rubyvis::Layout::Indent.properties.should==props 
+    expect(Rubyvis::Layout::Indent.properties).to eq(props) 
   end
   it "should be called using Rubyvis.Layout.Indent" do
-    Rubyvis.Layout.Indent.should eql Rubyvis::Layout::Indent
+    expect(Rubyvis.Layout.Indent).to eql Rubyvis::Layout::Indent
   end  
   describe "rendered" do
     before do
@@ -45,7 +45,7 @@ describe Rubyvis::Layout::Indent do
     it "should render equal nodes (circles)" do
       pv_rects=@pv_svg.xpath("//circle")
       @rv_svg.xpath("//xmlns:circle").each_with_index {|rv_rect,i|
-        rv_rect.should have_same_position pv_rects[i]
+        expect(rv_rect).to have_same_position pv_rects[i]
       }
       
     end

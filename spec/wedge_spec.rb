@@ -3,10 +3,10 @@ describe Rubyvis::Wedge do
   include Rubyvis::GeneralSpec
   it "should have correct properties" do
     props=[:angle, :antialias, :bottom, :cursor, :data, :end_angle, :events, :fill_style,  :id, :inner_radius, :left, :line_width, :outer_radius, :reverse, :right, :start_angle, :stroke_style, :title, :top, :visible].inject({}) {|ac, v| ac[v]=true; ac}
-    Rubyvis::Wedge.properties.should==props
+    expect(Rubyvis::Wedge.properties).to eq(props)
   end
   it "Rubyvis.Wedge be the same as Rubyvis::Wedge" do
-    Rubyvis.Wedge.should eql Rubyvis::Wedge
+    expect(Rubyvis.Wedge).to eql Rubyvis::Wedge
   end
   it "should render equal to protovis 'wedge-anchor.html' test" do
     
@@ -32,7 +32,7 @@ text(lambda {anchors[self.index]})
 
     vis.render();
     pv_out=fixture_svg_read("wedge_anchor.svg")
-    vis.to_svg.should have_same_svg_elements(pv_out)
+    expect(vis.to_svg).to have_same_svg_elements(pv_out)
     
   end
   it "should render equal to protovis 'wedge-donut.html' test" do
@@ -60,7 +60,7 @@ text(lambda {|d| "%0.2f" % d})
     @vis.render();
 
     @pv_out=fixture_svg_read("wedge_donut.svg")
-    @vis.to_svg.should have_same_svg_elements(@pv_out)
+    expect(@vis.to_svg).to have_same_svg_elements(@pv_out)
   end  
   
 end

@@ -3,10 +3,10 @@ describe Rubyvis::Layout::Grid do
   include Rubyvis::LayoutSpec
   it "should have correct properties" do
     props=[:antialias, :bottom, :canvas, :cols, :cursor, :data, :events, :fill_style, :height,  :id, :left, :line_width, :overflow, :reverse, :right, :rows, :stroke_style, :title, :top, :transform, :visible, :width].inject({}) {|ac, v| ac[v]=true; ac}
-    Rubyvis::Layout::Grid.properties.should==props
+    expect(Rubyvis::Layout::Grid.properties).to eq(props)
   end
   it "Rubyvis.Layout.Grid be the same as Rubyvis::Layout::Grid" do
-    Rubyvis.Layout.Grid.should eql Rubyvis::Layout::Grid
+    expect(Rubyvis.Layout.Grid).to eql Rubyvis::Layout::Grid
   end
   it "should render equal to protovis 'layout_grid.html' test" do
    
@@ -34,7 +34,7 @@ vis.render();
     
     
     pv_out=fixture_svg_read("layout_grid.svg")
-    vis.to_svg.should have_same_svg_elements(pv_out)
+    expect(vis.to_svg).to have_same_svg_elements(pv_out)
   end  
   
 end

@@ -4,7 +4,7 @@ describe Rubyvis::Layout::Matrix do
   
   it "should have correct properties" do
     props=[:antialias, :bottom, :canvas, :cursor, :data, :directed, :events, :fill_style, :height, :id, :left, :line_width, :links, :nodes, :overflow, :reverse, :right, :stroke_style, :title, :top, :transform, :visible, :width].inject({}) {|ac, v| ac[v]=true; ac}
-    Rubyvis::Layout::Matrix.properties.should==props 
+    expect(Rubyvis::Layout::Matrix.properties).to eq(props) 
   end
   describe "rendered" do
     before do   
@@ -38,12 +38,12 @@ sort(lambda {|a,b| a.group<=>b.group})
     end
     
     it "should render correct number of rects(links)" do
-      @rv_svg.xpath("//xmlns:rect").size.should eq @pv_svg.xpath("//rect").size
+      expect(@rv_svg.xpath("//xmlns:rect").size).to eq @pv_svg.xpath("//rect").size
     end
     it "should render equal intersections (links)" do
       pv_rects=@pv_svg.xpath("//rect")
       @rv_svg.xpath("//xmlns:rect").each_with_index {|rv_rect,i|
-        rv_rect.should have_same_position pv_rects[i]
+        expect(rv_rect).to have_same_position pv_rects[i]
       }
       
     end

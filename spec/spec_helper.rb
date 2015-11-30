@@ -14,6 +14,7 @@ require 'rubyvis'
 require 'pp'
 require 'nokogiri'
 
+RSpec::Expectations.configuration.warn_about_potential_false_positives = false
 
 $PROTOVIS_DIR=File.dirname(__FILE__)+"/../vendor/protovis/src"
 module Rubyvis
@@ -95,11 +96,11 @@ end
 RSpec::Matchers.define :have_svg_attributes do |exp|
   match do |obs|
     exp.each {|k,v|
-      obs.attributes[k].should be_truthy
-      obs.attributes[k].value.should==v
+      expect(obs.attributes[k]).to be_truthy
+      expect(obs.attributes[k].value).to eq(v)
     }
   end
-  failure_message_for_should do |obs|
+  failure_message do |obs|
     "\n#{exp} attributes expected, but xml doesn't contains them \n#{obs.to_s}"
   end
 end
@@ -197,7 +198,7 @@ RSpec::Matchers.define :have_same_svg_elements do |exp|
     end
     correct
   end
-  failure_message_for_should do |obs|
+  failure_message do |obs|
     "#{@error[:type]}: #{@error[:exp].to_s} expected, but #{@error[:obs]} retrieved, on #{@error[:attr]} -> #{@error[:i]} : '#{@error[:exp_attr]}' <> '#{@error[:obs_attr]}'"
   end
   
@@ -242,7 +243,7 @@ RSpec::Matchers.define :have_path_data_close_to do |exp|
     }
     correct
   end
-  failure_message_for_should do |obs|
+  failure_message do |obs|
     obs_array=path_scan(obs.attributes["d"].value)
     exp_array=path_scan(exp)
     "\n#{obs_array} path should be equal to \n#{exp_array}"

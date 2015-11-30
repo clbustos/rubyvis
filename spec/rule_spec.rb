@@ -3,10 +3,10 @@ describe Rubyvis::Rule do
   include Rubyvis::GeneralSpec
   it "should have correct properties" do
     props=[:antialias, :bottom, :cursor, :data, :events, :height,  :id, :left, :line_width, :reverse, :right, :stroke_style, :stroke_dasharray, :title, :top, :visible, :width].inject({}) {|ac, v| ac[v]=true; ac}
-    Rubyvis::Rule.properties.should==props
+    expect(Rubyvis::Rule.properties).to eq(props)
   end
   it "Rubyvis.Rule be the same as Rubyvis::Rule" do
-    Rubyvis.Rule.should eql Rubyvis::Rule
+    expect(Rubyvis.Rule).to eql Rubyvis::Rule
   end
   it "should render equal to protovis 'rule-anchor.html' test" do
     vis = Rubyvis::Panel.new().
@@ -27,7 +27,7 @@ describe Rubyvis::Rule do
     
     vis.render();
     pv_out=fixture_svg_read("rule_anchor.svg")
-    vis.to_svg.should have_same_svg_elements(pv_out)
+    expect(vis.to_svg).to have_same_svg_elements(pv_out)
   end  
   
 end

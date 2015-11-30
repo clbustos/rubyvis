@@ -4,7 +4,7 @@ describe Rubyvis::Image do
   include Rubyvis::GeneralSpec
 
   it "Rubyvis.Image be the same as Rubyvis::Image" do
-    Rubyvis.Image.should eql Rubyvis::Image
+    expect(Rubyvis.Image).to eql Rubyvis::Image
   end
   
   it "should render correctly" do
@@ -21,7 +21,7 @@ describe Rubyvis::Image do
     vis.render()
     
     pv_out=fixture_svg_read("image.svg")
-    vis.to_svg.should have_same_svg_elements(pv_out)
+    expect(vis.to_svg).to have_same_svg_elements(pv_out)
   end
    
 end

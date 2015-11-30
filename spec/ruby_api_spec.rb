@@ -5,12 +5,12 @@ shared_examples_for "Ruby API for Rubyvis" do
     @w=200
   end
   it "should create a Panel with a block" do
-    lambda {@vis = Rubyvis.Panel.new {
+    expect {@vis = Rubyvis.Panel.new {
       width @w
       height @h
     }
-    }.should_not raise_exception
-    @vis._properties.size.should==2
+    }.not_to raise_exception
+    expect(@vis._properties.size).to eq(2)
   end
   it "should create a Bar with new method" do
     vis1=Rubyvis.Panel.new.width(@w).height(@h)
@@ -41,7 +41,7 @@ shared_examples_for "Ruby API for Rubyvis" do
     }
     vis2.render
     svg2=vis2.to_svg
-    svg1.should==svg2
+    expect(svg1).to eq(svg2)
     
   end
 end
