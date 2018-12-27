@@ -21,30 +21,30 @@ describe Rubyvis::Scale::Linear do
       it "domain() implemented equally" do
         @y.domain(@v1)
         @rt.evaluate("y.domain(v1)")
-        @y.domain.should==@rt.evaluate("y.domain()").to_a
+        expect(@y.domain).to eq(@rt.evaluate("y.domain()").to_a)
         @y.domain(@v1,@v2,@v3)
         @rt.evaluate("y.domain(v1,v2,v3)")
-        @y.domain.should==@rt.evaluate("y.domain()").to_a        
+        expect(@y.domain).to eq(@rt.evaluate("y.domain()").to_a)        
       end
       it "scale() implemented equally for complex domain" do
         @y.domain(@v1,@v2,@v3)
         @rt.evaluate("y.domain(v1,v2,v3)")
-        @y.scale(@v1+1).should==@rt.evaluate("y(v1+1)")
-        @y.scale(@v2+1).should==@rt.evaluate("y(v2+1)")
-        @y.scale(@v3+1).should==@rt.evaluate("y(v3+1)")
+        expect(@y.scale(@v1+1)).to eq(@rt.evaluate("y(v1+1)"))
+        expect(@y.scale(@v2+1)).to eq(@rt.evaluate("y(v2+1)"))
+        expect(@y.scale(@v3+1)).to eq(@rt.evaluate("y(v3+1)"))
       end
       it "invert() implemented equally" do
         @y.domain(@v1,@v2,@v3)
         @rt.evaluate("y.domain(v1,v2,v3)")
-        @y.invert(@v1+1).should==@rt.evaluate("y.invert(v1+1)")
-        @y.invert(@v2+1).should==@rt.evaluate("y.invert(v2+1)")
-        @y.invert(@v3+1).should==@rt.evaluate("y.invert(v3+1)")
+        expect(@y.invert(@v1+1)).to eq(@rt.evaluate("y.invert(v1+1)"))
+        expect(@y.invert(@v2+1)).to eq(@rt.evaluate("y.invert(v2+1)"))
+        expect(@y.invert(@v3+1)).to eq(@rt.evaluate("y.invert(v3+1)"))
       end
       it "ticks() implemented equally for numbers" do
-        @y.ticks.should==@rt.evaluate("y.ticks()").to_a
+        expect(@y.ticks).to eq(@rt.evaluate("y.ticks()").to_a)
         (5..20).each {|i|
           @rt[:i]=i
-          @y.ticks(i).should==@rt.evaluate("y.ticks(i)").to_a
+          expect(@y.ticks(i)).to eq(@rt.evaluate("y.ticks(i)").to_a)
         }
       end
       it "nice() implemented equally" do
@@ -52,7 +52,7 @@ describe Rubyvis::Scale::Linear do
         @rt.evaluate("y.domain(v1,v2)")
         @y.nice
         @rt.evaluate("y.nice()")
-        @y.domain.should==@rt.evaluate("y.domain()").to_a
+        expect(@y.domain).to eq(@rt.evaluate("y.domain()").to_a)
       end
    
     end
@@ -69,27 +69,27 @@ describe Rubyvis::Scale::Linear do
     @y = Rubyvis.Scale.linear(0, @h_dom).range(0,@h)
   end
   it "y should be a Scale" do
-    @y.should be_a(Rubyvis::Scale::Linear)
+    expect(@y).to be_a(Rubyvis::Scale::Linear)
   end
   it "should respond to domain" do
-    @y.domain.should==[0, 1000]
+    expect(@y.domain).to eq([0, 1000])
     @y.domain(1)
-    @y.domain.should==[1,1]
+    expect(@y.domain).to eq([1,1])
     @y.domain(1,100,300)
-    @y.domain.should==[1,100,300]
+    expect(@y.domain).to eq([1,100,300])
   end
   it "should respond to range" do
-    @y.range.should==[0, 280]
+    expect(@y.range).to eq([0, 280])
     @y.range(1)
-    @y.range.should==[1,1]
+    expect(@y.range).to eq([1,1])
     @y.range(1,100,300)
-    @y.range.should==[1,100,300]
+    expect(@y.range).to eq([1,100,300])
   end
   it "should returns correct scale" do
-    @y.scale(@h_dom).should==280
-    @y[@h_dom].should==280
+    expect(@y.scale(@h_dom)).to eq(280)
+    expect(@y[@h_dom]).to eq(280)
     val=20
-    @y.scale(val).should be_within( 0.001).of(val.quo(@h_dom)*@h.to_f)
+    expect(@y.scale(val)).to be_within( 0.001).of(val.quo(@h_dom)*@h.to_f)
   end
   it "should return correct scale when values are extracted from data " do
     data = pv.range(0, 10, 0.1).map {|x| OpenStruct.new({:x=> x, :y=> Math.sin(x) + 2+rand()}) }
@@ -97,44 +97,44 @@ describe Rubyvis::Scale::Linear do
     h = 200
     x = pv.Scale.linear(data, lambda {|d| d.x}).range(0, w)
     y = pv.Scale.linear(data, lambda {|d| d.y}).range(0, h)
-    lambda {y.scale 0.5}.should_not raise_error
+    expect {y.scale 0.5}.not_to raise_error
   end
   it "should returns correct invert" do
-    @y.invert(100).should be_within( 0.001).of(357.1428)
-    @y.invert(200).should be_within( 0.001).of(714.2857)
+    expect(@y.invert(100)).to be_within( 0.001).of(357.1428)
+    expect(@y.invert(200)).to be_within( 0.001).of(714.2857)
   end
   it "should returns correct ticks" do
-    @y.ticks.should==[0,100,200,300,400,500,600,700,800,900,1000]
-    @y.ticks(13).should==[0,100,200,300,400,500,600,700,800,900,1000]
-    @y.ticks(5).should==[0,200,400,600,800,1000]
+    expect(@y.ticks).to eq([0,100,200,300,400,500,600,700,800,900,1000])
+    expect(@y.ticks(13)).to eq([0,100,200,300,400,500,600,700,800,900,1000])
+    expect(@y.ticks(5)).to eq([0,200,400,600,800,1000])
   end
   it "should return correct tick when domain is a scalar" do
-    @y.domain(1,1,1).ticks.should==[1]
+    expect(@y.domain(1,1,1).ticks).to eq([1])
   end
 
   it "should nice nicely" do
     @y.domain([0.20147987687960267, 0.996679553296417])
     @y.nice
-    @y.domain().should==[0.2,1]
+    expect(@y.domain()).to eq([0.2,1])
   end
   
   it "should returns correct tick_format" do
-    @y.tick_format.should be_instance_of Proc
-    @y.tick_format.call( 2).should=='2'
-    @y.tick_format.call(2.0).should=='2'
-    @y.tick_format.call(2.1).should=='2.1'
-    @y.tick_format.call("a").should==''
+    expect(@y.tick_format).to be_instance_of Proc
+    expect(@y.tick_format.call( 2)).to eq('2')
+    expect(@y.tick_format.call(2.0)).to eq('2')
+    expect(@y.tick_format.call(2.1)).to eq('2.1')
+    expect(@y.tick_format.call("a")).to eq('')
   end
   it "should return correct tick_format for small numbers" do
     @y.domain(0.00001,0.0001)
     @y.range(0.000001,0.0001)
-    @y.ticks.should==[1.quo(100000), 1.quo(50000), 3.quo(100000), 1.quo(25000), 1.quo(20000), 3.quo(50000), 7.quo(100000), 1.quo(12500), 9.quo(100000), 1.quo(10000)]
-    @y.tick_format.call(0.2).should=='0.20000'
+    expect(@y.ticks).to eq([1.quo(100000), 1.quo(50000), 3.quo(100000), 1.quo(25000), 1.quo(20000), 3.quo(50000), 7.quo(100000), 1.quo(12500), 9.quo(100000), 1.quo(10000)])
+    expect(@y.tick_format.call(0.2)).to eq('0.20000')
   end
   it "should return correct by" do
     by=@y.by(lambda {|v| v.value})
     a=OpenStruct.new({:value=>rand})
-    by.call(a).should==@y[a.value]
+    expect(by.call(a)).to eq(@y[a.value])
   end
   
 end

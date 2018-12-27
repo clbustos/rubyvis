@@ -7,7 +7,7 @@ describe Rubyvis::Layout::Horizon do
     Rubyvis::Layout::Horizon.properties.should==props 
   end
   it "should be called using Rubyvis.Layout.Horizon" do
-    Rubyvis.Layout.Horizon.should eql Rubyvis::Layout::Horizon
+    expect(Rubyvis.Layout.Horizon).to eql Rubyvis::Layout::Horizon
   end
   describe "rendered" do
     before do
@@ -46,13 +46,13 @@ describe Rubyvis::Layout::Horizon do
     
     it "should render correct number of clipaths" do
       
-      @rv_svg.xpath("//xmlns:clipPath[@id]").size.should eq @pv_svg.xpath("//clippath[@id]").size
+      expect(@rv_svg.xpath("//xmlns:clipPath[@id]").size).to eq @pv_svg.xpath("//clippath[@id]").size
     end
     it "should render equal paths" do
       pv_paths=@pv_svg.xpath("//path")
       @rv_svg.xpath("//xmlns:path").each_with_index {|rv_path,i|
-        rv_path.should have_path_data_close_to pv_paths[i]['d']
-        rv_path['fill'].should eq pv_paths[i]['fill']
+        expect(rv_path).to have_path_data_close_to pv_paths[i]['d']
+        expect(rv_path['fill']).to eq pv_paths[i]['fill']
       }
     end
   end

@@ -10,10 +10,10 @@ describe Rubyvis::Panel do
     Rubyvis::Panel.properties.should==props
   end
   it "should have correct defaults" do
-    Rubyvis::Panel.defaults._properties.size.should==2
+    expect(Rubyvis::Panel.defaults._properties.size).to eq(2)
   end
   it "should build propertly" do
-    lambda {@vis.render}.should_not raise_exception
+    expect {@vis.render}.not_to raise_exception
   end
   it "should return valid svg" do   
     @vis.render
@@ -30,6 +30,6 @@ describe Rubyvis::Panel do
     doc1.at_xpath("//xmlns:svg").should have_svg_attributes({"font-size"=>"10px", "font-family"=>"sans-serif", "fill"=>"none", "stroke"=>"none", "stroke-width"=>"1.5", "width"=>"200.0", "height"=>"200.0", "viewBox" => "0 0 200 200"})
     
     doc2.at_xpath("//xmlns:svg").should have_svg_attributes({"font-size"=>"10px", "font-family"=>"sans-serif", "fill"=>"none", "stroke"=>"none", "stroke-width"=>"1.5", "width"=>"300.0", "height"=>"300.0", "viewBox" => "0 0 300 300"})
-    
+
   end
 end

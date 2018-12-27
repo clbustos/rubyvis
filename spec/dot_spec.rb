@@ -4,10 +4,10 @@ require File.expand_path(File.dirname(__FILE__)+"/spec_helper.rb")
   it "should have correct properties" do
     props=[:antialias, :bottom, :cursor, :data, :events, :fill_style,  :id, :left, :line_width, :reverse, :right, :shape, :shape_angle, :shape_radius, :shape_size, :stroke_style, :title, :top, :visible].inject({}) {|ac, v| ac[v]=true; ac}
     
-    Rubyvis::Dot.properties.should==props
+    expect(Rubyvis::Dot.properties).to eq(props)
   end
   it "Rubyvis.Dot be the same as Rubyvis::Dot" do
-    Rubyvis.Dot.should eql Rubyvis::Dot
+    expect(Rubyvis.Dot).to eql Rubyvis::Dot
   end
   
   it "should render correctly 'dot-anchor' example" do
@@ -34,7 +34,7 @@ require File.expand_path(File.dirname(__FILE__)+"/spec_helper.rb")
     vis.render()
     
     pv_out=fixture_svg_read("dot_anchor.svg")
-    vis.to_svg.should have_same_svg_elements(pv_out)
+    expect(vis.to_svg).to have_same_svg_elements(pv_out)
   end
   
   

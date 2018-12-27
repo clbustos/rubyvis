@@ -17,51 +17,51 @@ describe "Rubyvis::Scale::Linear with dates" do
   end
   it "should not crash on :week_day precision (bug #15)" do
     ct=Time.utc(2012,03,19,10,10,10)
-    @y.mock_ticks_floor(ct,:week_day).should==Time.utc(2012,03,18,10,10,10)
+    expect(@y.mock_ticks_floor(ct,:week_day)).to eq(Time.utc(2012,03,18,10,10,10))
   end
   it "y should be a Scale" do
-    @y.should be_a(Rubyvis::Scale::Linear)
+    expect(@y).to be_a(Rubyvis::Scale::Linear)
   end
   it "should respond to domain" do
-    @y.domain.should==[@bd, @ed]
+    expect(@y.domain).to eq([@bd, @ed])
     @y.domain(@bd)
-    @y.domain.should==[@bd,@bd]
+    expect(@y.domain).to eq([@bd,@bd])
     @y.domain(@bd,@ed,@ed+1)
-    @y.domain.should==[@bd,@ed,@ed+1]
+    expect(@y.domain).to eq([@bd,@ed,@ed+1])
   end
   it "should respond to range" do
-    @y.range.should==[0, @h]
+    expect(@y.range).to eq([0, @h])
     @y.range(1)
-    @y.range.should==[1,1]
+    expect(@y.range).to eq([1,1])
     @y.range(1,100,300)
-    @y.range.should==[1,100,300]
+    expect(@y.range).to eq([1,100,300])
   end
   it "should returns correct scale" do
-    @y.scale(@bd).should==0
-    @y.scale(@ed).should==@h
-    @y[@ed].should==@h
+    expect(@y.scale(@bd)).to eq(0)
+    expect(@y.scale(@ed)).to eq(@h)
+    expect(@y[@ed]).to eq(@h)
     val= (@ed.to_f+@bd.to_f) / 2.0
-    @y.scale(val).should be_within( 0.001).of(@h / 2.0)
+    expect(@y.scale(val)).to be_within( 0.001).of(@h / 2.0)
   end
   it "should returns correct invert" do
-    @y.invert(0).should==@bd
-    @y.invert(@h).should==@ed
+    expect(@y.invert(0)).to eq(@bd)
+    expect(@y.invert(@h)).to eq(@ed)
   end
   it "should returns correct ticks" do
-    @y.ticks.size.should==5
-    @y.ticks(5).size.should==5
-    @y.ticks(5)[0].should be_instance_of Time
+    expect(@y.ticks.size).to eq(5)
+    expect(@y.ticks(5).size).to eq(5)
+    expect(@y.ticks(5)[0]).to be_instance_of Time
     
     #p @y.ticks
   end
   it "should return correct tick_floor" do
     ct=Time.utc(2012,04,05,10,10,10)
-    @y.mock_ticks_floor(ct,:month).should==Time.utc(2012,01,05,10,10,10)
-    @y.mock_ticks_floor(ct,:month_day).should==Time.utc(2012,04,01,10,10,10)
-    @y.mock_ticks_floor(ct,:week_day).should==Time.utc(2012,04,01,10,10,10)
-    @y.mock_ticks_floor(ct,:hour).should==Time.utc(2012,04,05,00,10,10)
-    @y.mock_ticks_floor(ct,:minute).should==Time.utc(2012,04,05,10,00,10)
-    @y.mock_ticks_floor(ct,:second).should==Time.utc(2012,04,05,10,10,00)
+    expect(@y.mock_ticks_floor(ct,:month)).to eq(Time.utc(2012,01,05,10,10,10))
+    expect(@y.mock_ticks_floor(ct,:month_day)).to eq(Time.utc(2012,04,01,10,10,10))
+    expect(@y.mock_ticks_floor(ct,:week_day)).to eq(Time.utc(2012,04,01,10,10,10))
+    expect(@y.mock_ticks_floor(ct,:hour)).to eq(Time.utc(2012,04,05,00,10,10))
+    expect(@y.mock_ticks_floor(ct,:minute)).to eq(Time.utc(2012,04,05,10,00,10))
+    expect(@y.mock_ticks_floor(ct,:second)).to eq(Time.utc(2012,04,05,10,10,00))
     
   end 
   

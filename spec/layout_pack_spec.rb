@@ -41,7 +41,7 @@ describe Rubyvis::Layout::Pack do
     it "should render equal nodes (circles)" do
       pv_rects=@pv_svg.xpath("//circle")
       @rv_svg.xpath("//xmlns:circle").each_with_index {|rv_rect,i|
-        rv_rect.should have_same_position pv_rects[i]
+        expect(rv_rect).to have_same_position pv_rects[i]
       }
       
     end

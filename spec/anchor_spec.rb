@@ -4,12 +4,12 @@ describe Rubyvis::Anchor do
   
   it "should have correct properties" do
     props=[:antialias, :bottom, :cursor, :data, :events, :id,  :left, :name, :reverse, :right,  :title, :top, :visible].inject({}) {|ac, v| ac[v]=true; ac}
-    Rubyvis::Anchor.properties.should==props
+    expect(Rubyvis::Anchor.properties).to eq(props)
   end
   it "should be initialized with an object which respond to parent" do
     my_mock=double('mark')
-    my_mock.stub(:parent)
-    my_mock.should_receive(:parent).with(no_args())
+    allow(my_mock).to receive(:parent)
+    expect(my_mock).to receive(:parent).with(no_args())
     Rubyvis.Anchor(my_mock)
     
   end
@@ -42,15 +42,15 @@ describe Rubyvis::Anchor do
     end
     if(true)
     it "first loop correct" do
-      @data_p1.should==@expected_p1
+      expect(@data_p1).to eq(@expected_p1)
     end
     it "second loop correct" do
-      @data_p2.should==@expected_p2
+      expect(@data_p2).to eq(@expected_p2)
     end
     end
     
     it "label loop correct" do
-      @data_l.should==@expected_l
+      expect(@data_l).to eq(@expected_l)
     end
   end
   
@@ -85,7 +85,7 @@ describe Rubyvis::Anchor do
     expected=[]
     a1.each {|a| a2.each {|b| expected.push([b,b,a,nil])}}
     vis.render
-    adatas.should==expected
+    expect(adatas).to eq(expected)
     
   end
   
@@ -104,7 +104,7 @@ describe Rubyvis::Anchor do
       @vis.render
       expected=[]
       @values.each {|a| @values.each {|b| expected.push([b,b,a,nil])}}
-      datas.should==expected
+      expect(datas).to eq(expected)
     end
   end
   it "should render equal to protovis 'anchor.html' example" do
@@ -122,7 +122,7 @@ describe Rubyvis::Anchor do
         text("bottom")
       @vis.render
       @pv_out=fixture_svg_read("anchor.svg")
-      @vis.to_svg.should have_same_svg_elements(@pv_out)
+      expect(@vis.to_svg).to have_same_svg_elements(@pv_out)
   end
   context "Panel-bar assigment" do 
     before do
@@ -140,7 +140,7 @@ describe Rubyvis::Anchor do
       expected=[[1,nil],[2,nil],[3,nil]]
       @label.text(lambda {|*args| datas.push args})
       @vis.render
-      datas.should==expected
+      expect(datas).to eq(expected)
     end
     
     it "should have correct data for two levels of data" do
@@ -150,7 +150,7 @@ describe Rubyvis::Anchor do
       %w{a b c}.each {|a| [1,2,3].each {|b| expected.push([b,a])}}
       @label.text(lambda {|*args| datas.push args})
       @vis.render
-      datas.should==expected
+      expect(datas).to eq(expected)
     end
   end  
 end

@@ -6,7 +6,7 @@ describe Rubyvis::Layout::Grid do
     Rubyvis::Layout::Grid.properties.should==props
   end
   it "Rubyvis.Layout.Grid be the same as Rubyvis::Layout::Grid" do
-    Rubyvis.Layout.Grid.should eql Rubyvis::Layout::Grid
+    expect(Rubyvis.Layout.Grid).to eql Rubyvis::Layout::Grid
   end
   it "should render equal to protovis 'layout_grid.html' test" do
    
@@ -30,11 +30,11 @@ describe Rubyvis::Layout::Grid do
       textStyle("rgba(255, 255, 255, .4)").
       font("24px sans");
 
-vis.render();
+    vis.render
     
     
     pv_out=fixture_svg_read("layout_grid.svg")
-    vis.to_svg.should have_same_svg_elements(pv_out)
+    expect(vis.to_svg).to have_same_svg_elements(pv_out)
   end  
   
 end

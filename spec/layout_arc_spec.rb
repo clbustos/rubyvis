@@ -6,7 +6,7 @@ describe Rubyvis::Layout::Arc do
     Rubyvis::Layout::Arc.properties.should==props 
   end
   it "should be called using Rubyvis.Layout.Arc" do
-    Rubyvis.Layout.Arc.should eql Rubyvis::Layout::Arc
+    expect(Rubyvis.Layout.Arc).to eql Rubyvis::Layout::Arc
   end  
   describe "rendered" do
     before do
@@ -49,18 +49,18 @@ describe Rubyvis::Layout::Arc do
     
     it "should render correct number of clipaths" do
       
-      @rv_svg.xpath("//xmlns:path").size.should eq @pv_svg.xpath("//path").size
+      expect(@rv_svg.xpath("//xmlns:path").size).to eq @pv_svg.xpath("//path").size
     end
     it "should render equal paths (links)" do
       pv_paths=@pv_svg.xpath("//path")
       @rv_svg.xpath("//xmlns:path").each_with_index {|rv_path,i|
-        rv_path.should have_path_data_close_to pv_paths[i]['d']
+        expect(rv_path).to have_path_data_close_to pv_paths[i]['d']
       }
     end
     it "should render equal dots (nodes)" do
       pv_circles=@pv_svg.xpath("//circle")
       @rv_svg.xpath("//xmlns:circle").each_with_index {|rv_circle,i|
-        rv_circle.should have_same_position pv_circles[i]
+        expect(rv_circle).to have_same_position pv_circles[i]
       }
       
     end

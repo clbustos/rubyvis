@@ -35,7 +35,7 @@ describe Rubyvis::Layout::Treemap do
     end
     
     it "should render equal to protovis version " do 
-      @vis.to_svg.should have_same_svg_elements(@pv_out)
+      expect(@vis.to_svg).to have_same_svg_elements(@pv_out)
     end
   end
 end
