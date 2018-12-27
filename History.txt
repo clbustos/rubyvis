@@ -1,10 +1,12 @@
 === 0.6.1 / 2014-08-07
+
 * Change license to BSD 2-Clause
 * Merge pull request #19 from pivotal-cloudplanner/master
 * Added travis and bundler support
 * Resolved bug #15
 
 === 0.6.0 / 2013-07-10
+
 + Added support for dashed lines (ex.: stroke_dasharray('9,5,3'))
 - Raises an exception on log scale when domain includes 0 or negative values
 
@@ -28,6 +30,7 @@
 
 
 === 0.4.1 / 2011-01-26
+
 * All tests run on ruby 1.8.7. Not all pass, because on ruby<1.9 hash order are not preserved
 * Removed warnings for Ruby 1.9+
 * Changed SvgScene.implicit and Color.names with constants

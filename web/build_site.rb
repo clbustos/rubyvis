@@ -74,7 +74,7 @@ files.each do |f|
   # Read svg size
   width=350
   height=200
-  if File.exists? "examples/#{page.svg_file}"
+  if File.exist? "examples/#{page.svg_file}"
     File.open("examples/#{page.svg_file}","r") {|fp|
       header=fp.gets(">")
       if header=~/\sheight=['"]([^']+)['"]/ 
