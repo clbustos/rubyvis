@@ -1,3 +1,10 @@
+=== 0.7.0 / 2019-01-02
+
+* Version for API and Protovis version in lib/rubyvis/version.rb
+* Travis.CI: Updated to jruby-head, ruby 2.5 and 2.6
+* Added view_box property
+* Update rspec tests to new style, fix all warnings
+
 === 0.6.1 / 2014-08-07
 
 * Change license to BSD 2-Clause

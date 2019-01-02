@@ -4,6 +4,7 @@ require 'rexml/document'
 require 'rexml/formatters/default'
 
 require 'pp'
+require 'rubyvis/version'
 require 'rubyvis/internals'
 require 'rubyvis/vector'
 
@@ -33,10 +34,6 @@ require 'rubyvis/mark/shorcut_methods'
 # 
 module Rubyvis
   @@nokogiri=nil
-  # Rubyvis version
-  VERSION = '0.6.1' 
-  # Protovis API on which current Rubyvis is based
-  PROTOVIS_API_VERSION='3.3'
   # You actually can do it! http://snipplr.com/view/2137/uses-for-infinity-in-ruby/
   Infinity=1.0 / 0 
   #

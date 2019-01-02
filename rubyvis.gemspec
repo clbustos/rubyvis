@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
-$:.unshift(File.expand_path(File.dirname(__FILE__)+"/lib"))
-require File.expand_path("../lib/rubyvis", __FILE__)
+require_relative "lib/rubyvis/version.rb"
 
 Gem::Specification.new do |s|
   s.name = "rubyvis"
