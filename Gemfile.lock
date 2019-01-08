@@ -7,9 +7,9 @@ GEM
       temple (>= 0.8.0)
       tilt
     mini_portile2 (2.4.0)
-    nokogiri (1.9.1)
+    nokogiri (1.10.0)
       mini_portile2 (~> 2.4.0)
-    nokogiri (1.9.1-java)
+    nokogiri (1.10.0-java)
     rake (12.3.2)
     rspec (3.8.0)
       rspec-core (~> 3.8.0)

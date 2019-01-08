@@ -2,13 +2,10 @@ language:
   ruby
 
 rvm:
-  - '2.1.9'
-  - '2.2.10'
+  - '2.3'
+  - '2.4'
   - '2.5.0'
   - '2.6.0'
-  - 'jruby-head'
-#  - rbx-2.1.1
 
 script:
-  gem install bundler
   bundle exec rspec 
