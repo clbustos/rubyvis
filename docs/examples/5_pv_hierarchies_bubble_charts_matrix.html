@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' content='text/html' http-equiv='Content-Type'>
+<link href='../style.css' rel='stylesheet' type='text/css'>
+<title>Rubyvis - Example: Bubble charts matrix</title>
+</head>
+<body>
+<h1>Rubyvis - Example: Bubble charts matrix</h1>
+<div class='example_main'>
+<div class='description'>
+<p>Why have one boring bubble chart when <br />
+you can have 20 multicolor charts?</p></div>
+<div class='navigation'>
+<ul>
+<li>
+<a href='../index.html'>Home</a>
+</li>
+<li>
+<a href='5_pv_hierarchies_bubble_charts.html'>Previous: Bubble charts</a>
+</li>
+<li>
+<a href='5_pv_hierarchies_circle_packing.html'>Next: Circle Packing</a>
+</li>
+</ul>
+</div>
+<div class='image'>
+<!--[if IE]>
+<embed class='svg' height='1610' src='5_pv_hierarchies_bubble_charts_matrix.svg' width='430'>
+<![endif]-->
+<object class='svg' data='5_pv_hierarchies_bubble_charts_matrix.svg' height='1610' type='image/svg+xml' width='430'></object>
+</div>
+<div class='source'><div class="CodeRay">
+  <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">rubyvis</span><span style="color:#710">'</span></span>&#x000A;&#x000A;panes=<span style="color:#00D">20</span>&#x000A;cols=<span style="color:#00D">2</span>&#x000A;&#x000A;&#x000A;p_w=<span style="color:#00D">200</span>&#x000A;p_h=<span style="color:#00D">150</span>&#x000A;<span style="color:#777">#p data</span>&#x000A;w = <span style="color:#00D">20</span>+p_w*cols&#x000A;h = (panes/cols)*<span style="color:#00D">10</span>+p_h*(panes/cols)&#x000A;&#x000A;colors20=<span style="color:#036;font-weight:bold">Rubyvis</span>::<span style="color:#036;font-weight:bold">Colors</span>.category20()&#x000A;c20=<span style="color:#036;font-weight:bold">Rubyvis</span>::<span style="color:#036;font-weight:bold">Colors</span>.category20().by(lambda {|n| n.parent_node}) &#x000A;vis = pv.Panel.new()&#x000A;  .width(w)&#x000A;  .height(h)&#x000A;  .bottom(<span style="color:#00D">5</span>)&#x000A;  .left(<span style="color:#00D">5</span>)&#x000A;  .right(<span style="color:#00D">5</span>)&#x000A;  .top(<span style="color:#00D">5</span>)&#x000A;&#x000A;&#x000A;&#x000A;(<span style="color:#00D">0</span>..panes).each <span style="color:#080;font-weight:bold">do</span> |i|&#x000A;  n=i%cols&#x000A;  m=(i/cols.to_f).floor&#x000A;  panel=vis.add(<span style="color:#036;font-weight:bold">Rubyvis</span>::<span style="color:#036;font-weight:bold">Panel</span>).&#x000A;  left(n*(p_w+<span style="color:#00D">10</span>)).&#x000A;  top(m*(p_h+<span style="color:#00D">10</span>)).&#x000A;  width(p_w).&#x000A;  height(p_h)&#x000A;&#x000A;  d=<span style="color:#036;font-weight:bold">Rubyvis</span>.nodes((i+<span style="color:#00D">1</span>).times.map {|ii| rand(<span style="color:#00D">5</span>)+<span style="color:#00D">1</span>})&#x000A;  &#x000A;  &#x000A;  panel.anchor(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">top</span><span style="color:#710">'</span></span>).add(<span style="color:#036;font-weight:bold">Rubyvis</span>::<span style="color:#036;font-weight:bold">Label</span>).text(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">n</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>i+<span style="color:#00D">1</span><span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">&quot;</span></span>) &#x000A;  &#x000A;  pack=panel.add(pv.Layout.Pack).&#x000A;    nodes(d).&#x000A;    size(lambda {|n| n.node_value})&#x000A;  &#x000A;  pack.node.add(<span style="color:#036;font-weight:bold">Rubyvis</span>::<span style="color:#036;font-weight:bold">Dot</span>).&#x000A;    visible( lambda {|n| n.parent_node}).&#x000A;    fill_style(lambda {|n|&#x000A;      colors20.scale(n.parent_node).&#x000A;        brighter((n.node_value) / <span style="color:#60E">5.0</span>)&#x000A;    }).&#x000A;    stroke_style(c20)&#x000A;  &#x000A;  pack.node_label.add(<span style="color:#036;font-weight:bold">Rubyvis</span>::<span style="color:#036;font-weight:bold">Label</span>).&#x000A;    visible( lambda {|n| n.parent_node}).&#x000A;    text(lambda {index})&#x000A;  &#x000A;<span style="color:#080;font-weight:bold">end</span>&#x000A;&#x000A;vis.render();&#x000A;puts vis.to_svg&#x000A;</pre></div>
+</div>
+</div>
+</div>
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5764936-8']);
+  _gaq.push(['_trackPageview']);
+  
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

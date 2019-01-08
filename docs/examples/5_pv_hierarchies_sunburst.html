@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' content='text/html' http-equiv='Content-Type'>
+<link href='../style.css' rel='stylesheet' type='text/css'>
+<title>Rubyvis - Example: Sunbursts</title>
+</head>
+<body>
+<h1>Rubyvis - Example: Sunbursts</h1>
+<div class='example_main'>
+<div class='description'><p>A sunburst is an adjacency diagram: a space-filling variant of the node-link diagram. Rather than drawing a link between parent and child in the hierarchy, nodes are drawn as solid areas (either wedges or bars), and their placement relative to adjacent nodes reveals their position in the hierarchy. Because the nodes are now space-filling, we can use an angle encoding for the size of software files. This reveals an additional dimension that would be difficult to show in a node-link diagram.<br />
+This example show files and directory inside rubyvis lib directory and uses <span class="caps">RBP</span> <span class="caps">API</span></p></div>
+<div class='navigation'>
+<ul>
+<li>
+<a href='../index.html'>Home</a>
+</li>
+<li>
+<a href='5_pv_hierarchies_node_link_tree.html'>Previous: Node-Link Trees</a>
+</li>
+<li>
+<a href='5_pv_hierarchies_treemap.html'>Next: Treemap</a>
+</li>
+</ul>
+</div>
+<div class='image'>
+<!--[if IE]>
+<embed class='svg' height='900' src='5_pv_hierarchies_sunburst.svg' width='900'>
+<![endif]-->
+<object class='svg' data='5_pv_hierarchies_sunburst.svg' height='900' type='image/svg+xml' width='900'></object>
+</div>
+<div class='source'><div class="CodeRay">
+  <div class="code"><pre>&#x000A;require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">rubyvis</span><span style="color:#710">'</span></span>&#x000A;&#x000A;<span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">get_files</span>(path)&#x000A;  h={}&#x000A;  <span style="color:#036;font-weight:bold">Dir</span>.glob(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>path<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">/*</span><span style="color:#710">&quot;</span></span>).each {|e|&#x000A;    <span style="color:#080;font-weight:bold">next</span> <span style="color:#080;font-weight:bold">if</span> <span style="color:#036;font-weight:bold">File</span>.expand_path(e)=~<span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#808">pkg|web|vendor|doc|~</span><span style="color:#404">/</span></span>&#x000A;    pa=<span style="color:#036;font-weight:bold">File</span>.expand_path(e) &#x000A;    <span style="color:#080;font-weight:bold">if</span> <span style="color:#036;font-weight:bold">File</span>.stat(pa).directory?&#x000A;      h[<span style="color:#036;font-weight:bold">File</span>.basename(pa)]=get_files(pa)&#x000A;    <span style="color:#080;font-weight:bold">else</span>&#x000A;      h[<span style="color:#036;font-weight:bold">File</span>.basename(pa)]=<span style="color:#036;font-weight:bold">File</span>.stat(pa).size&#x000A;    <span style="color:#080;font-weight:bold">end</span>&#x000A;  }&#x000A;  h&#x000A;<span style="color:#080;font-weight:bold">end</span>&#x000A;&#x000A;files=get_files(<span style="color:#036;font-weight:bold">File</span>.expand_path(<span style="color:#036;font-weight:bold">File</span>.dirname(<span style="color:#069">__FILE__</span>)+<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">/../../lib/rubyvis/</span><span style="color:#710">&quot;</span></span>))&#x000A;&#x000A;<span style="color:#777">#load(File.dirname(__FILE__)+&quot;/treemap/treemap_data.rb&quot;)</span>&#x000A;&#x000A;colors=<span style="color:#036;font-weight:bold">Rubyvis</span>::<span style="color:#036;font-weight:bold">Colors</span>.category19()&#x000A;&#x000A;vis = <span style="color:#036;font-weight:bold">Rubyvis</span>::<span style="color:#036;font-weight:bold">Panel</span>.new <span style="color:#080;font-weight:bold">do</span>&#x000A;  width <span style="color:#00D">900</span>&#x000A;  height <span style="color:#00D">900</span>&#x000A;  layout_partition_fill <span style="color:#080;font-weight:bold">do</span>    &#x000A;    nodes <span style="color:#036;font-weight:bold">Rubyvis</span>.dom(files).root(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">rubyvis</span><span style="color:#710">&quot;</span></span>).nodes&#x000A;    size {|d| d.node_value}&#x000A;    order <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">descending</span><span style="color:#710">&quot;</span></span>&#x000A;    orient <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">radial</span><span style="color:#710">&quot;</span></span>&#x000A;    &#x000A;    node.wedge <span style="color:#080;font-weight:bold">do</span> &#x000A;      fill_style {|d| colors.scale(d.parent_node)}&#x000A;      stroke_style(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">#fff</span><span style="color:#710">&quot;</span></span>)&#x000A;      line_width(<span style="color:#60E">0.5</span>)&#x000A;    <span style="color:#080;font-weight:bold">end</span>&#x000A;    &#x000A;    node_label.label <span style="color:#080;font-weight:bold">do</span> &#x000A;      visible {|d| d.angle * d.outer_radius &gt;= <span style="color:#00D">10</span>}&#x000A;    <span style="color:#080;font-weight:bold">end</span>&#x000A;    &#x000A;  <span style="color:#080;font-weight:bold">end</span>&#x000A;<span style="color:#080;font-weight:bold">end</span>&#x000A;vis.render&#x000A;&#x000A;&#x000A;puts vis.to_svg</pre></div>
+</div>
+</div>
+</div>
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5764936-8']);
+  _gaq.push(['_trackPageview']);
+  
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

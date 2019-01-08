@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' content='text/html' http-equiv='Content-Type'>
+<link href='../style.css' rel='stylesheet' type='text/css'>
+<title>Rubyvis - Example: Grid</title>
+</head>
+<body>
+<h1>Rubyvis - Example: Grid</h1>
+<div class='example_main'>
+<div class='description'><p>A simple heatmap, using a Bar.fill_style to represent<br />
+data</p></div>
+<div class='navigation'>
+<ul>
+<li>
+<a href='../index.html'>Home</a>
+</li>
+<li>
+<a href='1_basic_dot.html'>Previous: Dot and anchors</a>
+</li>
+<li>
+<a href='1_basic_image.html'>Next: Image</a>
+</li>
+</ul>
+</div>
+<div class='image'>
+<!--[if IE]>
+<embed class='svg' height='400' src='1_basic_grid.svg' width='400'>
+<![endif]-->
+<object class='svg' data='1_basic_grid.svg' height='400' type='image/svg+xml' width='400'></object>
+</div>
+<div class='source'><div class="CodeRay">
+  <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">rubyvis</span><span style="color:#710">'</span></span>&#x000A;&#x000A;w = <span style="color:#00D">400</span>&#x000A;h = <span style="color:#00D">400</span>&#x000A;&#x000A;vis = pv.Panel.new()&#x000A;  .width(w)&#x000A;  .height(h)&#x000A;  .bottom(<span style="color:#00D">0</span>)&#x000A;  .left(<span style="color:#00D">0</span>)&#x000A;  .right(<span style="color:#00D">0</span>)&#x000A;  .top(<span style="color:#00D">0</span>)&#x000A;&#x000A;  arrays=<span style="color:#00D">10</span>.times.map {|i| <span style="color:#00D">10</span>.times.map {|j| i.quo(<span style="color:#00D">10</span>)+j.quo(<span style="color:#00D">100</span>)}}&#x000A;&#x000A;  vis.add(<span style="color:#036;font-weight:bold">Rubyvis</span>::<span style="color:#036;font-weight:bold">Layout</span>::<span style="color:#036;font-weight:bold">Grid</span>).rows(arrays).&#x000A;    cell.add(<span style="color:#036;font-weight:bold">Rubyvis</span>::<span style="color:#036;font-weight:bold">Bar</span>).&#x000A;    fill_style(<span style="color:#036;font-weight:bold">Rubyvis</span>.ramp(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">white</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">black</span><span style="color:#710">&quot;</span></span>)).anchor(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">center</span><span style="color:#710">&quot;</span></span>).&#x000A;    add(<span style="color:#036;font-weight:bold">Rubyvis</span>::<span style="color:#036;font-weight:bold">Label</span>).&#x000A;    text_style(<span style="color:#036;font-weight:bold">Rubyvis</span>.ramp(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">black</span><span style="color:#710">&quot;</span></span>,<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">white</span><span style="color:#710">&quot;</span></span>)).&#x000A;    text(lambda{|v| <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">%0.2f</span><span style="color:#710">&quot;</span></span> % v })&#x000A;&#x000A;vis.render();&#x000A;&#x000A;&#x000A;puts vis.to_svg</pre></div>
+</div>
+</div>
+</div>
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5764936-8']);
+  _gaq.push(['_trackPageview']);
+  
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

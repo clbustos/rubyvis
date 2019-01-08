@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' content='text/html' http-equiv='Content-Type'>
+<link href='../style.css' rel='stylesheet' type='text/css'>
+<title>Rubyvis - Example: Image</title>
+</head>
+<body>
+<h1>Rubyvis - Example: Image</h1>
+<div class='example_main'>
+<div class='description'><p>This example shows how to include an image</p></div>
+<div class='navigation'>
+<ul>
+<li>
+<a href='../index.html'>Home</a>
+</li>
+<li>
+<a href='1_basic_grid.html'>Previous: Grid</a>
+</li>
+<li>
+<a href='1_basic_line.html'>Next: Line Chart</a>
+</li>
+</ul>
+</div>
+<div class='image'>
+<!--[if IE]>
+<embed class='svg' height='200' src='1_basic_image.svg' width='200'>
+<![endif]-->
+<object class='svg' data='1_basic_image.svg' height='200' type='image/svg+xml' width='200'></object>
+</div>
+<div class='source'><div class="CodeRay">
+  <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">rubyvis</span><span style="color:#710">'</span></span>&#x000A;&#x000A;img_url=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">fixtures/tipsy.gif</span><span style="color:#710">&quot;</span></span>&#x000A;&#x000A;vis = pv.Panel.new().width(<span style="color:#00D">200</span>).height(<span style="color:#00D">200</span>);&#x000A;&#x000A;dot=vis.add(pv.Image)&#x000A;    .data([<span style="color:#00D">1</span>,<span style="color:#00D">2</span>,<span style="color:#00D">3</span>,<span style="color:#00D">4</span>,<span style="color:#00D">5</span>,<span style="color:#00D">6</span>])&#x000A;    .bottom(lambda {|d| d*<span style="color:#00D">30</span>})&#x000A;    .left(lambda {|d| d*<span style="color:#00D">30</span>} )&#x000A;    .width(<span style="color:#00D">9</span>)&#x000A;    .height(<span style="color:#00D">9</span>)&#x000A;    .url(img_url)&#x000A;    &#x000A;vis.render()&#x000A;puts vis.to_svg</pre></div>
+</div>
+</div>
+</div>
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5764936-8']);
+  _gaq.push(['_trackPageview']);
+  
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

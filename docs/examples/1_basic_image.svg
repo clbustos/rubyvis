@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" font-size="10px" font-family="sans-serif" fill="none" stroke="none" stroke-width="1.5" width="200.0" height="200.0">
+     <g transform="translate(0.0,0.0)">
+          <image preserveAspectRatio="none" x="30" y="161" width="9" height="9" xlink:href="fixtures/tipsy.gif"/>
+          <image preserveAspectRatio="none" x="60" y="131" width="9" height="9" xlink:href="fixtures/tipsy.gif"/>
+          <image preserveAspectRatio="none" x="90" y="101" width="9" height="9" xlink:href="fixtures/tipsy.gif"/>
+          <image preserveAspectRatio="none" x="120" y="71" width="9" height="9" xlink:href="fixtures/tipsy.gif"/>
+          <image preserveAspectRatio="none" x="150" y="41" width="9" height="9" xlink:href="fixtures/tipsy.gif"/>
+          <image preserveAspectRatio="none" x="180" y="11" width="9" height="9" xlink:href="fixtures/tipsy.gif"/>
+     </g>
+</svg>

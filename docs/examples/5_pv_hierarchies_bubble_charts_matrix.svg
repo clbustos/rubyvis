@@ -1,0 +1,695 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" font-size="10px" font-family="sans-serif" fill="none" stroke="none" stroke-width="1.5" width="430" height="1610">
+     <g transform="translate(5,5)">
+          <g>
+               <text pointer-events="none" y="3" dy=".71em" transform="translate(100.0,0)" fill="rgb(0,0,0)" text-anchor="middle">n1</text>
+          </g>
+          <g>
+               <g>
+                    <circle fill="rgb(38,147,222)" stroke="rgb(31,119,180)" cx="100.0" cy="75.0" r="47.54809471616709"/>
+               </g>
+               <g>
+                    <text pointer-events="none" dy=".35em" transform="translate(100.0,75.0)" fill="rgb(0,0,0)" text-anchor="middle">1</text>
+               </g>
+          </g>
+     </g>
+     <g transform="translate(5,5)">
+          <g transform="translate(210,0)">
+               <text pointer-events="none" y="3" dy=".71em" transform="translate(100.0,0)" fill="rgb(0,0,0)" text-anchor="middle">n2</text>
+          </g>
+          <g transform="translate(210,0)">
+               <g>
+                    <circle fill="rgb(231,255,255)" stroke="rgb(174,199,232)" cx="70.0" cy="75.0" r="30.0"/>
+                    <circle fill="rgb(231,255,255)" stroke="rgb(174,199,232)" cx="130.0" cy="75.0" r="30.0"/>
+               </g>
+               <g>
+                    <text pointer-events="none" dy=".35em" transform="translate(70.0,75.0)" fill="rgb(0,0,0)" text-anchor="middle">1</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(130.0,75.0)" fill="rgb(0,0,0)" text-anchor="middle">2</text>
+               </g>
+          </g>
+     </g>
+     <g transform="translate(5,5)">
+          <g transform="translate(0,160)">
+               <text pointer-events="none" y="3" dy=".71em" transform="translate(100.0,0)" fill="rgb(0,0,0)" text-anchor="middle">n3</text>
+          </g>
+          <g transform="translate(0,160)">
+               <g>
+                    <circle fill="rgb(255,136,32)" stroke="rgb(255,127,14)" cx="81.96976275058329" cy="109.51372467563804" r="18.030237249416718"/>
+                    <circle fill="rgb(255,136,32)" stroke="rgb(255,127,14)" cx="118.03023724941671" cy="109.51372467563804" r="18.030237249416718"/>
+                    <circle fill="rgb(255,168,39)" stroke="rgb(255,127,14)" cx="100.0" cy="58.51651257377867" r="36.060474498833436"/>
+               </g>
+               <g>
+                    <text pointer-events="none" dy=".35em" transform="translate(81.96976275058329,109.51372467563804)" fill="rgb(0,0,0)" text-anchor="middle">1</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(118.03023724941671,109.51372467563804)" fill="rgb(0,0,0)" text-anchor="middle">2</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(100.0,58.51651257377867)" fill="rgb(0,0,0)" text-anchor="middle">3</text>
+               </g>
+          </g>
+     </g>
+     <g transform="translate(5,5)">
+          <g transform="translate(210,160)">
+               <text pointer-events="none" y="3" dy=".71em" transform="translate(100.0,0)" fill="rgb(0,0,0)" text-anchor="middle">n4</text>
+          </g>
+          <g transform="translate(210,160)">
+               <g>
+                    <circle fill="rgb(255,231,148)" stroke="rgb(255,187,120)" cx="79.9337791296743" cy="91.47157816730177" r="21.839480709855277"/>
+                    <circle fill="rgb(255,255,171)" stroke="rgb(255,187,120)" cx="129.96790819922546" cy="91.47157816730177" r="28.194648359695876"/>
+                    <circle fill="rgb(255,231,148)" stroke="rgb(255,187,120)" cx="98.99928207919609" cy="52.173254182857626" r="21.839480709855277"/>
+                    <circle fill="rgb(255,215,138)" stroke="rgb(255,187,120)" cx="59.66930476991253" cy="57.36635190983178" r="17.831861328833863"/>
+               </g>
+               <g>
+                    <text pointer-events="none" dy=".35em" transform="translate(79.9337791296743,91.47157816730177)" fill="rgb(0,0,0)" text-anchor="middle">1</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(129.96790819922546,91.47157816730177)" fill="rgb(0,0,0)" text-anchor="middle">2</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(98.99928207919609,52.173254182857626)" fill="rgb(0,0,0)" text-anchor="middle">3</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(59.66930476991253,57.36635190983178)" fill="rgb(0,0,0)" text-anchor="middle">4</text>
+               </g>
+          </g>
+     </g>
+     <g transform="translate(5,5)">
+          <g transform="translate(0,320)">
+               <text pointer-events="none" y="3" dy=".71em" transform="translate(100.0,0)" fill="rgb(0,0,0)" text-anchor="middle">n5</text>
+          </g>
+          <g transform="translate(0,320)">
+               <g>
+                    <circle fill="rgb(47,171,47)" stroke="rgb(44,160,44)" cx="94.90853421928534" cy="69.29914688262068" r="11.501441409962704"/>
+                    <circle fill="rgb(62,228,62)" stroke="rgb(44,160,44)" cx="132.1279804611557" cy="69.29914688262068" r="25.718004831907635"/>
+                    <circle fill="rgb(47,171,47)" stroke="rgb(44,160,44)" cx="102.0168159302578" cy="47.42210528315678" r="11.501441409962704"/>
+                    <circle fill="rgb(54,198,54)" stroke="rgb(44,160,44)" cx="70.6519261421241" cy="49.32436598768328" r="19.921080882332028"/>
+                    <circle fill="rgb(62,228,62)" stroke="rgb(44,160,44)" cx="67.87201953884433" cy="94.8787100627411" r="25.718004831907635"/>
+               </g>
+               <g>
+                    <text pointer-events="none" dy=".35em" transform="translate(94.90853421928534,69.29914688262068)" fill="rgb(0,0,0)" text-anchor="middle">1</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(132.1279804611557,69.29914688262068)" fill="rgb(0,0,0)" text-anchor="middle">2</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(102.0168159302578,47.42210528315678)" fill="rgb(0,0,0)" text-anchor="middle">3</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(70.6519261421241,49.32436598768328)" fill="rgb(0,0,0)" text-anchor="middle">4</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(67.87201953884433,94.8787100627411)" fill="rgb(0,0,0)" text-anchor="middle">5</text>
+               </g>
+          </g>
+     </g>
+     <g transform="translate(5,5)">
+          <g transform="translate(210,320)">
+               <text pointer-events="none" y="3" dy=".71em" transform="translate(100.0,0)" fill="rgb(0,0,0)" text-anchor="middle">n6</text>
+          </g>
+          <g transform="translate(210,320)">
+               <g>
+                    <circle fill="rgb(188,255,170)" stroke="rgb(152,223,138)" cx="107.128915376214" cy="71.9985521991525" r="17.525918129599365"/>
+                    <circle fill="rgb(163,239,148)" stroke="rgb(152,223,138)" cx="134.7734270557329" cy="71.9985521991525" r="10.118593549919536"/>
+                    <circle fill="rgb(202,255,183)" stroke="rgb(152,223,138)" cx="130.07737144629277" cy="42.00821241165917" r="20.237187099839073"/>
+                    <circle fill="rgb(175,255,159)" stroke="rgb(152,223,138)" cx="95.53202425555091" cy="42.35013924411452" r="14.30985223043713"/>
+                    <circle fill="rgb(202,255,183)" stroke="rgb(152,223,138)" cx="69.92262855370723" cy="65.53756640354818" r="20.237187099839073"/>
+                    <circle fill="rgb(217,255,197)" stroke="rgb(152,223,138)" cx="85.15394981221995" cy="105.6031116738689" r="22.625863014310998"/>
+               </g>
+               <g>
+                    <text pointer-events="none" dy=".35em" transform="translate(107.128915376214,71.9985521991525)" fill="rgb(0,0,0)" text-anchor="middle">1</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(134.7734270557329,71.9985521991525)" fill="rgb(0,0,0)" text-anchor="middle">2</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(130.07737144629277,42.00821241165917)" fill="rgb(0,0,0)" text-anchor="middle">3</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(95.53202425555091,42.35013924411452)" fill="rgb(0,0,0)" text-anchor="middle">4</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(69.92262855370723,65.53756640354818)" fill="rgb(0,0,0)" text-anchor="middle">5</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(85.15394981221995,105.6031116738689)" fill="rgb(0,0,0)" text-anchor="middle">6</text>
+               </g>
+          </g>
+     </g>
+     <g transform="translate(5,5)">
+          <g transform="translate(0,480)">
+               <text pointer-events="none" y="3" dy=".71em" transform="translate(100.0,0)" fill="rgb(0,0,0)" text-anchor="middle">n7</text>
+          </g>
+          <g transform="translate(0,480)">
+               <g>
+                    <circle fill="rgb(229,41,42)" stroke="rgb(214,39,40)" cx="86.11771856935097" cy="69.4086606201225" r="8.97567810264695"/>
+                    <circle fill="rgb(255,55,57)" stroke="rgb(214,39,40)" cx="115.16362305367284" cy="69.4086606201225" r="20.070226381674917"/>
+                    <circle fill="rgb(255,48,49)" stroke="rgb(214,39,40)" cx="89.15522681898112" cy="45.075505258677495" r="15.546330506167939"/>
+                    <circle fill="rgb(255,55,57)" stroke="rgb(214,39,40)" cx="57.96314249975942" cy="62.26832353746792" r="20.070226381674917"/>
+                    <circle fill="rgb(255,55,57)" stroke="rgb(214,39,40)" cx="77.71529382773527" cy="97.21268597210768" r="20.070226381674917"/>
+                    <circle fill="rgb(255,48,49)" stroke="rgb(214,39,40)" cx="112.486936441394" cy="104.9244947413225" r="15.546330506167939"/>
+                    <circle fill="rgb(255,51,53)" stroke="rgb(214,39,40)" cx="144.1557276766216" cy="94.00741286387836" r="17.9513562052939"/>
+               </g>
+               <g>
+                    <text pointer-events="none" dy=".35em" transform="translate(86.11771856935097,69.4086606201225)" fill="rgb(0,0,0)" text-anchor="middle">1</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(115.16362305367284,69.4086606201225)" fill="rgb(0,0,0)" text-anchor="middle">2</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(89.15522681898112,45.075505258677495)" fill="rgb(0,0,0)" text-anchor="middle">3</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(57.96314249975942,62.26832353746792)" fill="rgb(0,0,0)" text-anchor="middle">4</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(77.71529382773527,97.21268597210768)" fill="rgb(0,0,0)" text-anchor="middle">5</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(112.486936441394,104.9244947413225)" fill="rgb(0,0,0)" text-anchor="middle">6</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(144.1557276766216,94.00741286387836)" fill="rgb(0,0,0)" text-anchor="middle">7</text>
+               </g>
+          </g>
+     </g>
+     <g transform="translate(5,5)">
+          <g transform="translate(210,480)">
+               <text pointer-events="none" y="3" dy=".71em" transform="translate(100.0,0)" fill="rgb(0,0,0)" text-anchor="middle">n8</text>
+          </g>
+          <g transform="translate(210,480)">
+               <g>
+                    <circle fill="rgb(255,175,173)" stroke="rgb(255,152,150)" cx="94.39951820581578" cy="74.23368930039032" r="14.45562102614847"/>
+                    <circle fill="rgb(255,217,214)" stroke="rgb(255,152,150)" cx="131.71148294938905" cy="74.23368930039032" r="22.856343717424807"/>
+                    <circle fill="rgb(255,175,173)" stroke="rgb(255,152,150)" cx="105.60048179418423" cy="47.58039059838071" r="14.45562102614847"/>
+                    <circle fill="rgb(255,217,214)" stroke="rgb(255,152,150)" cx="68.28851705061095" cy="47.5803905983807" r="22.856343717424807"/>
+                    <circle fill="rgb(255,163,161)" stroke="rgb(255,152,150)" cx="70.55245753044956" cy="80.58083619813122" r="10.221667653852421"/>
+                    <circle fill="rgb(255,163,161)" stroke="rgb(255,152,150)" cx="83.5213353395895" cy="96.38394243946395" r="10.221667653852421"/>
+                    <circle fill="rgb(255,163,161)" stroke="rgb(255,152,150)" cx="103.95581759631014" cy="96.9855182061143" r="10.221667653852421"/>
+                    <circle fill="rgb(255,175,173)" stroke="rgb(255,152,150)" cx="124.39026158958342" cy="110.82033209289563" r="14.45562102614847"/>
+               </g>
+               <g>
+                    <text pointer-events="none" dy=".35em" transform="translate(94.39951820581578,74.23368930039032)" fill="rgb(0,0,0)" text-anchor="middle">1</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(131.71148294938905,74.23368930039032)" fill="rgb(0,0,0)" text-anchor="middle">2</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(105.60048179418423,47.58039059838071)" fill="rgb(0,0,0)" text-anchor="middle">3</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(68.28851705061095,47.5803905983807)" fill="rgb(0,0,0)" text-anchor="middle">4</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(70.55245753044956,80.58083619813122)" fill="rgb(0,0,0)" text-anchor="middle">5</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(83.5213353395895,96.38394243946395)" fill="rgb(0,0,0)" text-anchor="middle">6</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(103.95581759631014,96.9855182061143)" fill="rgb(0,0,0)" text-anchor="middle">7</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(124.39026158958342,110.82033209289563)" fill="rgb(0,0,0)" text-anchor="middle">8</text>
+               </g>
+          </g>
+     </g>
+     <g transform="translate(5,5)">
+          <g transform="translate(0,640)">
+               <text pointer-events="none" y="3" dy=".71em" transform="translate(100.0,0)" fill="rgb(0,0,0)" text-anchor="middle">n9</text>
+          </g>
+          <g transform="translate(0,640)">
+               <g>
+                    <circle fill="rgb(211,147,255)" stroke="rgb(148,103,189)" cx="102.13101958642719" cy="72.95854502907625" r="21.912783337835936"/>
+                    <circle fill="rgb(158,110,202)" stroke="rgb(148,103,189)" cx="133.8434975481883" cy="72.95854502907625" r="9.799694623925179"/>
+                    <circle fill="rgb(196,137,251)" stroke="rgb(148,103,189)" cx="131.53010345820272" cy="43.65062220462292" r="19.599389247850358"/>
+                    <circle fill="rgb(158,110,202)" stroke="rgb(148,103,189)" cx="102.22950649271498" cy="41.24621999913759" r="9.799694623925179"/>
+                    <circle fill="rgb(196,137,251)" stroke="rgb(148,103,189)" cx="72.91454048124969" cy="43.46858366117121" r="19.599389247850358"/>
+                    <circle fill="rgb(211,147,255)" stroke="rgb(148,103,189)" cx="59.40675448336459" cy="82.72161144526888" r="21.912783337835936"/>
+                    <circle fill="rgb(183,127,234)" stroke="rgb(148,103,189)" cx="87.92527688312636" cy="109.15723659938115" r="16.97356898729799"/>
+                    <circle fill="rgb(183,127,234)" stroke="rgb(148,103,189)" cx="121.76992592655841" cy="106.52134817359925" r="16.97356898729799"/>
+                    <circle fill="rgb(170,118,217)" stroke="rgb(148,103,189)" cx="148.64716781020167" cy="91.41331685315083" r="13.858861044269696"/>
+               </g>
+               <g>
+                    <text pointer-events="none" dy=".35em" transform="translate(102.13101958642719,72.95854502907625)" fill="rgb(0,0,0)" text-anchor="middle">1</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(133.8434975481883,72.95854502907625)" fill="rgb(0,0,0)" text-anchor="middle">2</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(131.53010345820272,43.65062220462292)" fill="rgb(0,0,0)" text-anchor="middle">3</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(102.22950649271498,41.24621999913759)" fill="rgb(0,0,0)" text-anchor="middle">4</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(72.91454048124969,43.46858366117121)" fill="rgb(0,0,0)" text-anchor="middle">5</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(59.40675448336459,82.72161144526888)" fill="rgb(0,0,0)" text-anchor="middle">6</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(87.92527688312636,109.15723659938115)" fill="rgb(0,0,0)" text-anchor="middle">7</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(121.76992592655841,106.52134817359925)" fill="rgb(0,0,0)" text-anchor="middle">8</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(148.64716781020167,91.41331685315083)" fill="rgb(0,0,0)" text-anchor="middle">9</text>
+               </g>
+          </g>
+     </g>
+     <g transform="translate(5,5)">
+          <g transform="translate(210,640)">
+               <text pointer-events="none" y="3" dy=".71em" transform="translate(100.0,0)" fill="rgb(0,0,0)" text-anchor="middle">n10</text>
+          </g>
+          <g transform="translate(210,640)">
+               <g>
+                    <circle fill="rgb(255,234,255)" stroke="rgb(197,176,213)" cx="77.0597837813722" cy="72.29257515144569" r="16.39003736153971"/>
+                    <circle fill="rgb(255,251,255)" stroke="rgb(197,176,213)" cx="111.77443998999397" cy="72.29257515144569" r="18.324618847082046"/>
+                    <circle fill="rgb(244,217,255)" stroke="rgb(197,176,213)" cx="92.65880611620805" cy="45.98543947587376" r="14.194188724069463"/>
+                    <circle fill="rgb(255,234,255)" stroke="rgb(197,176,213)" cx="62.21415190321297" cy="43.06689273017702" r="16.39003736153971"/>
+                    <circle fill="rgb(227,202,245)" stroke="rgb(197,176,213)" cx="49.41935575446447" cy="67.94957887325654" r="11.5895065622456"/>
+                    <circle fill="rgb(255,234,255)" stroke="rgb(197,176,213)" cx="53.96663398095102" cy="95.5571347033903" r="16.39003736153971"/>
+                    <circle fill="rgb(244,217,255)" stroke="rgb(197,176,213)" cx="83.83931397593855" cy="102.11593605521742" r="14.194188724069463"/>
+                    <circle fill="rgb(255,234,255)" stroke="rgb(197,176,213)" cx="114.04179312492286" cy="106.93310726982298" r="16.39003736153971"/>
+                    <circle fill="rgb(255,251,255)" stroke="rgb(197,176,213)" cx="144.09878453350663" cy="89.56403639233729" r="18.324618847082046"/>
+                    <circle fill="rgb(255,251,255)" stroke="rgb(197,176,213)" cx="142.89413645684073" cy="52.934602236528605" r="18.324618847082046"/>
+               </g>
+               <g>
+                    <text pointer-events="none" dy=".35em" transform="translate(77.0597837813722,72.29257515144569)" fill="rgb(0,0,0)" text-anchor="middle">1</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(111.77443998999397,72.29257515144569)" fill="rgb(0,0,0)" text-anchor="middle">2</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(92.65880611620805,45.98543947587376)" fill="rgb(0,0,0)" text-anchor="middle">3</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(62.21415190321297,43.06689273017702)" fill="rgb(0,0,0)" text-anchor="middle">4</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(49.41935575446447,67.94957887325654)" fill="rgb(0,0,0)" text-anchor="middle">5</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(53.96663398095102,95.5571347033903)" fill="rgb(0,0,0)" text-anchor="middle">6</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(83.83931397593855,102.11593605521742)" fill="rgb(0,0,0)" text-anchor="middle">7</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(114.04179312492286,106.93310726982298)" fill="rgb(0,0,0)" text-anchor="middle">8</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(144.09878453350663,89.56403639233729)" fill="rgb(0,0,0)" text-anchor="middle">9</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(142.89413645684073,52.934602236528605)" fill="rgb(0,0,0)" text-anchor="middle">10</text>
+               </g>
+          </g>
+     </g>
+     <g transform="translate(5,5)">
+          <g transform="translate(0,800)">
+               <text pointer-events="none" y="3" dy=".71em" transform="translate(100.0,0)" fill="rgb(0,0,0)" text-anchor="middle">n11</text>
+          </g>
+          <g transform="translate(0,800)">
+               <g>
+                    <circle fill="rgb(200,122,107)" stroke="rgb(140,86,75)" cx="84.382055803161" cy="70.59312018386126" r="17.229558062673384"/>
+                    <circle fill="rgb(200,122,107)" stroke="rgb(140,86,75)" cx="118.84117192850776" cy="70.59312018386126" r="17.229558062673384"/>
+                    <circle fill="rgb(161,99,86)" stroke="rgb(140,86,75)" cx="101.61161386583439" cy="48.36157455699373" r="10.896929311233205"/>
+                    <circle fill="rgb(161,99,86)" stroke="rgb(140,86,75)" cx="80.55853654593145" cy="42.72772959833167" r="10.896929311233205"/>
+                    <circle fill="rgb(173,106,92)" stroke="rgb(140,86,75)" cx="58.92187024517759" cy="53.66264023041198" r="13.345958287849546"/>
+                    <circle fill="rgb(200,122,107)" stroke="rgb(140,86,75)" cx="52.44976116698223" cy="83.54531086375792" r="17.229558062673384"/>
+                    <circle fill="rgb(186,114,99)" stroke="rgb(140,86,75)" cx="78.83589231925794" cy="102.75861449273462" r="15.410585220166906"/>
+                    <circle fill="rgb(150,92,80)" stroke="rgb(140,86,75)" cx="98.72967633127287" cy="90.98656430823577" r="7.705292610083453"/>
+                    <circle fill="rgb(173,106,92)" stroke="rgb(140,86,75)" cx="117.17957148978668" cy="101.12345401896921" r="13.345958287849546"/>
+                    <circle fill="rgb(200,122,107)" stroke="rgb(140,86,75)" cx="146.21088418684008" cy="91.52944113660337" r="17.229558062673384"/>
+                    <circle fill="rgb(186,114,99)" stroke="rgb(140,86,75)" cx="149.36921167552424" cy="59.042460344314186" r="15.410585220166906"/>
+               </g>
+               <g>
+                    <text pointer-events="none" dy=".35em" transform="translate(84.382055803161,70.59312018386126)" fill="rgb(0,0,0)" text-anchor="middle">1</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(118.84117192850776,70.59312018386126)" fill="rgb(0,0,0)" text-anchor="middle">2</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(101.61161386583439,48.36157455699373)" fill="rgb(0,0,0)" text-anchor="middle">3</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(80.55853654593145,42.72772959833167)" fill="rgb(0,0,0)" text-anchor="middle">4</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(58.92187024517759,53.66264023041198)" fill="rgb(0,0,0)" text-anchor="middle">5</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(52.44976116698223,83.54531086375792)" fill="rgb(0,0,0)" text-anchor="middle">6</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(78.83589231925794,102.75861449273462)" fill="rgb(0,0,0)" text-anchor="middle">7</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(98.72967633127287,90.98656430823577)" fill="rgb(0,0,0)" text-anchor="middle">8</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(117.17957148978668,101.12345401896921)" fill="rgb(0,0,0)" text-anchor="middle">9</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(146.21088418684008,91.52944113660337)" fill="rgb(0,0,0)" text-anchor="middle">10</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(149.36921167552424,59.042460344314186)" fill="rgb(0,0,0)" text-anchor="middle">11</text>
+               </g>
+          </g>
+     </g>
+     <g transform="translate(5,5)">
+          <g transform="translate(210,800)">
+               <text pointer-events="none" y="3" dy=".71em" transform="translate(100.0,0)" fill="rgb(0,0,0)" text-anchor="middle">n12</text>
+          </g>
+          <g transform="translate(210,800)">
+               <g>
+                    <circle fill="rgb(255,222,211)" stroke="rgb(196,156,148)" cx="81.4470555711327" cy="73.02075601124687" r="17.746220161889234"/>
+                    <circle fill="rgb(255,207,196)" stroke="rgb(196,156,148)" cx="115.06597758328658" cy="73.02075601124687" r="15.87270185026466"/>
+                    <circle fill="rgb(242,193,183)" stroke="rgb(196,156,148)" cx="99.95932314346969" cy="47.54397936321688" r="13.746163029025457"/>
+                    <circle fill="rgb(210,167,158)" stroke="rgb(196,156,148)" cx="78.27681121677507" cy="47.53460274376495" r="7.93635092513233"/>
+                    <circle fill="rgb(255,207,196)" stroke="rgb(196,156,148)" cx="54.9543767670234" cy="52.323657493783514" r="15.87270185026466"/>
+                    <circle fill="rgb(255,207,196)" stroke="rgb(196,156,148)" cx="49.53720308303758" cy="83.6034414666167" r="15.87270185026466"/>
+                    <circle fill="rgb(255,222,211)" stroke="rgb(196,156,148)" cx="73.15337879172003" cy="107.53058425793054" r="17.746220161889234"/>
+                    <circle fill="rgb(255,207,196)" stroke="rgb(196,156,148)" cx="106.54177184824954" cy="103.60030101597744" r="15.87270185026466"/>
+                    <circle fill="rgb(226,179,170)" stroke="rgb(196,156,148)" cx="131.9580558163607" cy="94.20736549499264" r="11.2236951140744"/>
+                    <circle fill="rgb(255,222,211)" stroke="rgb(196,156,148)" cx="148.58927860533785" cy="70.48694349959132" r="17.746220161889234"/>
+                    <circle fill="rgb(210,167,158)" stroke="rgb(196,156,148)" cx="129.08592193596573" cy="53.77725959273136" r="7.93635092513233"/>
+                    <circle fill="rgb(226,179,170)" stroke="rgb(196,156,148)" cx="122.07269805755183" cy="35.94689069425462" r="11.2236951140744"/>
+               </g>
+               <g>
+                    <text pointer-events="none" dy=".35em" transform="translate(81.4470555711327,73.02075601124687)" fill="rgb(0,0,0)" text-anchor="middle">1</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(115.06597758328658,73.02075601124687)" fill="rgb(0,0,0)" text-anchor="middle">2</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(99.95932314346969,47.54397936321688)" fill="rgb(0,0,0)" text-anchor="middle">3</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(78.27681121677507,47.53460274376495)" fill="rgb(0,0,0)" text-anchor="middle">4</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(54.9543767670234,52.323657493783514)" fill="rgb(0,0,0)" text-anchor="middle">5</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(49.53720308303758,83.6034414666167)" fill="rgb(0,0,0)" text-anchor="middle">6</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(73.15337879172003,107.53058425793054)" fill="rgb(0,0,0)" text-anchor="middle">7</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(106.54177184824954,103.60030101597744)" fill="rgb(0,0,0)" text-anchor="middle">8</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(131.9580558163607,94.20736549499264)" fill="rgb(0,0,0)" text-anchor="middle">9</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(148.58927860533785,70.48694349959132)" fill="rgb(0,0,0)" text-anchor="middle">10</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(129.08592193596573,53.77725959273136)" fill="rgb(0,0,0)" text-anchor="middle">11</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(122.07269805755183,35.94689069425462)" fill="rgb(0,0,0)" text-anchor="middle">12</text>
+               </g>
+          </g>
+     </g>
+     <g transform="translate(5,5)">
+          <g transform="translate(0,960)">
+               <text pointer-events="none" y="3" dy=".71em" transform="translate(100.0,0)" fill="rgb(0,0,0)" text-anchor="middle">n13</text>
+          </g>
+          <g transform="translate(0,960)">
+               <g>
+                    <circle fill="rgb(255,170,255)" stroke="rgb(227,119,194)" cx="83.49014778131485" cy="77.46179681428758" r="20.28823058129566"/>
+                    <circle fill="rgb(255,158,255)" stroke="rgb(227,119,194)" cx="121.92472345179738" cy="77.46179681428758" r="18.146345089186866"/>
+                    <circle fill="rgb(243,127,208)" stroke="rgb(227,119,194)" cx="104.28400893876878" cy="56.73241352183291" r="9.073172544593433"/>
+                    <circle fill="rgb(255,170,255)" stroke="rgb(227,119,194)" cx="82.6382135567423" cy="36.894280146930626" r="20.28823058129566"/>
+                    <circle fill="rgb(243,127,208)" stroke="rgb(227,119,194)" cx="61.84435239928838" cy="57.6236634393853" r="9.073172544593433"/>
+                    <circle fill="rgb(255,137,223)" stroke="rgb(227,119,194)" cx="50.3910599316298" cy="76.2953679847604" r="12.83140366631524"/>
+                    <circle fill="rgb(255,147,240)" stroke="rgb(227,119,194)" cx="58.727842769585" cy="103.59749967610189" r="15.71519583307482"/>
+                    <circle fill="rgb(255,158,255)" stroke="rgb(227,119,194)" cx="90.52216602908149" cy="115.24760534517817" r="18.146345089186866"/>
+                    <circle fill="rgb(243,127,208)" stroke="rgb(227,119,194)" cx="115.2393883359633" cy="103.84755878177057" r="9.073172544593433"/>
+                    <circle fill="rgb(255,137,223)" stroke="rgb(227,119,194)" cx="137.1357381290074" cy="104.44782932091428" r="12.83140366631524"/>
+                    <circle fill="rgb(243,127,208)" stroke="rgb(227,119,194)" cx="147.95965476287216" cy="85.40437144996419" r="9.073172544593433"/>
+                    <circle fill="rgb(255,137,223)" stroke="rgb(227,119,194)" cx="149.6089400683702" cy="63.561974215215116" r="12.83140366631524"/>
+                    <circle fill="rgb(255,158,255)" stroke="rgb(227,119,194)" cx="127.72601564301152" cy="41.635767599545076" r="18.146345089186866"/>
+               </g>
+               <g>
+                    <text pointer-events="none" dy=".35em" transform="translate(83.49014778131485,77.46179681428758)" fill="rgb(0,0,0)" text-anchor="middle">1</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(121.92472345179738,77.46179681428758)" fill="rgb(0,0,0)" text-anchor="middle">2</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(104.28400893876878,56.73241352183291)" fill="rgb(0,0,0)" text-anchor="middle">3</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(82.6382135567423,36.894280146930626)" fill="rgb(0,0,0)" text-anchor="middle">4</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(61.84435239928838,57.6236634393853)" fill="rgb(0,0,0)" text-anchor="middle">5</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(50.3910599316298,76.2953679847604)" fill="rgb(0,0,0)" text-anchor="middle">6</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(58.727842769585,103.59749967610189)" fill="rgb(0,0,0)" text-anchor="middle">7</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(90.52216602908149,115.24760534517817)" fill="rgb(0,0,0)" text-anchor="middle">8</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(115.2393883359633,103.84755878177057)" fill="rgb(0,0,0)" text-anchor="middle">9</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(137.1357381290074,104.44782932091428)" fill="rgb(0,0,0)" text-anchor="middle">10</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(147.95965476287216,85.40437144996419)" fill="rgb(0,0,0)" text-anchor="middle">11</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(149.6089400683702,63.561974215215116)" fill="rgb(0,0,0)" text-anchor="middle">12</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(127.72601564301152,41.635767599545076)" fill="rgb(0,0,0)" text-anchor="middle">13</text>
+               </g>
+          </g>
+     </g>
+     <g transform="translate(5,5)">
+          <g transform="translate(210,960)">
+               <text pointer-events="none" y="3" dy=".71em" transform="translate(100.0,0)" fill="rgb(0,0,0)" text-anchor="middle">n14</text>
+          </g>
+          <g transform="translate(210,960)">
+               <g>
+                    <circle fill="rgb(255,209,242)" stroke="rgb(247,182,210)" cx="83.82930038171618" cy="80.94639717714192" r="11.888191496757438"/>
+                    <circle fill="rgb(255,242,255)" stroke="rgb(247,182,210)" cx="112.52993352527649" cy="80.94639717714192" r="16.81244164680287"/>
+                    <circle fill="rgb(255,195,225)" stroke="rgb(247,182,210)" cx="94.27521240178419" cy="63.5467967940982" r="8.406220823401435"/>
+                    <circle fill="rgb(255,209,242)" stroke="rgb(247,182,210)" cx="74.47698394369175" cy="59.08660382273526" r="11.888191496757438"/>
+                    <circle fill="rgb(255,195,225)" stroke="rgb(247,182,210)" cx="64.03107192362376" cy="76.48620420577898" r="8.406220823401435"/>
+                    <circle fill="rgb(255,195,225)" stroke="rgb(247,182,210)" cx="67.4616860233937" cy="92.94491257021667" r="8.406220823401435"/>
+                    <circle fill="rgb(255,209,242)" stroke="rgb(247,182,210)" cx="83.98916817670148" cy="104.72224270453441" r="11.888191496757438"/>
+                    <circle fill="rgb(255,242,255)" stroke="rgb(247,182,210)" cx="110.96032827019143" cy="114.53462600588213" r="16.81244164680287"/>
+                    <circle fill="rgb(255,225,255)" stroke="rgb(247,182,210)" cx="138.20346165136553" cy="98.97693090982224" r="14.560001565774767"/>
+                    <circle fill="rgb(255,242,255)" stroke="rgb(247,182,210)" cx="143.59196097050642" cy="68.07071360304032" r="16.81244164680287"/>
+                    <circle fill="rgb(255,255,255)" stroke="rgb(247,182,210)" cx="116.04084324880233" cy="45.51057651266477" r="18.796881194999866"/>
+                    <circle fill="rgb(255,195,225)" stroke="rgb(247,182,210)" cx="88.84817562744603" cy="44.7571927737979" r="8.406220823401435"/>
+                    <circle fill="rgb(255,225,255)" stroke="rgb(247,182,210)" cx="68.99427278226065" cy="33.212933913089756" r="14.560001565774767"/>
+                    <circle fill="rgb(255,209,242)" stroke="rgb(247,182,210)" cx="51.48378887944817" cy="53.03438365225671" r="11.888191496757438"/>
+               </g>
+               <g>
+                    <text pointer-events="none" dy=".35em" transform="translate(83.82930038171618,80.94639717714192)" fill="rgb(0,0,0)" text-anchor="middle">1</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(112.52993352527649,80.94639717714192)" fill="rgb(0,0,0)" text-anchor="middle">2</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(94.27521240178419,63.5467967940982)" fill="rgb(0,0,0)" text-anchor="middle">3</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(74.47698394369175,59.08660382273526)" fill="rgb(0,0,0)" text-anchor="middle">4</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(64.03107192362376,76.48620420577898)" fill="rgb(0,0,0)" text-anchor="middle">5</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(67.4616860233937,92.94491257021667)" fill="rgb(0,0,0)" text-anchor="middle">6</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(83.98916817670148,104.72224270453441)" fill="rgb(0,0,0)" text-anchor="middle">7</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(110.96032827019143,114.53462600588213)" fill="rgb(0,0,0)" text-anchor="middle">8</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(138.20346165136553,98.97693090982224)" fill="rgb(0,0,0)" text-anchor="middle">9</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(143.59196097050642,68.07071360304032)" fill="rgb(0,0,0)" text-anchor="middle">10</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(116.04084324880233,45.51057651266477)" fill="rgb(0,0,0)" text-anchor="middle">11</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(88.84817562744603,44.7571927737979)" fill="rgb(0,0,0)" text-anchor="middle">12</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(68.99427278226065,33.212933913089756)" fill="rgb(0,0,0)" text-anchor="middle">13</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(51.48378887944817,53.03438365225671)" fill="rgb(0,0,0)" text-anchor="middle">14</text>
+               </g>
+          </g>
+     </g>
+     <g transform="translate(5,5)">
+          <g transform="translate(0,1120)">
+               <text pointer-events="none" y="3" dy=".71em" transform="translate(100.0,0)" fill="rgb(0,0,0)" text-anchor="middle">n15</text>
+          </g>
+          <g transform="translate(0,1120)">
+               <g>
+                    <circle fill="rgb(146,146,146)" stroke="rgb(127,127,127)" cx="94.28906519169001" cy="89.83045644222808" r="10.43682324209619"/>
+                    <circle fill="rgb(168,168,168)" stroke="rgb(127,127,127)" cx="119.48578541084936" cy="89.83045644222808" r="14.759896977063168"/>
+                    <circle fill="rgb(181,181,181)" stroke="rgb(127,127,127)" cx="101.8945814383295" cy="63.987470882052804" r="16.50206649080345"/>
+                    <circle fill="rgb(181,181,181)" stroke="rgb(127,127,127)" cx="71.16102988710631" cy="76.01750009714196" r="16.50206649080345"/>
+                    <circle fill="rgb(181,181,181)" stroke="rgb(127,127,127)" cx="75.14238588598239" cy="108.78061347602898" r="16.50206649080345"/>
+                    <circle fill="rgb(181,181,181)" stroke="rgb(127,127,127)" cx="106.72313178712754" cy="118.36858939354653" r="16.50206649080345"/>
+                    <circle fill="rgb(146,146,146)" stroke="rgb(127,127,127)" cx="132.7117992668739" cy="111.27683765871403" r="10.43682324209619"/>
+                    <circle fill="rgb(168,168,168)" stroke="rgb(127,127,127)" cx="148.92644005773752" cy="91.99056964683948" r="14.759896977063168"/>
+                    <circle fill="rgb(157,157,157)" stroke="rgb(127,127,127)" cx="135.9076906866263" cy="67.7193354977056" r="12.782445739377845"/>
+                    <circle fill="rgb(168,168,168)" stroke="rgb(127,127,127)" cx="124.67074087390542" cy="42.573528666023236" r="14.759896977063168"/>
+                    <circle fill="rgb(181,181,181)" stroke="rgb(127,127,127)" cx="95.38626696303135" cy="31.63141060645348" r="16.50206649080345"/>
+                    <circle fill="rgb(168,168,168)" stroke="rgb(127,127,127)" cx="67.1344550938745" cy="45.01593472858778" r="14.759896977063168"/>
+                    <circle fill="rgb(136,136,136)" stroke="rgb(127,127,127)" cx="52.26212556176827" cy="61.41674481616753" r="7.379948488531584"/>
+                    <circle fill="rgb(136,136,136)" stroke="rgb(127,127,127)" cx="47.28938648635343" cy="75.31373819104401" r="7.379948488531584"/>
+                    <circle fill="rgb(157,157,157)" stroke="rgb(127,127,127)" cx="49.09610870457715" cy="95.39502041673398" r="12.782445739377845"/>
+               </g>
+               <g>
+                    <text pointer-events="none" dy=".35em" transform="translate(94.28906519169001,89.83045644222808)" fill="rgb(0,0,0)" text-anchor="middle">1</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(119.48578541084936,89.83045644222808)" fill="rgb(0,0,0)" text-anchor="middle">2</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(101.8945814383295,63.987470882052804)" fill="rgb(0,0,0)" text-anchor="middle">3</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(71.16102988710631,76.01750009714196)" fill="rgb(0,0,0)" text-anchor="middle">4</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(75.14238588598239,108.78061347602898)" fill="rgb(0,0,0)" text-anchor="middle">5</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(106.72313178712754,118.36858939354653)" fill="rgb(0,0,0)" text-anchor="middle">6</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(132.7117992668739,111.27683765871403)" fill="rgb(0,0,0)" text-anchor="middle">7</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(148.92644005773752,91.99056964683948)" fill="rgb(0,0,0)" text-anchor="middle">8</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(135.9076906866263,67.7193354977056)" fill="rgb(0,0,0)" text-anchor="middle">9</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(124.67074087390542,42.573528666023236)" fill="rgb(0,0,0)" text-anchor="middle">10</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(95.38626696303135,31.63141060645348)" fill="rgb(0,0,0)" text-anchor="middle">11</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(67.1344550938745,45.01593472858778)" fill="rgb(0,0,0)" text-anchor="middle">12</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(52.26212556176827,61.41674481616753)" fill="rgb(0,0,0)" text-anchor="middle">13</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(47.28938648635343,75.31373819104401)" fill="rgb(0,0,0)" text-anchor="middle">14</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(49.09610870457715,95.39502041673398)" fill="rgb(0,0,0)" text-anchor="middle">15</text>
+               </g>
+          </g>
+     </g>
+     <g transform="translate(5,5)">
+          <g transform="translate(210,1120)">
+               <text pointer-events="none" y="3" dy=".71em" transform="translate(100.0,0)" fill="rgb(0,0,0)" text-anchor="middle">n16</text>
+          </g>
+          <g transform="translate(210,1120)">
+               <g>
+                    <circle fill="rgb(229,229,229)" stroke="rgb(199,199,199)" cx="96.32513644581378" cy="90.26253522850371" r="11.239353280322431"/>
+                    <circle fill="rgb(229,229,229)" stroke="rgb(199,199,199)" cx="118.80384300645865" cy="90.26253522850371" r="11.239353280322431"/>
+                    <circle fill="rgb(255,255,255)" stroke="rgb(199,199,199)" cx="107.56448972613622" cy="63.51788617804817" r="17.77097789655191"/>
+                    <circle fill="rgb(246,246,246)" stroke="rgb(199,199,199)" cx="77.68267850720696" cy="73.5983982138055" r="13.765340287833128"/>
+                    <circle fill="rgb(213,213,213)" stroke="rgb(199,199,199)" cx="77.81438853959594" cy="95.31076194085686" r="7.9474229206672575"/>
+                    <circle fill="rgb(229,229,229)" stroke="rgb(199,199,199)" cx="88.41475637810134" cy="111.30340345735577" r="11.239353280322431"/>
+                    <circle fill="rgb(255,255,255)" stroke="rgb(199,199,199)" cx="114.91881091282251" cy="117.11716774516917" r="15.894845841334515"/>
+                    <circle fill="rgb(213,213,213)" stroke="rgb(199,199,199)" cx="133.67031541645642" cy="102.39185421473042" r="7.9474229206672575"/>
+                    <circle fill="rgb(255,255,255)" stroke="rgb(199,199,199)" cx="144.33214158370532" cy="81.06630047048047" r="15.894845841334515"/>
+                    <circle fill="rgb(213,213,213)" stroke="rgb(199,199,199)" cx="133.04970724357196" cy="60.06248045887055" r="7.9474229206672575"/>
+                    <circle fill="rgb(255,255,255)" stroke="rgb(199,199,199)" cx="128.44881481911492" cy="34.75896431004822" r="17.77097789655191"/>
+                    <circle fill="rgb(246,246,246)" stroke="rgb(199,199,199)" cx="96.92617942437575" cy="33.830081972444965" r="13.765340287833128"/>
+                    <circle fill="rgb(229,229,229)" stroke="rgb(199,199,199)" cx="76.7577735870365" cy="48.61081627144851" r="11.239353280322431"/>
+                    <circle fill="rgb(246,246,246)" stroke="rgb(199,199,199)" cx="54.15440665523322" cy="59.30298648070081" r="13.765340287833128"/>
+                    <circle fill="rgb(246,246,246)" stroke="rgb(199,199,199)" cx="53.5383528627933" cy="86.82677347820876" r="13.765340287833128"/>
+                    <circle fill="rgb(246,246,246)" stroke="rgb(199,199,199)" cx="63.43945425488179" cy="112.51542007905073" r="13.765340287833128"/>
+               </g>
+               <g>
+                    <text pointer-events="none" dy=".35em" transform="translate(96.32513644581378,90.26253522850371)" fill="rgb(0,0,0)" text-anchor="middle">1</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(118.80384300645865,90.26253522850371)" fill="rgb(0,0,0)" text-anchor="middle">2</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(107.56448972613622,63.51788617804817)" fill="rgb(0,0,0)" text-anchor="middle">3</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(77.68267850720696,73.5983982138055)" fill="rgb(0,0,0)" text-anchor="middle">4</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(77.81438853959594,95.31076194085686)" fill="rgb(0,0,0)" text-anchor="middle">5</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(88.41475637810134,111.30340345735577)" fill="rgb(0,0,0)" text-anchor="middle">6</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(114.91881091282251,117.11716774516917)" fill="rgb(0,0,0)" text-anchor="middle">7</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(133.67031541645642,102.39185421473042)" fill="rgb(0,0,0)" text-anchor="middle">8</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(144.33214158370532,81.06630047048047)" fill="rgb(0,0,0)" text-anchor="middle">9</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(133.04970724357196,60.06248045887055)" fill="rgb(0,0,0)" text-anchor="middle">10</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(128.44881481911492,34.75896431004822)" fill="rgb(0,0,0)" text-anchor="middle">11</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(96.92617942437575,33.830081972444965)" fill="rgb(0,0,0)" text-anchor="middle">12</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(76.7577735870365,48.61081627144851)" fill="rgb(0,0,0)" text-anchor="middle">13</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(54.15440665523322,59.30298648070081)" fill="rgb(0,0,0)" text-anchor="middle">14</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(53.5383528627933,86.82677347820876)" fill="rgb(0,0,0)" text-anchor="middle">15</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(63.43945425488179,112.51542007905073)" fill="rgb(0,0,0)" text-anchor="middle">16</text>
+               </g>
+          </g>
+     </g>
+     <g transform="translate(5,5)">
+          <g transform="translate(0,1280)">
+               <text pointer-events="none" y="3" dy=".71em" transform="translate(100.0,0)" fill="rgb(0,0,0)" text-anchor="middle">n17</text>
+          </g>
+          <g transform="translate(0,1280)">
+               <g>
+                    <circle fill="rgb(250,251,45)" stroke="rgb(188,189,34)" cx="94.1922175933953" cy="91.24940591646654" r="14.690192560010757"/>
+                    <circle fill="rgb(250,251,45)" stroke="rgb(188,189,34)" cx="123.57260271341681" cy="91.24940591646654" r="14.690192560010757"/>
+                    <circle fill="rgb(201,202,36)" stroke="rgb(188,189,34)" cx="108.88241015340606" cy="74.8252713330937" r="7.345096280005379"/>
+                    <circle fill="rgb(250,251,45)" stroke="rgb(188,189,34)" cx="90.92773035783735" cy="62.050944434914804" r="14.690192560010757"/>
+                    <circle fill="rgb(216,217,39)" stroke="rgb(188,189,34)" cx="72.36119266791954" cy="78.90846757902378" r="10.387534776119775"/>
+                    <circle fill="rgb(201,202,36)" stroke="rgb(188,189,34)" cx="72.82520926955787" cy="96.63502654476946" r="7.345096280005379"/>
+                    <circle fill="rgb(232,234,42)" stroke="rgb(188,189,34)" cx="80.6810146683201" cy="115.10061299958238" r="12.722079943454473"/>
+                    <circle fill="rgb(255,255,48)" stroke="rgb(188,189,34)" cx="109.56109840116581" cy="119.03031843735523" r="16.424134583372858"/>
+                    <circle fill="rgb(232,234,42)" stroke="rgb(188,189,34)" cx="138.3292076208142" cy="114.35081919382279" r="12.722079943454473"/>
+                    <circle fill="rgb(232,234,42)" stroke="rgb(188,189,34)" cx="150.96599946281032" cy="92.26650882893597" r="12.722079943454473"/>
+                    <circle fill="rgb(201,202,36)" stroke="rgb(188,189,34)" cx="139.37098708773868" cy="75.88825343938585" r="7.345096280005379"/>
+                    <circle fill="rgb(201,202,36)" stroke="rgb(188,189,34)" cx="126.20514604154778" cy="69.37193645840415" r="7.345096280005379"/>
+                    <circle fill="rgb(255,255,48)" stroke="rgb(188,189,34)" cx="118.16219268230918" cy="47.00483478881617" r="16.424134583372858"/>
+                    <circle fill="rgb(255,255,48)" stroke="rgb(188,189,34)" cx="89.49369693760396" cy="30.969681562644766" r="16.424134583372858"/>
+                    <circle fill="rgb(216,217,39)" stroke="rgb(188,189,34)" cx="69.56865084366379" cy="48.91008713211603" r="10.387534776119775"/>
+                    <circle fill="rgb(250,251,45)" stroke="rgb(188,189,34)" cx="51.00211315374598" cy="65.76761027622501" r="14.690192560010757"/>
+                    <circle fill="rgb(232,234,42)" stroke="rgb(188,189,34)" cx="53.07155494437684" cy="93.10165671065229" r="12.722079943454473"/>
+               </g>
+               <g>
+                    <text pointer-events="none" dy=".35em" transform="translate(94.1922175933953,91.24940591646654)" fill="rgb(0,0,0)" text-anchor="middle">1</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(123.57260271341681,91.24940591646654)" fill="rgb(0,0,0)" text-anchor="middle">2</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(108.88241015340606,74.8252713330937)" fill="rgb(0,0,0)" text-anchor="middle">3</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(90.92773035783735,62.050944434914804)" fill="rgb(0,0,0)" text-anchor="middle">4</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(72.36119266791954,78.90846757902378)" fill="rgb(0,0,0)" text-anchor="middle">5</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(72.82520926955787,96.63502654476946)" fill="rgb(0,0,0)" text-anchor="middle">6</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(80.6810146683201,115.10061299958238)" fill="rgb(0,0,0)" text-anchor="middle">7</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(109.56109840116581,119.03031843735523)" fill="rgb(0,0,0)" text-anchor="middle">8</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(138.3292076208142,114.35081919382279)" fill="rgb(0,0,0)" text-anchor="middle">9</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(150.96599946281032,92.26650882893597)" fill="rgb(0,0,0)" text-anchor="middle">10</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(139.37098708773868,75.88825343938585)" fill="rgb(0,0,0)" text-anchor="middle">11</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(126.20514604154778,69.37193645840415)" fill="rgb(0,0,0)" text-anchor="middle">12</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(118.16219268230918,47.00483478881617)" fill="rgb(0,0,0)" text-anchor="middle">13</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(89.49369693760396,30.969681562644766)" fill="rgb(0,0,0)" text-anchor="middle">14</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(69.56865084366379,48.91008713211603)" fill="rgb(0,0,0)" text-anchor="middle">15</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(51.00211315374598,65.76761027622501)" fill="rgb(0,0,0)" text-anchor="middle">16</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(53.07155494437684,93.10165671065229)" fill="rgb(0,0,0)" text-anchor="middle">17</text>
+               </g>
+          </g>
+     </g>
+     <g transform="translate(5,5)">
+          <g transform="translate(210,1280)">
+               <text pointer-events="none" y="3" dy=".71em" transform="translate(100.0,0)" fill="rgb(0,0,0)" text-anchor="middle">n18</text>
+          </g>
+          <g transform="translate(210,1280)">
+               <g>
+                    <circle fill="rgb(255,255,187)" stroke="rgb(219,219,141)" cx="101.77105408912664" cy="85.19258702608595" r="13.549346690605486"/>
+                    <circle fill="rgb(252,252,162)" stroke="rgb(219,219,141)" cx="124.90123570530676" cy="85.19258702608595" r="9.580834925574646"/>
+                    <circle fill="rgb(255,255,174)" stroke="rgb(219,219,141)" cx="117.33365035592166" cy="65.26629324855902" r="11.734078438746963"/>
+                    <circle fill="rgb(255,255,187)" stroke="rgb(219,219,141)" cx="92.67851903075302" cy="59.664857217481064" r="13.549346690605486"/>
+                    <circle fill="rgb(255,255,201)" stroke="rgb(219,219,141)" cx="73.39335536685945" cy="80.91706500377612" r="15.14863012545284"/>
+                    <circle fill="rgb(235,235,151)" stroke="rgb(219,219,141)" cx="86.44027948857422" cy="98.53549302766805" r="6.774673345302743"/>
+                    <circle fill="rgb(252,252,162)" stroke="rgb(219,219,141)" cx="99.61854215055625" cy="108.22239366773601" r="9.580834925574646"/>
+                    <circle fill="rgb(255,255,174)" stroke="rgb(219,219,141)" cx="120.82900971689585" cy="106.11488391786737" r="11.734078438746963"/>
+                    <circle fill="rgb(235,235,151)" stroke="rgb(219,219,141)" cx="136.67304104828207" cy="96.54720061554097" r="6.774673345302743"/>
+                    <circle fill="rgb(255,255,187)" stroke="rgb(219,219,141)" cx="147.23753611283982" cy="79.18467676527848" r="13.549346690605486"/>
+                    <circle fill="rgb(255,255,187)" stroke="rgb(219,219,141)" cx="139.55140629447544" cy="53.198861569596474" r="13.549346690605486"/>
+                    <circle fill="rgb(252,252,162)" stroke="rgb(219,219,141)" cx="118.33989179772261" cy="43.97514462079969" r="9.580834925574646"/>
+                    <circle fill="rgb(252,252,162)" stroke="rgb(219,219,141)" cx="100.20297057395747" cy="37.79277614202221" r="9.580834925574646"/>
+                    <circle fill="rgb(235,235,151)" stroke="rgb(219,219,141)" cx="84.20453504184376" cy="41.19170410882881" r="6.774673345302743"/>
+                    <circle fill="rgb(255,255,187)" stroke="rgb(219,219,141)" cx="66.787321658519" cy="51.665789671766134" r="13.549346690605486"/>
+                    <circle fill="rgb(235,235,151)" stroke="rgb(219,219,141)" cx="55.3491651217012" cy="68.46562197626403" r="6.774673345302743"/>
+                    <circle fill="rgb(252,252,162)" stroke="rgb(219,219,141)" cx="48.79395212212935" cy="83.450008294328" r="9.580834925574646"/>
+                    <circle fill="rgb(255,255,201)" stroke="rgb(219,219,141)" cx="57.38448324088357" cy="106.6394286580996" r="15.14863012545284"/>
+               </g>
+               <g>
+                    <text pointer-events="none" dy=".35em" transform="translate(101.77105408912664,85.19258702608595)" fill="rgb(0,0,0)" text-anchor="middle">1</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(124.90123570530676,85.19258702608595)" fill="rgb(0,0,0)" text-anchor="middle">2</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(117.33365035592166,65.26629324855902)" fill="rgb(0,0,0)" text-anchor="middle">3</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(92.67851903075302,59.664857217481064)" fill="rgb(0,0,0)" text-anchor="middle">4</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(73.39335536685945,80.91706500377612)" fill="rgb(0,0,0)" text-anchor="middle">5</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(86.44027948857422,98.53549302766805)" fill="rgb(0,0,0)" text-anchor="middle">6</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(99.61854215055625,108.22239366773601)" fill="rgb(0,0,0)" text-anchor="middle">7</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(120.82900971689585,106.11488391786737)" fill="rgb(0,0,0)" text-anchor="middle">8</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(136.67304104828207,96.54720061554097)" fill="rgb(0,0,0)" text-anchor="middle">9</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(147.23753611283982,79.18467676527848)" fill="rgb(0,0,0)" text-anchor="middle">10</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(139.55140629447544,53.198861569596474)" fill="rgb(0,0,0)" text-anchor="middle">11</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(118.33989179772261,43.97514462079969)" fill="rgb(0,0,0)" text-anchor="middle">12</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(100.20297057395747,37.79277614202221)" fill="rgb(0,0,0)" text-anchor="middle">13</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(84.20453504184376,41.19170410882881)" fill="rgb(0,0,0)" text-anchor="middle">14</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(66.787321658519,51.665789671766134)" fill="rgb(0,0,0)" text-anchor="middle">15</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(55.3491651217012,68.46562197626403)" fill="rgb(0,0,0)" text-anchor="middle">16</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(48.79395212212935,83.450008294328)" fill="rgb(0,0,0)" text-anchor="middle">17</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(57.38448324088357,106.6394286580996)" fill="rgb(0,0,0)" text-anchor="middle">18</text>
+               </g>
+          </g>
+     </g>
+     <g transform="translate(5,5)">
+          <g transform="translate(0,1440)">
+               <text pointer-events="none" y="3" dy=".71em" transform="translate(100.0,0)" fill="rgb(0,0,0)" text-anchor="middle">n19</text>
+          </g>
+          <g transform="translate(0,1440)">
+               <g>
+                    <circle fill="rgb(34,219,238)" stroke="rgb(23,190,207)" cx="93.11813540273785" cy="75.27644620424006" r="10.169812510174612"/>
+                    <circle fill="rgb(42,255,255)" stroke="rgb(23,190,207)" cx="119.3678333674255" cy="75.27644620424006" r="16.079885454513043"/>
+                    <circle fill="rgb(39,252,255)" stroke="rgb(23,190,207)" cx="100.04980155089555" cy="51.72315378257882" r="14.382286778680506"/>
+                    <circle fill="rgb(34,219,238)" stroke="rgb(23,190,207)" cx="77.73711088289326" cy="61.967635938541775" r="10.169812510174612"/>
+                    <circle fill="rgb(34,219,238)" stroke="rgb(23,190,207)" cx="73.90185535857373" cy="81.94239904180768" r="10.169812510174612"/>
+                    <circle fill="rgb(42,255,255)" stroke="rgb(23,190,207)" cx="91.44099304489683" cy="101.4725114955937" r="16.079885454513043"/>
+                    <circle fill="rgb(32,204,222)" stroke="rgb(23,190,207)" cx="114.45493281387915" cy="98.02296663270155" r="7.191143389340253"/>
+                    <circle fill="rgb(39,252,255)" stroke="rgb(23,190,207)" cx="135.83512080060842" cy="100.90401693885484" r="14.382286778680506"/>
+                    <circle fill="rgb(37,235,255)" stroke="rgb(23,190,207)" cx="147.85639485207955" cy="76.9091887030693" r="12.455425714850378"/>
+                    <circle fill="rgb(39,252,255)" stroke="rgb(23,190,207)" cx="138.65522335473275" cy="51.69805515136565" r="14.382286778680506"/>
+                    <circle fill="rgb(34,219,238)" stroke="rgb(23,190,207)" cx="119.34264819383235" cy="36.537909368940866" r="10.169812510174612"/>
+                    <circle fill="rgb(37,235,255)" stroke="rgb(23,190,207)" cx="99.94868439724354" cy="24.885631780600683" r="12.455425714850378"/>
+                    <circle fill="rgb(37,235,255)" stroke="rgb(23,190,207)" cx="77.92681737904091" cy="36.52985317944152" r="12.455425714850378"/>
+                    <circle fill="rgb(34,219,238)" stroke="rgb(23,190,207)" cx="60.57577186470566" cy="51.05027412026132" r="10.169812510174612"/>
+                    <circle fill="rgb(37,235,255)" stroke="rgb(23,190,207)" cx="53.34606061096676" cy="72.48931980626827" r="12.455425714850378"/>
+                    <circle fill="rgb(42,255,255)" stroke="rgb(23,190,207)" cx="55.76806488758311" cy="100.92165841596497" r="16.079885454513043"/>
+                    <circle fill="rgb(37,235,255)" stroke="rgb(23,190,207)" cx="73.2606485874673" cy="123.46658021744705" r="12.455425714850378"/>
+                    <circle fill="rgb(34,219,238)" stroke="rgb(23,190,207)" cx="95.54135233952212" cy="127.39998142407508" r="10.169812510174612"/>
+                    <circle fill="rgb(37,235,255)" stroke="rgb(23,190,207)" cx="116.89299626304569" cy="119.91608494548915" r="12.455425714850378"/>
+               </g>
+               <g>
+                    <text pointer-events="none" dy=".35em" transform="translate(93.11813540273785,75.27644620424006)" fill="rgb(0,0,0)" text-anchor="middle">1</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(119.3678333674255,75.27644620424006)" fill="rgb(0,0,0)" text-anchor="middle">2</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(100.04980155089555,51.72315378257882)" fill="rgb(0,0,0)" text-anchor="middle">3</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(77.73711088289326,61.967635938541775)" fill="rgb(0,0,0)" text-anchor="middle">4</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(73.90185535857373,81.94239904180768)" fill="rgb(0,0,0)" text-anchor="middle">5</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(91.44099304489683,101.4725114955937)" fill="rgb(0,0,0)" text-anchor="middle">6</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(114.45493281387915,98.02296663270155)" fill="rgb(0,0,0)" text-anchor="middle">7</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(135.83512080060842,100.90401693885484)" fill="rgb(0,0,0)" text-anchor="middle">8</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(147.85639485207955,76.9091887030693)" fill="rgb(0,0,0)" text-anchor="middle">9</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(138.65522335473275,51.69805515136565)" fill="rgb(0,0,0)" text-anchor="middle">10</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(119.34264819383235,36.537909368940866)" fill="rgb(0,0,0)" text-anchor="middle">11</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(99.94868439724354,24.885631780600683)" fill="rgb(0,0,0)" text-anchor="middle">12</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(77.92681737904091,36.52985317944152)" fill="rgb(0,0,0)" text-anchor="middle">13</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(60.57577186470566,51.05027412026132)" fill="rgb(0,0,0)" text-anchor="middle">14</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(53.34606061096676,72.48931980626827)" fill="rgb(0,0,0)" text-anchor="middle">15</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(55.76806488758311,100.92165841596497)" fill="rgb(0,0,0)" text-anchor="middle">16</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(73.2606485874673,123.46658021744705)" fill="rgb(0,0,0)" text-anchor="middle">17</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(95.54135233952212,127.39998142407508)" fill="rgb(0,0,0)" text-anchor="middle">18</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(116.89299626304569,119.91608494548915)" fill="rgb(0,0,0)" text-anchor="middle">19</text>
+               </g>
+          </g>
+     </g>
+     <g transform="translate(5,5)">
+          <g transform="translate(210,1440)">
+               <text pointer-events="none" y="3" dy=".71em" transform="translate(100.0,0)" fill="rgb(0,0,0)" text-anchor="middle">n20</text>
+          </g>
+          <g transform="translate(210,1440)">
+               <g>
+                    <circle fill="rgb(182,251,255)" stroke="rgb(158,218,229)" cx="90.07219909123536" cy="71.10643953247364" r="9.632371342671313"/>
+                    <circle fill="rgb(195,255,255)" stroke="rgb(158,218,229)" cx="111.50176783518268" cy="71.10643953247364" r="11.797197401276003"/>
+                    <circle fill="rgb(169,234,245)" stroke="rgb(158,218,229)" cx="99.01650808311172" cy="57.30833883368505" r="6.811115095309854"/>
+                    <circle fill="rgb(182,251,255)" stroke="rgb(158,218,229)" cx="83.1090388614645" cy="53.14412591904958" r="9.632371342671313"/>
+                    <circle fill="rgb(182,251,255)" stroke="rgb(158,218,229)" cx="71.03479907638163" cy="68.15555637536467" r="9.632371342671313"/>
+                    <circle fill="rgb(182,251,255)" stroke="rgb(158,218,229)" cx="77.9979593061525" cy="86.11786998878873" r="9.632371342671313"/>
+                    <circle fill="rgb(225,255,255)" stroke="rgb(158,218,229)" cx="100.83763469981152" cy="95.94093073701502" r="15.230116355687795"/>
+                    <circle fill="rgb(225,255,255)" stroke="rgb(158,218,229)" cx="130.7321558950249" cy="90.09769709971341" r="15.230116355687795"/>
+                    <circle fill="rgb(169,234,245)" stroke="rgb(158,218,229)" cx="129.86127888467766" cy="68.0736770963331" r="6.811115095309854"/>
+                    <circle fill="rgb(169,234,245)" stroke="rgb(158,218,229)" cx="122.87579319874911" cy="56.37888573017704" r="6.811115095309854"/>
+                    <circle fill="rgb(225,255,255)" stroke="rgb(158,218,229)" cx="110.22493146365537" cy="38.32974222595532" r="15.230116355687795"/>
+                    <circle fill="rgb(225,255,255)" stroke="rgb(158,218,229)" cx="81.45044027238616" cy="28.337023200848783" r="15.230116355687795"/>
+                    <circle fill="rgb(195,255,255)" stroke="rgb(158,218,229)" cx="62.42654560025023" cy="47.535125201328995" r="11.797197401276003"/>
+                    <circle fill="rgb(169,234,245)" stroke="rgb(158,218,229)" cx="54.98261435369372" cy="64.58966071441563" r="6.811115095309854"/>
+                    <circle fill="rgb(210,255,255)" stroke="rgb(158,218,229)" cx="54.769198608702055" cy="85.02189146129712" r="13.622230190619709"/>
+                    <circle fill="rgb(195,255,255)" stroke="rgb(158,218,229)" cx="69.45395292823395" cy="105.77051285344311" r="11.797197401276003"/>
+                    <circle fill="rgb(182,251,255)" stroke="rgb(158,218,229)" cx="87.68231280866759" cy="117.03786891513573" r="9.632371342671313"/>
+                    <circle fill="rgb(210,255,255)" stroke="rgb(158,218,229)" cx="110.08602405605313" cy="123.2708629642193" r="13.622230190619709"/>
+                    <circle fill="rgb(182,251,255)" stroke="rgb(158,218,229)" cx="131.79616004740973" cy="114.93740703591772" r="9.632371342671313"/>
+                    <circle fill="rgb(182,251,255)" stroke="rgb(158,218,229)" cx="149.22066023924634" cy="106.7205278353241" r="9.632371342671313"/>
+               </g>
+               <g>
+                    <text pointer-events="none" dy=".35em" transform="translate(90.07219909123536,71.10643953247364)" fill="rgb(0,0,0)" text-anchor="middle">1</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(111.50176783518268,71.10643953247364)" fill="rgb(0,0,0)" text-anchor="middle">2</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(99.01650808311172,57.30833883368505)" fill="rgb(0,0,0)" text-anchor="middle">3</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(83.1090388614645,53.14412591904958)" fill="rgb(0,0,0)" text-anchor="middle">4</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(71.03479907638163,68.15555637536467)" fill="rgb(0,0,0)" text-anchor="middle">5</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(77.9979593061525,86.11786998878873)" fill="rgb(0,0,0)" text-anchor="middle">6</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(100.83763469981152,95.94093073701502)" fill="rgb(0,0,0)" text-anchor="middle">7</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(130.7321558950249,90.09769709971341)" fill="rgb(0,0,0)" text-anchor="middle">8</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(129.86127888467766,68.0736770963331)" fill="rgb(0,0,0)" text-anchor="middle">9</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(122.87579319874911,56.37888573017704)" fill="rgb(0,0,0)" text-anchor="middle">10</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(110.22493146365537,38.32974222595532)" fill="rgb(0,0,0)" text-anchor="middle">11</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(81.45044027238616,28.337023200848783)" fill="rgb(0,0,0)" text-anchor="middle">12</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(62.42654560025023,47.535125201328995)" fill="rgb(0,0,0)" text-anchor="middle">13</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(54.98261435369372,64.58966071441563)" fill="rgb(0,0,0)" text-anchor="middle">14</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(54.769198608702055,85.02189146129712)" fill="rgb(0,0,0)" text-anchor="middle">15</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(69.45395292823395,105.77051285344311)" fill="rgb(0,0,0)" text-anchor="middle">16</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(87.68231280866759,117.03786891513573)" fill="rgb(0,0,0)" text-anchor="middle">17</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(110.08602405605313,123.2708629642193)" fill="rgb(0,0,0)" text-anchor="middle">18</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(131.79616004740973,114.93740703591772)" fill="rgb(0,0,0)" text-anchor="middle">19</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(149.22066023924634,106.7205278353241)" fill="rgb(0,0,0)" text-anchor="middle">20</text>
+               </g>
+          </g>
+     </g>
+     <g transform="translate(5,5)">
+          <g transform="translate(0,1600)">
+               <text pointer-events="none" y="3" dy=".71em" transform="translate(100.0,0)" fill="rgb(0,0,0)" text-anchor="middle">n21</text>
+          </g>
+          <g transform="translate(0,1600)">
+               <g>
+                    <circle fill="rgb(38,147,222)" stroke="rgb(31,119,180)" cx="91.05052698243914" cy="73.34031756339915" r="11.527937984145321"/>
+                    <circle fill="rgb(35,137,207)" stroke="rgb(31,119,180)" cx="111.99098691578598" cy="73.34031756339915" r="9.412521949201519"/>
+                    <circle fill="rgb(41,158,239)" stroke="rgb(31,119,180)" cx="103.92318097656351" cy="52.09688734584816" r="13.311316196695227"/>
+                    <circle fill="rgb(41,158,239)" stroke="rgb(31,119,180)" cx="77.30629722855764" cy="52.65010981352572" r="13.311316196695227"/>
+                    <circle fill="rgb(41,158,239)" stroke="rgb(31,119,180)" cx="66.47807425943057" cy="76.97117358311588" r="13.311316196695227"/>
+                    <circle fill="rgb(44,170,255)" stroke="rgb(31,119,180)" cx="84.2483219167998" cy="98.85975033583637" r="14.882503942902245"/>
+                    <circle fill="rgb(38,147,222)" stroke="rgb(31,119,180)" cx="110.24586110089265" cy="94.20793357746021" r="11.527937984145321"/>
+                    <circle fill="rgb(33,127,193)" stroke="rgb(31,119,180)" cx="124.69887319392112" cy="83.17373184239912" r="6.6556580983476135"/>
+                    <circle fill="rgb(41,158,239)" stroke="rgb(31,119,180)" cx="133.1642439208231" cy="65.09010496737727" r="13.311316196695227"/>
+                    <circle fill="rgb(35,137,207)" stroke="rgb(31,119,180)" cx="125.09643798160064" cy="43.84667474982629" r="9.412521949201519"/>
+                    <circle fill="rgb(44,170,255)" stroke="rgb(31,119,180)" cx="110.24356539031469" cy="24.62063878593039" r="14.882503942902245"/>
+                    <circle fill="rgb(41,158,239)" stroke="rgb(31,119,180)" cx="82.11010131465218" cy="26.464464473835804" r="13.311316196695227"/>
+                    <circle fill="rgb(38,147,222)" stroke="rgb(31,119,180)" cx="59.081078117720814" cy="35.77320439154763" r="11.527937984145321"/>
+                    <circle fill="rgb(38,147,222)" stroke="rgb(31,119,180)" cx="51.15290254878904" cy="57.42308773565355" r="11.527937984145321"/>
+                    <circle fill="rgb(35,137,207)" stroke="rgb(31,119,180)" cx="43.754274536980056" cy="77.01296179760148" r="9.412521949201519"/>
+                    <circle fill="rgb(35,137,207)" stroke="rgb(31,119,180)" cx="51.58335889504006" cy="94.13276658303" r="9.412521949201519"/>
+                    <circle fill="rgb(38,147,222)" stroke="rgb(31,119,180)" cx="61.634843010750046" cy="112.50313754530875" r="11.527937984145321"/>
+                    <circle fill="rgb(41,158,239)" stroke="rgb(31,119,180)" cx="81.84030889666963" cy="126.95054896027662" r="13.311316196695227"/>
+                    <circle fill="rgb(41,158,239)" stroke="rgb(31,119,180)" cx="107.20388588062698" cy="118.86021410117027" r="13.311316196695227"/>
+                    <circle fill="rgb(41,158,239)" stroke="rgb(31,119,180)" cx="131.25894785352415" cy="107.45326231580364" r="13.311316196695227"/>
+                    <circle fill="rgb(44,170,255)" stroke="rgb(31,119,180)" cx="150.77574346931922" cy="87.10661190461175" r="14.882503942902245"/>
+               </g>
+               <g>
+                    <text pointer-events="none" dy=".35em" transform="translate(91.05052698243914,73.34031756339915)" fill="rgb(0,0,0)" text-anchor="middle">1</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(111.99098691578598,73.34031756339915)" fill="rgb(0,0,0)" text-anchor="middle">2</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(103.92318097656351,52.09688734584816)" fill="rgb(0,0,0)" text-anchor="middle">3</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(77.30629722855764,52.65010981352572)" fill="rgb(0,0,0)" text-anchor="middle">4</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(66.47807425943057,76.97117358311588)" fill="rgb(0,0,0)" text-anchor="middle">5</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(84.2483219167998,98.85975033583637)" fill="rgb(0,0,0)" text-anchor="middle">6</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(110.24586110089265,94.20793357746021)" fill="rgb(0,0,0)" text-anchor="middle">7</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(124.69887319392112,83.17373184239912)" fill="rgb(0,0,0)" text-anchor="middle">8</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(133.1642439208231,65.09010496737727)" fill="rgb(0,0,0)" text-anchor="middle">9</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(125.09643798160064,43.84667474982629)" fill="rgb(0,0,0)" text-anchor="middle">10</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(110.24356539031469,24.62063878593039)" fill="rgb(0,0,0)" text-anchor="middle">11</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(82.11010131465218,26.464464473835804)" fill="rgb(0,0,0)" text-anchor="middle">12</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(59.081078117720814,35.77320439154763)" fill="rgb(0,0,0)" text-anchor="middle">13</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(51.15290254878904,57.42308773565355)" fill="rgb(0,0,0)" text-anchor="middle">14</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(43.754274536980056,77.01296179760148)" fill="rgb(0,0,0)" text-anchor="middle">15</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(51.58335889504006,94.13276658303)" fill="rgb(0,0,0)" text-anchor="middle">16</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(61.634843010750046,112.50313754530875)" fill="rgb(0,0,0)" text-anchor="middle">17</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(81.84030889666963,126.95054896027662)" fill="rgb(0,0,0)" text-anchor="middle">18</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(107.20388588062698,118.86021410117027)" fill="rgb(0,0,0)" text-anchor="middle">19</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(131.25894785352415,107.45326231580364)" fill="rgb(0,0,0)" text-anchor="middle">20</text>
+                    <text pointer-events="none" dy=".35em" transform="translate(150.77574346931922,87.10661190461175)" fill="rgb(0,0,0)" text-anchor="middle">21</text>
+               </g>
+          </g>
+     </g>
+</svg>

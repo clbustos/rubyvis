@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' content='text/html' http-equiv='Content-Type'>
+<link href='../style.css' rel='stylesheet' type='text/css'>
+<title>Rubyvis - Example: Area Interpolation</title>
+</head>
+<body>
+<h1>Rubyvis - Example: Area Interpolation</h1>
+<div class='example_main'>
+<div class='description'><p>This example show the 5 types of interpolation available for areas:</p>
+<ul>
+	<li>linear</li>
+	<li>step-before</li>
+	<li>step-after</li>
+	<li>basis</li>
+	<li>cardinal</li>
+</ul>
+<p>See also <a href="line_interpolation.html">Line Interpolation</a></p></div>
+<div class='navigation'>
+<ul>
+<li>
+<a href='../index.html'>Home</a>
+</li>
+<li>
+<a href='1_basic_3_grouped_bars.html'>Previous: Using parent</a>
+</li>
+<li>
+<a href='1_basic_dot.html'>Next: Dot and anchors</a>
+</li>
+</ul>
+</div>
+<div class='image'>
+<!--[if IE]>
+<embed class='svg' height='495' src='1_basic_area_interpolation.svg' width='450'>
+<![endif]-->
+<object class='svg' data='1_basic_area_interpolation.svg' height='495' type='image/svg+xml' width='450'></object>
+</div>
+<div class='source'><div class="CodeRay">
+  <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">rubyvis</span><span style="color:#710">'</span></span>&#x000A;&#x000A;data = <span style="color:#036;font-weight:bold">Rubyvis</span>.range(<span style="color:#00D">0</span>, <span style="color:#00D">10</span>, <span style="color:#60E">0.5</span>).map {|x| &#x000A;  <span style="color:#036;font-weight:bold">OpenStruct</span>.new({<span style="color:#A60">:x</span>=&gt; x, <span style="color:#A60">:y</span>=&gt; <span style="color:#036;font-weight:bold">Math</span>.sin(x) + <span style="color:#00D">2</span>+rand()*<span style="color:#60E">0.3</span>})&#x000A;}&#x000A;&#x000A;p_w=<span style="color:#00D">200</span>&#x000A;p_h=<span style="color:#00D">150</span>&#x000A;<span style="color:#777">#p data</span>&#x000A;w = <span style="color:#00D">20</span>+p_w*<span style="color:#00D">2</span>&#x000A;h = <span style="color:#00D">20</span>+p_h*<span style="color:#00D">3</span>&#x000A;&#x000A;x = <span style="color:#036;font-weight:bold">Rubyvis</span>.Scale.linear(data, lambda {|d| d.x}).range(<span style="color:#00D">0</span>, p_w-<span style="color:#00D">30</span>)&#x000A;y = <span style="color:#036;font-weight:bold">Rubyvis</span>.Scale.linear(data, lambda {|d| d.y}).range(<span style="color:#00D">0</span>, p_h-<span style="color:#00D">20</span>);&#x000A;interpolations=[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">linear</span><span style="color:#710">&quot;</span></span>,<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">step-before</span><span style="color:#710">&quot;</span></span>,<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">step-after</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">basis</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">cardinal</span><span style="color:#710">&quot;</span></span>]&#x000A;&#x000A;vis = <span style="color:#036;font-weight:bold">Rubyvis</span>::<span style="color:#036;font-weight:bold">Panel</span>.new <span style="color:#080;font-weight:bold">do</span> |pan|&#x000A;  pan.width w &#x000A;  pan.height h &#x000A;  pan.bottom <span style="color:#00D">20</span> &#x000A;  pan.left <span style="color:#00D">20</span> &#x000A;  pan.right <span style="color:#00D">10</span> &#x000A;  pan.top <span style="color:#00D">5</span> &#x000A;&#x000A;  interpolations.each_with_index <span style="color:#080;font-weight:bold">do</span> |inter,i|&#x000A;    n=i%<span style="color:#00D">2</span>&#x000A;    m=(i/<span style="color:#00D">2</span>).floor&#x000A;    pan.panel <span style="color:#080;font-weight:bold">do</span>&#x000A;      left(n*(p_w+<span style="color:#00D">10</span>))&#x000A;      top(m*(p_h+<span style="color:#00D">10</span>))&#x000A;      width p_w&#x000A;      height p_h&#x000A;      label(<span style="color:#A60">:anchor</span>=&gt;<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">top</span><span style="color:#710">'</span></span>) <span style="color:#080;font-weight:bold">do</span>&#x000A;        text(inter)&#x000A;      <span style="color:#080;font-weight:bold">end</span>&#x000A;      <span style="color:#777"># uses 'a' as reference inside block</span>&#x000A;      <span style="color:#777"># to use data method with data variable</span>&#x000A;      area <span style="color:#080;font-weight:bold">do</span> |a| &#x000A;        a.data data&#x000A;        a.left {|d| x.scale(d.x)}&#x000A;        a.height {|d| y.scale(d.y)}&#x000A;        a.bottom <span style="color:#00D">1</span>&#x000A;        a.interpolate inter&#x000A;      <span style="color:#080;font-weight:bold">end</span>&#x000A;    <span style="color:#080;font-weight:bold">end</span>&#x000A;  <span style="color:#080;font-weight:bold">end</span>&#x000A;<span style="color:#080;font-weight:bold">end</span>  &#x000A;     &#x000A;&#x000A;vis.render();&#x000A;&#x000A;&#x000A;puts vis.to_svg</pre></div>
+</div>
+</div>
+</div>
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5764936-8']);
+  _gaq.push(['_trackPageview']);
+  
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

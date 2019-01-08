@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' content='text/html' http-equiv='Content-Type'>
+<link href='../style.css' rel='stylesheet' type='text/css'>
+<title>Rubyvis - Example: Using parent</title>
+</head>
+<body>
+<h1>Rubyvis - Example: Using parent</h1>
+<div class='example_main'>
+<div class='description'><p>This example shows how to group bars on groups and use the parent property to identify and color them</p></div>
+<div class='navigation'>
+<ul>
+<li>
+<a href='../index.html'>Home</a>
+</li>
+<li>
+<a href='1_basic_2_bar_and_rule.html'>Previous: Inheritance and labels</a>
+</li>
+<li>
+<a href='1_basic_area_interpolation.html'>Next: Area Interpolation</a>
+</li>
+</ul>
+</div>
+<div class='image'>
+<!--[if IE]>
+<embed class='svg' height='150' src='1_basic_3_grouped_bars.svg' width='200'>
+<![endif]-->
+<object class='svg' data='1_basic_3_grouped_bars.svg' height='150' type='image/svg+xml' width='200'></object>
+</div>
+<div class='source'><div class="CodeRay">
+  <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">rubyvis</span><span style="color:#710">'</span></span>&#x000A;&#x000A;vis = pv.Panel.new().width(<span style="color:#00D">200</span>).height(<span style="color:#00D">150</span>);&#x000A;&#x000A;bar= vis.add(pv.Panel).data([<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">a</span><span style="color:#710">&quot;</span></span>,<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">b</span><span style="color:#710">&quot;</span></span>,<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">c</span><span style="color:#710">&quot;</span></span>,<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">d</span><span style="color:#710">&quot;</span></span>]).add(pv.Bar)&#x000A;    .data([<span style="color:#00D">1</span>,<span style="color:#00D">2</span>])&#x000A;    .width(<span style="color:#00D">20</span>)&#x000A;    .height(lambda {<span style="color:#00D">60</span>+parent.index*<span style="color:#00D">20</span>+index*<span style="color:#00D">5</span>})&#x000A;    .bottom(<span style="color:#00D">0</span>)&#x000A;    .left(lambda {|d,t| parent.index*<span style="color:#00D">60</span>+index*<span style="color:#00D">25</span>})&#x000A;    &#x000A; bar.anchor(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">bottom</span><span style="color:#710">&quot;</span></span>).add(pv.Label).&#x000A;   text(lambda {|d,t| <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>t<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">-</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>d<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">&quot;</span></span>})&#x000A; bar.anchor(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">top</span><span style="color:#710">&quot;</span></span>).add(pv.Label).&#x000A;   text(lambda {<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>parent.index<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">-</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>index<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">&quot;</span></span>})&#x000A;    &#x000A;    &#x000A;vis.render()&#x000A;<span style="color:#777">#puts vis.children_inspect</span>&#x000A;puts vis.to_svg</pre></div>
+</div>
+</div>
+</div>
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5764936-8']);
+  _gaq.push(['_trackPageview']);
+  
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

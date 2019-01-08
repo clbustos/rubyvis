@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' content='text/html' http-equiv='Content-Type'>
+<link href='../style.css' rel='stylesheet' type='text/css'>
+<title>Rubyvis - Example: Arc Diagrams</title>
+</head>
+<body>
+<h1>Rubyvis - Example: Arc Diagrams</h1>
+<div class='example_main'>
+<div class='description'><p>An arc diagram uses a one-dimensional layout of nodes, with circular arcs to represent links. Though an arc diagram may not convey the overall structure of the graph as effectively as a two-dimensional layout, with a good ordering of nodes it is easy to identify cliques and bridges. Further, as with the indented tree, multivariate data can easily be displayed alongside nodes.<br />
+This network represents character co-occurrence in the chapters of Victor Hugo&#8217;s classic novel, Les Misérables. Node colors depict cluster memberships computed by a community-detection algorithm. Source: Knuth, D. E. 1993. The Stanford GraphBase: A Platform for Combinatorial Computing, Addison-Wesley.</p></div>
+<div class='navigation'>
+<ul>
+<li>
+<a href='../index.html'>Home</a>
+</li>
+<li>
+<a href='5_pv_hierarchies_treemap.html'>Previous: Treemap</a>
+</li>
+<li>
+<a href='6_pv_networks_matrix.html'>Next: Matrix Diagrams</a>
+</li>
+</ul>
+</div>
+<div class='image'>
+<!--[if IE]>
+<embed class='svg' height='400' src='6_pv_networks_arc.svg' width='880'>
+<![endif]-->
+<object class='svg' data='6_pv_networks_arc.svg' height='400' type='image/svg+xml' width='880'></object>
+</div>
+<div class='source'><div class="CodeRay">
+  <div class="code"><pre>&#x000A;require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">rubyvis</span><span style="color:#710">'</span></span>&#x000A;load(<span style="color:#036;font-weight:bold">File</span>.dirname(<span style="color:#069">__FILE__</span>)+<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">/miserables_data.rb</span><span style="color:#710">&quot;</span></span>)&#x000A;c=<span style="color:#036;font-weight:bold">Rubyvis</span>::<span style="color:#036;font-weight:bold">Colors</span>.category19()&#x000A;&#x000A;vis = <span style="color:#036;font-weight:bold">Rubyvis</span>::<span style="color:#036;font-weight:bold">Panel</span>.new() <span style="color:#080;font-weight:bold">do</span> &#x000A;  width <span style="color:#00D">880</span>&#x000A;  height <span style="color:#00D">310</span>&#x000A;  bottom <span style="color:#00D">90</span>&#x000A;  layout_arc <span style="color:#080;font-weight:bold">do</span>&#x000A;    nodes <span style="color:#d70">$miserables</span>.nodes&#x000A;    links <span style="color:#d70">$miserables</span>.links&#x000A;    sort {|a,b| &#x000A;    a.group==b.group ? b.link_degree&lt;=&gt;a.link_degree : b.group &lt;=&gt;a.group}&#x000A;&#x000A;    link.line&#x000A;    &#x000A;    node.dot <span style="color:#080;font-weight:bold">do</span>&#x000A;      shape_size {|d| d.link_degree + <span style="color:#00D">4</span>}&#x000A;      fill_style {|d| c[d.group]}&#x000A;      stroke_style {|d| c[d.group].darker()}&#x000A;    <span style="color:#080;font-weight:bold">end</span>&#x000A;    &#x000A;    node_label.label&#x000A;  <span style="color:#080;font-weight:bold">end</span>&#x000A;<span style="color:#080;font-weight:bold">end</span>&#x000A;vis.render();&#x000A;puts vis.to_svg</pre></div>
+</div>
+</div>
+</div>
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5764936-8']);
+  _gaq.push(['_trackPageview']);
+  
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

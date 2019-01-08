@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' content='text/html' http-equiv='Content-Type'>
+<link href='../style.css' rel='stylesheet' type='text/css'>
+<title>Rubyvis - Example: Horizon</title>
+</head>
+<body>
+<h1>Rubyvis - Example: Horizon</h1>
+<div class='example_main'>
+<div class='description'><p>Horizon graphs increase data density while preserving resolution. <br />
+While horizon graphs may require learning, they have been found to be more effective than standard line and area plots when chart sizes are small. For more, see &#8220;Sizing the Horizon: The Effects of Chart Size and Layering on the Graphical Perception of Time Series Visualizations&#8221; by Heer et al., <span class="caps">CHI</span> 2009.<br />
+This example shows <ins>offset</ins> and <ins>mirror</ins> modes for the quadratic equation x^2-10</p></div>
+<div class='navigation'>
+<ul>
+<li>
+<a href='../index.html'>Home</a>
+</li>
+<li>
+<a href='2_medium_censo_agropecuario_census_treemap.html'>Previous: Censo Agropecuario 2007, Chile: Treemap</a>
+</li>
+<li>
+<a href='2_medium_nested_grid.html'>Next: Nested grid</a>
+</li>
+</ul>
+</div>
+<div class='image'>
+<!--[if IE]>
+<embed class='svg' height='245' src='2_medium_horizon.svg' width='430'>
+<![endif]-->
+<object class='svg' data='2_medium_horizon.svg' height='245' type='image/svg+xml' width='430'></object>
+</div>
+<div class='source'><div class="CodeRay">
+  <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">rubyvis</span><span style="color:#710">'</span></span>&#x000A;&#x000A;data = <span style="color:#036;font-weight:bold">Rubyvis</span>.range(<span style="color:#00D">-5</span>, <span style="color:#00D">5</span>, <span style="color:#60E">0.1</span>).map {|x|&#x000A;  <span style="color:#036;font-weight:bold">OpenStruct</span>.new({<span style="color:#A60">:x</span>=&gt; x, <span style="color:#A60">:y</span>=&gt;  x**<span style="color:#00D">2</span>-<span style="color:#00D">10</span>})&#x000A;}&#x000A;&#x000A;&#x000A;&#x000A;<span style="color:#777">#p data</span>&#x000A;w = <span style="color:#00D">400</span>&#x000A;h = <span style="color:#00D">100</span>&#x000A;x = pv.Scale.linear(data, lambda {|d| d.x}).range(<span style="color:#00D">0</span>, w)&#x000A;y = pv.Scale.linear(data, lambda {|d| d.y}).range(<span style="color:#00D">-50</span>, h*<span style="color:#00D">2</span>);&#x000A;&#x000A;<span style="color:#777">#/* The root panel. */</span>&#x000A;vis = pv.Panel.new()&#x000A;  .width(w)&#x000A;  .height(h*<span style="color:#00D">2</span>+<span style="color:#00D">20</span>)&#x000A;  .bottom(<span style="color:#00D">20</span>)&#x000A;  .left(<span style="color:#00D">20</span>)&#x000A;  .right(<span style="color:#00D">10</span>)&#x000A;  .top(<span style="color:#00D">5</span>)&#x000A;&#x000A;types=[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">offset</span><span style="color:#710">&quot;</span></span>,<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">mirror</span><span style="color:#710">&quot;</span></span>]&#x000A;&#x000A;&#x000A;pan=vis.add(<span style="color:#036;font-weight:bold">Rubyvis</span>::<span style="color:#036;font-weight:bold">Panel</span>).&#x000A;data(types).&#x000A;height(<span style="color:#00D">80</span>).&#x000A;top(lambda { index*<span style="color:#00D">110</span>+<span style="color:#00D">30</span>})&#x000A;pan.add(<span style="color:#036;font-weight:bold">Rubyvis</span>::<span style="color:#036;font-weight:bold">Rule</span>).&#x000A;  data(x.ticks).&#x000A;  left(x).&#x000A;  anchor(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">bottom</span><span style="color:#710">&quot;</span></span>).&#x000A;  add(<span style="color:#036;font-weight:bold">Rubyvis</span>::<span style="color:#036;font-weight:bold">Label</span>).&#x000A;  text(x.tick_format)&#x000A;  &#x000A;  &#x000A;pan.add(<span style="color:#036;font-weight:bold">Rubyvis</span>::<span style="color:#036;font-weight:bold">Layout</span>::<span style="color:#036;font-weight:bold">Horizon</span>)&#x000A;         .bands(<span style="color:#00D">3</span>)&#x000A;         .mode(lambda {|d| d})         &#x000A;       .band.add(<span style="color:#036;font-weight:bold">Rubyvis</span>::<span style="color:#036;font-weight:bold">Area</span>)&#x000A;         .data(data)&#x000A;         .left(lambda {|d| x[d.x]})&#x000A;         .height(lambda {|d| y[d.y]})&#x000A;     &#x000A;pan.anchor(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">top</span><span style="color:#710">&quot;</span></span>).add(<span style="color:#036;font-weight:bold">Rubyvis</span>::<span style="color:#036;font-weight:bold">Label</span>)&#x000A;.top(<span style="color:#00D">-15</span>)&#x000A;&#x000A;vis.render();&#x000A;&#x000A;&#x000A;puts vis.to_svg</pre></div>
+</div>
+</div>
+</div>
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5764936-8']);
+  _gaq.push(['_trackPageview']);
+  
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

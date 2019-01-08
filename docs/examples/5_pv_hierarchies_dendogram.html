@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' content='text/html' http-equiv='Content-Type'>
+<link href='../style.css' rel='stylesheet' type='text/css'>
+<title>Rubyvis - Example: Dendogram</title>
+</head>
+<body>
+<h1>Rubyvis - Example: Dendogram</h1>
+<div class='example_main'>
+<div class='description'><p>A dendrogram (or cluster layout) is a node-link diagram that places leaf nodes of the tree at the same depth. In this example, the classes (orange leaf nodes) are aligned on the right edge, with the packages (blue internal nodes) to the left. As with other tree layouts, dendrograms can also be oriented radially. <br />
+Uses Protovis <span class="caps">API</span></p></div>
+<div class='navigation'>
+<ul>
+<li>
+<a href='../index.html'>Home</a>
+</li>
+<li>
+<a href='5_pv_hierarchies_circle_packing.html'>Previous: Circle Packing</a>
+</li>
+<li>
+<a href='5_pv_hierarchies_icicle.html'>Next: Icicle</a>
+</li>
+</ul>
+</div>
+<div class='image'>
+<!--[if IE]>
+<embed class='svg' height='1520' src='5_pv_hierarchies_dendogram.svg' width='400'>
+<![endif]-->
+<object class='svg' data='5_pv_hierarchies_dendogram.svg' height='1520' type='image/svg+xml' width='400'></object>
+</div>
+<div class='source'><div class="CodeRay">
+  <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">rubyvis</span><span style="color:#710">'</span></span>&#x000A;&#x000A;&#x000A;<span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">get_files</span>(path)&#x000A;  h={}&#x000A;  <span style="color:#036;font-weight:bold">Dir</span>.glob(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>path<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">/*</span><span style="color:#710">&quot;</span></span>).each {|e|&#x000A;    <span style="color:#080;font-weight:bold">next</span> <span style="color:#080;font-weight:bold">if</span> <span style="color:#036;font-weight:bold">File</span>.expand_path(e)=~<span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#808">pkg|web|vendor|doc|~</span><span style="color:#404">/</span></span>&#x000A;    pa=<span style="color:#036;font-weight:bold">File</span>.expand_path(e) &#x000A;    <span style="color:#080;font-weight:bold">if</span> <span style="color:#036;font-weight:bold">File</span>.stat(pa).directory?&#x000A;      h[<span style="color:#036;font-weight:bold">File</span>.basename(pa)]=get_files(pa)&#x000A;    <span style="color:#080;font-weight:bold">else</span>&#x000A;      h[<span style="color:#036;font-weight:bold">File</span>.basename(pa)]=<span style="color:#036;font-weight:bold">File</span>.stat(pa).size&#x000A;    <span style="color:#080;font-weight:bold">end</span>&#x000A;  }&#x000A;  h&#x000A;<span style="color:#080;font-weight:bold">end</span>&#x000A;&#x000A;files=get_files(<span style="color:#036;font-weight:bold">File</span>.expand_path(<span style="color:#036;font-weight:bold">File</span>.dirname(<span style="color:#069">__FILE__</span>)+<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">/../../lib/</span><span style="color:#710">&quot;</span></span>))&#x000A;&#x000A;&#x000A;vis = <span style="color:#036;font-weight:bold">Rubyvis</span>::<span style="color:#036;font-weight:bold">Panel</span>.new <span style="color:#080;font-weight:bold">do</span>&#x000A;  width <span style="color:#00D">200</span>&#x000A;  height <span style="color:#00D">1500</span> &#x000A;  left <span style="color:#00D">40</span> &#x000A;  right <span style="color:#00D">160</span> &#x000A;  top <span style="color:#00D">10</span> &#x000A;  bottom <span style="color:#00D">10</span> &#x000A;  layout_cluster <span style="color:#080;font-weight:bold">do</span>&#x000A;    nodes pv.dom(files).root(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">rubyvis</span><span style="color:#710">&quot;</span></span>).sort(lambda {|a,b| a.node_name&lt;=&gt;b.node_name}).nodes&#x000A;    group <span style="color:#60E">0.2</span>&#x000A;    orient <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">left</span><span style="color:#710">&quot;</span></span>&#x000A;&#x000A;    link.line  <span style="color:#080;font-weight:bold">do</span>&#x000A;      stroke_style <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">#ccc</span><span style="color:#710">&quot;</span></span>&#x000A;      line_width <span style="color:#00D">1</span>&#x000A;      antialias <span style="color:#069">false</span>&#x000A;    <span style="color:#080;font-weight:bold">end</span>&#x000A;&#x000A;    node.dot <span style="color:#080;font-weight:bold">do</span> &#x000A;      fill_style {|n| n.first_child ? <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">#aec7e8</span><span style="color:#710">&quot;</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">#ff7f0e</span><span style="color:#710">&quot;</span></span>}&#x000A;    <span style="color:#080;font-weight:bold">end</span>&#x000A;    &#x000A;    node_label.label&#x000A;  <span style="color:#080;font-weight:bold">end</span>&#x000A;<span style="color:#080;font-weight:bold">end</span>&#x000A;&#x000A;vis.render&#x000A;puts vis.to_svg</pre></div>
+</div>
+</div>
+</div>
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5764936-8']);
+  _gaq.push(['_trackPageview']);
+  
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

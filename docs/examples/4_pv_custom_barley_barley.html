@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' content='text/html' http-equiv='Content-Type'>
+<link href='../style.css' rel='stylesheet' type='text/css'>
+<title>Rubyvis - Example: Becker’s Barley</title>
+</head>
+<body>
+<h1>Rubyvis - Example: Becker’s Barley</h1>
+<div class='example_main'>
+<div class='description'><p>The <a href="http://www.jstor.org/stable/1390777">Trellis display</a> by Becker et al. helped establish small multiples as a “powerful mechanism for understanding interactions in studies of how a response depends on explanatory variables”. Here we reproduce a trellis of Barley yields from the 1930s, complete with main-effects ordering to facilitate comparison. These examples demonstrate Protovis’ support for data transformation via the nest operator.<br />
+Notice anything unusual about one of the sites? This anomaly led Becker et al. to suspect a major error with the data that went undetected for six decades.</p></div>
+<div class='navigation'>
+<ul>
+<li>
+<a href='../index.html'>Home</a>
+</li>
+<li>
+<a href='4_pv_custom_antibiotics_antibiotics_wedge.html'>Previous: Antibiotic Effectiveness : Pie chart</a>
+</li>
+<li>
+<a href='4_pv_custom_cars_cars.html'>Next: Parallel Coordinates</a>
+</li>
+</ul>
+</div>
+<div class='image'>
+<!--[if IE]>
+<embed class='svg' height='833' src='4_pv_custom_barley_barley.svg' width='333'>
+<![endif]-->
+<object class='svg' data='4_pv_custom_barley_barley.svg' height='833' type='image/svg+xml' width='333'></object>
+</div>
+<div class='source'><div class="CodeRay">
+  <div class="code"><pre>&#x000A;require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">rubyvis</span><span style="color:#710">'</span></span>&#x000A;load(<span style="color:#036;font-weight:bold">File</span>.dirname(<span style="color:#069">__FILE__</span>)+<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">/barley_data.rb</span><span style="color:#710">&quot;</span></span>)&#x000A;<span style="color:#777"># Nest yields data by site then year. */</span>&#x000A;&#x000A;<span style="color:#777"># Compute yield medians by site and by variety. */</span>&#x000A;median=lambda {|data| &#x000A;       pv.median(data, lambda {|d| d[<span style="color:#A60">:yield</span>]}) &#x000A;       }&#x000A;&#x000A;site = pv.nest(<span style="color:#d70">$barley</span>).&#x000A;       key(lambda {|d| d[<span style="color:#A60">:site</span>]}).&#x000A;       rollup(median)&#x000A;&#x000A;variety = pv.nest(<span style="color:#d70">$barley</span>).key(lambda {|d| d[<span style="color:#A60">:variety</span>]}).rollup(median);&#x000A;&#x000A;&#x000A;barley = pv.nest(<span style="color:#d70">$barley</span>)&#x000A;    .key(lambda {|d| d[<span style="color:#A60">:site</span>]})&#x000A;    .sort_keys(lambda {|a, b| site[b] - site[a]})&#x000A;    .key(lambda {|d| d[<span style="color:#A60">:year</span>]})&#x000A;    .sort_values(lambda {|a, b| variety[b[<span style="color:#A60">:variety</span>]] - variety[a[<span style="color:#A60">:variety</span>]]})&#x000A;    .entries()&#x000A;&#x000A;<span style="color:#777"># Sizing and scales. */</span>&#x000A;w = <span style="color:#00D">332</span>&#x000A;h = <span style="color:#00D">132</span>&#x000A;x = pv.Scale.linear(<span style="color:#00D">10</span>, <span style="color:#00D">90</span>).range(<span style="color:#00D">0</span>, w)&#x000A;c = pv.Colors.category10()&#x000A;&#x000A;<span style="color:#777"># The root panel. */</span>&#x000A;vis = <span style="color:#036;font-weight:bold">Rubyvis</span>::<span style="color:#036;font-weight:bold">Panel</span>.new&#x000A;    .width(w)&#x000A;    .height(h * pv.keys(site).size)&#x000A;    .top(<span style="color:#60E">15.5</span>)&#x000A;    .left(<span style="color:#60E">0.5</span>)&#x000A;    .right(<span style="color:#60E">0.5</span>)&#x000A;    .bottom(<span style="color:#00D">25</span>);&#x000A;&#x000A;<span style="color:#777"># A panel per site-year. */</span>&#x000A;cell = vis.add(pv.Panel)&#x000A;    .data(barley)&#x000A;    .height(h)&#x000A;    .left(<span style="color:#00D">90</span>)&#x000A;    .top(lambda { <span style="color:#069">self</span>.index * h})&#x000A;    .stroke_style(pv.color(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">#999</span><span style="color:#710">&quot;</span></span>));&#x000A;&#x000A;<span style="color:#777"># Title bar. */</span>&#x000A;cell.add(pv.Bar)&#x000A;    .height(<span style="color:#00D">14</span>)&#x000A;    .fill_style(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">bisque</span><span style="color:#710">&quot;</span></span>)&#x000A;  .anchor(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">center</span><span style="color:#710">&quot;</span></span>).add(pv.Label)&#x000A;  .text(lambda{|site| site.key});&#x000A;&#x000A;<span style="color:#777"># A dot showing the yield. */</span>&#x000A;dot = cell.add(pv.Panel)&#x000A;.data(lambda {|site| site.values})&#x000A;    .top(<span style="color:#00D">23</span>)&#x000A;  .add(pv.Dot)&#x000A;  .data(lambda {|year| year.values})&#x000A;  .left(lambda {|d| x.scale(d[<span style="color:#A60">:yield</span>])})&#x000A;    .top(lambda {<span style="color:#069">self</span>.index * <span style="color:#00D">11</span>})&#x000A;    .shape_size(<span style="color:#00D">10</span>)&#x000A;    .line_width(<span style="color:#00D">2</span>)&#x000A;    .stroke_style(lambda {|d| c.scale(d[<span style="color:#A60">:year</span>])})&#x000A;&#x000A;<span style="color:#777"># A label showing the variety. */</span>&#x000A;dot.anchor(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">left</span><span style="color:#710">&quot;</span></span>).add(pv.Label)&#x000A;  .visible(lambda { <span style="color:#069">self</span>.parent.index!=<span style="color:#00D">0</span>})&#x000A;  .left(<span style="color:#00D">-2</span>)&#x000A;  .text(lambda {|d| d[<span style="color:#A60">:variety</span>]})&#x000A;&#x000A;<span style="color:#777"># X-ticks. */</span>&#x000A;vis.add(pv.Rule)&#x000A;    .data(x.ticks())&#x000A;    .left(lambda {|d|  <span style="color:#00D">90</span>+x.scale(d)})&#x000A;    .bottom(<span style="color:#00D">-5</span>)&#x000A;    .height(<span style="color:#00D">5</span>)&#x000A;    .stroke_style(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">#999</span><span style="color:#710">&quot;</span></span>)&#x000A;  .anchor(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">bottom</span><span style="color:#710">&quot;</span></span>).add(pv.Label);&#x000A;&#x000A;<span style="color:#777"># A legend showing the year. */</span>&#x000A;vis.add(pv.Dot)&#x000A;    .mark_extend(dot)&#x000A;    .data([{<span style="color:#A60">:year</span>=&gt;<span style="color:#00D">1931</span>}, {<span style="color:#A60">:year</span>=&gt;<span style="color:#00D">1932</span>}])&#x000A;    .left(lambda {|d| <span style="color:#00D">260</span> + <span style="color:#069">self</span>.index * <span style="color:#00D">40</span>})&#x000A;    .top(<span style="color:#00D">-8</span>)&#x000A;  .anchor(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">right</span><span style="color:#710">&quot;</span></span>).add(pv.Label)&#x000A;  .text(lambda {|d| d[<span style="color:#A60">:year</span>]})&#x000A;&#x000A;vis.render()&#x000A;&#x000A;puts vis.to_svg</pre></div>
+</div>
+</div>
+</div>
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5764936-8']);
+  _gaq.push(['_trackPageview']);
+  
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

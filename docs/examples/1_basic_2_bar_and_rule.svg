@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" font-size="10px" font-family="sans-serif" fill="none" stroke="none" stroke-width="1.5" width="150.0" height="200.0">
+     <g transform="translate(0.0,0.0)">
+          <line shape-rendering="crispEdges" x1="0" y1="199.5" x2="150" y2="199.5" stroke="rgb(0,0,0)" stroke-width="1"/>
+          <line shape-rendering="crispEdges" x1="0" y1="159.5" x2="150" y2="159.5" stroke="rgb(0,0,0)" stroke-width="1"/>
+          <line shape-rendering="crispEdges" x1="0" y1="119.5" x2="150" y2="119.5" stroke="rgb(0,0,0)" stroke-width="1"/>
+          <line shape-rendering="crispEdges" x1="0" y1="79.5" x2="150" y2="79.5" stroke="rgb(0,0,0)" stroke-width="1"/>
+     </g>
+     <g transform="translate(0.0,0.0)">
+          <text pointer-events="none" x="3" y="-3" transform="translate(0,199.5)" fill="rgb(0,0,0)">0.0</text>
+          <text pointer-events="none" x="3" y="-3" transform="translate(0,159.5)" fill="rgb(0,0,0)">0.5</text>
+          <text pointer-events="none" x="3" y="-3" transform="translate(0,119.5)" fill="rgb(0,0,0)">1.0</text>
+          <text pointer-events="none" x="3" y="-3" transform="translate(0,79.5)" fill="rgb(0,0,0)">1.5</text>
+     </g>
+     <g transform="translate(0.0,0.0)">
+          <rect x="25" y="120" width="20" height="80" fill="rgb(31,119,180)"/>
+          <rect x="50" y="104.0" width="20" height="96.0" fill="rgb(31,119,180)"/>
+          <rect x="75" y="64.0" width="20" height="136.0" fill="rgb(31,119,180)"/>
+          <rect x="100" y="80.0" width="20" height="120.0" fill="rgb(31,119,180)"/>
+          <rect x="125" y="144.0" width="20" height="56.0" fill="rgb(31,119,180)"/>
+     </g>
+     <g transform="translate(0.0,0.0)">
+          <text pointer-events="none" y="-3" transform="translate(35.0,200)" fill="rgb(0,0,0)" text-anchor="middle">1</text>
+          <text pointer-events="none" y="-3" transform="translate(60.0,200.0)" fill="rgb(0,0,0)" text-anchor="middle">1.2</text>
+          <text pointer-events="none" y="-3" transform="translate(85.0,200.0)" fill="rgb(0,0,0)" text-anchor="middle">1.7</text>
+          <text pointer-events="none" y="-3" transform="translate(110.0,200.0)" fill="rgb(0,0,0)" text-anchor="middle">1.5</text>
+          <text pointer-events="none" y="-3" transform="translate(135.0,200.0)" fill="rgb(0,0,0)" text-anchor="middle">0.7</text>
+     </g>
+</svg>

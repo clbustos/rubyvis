@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' content='text/html' http-equiv='Content-Type'>
+<link href='../style.css' rel='stylesheet' type='text/css'>
+<title>Rubyvis - Example: First example (Protovis API)</title>
+</head>
+<body>
+<h1>Rubyvis - Example: First example (Protovis API)</h1>
+<div class='example_main'>
+<div class='description'><p>This is the protovis <span class="caps">API</span> version of &#8220;Getting Started&#8221; example of Protovis introduction.<br />
+On this example we  build a bar chart using panel and bar marks.<br />
+A mark represents a set of graphical elements that share data and visual encodings. Although marks are simple by themselves, you can combine them in interesting ways to make rich, interactive visualizations</p></div>
+<div class='navigation'>
+<ul>
+<li>
+<a href='../index.html'>Home</a>
+</li>
+<li>
+<a href='1_basic_1a_bar_rbp_api.html'>Previous: First example (RBP API)</a>
+</li>
+<li>
+<a href='1_basic_2_bar_and_rule.html'>Next: Inheritance and labels</a>
+</li>
+</ul>
+</div>
+<div class='image'>
+<!--[if IE]>
+<embed class='svg' height='150' src='1_basic_1b_bar_pv_api.svg' width='150'>
+<![endif]-->
+<object class='svg' data='1_basic_1b_bar_pv_api.svg' height='150' type='image/svg+xml' width='150'></object>
+</div>
+<div class='source'><div class="CodeRay">
+  <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">rubyvis</span><span style="color:#710">'</span></span>&#x000A;vis = <span style="color:#036;font-weight:bold">Rubyvis</span>::<span style="color:#036;font-weight:bold">Panel</span>.new.width(<span style="color:#00D">150</span>).height(<span style="color:#00D">150</span>);&#x000A;&#x000A;vis.add(pv.Bar).data([<span style="color:#00D">1</span>, <span style="color:#60E">1.2</span>, <span style="color:#60E">1.7</span>, <span style="color:#60E">1.5</span>, <span style="color:#60E">0.7</span>, <span style="color:#60E">0.3</span>]).&#x000A;  width(<span style="color:#00D">20</span>).&#x000A;  height(lambda {|d| d * <span style="color:#00D">80</span>}).&#x000A;  bottom(<span style="color:#00D">0</span>).&#x000A;  left(lambda {index * <span style="color:#00D">25</span>})&#x000A;&#x000A;vis.render()&#x000A;puts vis.to_svg</pre></div>
+</div>
+</div>
+</div>
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5764936-8']);
+  _gaq.push(['_trackPageview']);
+  
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

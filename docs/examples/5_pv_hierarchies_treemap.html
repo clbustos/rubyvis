@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' content='text/html' http-equiv='Content-Type'>
+<link href='../style.css' rel='stylesheet' type='text/css'>
+<title>Rubyvis - Example: Treemap</title>
+</head>
+<body>
+<h1>Rubyvis - Example: Treemap</h1>
+<div class='example_main'>
+<div class='description'><p>Introduced by Ben Shneiderman in 1991, a treemap recursively subdivides area into rectangles. As with adjacency diagrams, the size of any node in the tree is quickly revealed. This example uses color to encode different packages of the rubyvis package, and area to encode file size. “Squarified” treemaps use approximately square rectangles, which offer better readability and size estimation than naive “slice-and-dice” subdivision. <br />
+Fancier algorithms such as <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.102.6281&amp;rep=rep1&amp;type=pdf">Voronoi</a> and <a href="http://www.research.ibm.com/visual/papers/158-wattenberg-final3.pdf">jigsaw</a> treemaps also exist but are less common.</p></div>
+<div class='navigation'>
+<ul>
+<li>
+<a href='../index.html'>Home</a>
+</li>
+<li>
+<a href='5_pv_hierarchies_sunburst.html'>Previous: Sunbursts</a>
+</li>
+<li>
+<a href='6_pv_networks_arc.html'>Next: Arc Diagrams</a>
+</li>
+</ul>
+</div>
+<div class='image'>
+<!--[if IE]>
+<embed class='svg' height='1000' src='5_pv_hierarchies_treemap.svg' width='600'>
+<![endif]-->
+<object class='svg' data='5_pv_hierarchies_treemap.svg' height='1000' type='image/svg+xml' width='600'></object>
+</div>
+<div class='source'><div class="CodeRay">
+  <div class="code"><pre>&#x000A;require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">rubyvis</span><span style="color:#710">'</span></span>&#x000A;&#x000A;<span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">get_files</span>(path)&#x000A;  h={}&#x000A;  <span style="color:#036;font-weight:bold">Dir</span>.glob(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>path<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">/*</span><span style="color:#710">&quot;</span></span>).each {|e|&#x000A;    <span style="color:#080;font-weight:bold">next</span> <span style="color:#080;font-weight:bold">if</span> <span style="color:#036;font-weight:bold">File</span>.expand_path(e)=~<span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#808">pkg|web|vendor|doc|~</span><span style="color:#404">/</span></span>&#x000A;    pa=<span style="color:#036;font-weight:bold">File</span>.expand_path(e) &#x000A;    <span style="color:#080;font-weight:bold">if</span> <span style="color:#036;font-weight:bold">File</span>.stat(pa).directory?&#x000A;      h[<span style="color:#036;font-weight:bold">File</span>.basename(pa)]=get_files(pa)&#x000A;    <span style="color:#080;font-weight:bold">else</span>&#x000A;      h[<span style="color:#036;font-weight:bold">File</span>.basename(pa)]=<span style="color:#036;font-weight:bold">File</span>.stat(pa).size&#x000A;    <span style="color:#080;font-weight:bold">end</span>&#x000A;  }&#x000A;  h&#x000A;<span style="color:#080;font-weight:bold">end</span>&#x000A;&#x000A;files=get_files(<span style="color:#036;font-weight:bold">File</span>.expand_path(<span style="color:#036;font-weight:bold">File</span>.dirname(<span style="color:#069">__FILE__</span>)+<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">/../../lib/</span><span style="color:#710">&quot;</span></span>))&#x000A;&#x000A;format=<span style="color:#036;font-weight:bold">Rubyvis</span>::<span style="color:#036;font-weight:bold">Format</span>.number&#x000A;color = pv.Colors.category20&#x000A;nodes = pv.dom(files).root(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">rubyvis</span><span style="color:#710">&quot;</span></span>).nodes&#x000A;&#x000A;&#x000A;vis = pv.Panel.new()&#x000A;    .width(<span style="color:#00D">600</span>)&#x000A;    .height(<span style="color:#00D">1000</span>)&#x000A;&#x000A;treemap = vis.add(<span style="color:#036;font-weight:bold">Rubyvis</span>::<span style="color:#036;font-weight:bold">Layout</span>::<span style="color:#036;font-weight:bold">Treemap</span>).&#x000A;  nodes(nodes).mode(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">squarify</span><span style="color:#710">&quot;</span></span>).round(<span style="color:#069">true</span>)&#x000A;&#x000A;treemap.leaf.add(<span style="color:#036;font-weight:bold">Rubyvis</span>::<span style="color:#036;font-weight:bold">Panel</span>).&#x000A;  fill_style(lambda{|d| &#x000A;   color.scale(d.parent_node.node_name)}).&#x000A;  stroke_style(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">#fff</span><span style="color:#710">&quot;</span></span>).&#x000A;  line_width(<span style="color:#00D">1</span>).&#x000A;  antialias(<span style="color:#069">false</span>).&#x000A;  title(lambda {|d| d.node_name+<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20"> </span><span style="color:#710">&quot;</span></span>+format.format(d.node_value)})&#x000A;&#x000A;treemap.node_label.add(<span style="color:#036;font-weight:bold">Rubyvis</span>::<span style="color:#036;font-weight:bold">Label</span>).&#x000A;  text_style(lambda {|d| pv.rgb(<span style="color:#00D">0</span>, <span style="color:#00D">0</span>, <span style="color:#00D">0</span>, <span style="color:#00D">1</span>)})&#x000A;&#x000A;vis.render&#x000A;puts vis.to_svg</pre></div>
+</div>
+</div>
+</div>
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5764936-8']);
+  _gaq.push(['_trackPageview']);
+  
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

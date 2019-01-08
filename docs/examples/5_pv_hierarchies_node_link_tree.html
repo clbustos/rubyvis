@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' content='text/html' http-equiv='Content-Type'>
+<link href='../style.css' rel='stylesheet' type='text/css'>
+<title>Rubyvis - Example: Node-Link Trees</title>
+</head>
+<body>
+<h1>Rubyvis - Example: Node-Link Trees</h1>
+<div class='example_main'>
+<div class='description'><p>The tree layout implements the Reingold-Tilford algorithm for efficient, tidy arrangement of layered nodes. This node-link diagram is similar to the dendrogram, except the depth of nodes is computed by distance from the root, leading to a ragged appearance. Cartesian orientations are also supported.</p></div>
+<div class='navigation'>
+<ul>
+<li>
+<a href='../index.html'>Home</a>
+</li>
+<li>
+<a href='5_pv_hierarchies_indent.html'>Previous: Indented Tree</a>
+</li>
+<li>
+<a href='5_pv_hierarchies_sunburst.html'>Next: Sunbursts</a>
+</li>
+</ul>
+</div>
+<div class='image'>
+<!--[if IE]>
+<embed class='svg' height='800' src='5_pv_hierarchies_node_link_tree.svg' width='800'>
+<![endif]-->
+<object class='svg' data='5_pv_hierarchies_node_link_tree.svg' height='800' type='image/svg+xml' width='800'></object>
+</div>
+<div class='source'><div class="CodeRay">
+  <div class="code"><pre>&#x000A;require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">rubyvis</span><span style="color:#710">'</span></span>&#x000A;&#x000A;<span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">get_files</span>(path)&#x000A;  h={}&#x000A;  <span style="color:#036;font-weight:bold">Dir</span>.glob(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>path<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">/*</span><span style="color:#710">&quot;</span></span>).each {|e|&#x000A;    <span style="color:#080;font-weight:bold">next</span> <span style="color:#080;font-weight:bold">if</span> <span style="color:#036;font-weight:bold">File</span>.expand_path(e)=~<span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#808">pkg|web|vendor|doc|~</span><span style="color:#404">/</span></span>&#x000A;    pa=<span style="color:#036;font-weight:bold">File</span>.expand_path(e) &#x000A;    <span style="color:#080;font-weight:bold">if</span> <span style="color:#036;font-weight:bold">File</span>.stat(pa).directory?&#x000A;      h[<span style="color:#036;font-weight:bold">File</span>.basename(pa)]=get_files(pa)&#x000A;    <span style="color:#080;font-weight:bold">else</span>&#x000A;      h[<span style="color:#036;font-weight:bold">File</span>.basename(pa)]=<span style="color:#036;font-weight:bold">File</span>.stat(pa).size&#x000A;    <span style="color:#080;font-weight:bold">end</span>&#x000A;  }&#x000A;  h&#x000A;<span style="color:#080;font-weight:bold">end</span>&#x000A;&#x000A;&#x000A;&#x000A;files=get_files(<span style="color:#036;font-weight:bold">File</span>.expand_path(<span style="color:#036;font-weight:bold">File</span>.dirname(<span style="color:#069">__FILE__</span>)+<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">/../../</span><span style="color:#710">&quot;</span></span>))&#x000A;<span style="color:#777">#files={:b=&gt;{:c=&gt;1,:d=&gt;2}}</span>&#x000A;&#x000A;&#x000A;vis = <span style="color:#036;font-weight:bold">Rubyvis</span>::<span style="color:#036;font-weight:bold">Panel</span>.new()&#x000A;    .width(<span style="color:#00D">800</span>)&#x000A;    .height(<span style="color:#00D">800</span>)&#x000A;    .left(<span style="color:#00D">0</span>)&#x000A;    .right(<span style="color:#00D">0</span>)&#x000A;    .top(<span style="color:#00D">0</span>)&#x000A;    .bottom(<span style="color:#00D">0</span>)&#x000A;&#x000A;tree = vis.add(<span style="color:#036;font-weight:bold">Rubyvis</span>::<span style="color:#036;font-weight:bold">Layout</span>::<span style="color:#036;font-weight:bold">Tree</span>).&#x000A;  nodes(<span style="color:#036;font-weight:bold">Rubyvis</span>.dom(files).root(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">rubyvis</span><span style="color:#710">&quot;</span></span>).nodes()).&#x000A;  orient(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">radial</span><span style="color:#710">'</span></span>).&#x000A;  depth(<span style="color:#00D">85</span>).&#x000A;  breadth(<span style="color:#00D">12</span>)&#x000A;&#x000A;tree.link.add(<span style="color:#036;font-weight:bold">Rubyvis</span>::<span style="color:#036;font-weight:bold">Line</span>)&#x000A;&#x000A;tree.node.add(<span style="color:#036;font-weight:bold">Rubyvis</span>::<span style="color:#036;font-weight:bold">Dot</span>).&#x000A;fill_style(lambda {|n| n.first_child ? <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">#aec7e8</span><span style="color:#710">&quot;</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">#ff7f0e</span><span style="color:#710">&quot;</span></span>}).&#x000A;title(lambda {|n| n.node_name})&#x000A;&#x000A;tree.node_label.add(<span style="color:#036;font-weight:bold">Rubyvis</span>::<span style="color:#036;font-weight:bold">Label</span>).&#x000A;visible(lambda {|n| n.first_child})&#x000A;&#x000A;&#x000A;vis.render&#x000A;puts vis.to_svg</pre></div>
+</div>
+</div>
+</div>
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5764936-8']);
+  _gaq.push(['_trackPageview']);
+  
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

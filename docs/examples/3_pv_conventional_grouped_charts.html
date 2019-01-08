@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' content='text/html' http-equiv='Content-Type'>
+<link href='../style.css' rel='stylesheet' type='text/css'>
+<title>Rubyvis - Example: Grouped charts</title>
+</head>
+<body>
+<h1>Rubyvis - Example: Grouped charts</h1>
+<div class='example_main'>
+<div class='description'><p>In this multi-series bar chart, we group bars together rather than stack them. A grouped chart allows accurate comparison of individual values thanks to an aligned baseline: a position, rather than length, judgment is used.<br />
+An ordinal scale positions the groups vertically; the bars are then replicated inside a panel, a technique that is also used for small multiples.</p></div>
+<div class='navigation'>
+<ul>
+<li>
+<a href='../index.html'>Home</a>
+</li>
+<li>
+<a href='3_pv_conventional_bar_column_chart.html'>Previous: Bar & Column Charts</a>
+</li>
+<li>
+<a href='3_pv_conventional_line_and_step.html'>Next: Line and Step Chart</a>
+</li>
+</ul>
+</div>
+<div class='image'>
+<!--[if IE]>
+<embed class='svg' height='275' src='3_pv_conventional_grouped_charts.svg' width='430'>
+<![endif]-->
+<object class='svg' data='3_pv_conventional_grouped_charts.svg' height='275' type='image/svg+xml' width='430'></object>
+</div>
+<div class='source'><div class="CodeRay">
+  <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">rubyvis</span><span style="color:#710">'</span></span>&#x000A;&#x000A;n = <span style="color:#00D">3</span>&#x000A;m = <span style="color:#00D">4</span>&#x000A;data = pv.range(n).map {&#x000A;    pv.range(m).map {&#x000A;        rand() + <span style="color:#60E">0.1</span>;&#x000A;      }&#x000A;}&#x000A;&#x000A;&#x000A;w = <span style="color:#00D">400</span>&#x000A;h = <span style="color:#00D">250</span>&#x000A;x = pv.Scale.linear(<span style="color:#00D">0</span>, <span style="color:#60E">1.1</span>).range(<span style="color:#00D">0</span>, w)&#x000A;y = pv.Scale.ordinal(pv.range(n)).split_banded(<span style="color:#00D">0</span>, h, <span style="color:#00D">4</span>/<span style="color:#60E">5.0</span>);&#x000A;&#x000A;<span style="color:#777">#/* The root panel. */</span>&#x000A;vis = pv.Panel.new()&#x000A;    .width(w)&#x000A;    .height(h)&#x000A;    .bottom(<span style="color:#00D">20</span>)&#x000A;    .left(<span style="color:#00D">20</span>)&#x000A;    .right(<span style="color:#00D">10</span>)&#x000A;    .top(<span style="color:#00D">5</span>);&#x000A;&#x000A;<span style="color:#777">#/* The bars. */</span>&#x000A;&#x000A;colors=pv.Colors.category20()&#x000A;&#x000A;bar = vis.add(pv.Panel)&#x000A;    .data(data)&#x000A;    .top(lambda {y.scale(<span style="color:#069">self</span>.index)})&#x000A;    .height(y.range_band)&#x000A;  .add(pv.Bar)&#x000A;    .data(lambda {|d| d})&#x000A;    .top(lambda {<span style="color:#069">self</span>.index * y.range_band / m.to_f})&#x000A;    .height(y.range_band / m.to_f)&#x000A;    .left(<span style="color:#00D">0</span>)&#x000A;    .width(x)&#x000A;    .fillStyle(lambda { colors.scale(<span style="color:#069">self</span>.index)})&#x000A;&#x000A;<span style="color:#777">#/* The value label. */</span>&#x000A;bar.anchor(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">right</span><span style="color:#710">&quot;</span></span>).add(pv.Label)&#x000A;    .textStyle(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">white</span><span style="color:#710">&quot;</span></span>)&#x000A;    .text(lambda {|d| <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">%0.1f</span><span style="color:#710">&quot;</span></span> % d});&#x000A;&#x000A;<span style="color:#777">#/* The variable label. */</span>&#x000A;bar.parent.anchor(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">left</span><span style="color:#710">&quot;</span></span>).add(pv.Label)&#x000A;    .textAlign(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">right</span><span style="color:#710">&quot;</span></span>)&#x000A;    .textMargin(<span style="color:#00D">5</span>)&#x000A;    .text(lambda {<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">ABCDEFGHIJK</span><span style="color:#710">&quot;</span></span>[<span style="color:#069">self</span>.parent.index,<span style="color:#00D">1</span>]});&#x000A;&#x000A;<span style="color:#777">#/* X-axis ticks. */</span>&#x000A;vis.add(pv.Rule)&#x000A;    .data(x.ticks(<span style="color:#00D">5</span>))&#x000A;    .left(x)&#x000A;    .strokeStyle(lambda {|d| d!=<span style="color:#00D">0</span> ? <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">rgba(255,255,255,.3)</span><span style="color:#710">&quot;</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">#000</span><span style="color:#710">&quot;</span></span>})&#x000A;  .add(pv.Rule)&#x000A;    .bottom(<span style="color:#00D">0</span>)&#x000A;    .height(<span style="color:#00D">5</span>)&#x000A;    .strokeStyle(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">#000</span><span style="color:#710">&quot;</span></span>)&#x000A;  .anchor(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">bottom</span><span style="color:#710">&quot;</span></span>).add(pv.Label)&#x000A;    .text(x.tick_format);&#x000A;&#x000A;vis.render();&#x000A;puts vis.to_svg</pre></div>
+</div>
+</div>
+</div>
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5764936-8']);
+  _gaq.push(['_trackPageview']);
+  
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

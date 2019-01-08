@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' content='text/html' http-equiv='Content-Type'>
+<link href='../style.css' rel='stylesheet' type='text/css'>
+<title>Rubyvis - Example: Matrix Diagrams</title>
+</head>
+<body>
+<h1>Rubyvis - Example: Matrix Diagrams</h1>
+<div class='example_main'>
+<div class='description'><p>A graph can be represented by an adjacency matrix, where each value in row i and column j corresponds to the link from node i to node j. Given this representation, an obvious visualization then is: show the matrix! Using color or saturation instead of text allows patterns to be perceived rapidly. The seriation problem applies just as much to the matrix view as to the arc diagram, so the order of rows and columns is important: here we use a community-detection algorithm to order and color the display.<br />
+While path following is harder in a matrix view than in a node-link diagram, matrices have a number of compensating advantages. As networks get large and highly connected, node-link diagrams often devolve into giant hairballs of line crossings. In matrix views, however, line crossings are impossible, and with an effective sorting one quickly can spot clusters and bridges. Allowing interactive grouping and reordering of the matrix facilitates deeper exploration of network structure.<br />
+This network represents character co-occurrence in the chapters of Victor Hugo&#8217;s classic novel, Les Misérables. Node colors depict cluster memberships computed by a community-detection algorithm. Source: Knuth, D. E. 1993. The Stanford GraphBase: A Platform for Combinatorial Computing, Addison-Wesley.</p></div>
+<div class='navigation'>
+<ul>
+<li>
+<a href='../index.html'>Home</a>
+</li>
+<li>
+<a href='6_pv_networks_arc.html'>Previous: Arc Diagrams</a>
+</li>
+</ul>
+</div>
+<div class='image'>
+<!--[if IE]>
+<embed class='svg' height='783' src='6_pv_networks_matrix.svg' width='783'>
+<![endif]-->
+<object class='svg' data='6_pv_networks_matrix.svg' height='783' type='image/svg+xml' width='783'></object>
+</div>
+<div class='source'><div class="CodeRay">
+  <div class="code"><pre>&#x000A;require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">rubyvis</span><span style="color:#710">'</span></span>&#x000A;load(<span style="color:#036;font-weight:bold">File</span>.dirname(<span style="color:#069">__FILE__</span>)+<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">/miserables_data.rb</span><span style="color:#710">&quot;</span></span>)&#x000A;color=<span style="color:#036;font-weight:bold">Rubyvis</span>::<span style="color:#036;font-weight:bold">Colors</span>.category19&#x000A;&#x000A;&#x000A;vis = <span style="color:#036;font-weight:bold">Rubyvis</span>::<span style="color:#036;font-weight:bold">Panel</span>.new() <span style="color:#080;font-weight:bold">do</span> &#x000A;  width <span style="color:#00D">693</span>&#x000A;  height <span style="color:#00D">693</span>&#x000A;  top <span style="color:#00D">90</span>&#x000A;  left <span style="color:#00D">90</span>&#x000A;  layout_matrix <span style="color:#080;font-weight:bold">do</span>&#x000A;    nodes <span style="color:#d70">$miserables</span>.nodes&#x000A;    links <span style="color:#d70">$miserables</span>.links&#x000A;    sort {|a,b| b.group&lt;=&gt;a.group }&#x000A;    directed (<span style="color:#069">false</span>)&#x000A;    link.bar <span style="color:#080;font-weight:bold">do</span>&#x000A;      fill_style {|l| l.link_value!=<span style="color:#00D">0</span> ?&#x000A;       ((l.target_node.group == l.source_node.group) ? color[l.source_node.group] : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">#555</span><span style="color:#710">&quot;</span></span>) : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">#eee</span><span style="color:#710">&quot;</span></span>}&#x000A;      antialias(<span style="color:#069">false</span>)&#x000A;      line_width(<span style="color:#00D">1</span>)&#x000A;    <span style="color:#080;font-weight:bold">end</span>&#x000A;    node_label.label <span style="color:#080;font-weight:bold">do</span> &#x000A;      text_style {|l| color[l.group]}&#x000A;    <span style="color:#080;font-weight:bold">end</span>&#x000A;  <span style="color:#080;font-weight:bold">end</span>&#x000A;<span style="color:#080;font-weight:bold">end</span>&#x000A;vis.render()&#x000A;puts vis.to_svg</pre></div>
+</div>
+</div>
+</div>
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5764936-8']);
+  _gaq.push(['_trackPageview']);
+  
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

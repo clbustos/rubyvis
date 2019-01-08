@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" font-size="10px" font-family="sans-serif" fill="none" stroke="none" stroke-width="1.5" width="430" height="275">
+     <g transform="translate(20,5)">
+          <g transform="translate(0,15.624999999999996)">
+               <rect width="206.86435196798905" height="15.625" fill="rgb(31,119,180)"/>
+               <rect y="15.625" width="273.9527350795463" height="15.625" fill="rgb(174,199,232)"/>
+               <rect y="31.25" width="86.12843314193181" height="15.625" fill="rgb(255,127,14)"/>
+               <rect y="46.875" width="36.91197937484769" height="15.625" fill="rgb(255,187,120)"/>
+          </g>
+          <g transform="translate(0,15.624999999999996)">
+               <text pointer-events="none" x="-3" dy=".35em" transform="translate(206.86435196798905,7.8125)" fill="rgb(255,255,255)" text-anchor="end">0.6</text>
+               <text pointer-events="none" x="-3" dy=".35em" transform="translate(273.9527350795463,23.4375)" fill="rgb(255,255,255)" text-anchor="end">0.8</text>
+               <text pointer-events="none" x="-3" dy=".35em" transform="translate(86.12843314193181,39.0625)" fill="rgb(255,255,255)" text-anchor="end">0.2</text>
+               <text pointer-events="none" x="-3" dy=".35em" transform="translate(36.91197937484769,54.6875)" fill="rgb(255,255,255)" text-anchor="end">0.1</text>
+          </g>
+          <g transform="translate(0,15.624999999999996)">
+               <text pointer-events="none" x="-5" dy=".35em" transform="translate(0,31.25)" fill="rgb(0,0,0)" text-anchor="end">A</text>
+          </g>
+          <g transform="translate(0,93.75)">
+               <rect width="92.69827683857402" height="15.625" fill="rgb(31,119,180)"/>
+               <rect y="15.625" width="116.00466872937798" height="15.625" fill="rgb(174,199,232)"/>
+               <rect y="31.25" width="48.128937130756604" height="15.625" fill="rgb(255,127,14)"/>
+               <rect y="46.875" width="379.4432486638003" height="15.625" fill="rgb(255,187,120)"/>
+          </g>
+          <g transform="translate(0,93.75)">
+               <text pointer-events="none" x="-3" dy=".35em" transform="translate(92.69827683857402,7.8125)" fill="rgb(255,255,255)" text-anchor="end">0.3</text>
+               <text pointer-events="none" x="-3" dy=".35em" transform="translate(116.00466872937798,23.4375)" fill="rgb(255,255,255)" text-anchor="end">0.3</text>
+               <text pointer-events="none" x="-3" dy=".35em" transform="translate(48.128937130756604,39.0625)" fill="rgb(255,255,255)" text-anchor="end">0.1</text>
+               <text pointer-events="none" x="-3" dy=".35em" transform="translate(379.4432486638003,54.6875)" fill="rgb(255,255,255)" text-anchor="end">1.0</text>
+          </g>
+          <g transform="translate(0,93.75)">
+               <text pointer-events="none" x="-5" dy=".35em" transform="translate(0,31.25)" fill="rgb(0,0,0)" text-anchor="end">B</text>
+          </g>
+          <g transform="translate(0,171.875)">
+               <rect width="175.6725489905403" height="15.625" fill="rgb(31,119,180)"/>
+               <rect y="15.625" width="265.9150145837666" height="15.625" fill="rgb(174,199,232)"/>
+               <rect y="31.25" width="321.43367188874765" height="15.625" fill="rgb(255,127,14)"/>
+               <rect y="46.875" width="135.7244124462035" height="15.625" fill="rgb(255,187,120)"/>
+          </g>
+          <g transform="translate(0,171.875)">
+               <text pointer-events="none" x="-3" dy=".35em" transform="translate(175.6725489905403,7.8125)" fill="rgb(255,255,255)" text-anchor="end">0.5</text>
+               <text pointer-events="none" x="-3" dy=".35em" transform="translate(265.9150145837666,23.4375)" fill="rgb(255,255,255)" text-anchor="end">0.7</text>
+               <text pointer-events="none" x="-3" dy=".35em" transform="translate(321.43367188874765,39.0625)" fill="rgb(255,255,255)" text-anchor="end">0.9</text>
+               <text pointer-events="none" x="-3" dy=".35em" transform="translate(135.7244124462035,54.6875)" fill="rgb(255,255,255)" text-anchor="end">0.4</text>
+          </g>
+          <g transform="translate(0,171.875)">
+               <text pointer-events="none" x="-5" dy=".35em" transform="translate(0,31.25)" fill="rgb(0,0,0)" text-anchor="end">C</text>
+          </g>
+     </g>
+     <g transform="translate(20,5)">
+          <line shape-rendering="crispEdges" x1="0.0" y1="0" x2="0.0" y2="250" stroke="rgb(0,0,0)" stroke-width="1"/>
+          <line shape-rendering="crispEdges" x1="72.72727272727273" y1="0" x2="72.72727272727273" y2="250" stroke="rgb(255,255,255)" stroke-opacity="0.3" stroke-width="1"/>
+          <line shape-rendering="crispEdges" x1="145.45454545454547" y1="0" x2="145.45454545454547" y2="250" stroke="rgb(255,255,255)" stroke-opacity="0.3" stroke-width="1"/>
+          <line shape-rendering="crispEdges" x1="218.18181818181816" y1="0" x2="218.18181818181816" y2="250" stroke="rgb(255,255,255)" stroke-opacity="0.3" stroke-width="1"/>
+          <line shape-rendering="crispEdges" x1="290.90909090909093" y1="0" x2="290.90909090909093" y2="250" stroke="rgb(255,255,255)" stroke-opacity="0.3" stroke-width="1"/>
+          <line shape-rendering="crispEdges" x1="363.6363636363636" y1="0" x2="363.6363636363636" y2="250" stroke="rgb(255,255,255)" stroke-opacity="0.3" stroke-width="1"/>
+     </g>
+     <g transform="translate(20,5)">
+          <line shape-rendering="crispEdges" x1="0.0" y1="245" x2="0.0" y2="250" stroke="rgb(0,0,0)" stroke-width="1"/>
+          <line shape-rendering="crispEdges" x1="72.72727272727273" y1="245" x2="72.72727272727273" y2="250" stroke="rgb(0,0,0)" stroke-width="1"/>
+          <line shape-rendering="crispEdges" x1="145.45454545454547" y1="245" x2="145.45454545454547" y2="250" stroke="rgb(0,0,0)" stroke-width="1"/>
+          <line shape-rendering="crispEdges" x1="218.18181818181816" y1="245" x2="218.18181818181816" y2="250" stroke="rgb(0,0,0)" stroke-width="1"/>
+          <line shape-rendering="crispEdges" x1="290.90909090909093" y1="245" x2="290.90909090909093" y2="250" stroke="rgb(0,0,0)" stroke-width="1"/>
+          <line shape-rendering="crispEdges" x1="363.6363636363636" y1="245" x2="363.6363636363636" y2="250" stroke="rgb(0,0,0)" stroke-width="1"/>
+     </g>
+     <g transform="translate(20,5)">
+          <text pointer-events="none" y="3" dy=".71em" transform="translate(0.0,250)" fill="rgb(0,0,0)" text-anchor="middle">0.0</text>
+          <text pointer-events="none" y="3" dy=".71em" transform="translate(72.72727272727273,250)" fill="rgb(0,0,0)" text-anchor="middle">0.2</text>
+          <text pointer-events="none" y="3" dy=".71em" transform="translate(145.45454545454547,250)" fill="rgb(0,0,0)" text-anchor="middle">0.4</text>
+          <text pointer-events="none" y="3" dy=".71em" transform="translate(218.18181818181816,250)" fill="rgb(0,0,0)" text-anchor="middle">0.6</text>
+          <text pointer-events="none" y="3" dy=".71em" transform="translate(290.90909090909093,250)" fill="rgb(0,0,0)" text-anchor="middle">0.8</text>
+          <text pointer-events="none" y="3" dy=".71em" transform="translate(363.6363636363636,250)" fill="rgb(0,0,0)" text-anchor="middle">1.0</text>
+     </g>
+</svg>

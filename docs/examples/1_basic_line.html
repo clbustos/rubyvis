@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' content='text/html' http-equiv='Content-Type'>
+<link href='../style.css' rel='stylesheet' type='text/css'>
+<title>Rubyvis - Example: Line Chart</title>
+</head>
+<body>
+<h1>Rubyvis - Example: Line Chart</h1>
+<div class='example_main'>
+<div class='description'><p>This line chart is constructed a Line mark.<br />
+The second line, inside the first one, is created using an anchor.</p></div>
+<div class='navigation'>
+<ul>
+<li>
+<a href='../index.html'>Home</a>
+</li>
+<li>
+<a href='1_basic_image.html'>Previous: Image</a>
+</li>
+<li>
+<a href='1_basic_line_interpolation.html'>Next: Line Interpolation</a>
+</li>
+</ul>
+</div>
+<div class='image'>
+<!--[if IE]>
+<embed class='svg' height='225' src='1_basic_line.svg' width='430'>
+<![endif]-->
+<object class='svg' data='1_basic_line.svg' height='225' type='image/svg+xml' width='430'></object>
+</div>
+<div class='source'><div class="CodeRay">
+  <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">rubyvis</span><span style="color:#710">'</span></span>&#x000A;&#x000A;data = pv.range(<span style="color:#00D">0</span>, <span style="color:#00D">10</span>, <span style="color:#60E">0.1</span>).map {|x| &#x000A;  <span style="color:#036;font-weight:bold">OpenStruct</span>.new({<span style="color:#A60">:x</span>=&gt; x, <span style="color:#A60">:y</span>=&gt; <span style="color:#036;font-weight:bold">Math</span>.sin(x) + <span style="color:#00D">2</span>+rand()})&#x000A;}&#x000A;&#x000A;<span style="color:#777">#p data</span>&#x000A;w = <span style="color:#00D">400</span>&#x000A;h = <span style="color:#00D">200</span>&#x000A;x = pv.Scale.linear(data, lambda {|d| d.x}).range(<span style="color:#00D">0</span>, w)&#x000A;&#x000A;&#x000A;y = pv.Scale.linear(data, lambda {|d| d.y}).range(<span style="color:#00D">0</span>, h);&#x000A;&#x000A;<span style="color:#777">#/* The root panel. */</span>&#x000A;vis = pv.Panel.new()&#x000A;  .width(w)&#x000A;  .height(h)&#x000A;  .bottom(<span style="color:#00D">20</span>)&#x000A;  .left(<span style="color:#00D">20</span>)&#x000A;  .right(<span style="color:#00D">10</span>)&#x000A;  .top(<span style="color:#00D">5</span>)&#x000A;&#x000A;vis.add(pv.Line).&#x000A;  data(data).&#x000A;  line_width(<span style="color:#00D">5</span>).&#x000A;  left(lambda {|d| x.scale(d.x)}).&#x000A;  bottom(lambda {|d| y.scale(d.y)}).&#x000A;  anchor(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">bottom</span><span style="color:#710">&quot;</span></span>).add(pv.Line).&#x000A;    stroke_style(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">red</span><span style="color:#710">'</span></span>).&#x000A;    line_width(<span style="color:#00D">1</span>)&#x000A;     &#x000A;&#x000A;vis.render();&#x000A;&#x000A;&#x000A;puts vis.to_svg</pre></div>
+</div>
+</div>
+</div>
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5764936-8']);
+  _gaq.push(['_trackPageview']);
+  
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

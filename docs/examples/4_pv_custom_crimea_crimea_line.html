@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' content='text/html' http-equiv='Content-Type'>
+<link href='../style.css' rel='stylesheet' type='text/css'>
+<title>Rubyvis - Example: Crimeam War deaths (Grouped bar)</title>
+</head>
+<body>
+<h1>Rubyvis - Example: Crimeam War deaths (Grouped bar)</h1>
+<div class='example_main'>
+<div class='description'><p>Florence Nightingale used a coxcomb diagram to emphasize the number of deaths due to “preventible or mitigable zymotic diseases”. This graph shows data using a line chart.</p></div>
+<div class='navigation'>
+<ul>
+<li>
+<a href='../index.html'>Home</a>
+</li>
+<li>
+<a href='4_pv_custom_crimea_crimea_grouped_bar.html'>Previous: Crimeam War deaths (Grouped bar)</a>
+</li>
+<li>
+<a href='5_pv_hierarchies_bubble_charts.html'>Next: Bubble charts</a>
+</li>
+</ul>
+</div>
+<div class='image'>
+<!--[if IE]>
+<embed class='svg' height='319' src='4_pv_custom_crimea_crimea_line.svg' width='605'>
+<![endif]-->
+<object class='svg' data='4_pv_custom_crimea_crimea_line.svg' height='319' type='image/svg+xml' width='605'></object>
+</div>
+<div class='source'><div class="CodeRay">
+  <div class="code"><pre>&#x000A;require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">rubyvis</span><span style="color:#710">'</span></span>&#x000A;require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">ostruct</span><span style="color:#710">'</span></span>&#x000A;load(<span style="color:#036;font-weight:bold">File</span>.dirname(<span style="color:#069">__FILE__</span>)+<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">/crimea_data.rb</span><span style="color:#710">&quot;</span></span>)&#x000A;&#x000A;&#x000A;w = <span style="color:#00D">545</span>&#x000A;h = <span style="color:#00D">280</span>&#x000A;<span style="color:#777">#x = pv.Scale.linear($crimea, lambda {|d| d.date}).range(0, w)</span>&#x000A;x=pv.Scale.linear(<span style="color:#036;font-weight:bold">Time</span>.utc(<span style="color:#00D">1854</span>,<span style="color:#00D">4</span>), <span style="color:#036;font-weight:bold">Time</span>.utc(<span style="color:#00D">1856</span>,<span style="color:#00D">3</span>)).range(<span style="color:#00D">0</span>, w)&#x000A;y = pv.Scale.linear(<span style="color:#00D">0</span>, <span style="color:#00D">1500</span>).range(<span style="color:#00D">0</span>, h)&#x000A;fill = pv.colors(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">lightpink</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">darkgray</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">lightblue</span><span style="color:#710">&quot;</span></span>)&#x000A;format = pv.Format.date(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">%b</span><span style="color:#710">&quot;</span></span>)&#x000A;&#x000A;&#x000A;vis = pv.Panel.new()&#x000A;    .width(w)&#x000A;    .height(h)&#x000A;    .margin(<span style="color:#60E">19.5</span>)&#x000A;    .right(<span style="color:#00D">40</span>);&#x000A;vis.add(pv.Panel)&#x000A;    .data(<span style="color:#d70">$causes</span>)&#x000A;  .add(pv.Line)&#x000A;    .data(<span style="color:#d70">$crimea</span>)&#x000A;    .left(lambda {|d|  x.scale(d.date)})&#x000A;    .bottom(lambda {|d,t|   y.scale(d.send(t))})&#x000A;    .stroke_style(fill.by(pv.parent))&#x000A;    .line_width(<span style="color:#00D">3</span>)&#x000A;&#x000A;vis.add(pv.Label)&#x000A;    .data(x.ticks())&#x000A;    .left(lambda {|d| x.scale(d)})&#x000A;    .bottom(<span style="color:#00D">0</span>)&#x000A;    .text_baseline(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">top</span><span style="color:#710">&quot;</span></span>)&#x000A;    .text_margin(<span style="color:#00D">5</span>)&#x000A;    .text(pv.Format.date(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">%b</span><span style="color:#710">&quot;</span></span>).format_lambda);&#x000A;&#x000A;vis.add(pv.Rule)&#x000A;    .data(y.ticks())&#x000A;    .bottom(lambda {|d| y.scale(d)})&#x000A;    .stroke_style(lambda {|i|  i!=<span style="color:#00D">0</span> ? pv.color(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">#ccc</span><span style="color:#710">&quot;</span></span>) : pv.color(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">black</span><span style="color:#710">&quot;</span></span>)})&#x000A;  .anchor(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">right</span><span style="color:#710">&quot;</span></span>).add(pv.Label)&#x000A;  .visible(lambda { (<span style="color:#069">self</span>.index &amp; <span style="color:#00D">1</span>)==<span style="color:#00D">0</span>})&#x000A;    .text_margin(<span style="color:#00D">6</span>);&#x000A;    vis.render();&#x000A;&#x000A;puts vis.to_svg</pre></div>
+</div>
+</div>
+</div>
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5764936-8']);
+  _gaq.push(['_trackPageview']);
+  
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

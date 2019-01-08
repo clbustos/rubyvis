@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' content='text/html' http-equiv='Content-Type'>
+<link href='../style.css' rel='stylesheet' type='text/css'>
+<title>Rubyvis - Example: Circle Packing</title>
+</head>
+<body>
+<h1>Rubyvis - Example: Circle Packing</h1>
+<div class='example_main'>
+<div class='description'><p>Enclosure diagrams are also space-filling, using containment rather than adjacency to represent the hierarchy. As with adjacency diagrams, the size of any node in the tree is quickly revealed. Although circle packing does not use space as efficiently as a treemap, the “wasted” space effectively reveals the hierarchy. At the same time, node sizes can be rapidly compared using area judgments.<br />
+By flattening the hierarchy, the pack layout can also be used to create <a href="bubble_charts.html">bubble charts</a>.<br />
+This example uses <span class="caps">RBP</span> <span class="caps">API</span>.</p></div>
+<div class='navigation'>
+<ul>
+<li>
+<a href='../index.html'>Home</a>
+</li>
+<li>
+<a href='5_pv_hierarchies_bubble_charts_matrix.html'>Previous: Bubble charts matrix</a>
+</li>
+<li>
+<a href='5_pv_hierarchies_dendogram.html'>Next: Dendogram</a>
+</li>
+</ul>
+</div>
+<div class='image'>
+<!--[if IE]>
+<embed class='svg' height='800' src='5_pv_hierarchies_circle_packing.svg' width='604'>
+<![endif]-->
+<object class='svg' data='5_pv_hierarchies_circle_packing.svg' height='800' type='image/svg+xml' width='604'></object>
+</div>
+<div class='source'><div class="CodeRay">
+  <div class="code"><pre>&#x000A;&#x000A;require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">rubyvis</span><span style="color:#710">'</span></span>&#x000A;&#x000A;&#x000A;<span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">get_files</span>(path)&#x000A;  h={}&#x000A;  <span style="color:#036;font-weight:bold">Dir</span>.glob(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>path<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">/*</span><span style="color:#710">&quot;</span></span>).each {|e|&#x000A;    <span style="color:#080;font-weight:bold">next</span> <span style="color:#080;font-weight:bold">if</span> <span style="color:#036;font-weight:bold">File</span>.expand_path(e)=~<span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#808">pkg|web|vendor|doc|~</span><span style="color:#404">/</span></span>&#x000A;    pa=<span style="color:#036;font-weight:bold">File</span>.expand_path(e) &#x000A;    <span style="color:#080;font-weight:bold">if</span> <span style="color:#036;font-weight:bold">File</span>.stat(pa).directory?&#x000A;      h[<span style="color:#036;font-weight:bold">File</span>.basename(pa)]=get_files(pa)&#x000A;    <span style="color:#080;font-weight:bold">else</span>&#x000A;      h[<span style="color:#036;font-weight:bold">File</span>.basename(pa)]=<span style="color:#036;font-weight:bold">File</span>.stat(pa).size&#x000A;    <span style="color:#080;font-weight:bold">end</span>&#x000A;  }&#x000A;  h&#x000A;<span style="color:#080;font-weight:bold">end</span>&#x000A;&#x000A;files=get_files(<span style="color:#036;font-weight:bold">File</span>.expand_path(<span style="color:#036;font-weight:bold">File</span>.dirname(<span style="color:#069">__FILE__</span>)+<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">/../../lib/</span><span style="color:#710">&quot;</span></span>))&#x000A;&#x000A;format = <span style="color:#036;font-weight:bold">Rubyvis</span>::<span style="color:#036;font-weight:bold">Format</span>.number();&#x000A;&#x000A;vis = <span style="color:#036;font-weight:bold">Rubyvis</span>::<span style="color:#036;font-weight:bold">Panel</span>.new <span style="color:#080;font-weight:bold">do</span>&#x000A;  width <span style="color:#00D">600</span>&#x000A;  height <span style="color:#00D">796</span>&#x000A;  margin <span style="color:#00D">2</span>&#x000A;  layout_pack <span style="color:#080;font-weight:bold">do</span>&#x000A;    nodes <span style="color:#036;font-weight:bold">Rubyvis</span>.dom(files).root(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Rubyvis</span><span style="color:#710">&quot;</span></span>).nodes&#x000A;    size(lambda {|d| d.node_value})&#x000A;    node.dot <span style="color:#080;font-weight:bold">do</span> &#x000A;      fill_style {|d| &#x000A;        d.first_child ? <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">rgba(31, 119, 180, 0.25)</span><span style="color:#710">&quot;</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">#ff7f0e</span><span style="color:#710">&quot;</span></span>&#x000A;      }&#x000A;      title {|d| &#x000A;        d.node_name.to_s + (d.first_child ? <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#710">&quot;</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">: </span><span style="color:#710">&quot;</span></span> + format.format(d.node_value))&#x000A;      }&#x000A;      line_width <span style="color:#00D">1</span>&#x000A;    <span style="color:#080;font-weight:bold">end</span>&#x000A;    node_label.label <span style="color:#080;font-weight:bold">do</span>&#x000A;      visible {|d| !d.first_child}&#x000A;      text {|d| d.node_name[<span style="color:#00D">0</span>, <span style="color:#036;font-weight:bold">Math</span>.sqrt(d.node_value) / <span style="color:#00D">10</span>]}&#x000A;    <span style="color:#080;font-weight:bold">end</span>&#x000A;  <span style="color:#080;font-weight:bold">end</span>&#x000A;<span style="color:#080;font-weight:bold">end</span>&#x000A;&#x000A;vis.render()&#x000A;puts vis.to_svg&#x000A;</pre></div>
+</div>
+</div>
+</div>
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5764936-8']);
+  _gaq.push(['_trackPageview']);
+  
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

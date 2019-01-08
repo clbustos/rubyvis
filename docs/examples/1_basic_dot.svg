@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" font-size="10px" font-family="sans-serif" fill="none" stroke="none" stroke-width="1.5" width="200.0" height="200.0">
+     <g transform="translate(0.0,0.0)">
+          <circle fill="none" stroke="rgb(31,119,180)" cx="20" cy="170" r="10"/>
+          <circle fill="none" stroke="rgb(31,119,180)" cx="60" cy="140" r="10"/>
+          <circle fill="none" stroke="rgb(31,119,180)" cx="100" cy="110" r="10"/>
+          <circle fill="none" stroke="rgb(31,119,180)" cx="140" cy="80" r="10"/>
+          <circle fill="none" stroke="rgb(31,119,180)" cx="180" cy="50" r="10"/>
+          <circle fill="none" stroke="rgb(31,119,180)" cx="220" cy="20" r="10"/>
+     </g>
+     <g transform="translate(0.0,0.0)">
+          <text pointer-events="none" y="-3" transform="translate(20,160)" fill="rgb(0,0,0)" text-anchor="middle">t</text>
+          <text pointer-events="none" y="-3" transform="translate(60,130)" fill="rgb(0,0,0)" text-anchor="middle">t</text>
+          <text pointer-events="none" y="-3" transform="translate(100,100)" fill="rgb(0,0,0)" text-anchor="middle">t</text>
+          <text pointer-events="none" y="-3" transform="translate(140,70)" fill="rgb(0,0,0)" text-anchor="middle">t</text>
+          <text pointer-events="none" y="-3" transform="translate(180,40)" fill="rgb(0,0,0)" text-anchor="middle">t</text>
+          <text pointer-events="none" y="-3" transform="translate(220,10)" fill="rgb(0,0,0)" text-anchor="middle">t</text>
+     </g>
+     <g transform="translate(0.0,0.0)">
+          <text pointer-events="none" y="3" dy=".71em" transform="translate(20,180)" fill="rgb(0,0,0)" text-anchor="middle">b</text>
+          <text pointer-events="none" y="3" dy=".71em" transform="translate(60,150)" fill="rgb(0,0,0)" text-anchor="middle">b</text>
+          <text pointer-events="none" y="3" dy=".71em" transform="translate(100,120)" fill="rgb(0,0,0)" text-anchor="middle">b</text>
+          <text pointer-events="none" y="3" dy=".71em" transform="translate(140,90)" fill="rgb(0,0,0)" text-anchor="middle">b</text>
+          <text pointer-events="none" y="3" dy=".71em" transform="translate(180,60)" fill="rgb(0,0,0)" text-anchor="middle">b</text>
+          <text pointer-events="none" y="3" dy=".71em" transform="translate(220,30)" fill="rgb(0,0,0)" text-anchor="middle">b</text>
+     </g>
+     <g transform="translate(0.0,0.0)">
+          <text pointer-events="none" x="-3" dy=".35em" transform="translate(10,170)" fill="rgb(0,0,0)" text-anchor="end">l</text>
+          <text pointer-events="none" x="-3" dy=".35em" transform="translate(50,140)" fill="rgb(0,0,0)" text-anchor="end">l</text>
+          <text pointer-events="none" x="-3" dy=".35em" transform="translate(90,110)" fill="rgb(0,0,0)" text-anchor="end">l</text>
+          <text pointer-events="none" x="-3" dy=".35em" transform="translate(130,80)" fill="rgb(0,0,0)" text-anchor="end">l</text>
+          <text pointer-events="none" x="-3" dy=".35em" transform="translate(170,50)" fill="rgb(0,0,0)" text-anchor="end">l</text>
+          <text pointer-events="none" x="-3" dy=".35em" transform="translate(210,20)" fill="rgb(0,0,0)" text-anchor="end">l</text>
+     </g>
+     <g transform="translate(0.0,0.0)">
+          <text pointer-events="none" x="3" dy=".35em" transform="translate(30,170)" fill="rgb(0,0,0)">r</text>
+          <text pointer-events="none" x="3" dy=".35em" transform="translate(70,140)" fill="rgb(0,0,0)">r</text>
+          <text pointer-events="none" x="3" dy=".35em" transform="translate(110,110)" fill="rgb(0,0,0)">r</text>
+          <text pointer-events="none" x="3" dy=".35em" transform="translate(150,80)" fill="rgb(0,0,0)">r</text>
+          <text pointer-events="none" x="3" dy=".35em" transform="translate(190,50)" fill="rgb(0,0,0)">r</text>
+          <text pointer-events="none" x="3" dy=".35em" transform="translate(230,20)" fill="rgb(0,0,0)">r</text>
+     </g>
+     <g transform="translate(0.0,0.0)">
+          <text pointer-events="none" dy=".35em" transform="translate(20,170)" fill="rgb(0,0,0)" text-anchor="middle">c</text>
+          <text pointer-events="none" dy=".35em" transform="translate(60,140)" fill="rgb(0,0,0)" text-anchor="middle">c</text>
+          <text pointer-events="none" dy=".35em" transform="translate(100,110)" fill="rgb(0,0,0)" text-anchor="middle">c</text>
+          <text pointer-events="none" dy=".35em" transform="translate(140,80)" fill="rgb(0,0,0)" text-anchor="middle">c</text>
+          <text pointer-events="none" dy=".35em" transform="translate(180,50)" fill="rgb(0,0,0)" text-anchor="middle">c</text>
+          <text pointer-events="none" dy=".35em" transform="translate(220,20)" fill="rgb(0,0,0)" text-anchor="middle">c</text>
+     </g>
+</svg>

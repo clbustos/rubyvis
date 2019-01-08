@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' content='text/html' http-equiv='Content-Type'>
+<link href='../style.css' rel='stylesheet' type='text/css'>
+<title>Rubyvis - Example: Parallel Coordinates</title>
+</head>
+<body>
+<h1>Rubyvis - Example: Parallel Coordinates</h1>
+<div class='example_main'>
+<div class='description'><p>Parallel coordinates is a popular method of visualizing high-dimensional data using dynamic queries. <br />
+On static setting, you could choose an attribute and colour each datum which belongs to an attribute differently. On this example, we choose to color :cylinders attribute and highlight the cars with 8 cylinders</p></div>
+<div class='navigation'>
+<ul>
+<li>
+<a href='../index.html'>Home</a>
+</li>
+<li>
+<a href='4_pv_custom_barley_barley.html'>Previous: Becker’s Barley</a>
+</li>
+<li>
+<a href='4_pv_custom_crimea_crimea_grouped_bar.html'>Next: Crimeam War deaths (Grouped bar)</a>
+</li>
+</ul>
+</div>
+<div class='image'>
+<!--[if IE]>
+<embed class='svg' height='480' src='4_pv_custom_cars_cars.svg' width='880'>
+<![endif]-->
+<object class='svg' data='4_pv_custom_cars_cars.svg' height='480' type='image/svg+xml' width='880'></object>
+</div>
+<div class='source'><div class="CodeRay">
+  <div class="code"><pre>&#x000A;require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">rubyvis</span><span style="color:#710">'</span></span>&#x000A;load(<span style="color:#036;font-weight:bold">File</span>.dirname(<span style="color:#069">__FILE__</span>)+<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">/cars_data.rb</span><span style="color:#710">&quot;</span></span>)&#x000A;attr_to_color=<span style="color:#A60">:cylinders</span>&#x000A;highlighted=lambda {|d|&#x000A;  d[<span style="color:#A60">:cylinders</span>].to_i==<span style="color:#00D">8</span>&#x000A;}&#x000A;&#x000A;dims = [&#x000A;  <span style="color:#A60">:cylinders</span>,&#x000A;  <span style="color:#A60">:displacement</span>,&#x000A;  <span style="color:#A60">:weight</span>,&#x000A;  <span style="color:#A60">:horsepower</span>,&#x000A;  <span style="color:#A60">:acceleration</span>,&#x000A;  <span style="color:#A60">:mpg</span>,&#x000A;  <span style="color:#A60">:year</span>,&#x000A;  <span style="color:#A60">:origin</span>&#x000A;];&#x000A;&#x000A;<span style="color:#777"># Sizing and scales. */</span>&#x000A;w = <span style="color:#00D">840</span>&#x000A;h = <span style="color:#00D">420</span>&#x000A;color = <span style="color:#036;font-weight:bold">Rubyvis</span>.Colors.category10()&#x000A;car_color = <span style="color:#036;font-weight:bold">Rubyvis</span>.Colors.category10()&#x000A;x = <span style="color:#036;font-weight:bold">Rubyvis</span>.Scale.ordinal(dims).split_flush(<span style="color:#00D">0</span>, w)&#x000A;y = <span style="color:#036;font-weight:bold">Rubyvis</span>.dict(dims, lambda {|t|&#x000A;    <span style="color:#036;font-weight:bold">Rubyvis</span>.Scale.linear().&#x000A;      domain(<span style="color:#d70">$cars</span>.find_all {|d| !d[t].nil?} ,&#x000A;        lambda {|d| d[t]}).range(<span style="color:#00D">0</span>, h)&#x000A;    })&#x000A;&#x000A;<span style="color:#777">#/* The root panel. */</span>&#x000A;vis=<span style="color:#036;font-weight:bold">Rubyvis</span>::<span style="color:#036;font-weight:bold">Panel</span>.new <span style="color:#080;font-weight:bold">do</span> &#x000A;  width w &#x000A;  height h &#x000A;  margin <span style="color:#00D">20</span> &#x000A;  bottom <span style="color:#00D">40</span> &#x000A;  <span style="color:#777"># Rule and labels per dimension</span>&#x000A;  rule <span style="color:#080;font-weight:bold">do</span> &#x000A;    data(dims)&#x000A;    left(x)&#x000A;    stroke_style(lambda {|d| color.scale(index)})&#x000A;    line_width(<span style="color:#00D">2</span>)&#x000A;    <span style="color:#777"># Min value</span>&#x000A;    label(<span style="color:#A60">:anchor</span>=&gt;<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">bottom</span><span style="color:#710">'</span></span>) <span style="color:#080;font-weight:bold">do</span>&#x000A;      text {|t|&#x000A;        y[t].tick_format.call(y[t].domain()[<span style="color:#00D">0</span>])&#x000A;      }&#x000A;    <span style="color:#080;font-weight:bold">end</span>&#x000A;    <span style="color:#777"># Max value</span>&#x000A;    label(<span style="color:#A60">:anchor</span>=&gt;<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">top</span><span style="color:#710">'</span></span>) <span style="color:#080;font-weight:bold">do</span>&#x000A;      text {&#x000A;        |t| y[t].tick_format.call(y[t].domain()[<span style="color:#00D">1</span>])&#x000A;      }&#x000A;    <span style="color:#080;font-weight:bold">end</span>&#x000A;    <span style="color:#777"># Dim name</span>&#x000A;    label(<span style="color:#A60">:anchor</span>=&gt;<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">bottom</span><span style="color:#710">'</span></span>) <span style="color:#080;font-weight:bold">do</span>&#x000A;      text_style {color.scale(index).darker}&#x000A;      text_margin <span style="color:#00D">14</span>&#x000A;    <span style="color:#080;font-weight:bold">end</span>&#x000A;  <span style="color:#080;font-weight:bold">end</span>&#x000A;  <span style="color:#777"># Parallel coordinates.</span>&#x000A;  panel <span style="color:#080;font-weight:bold">do</span>&#x000A;    <span style="color:#777"># Each car generate a panel</span>&#x000A;    data(<span style="color:#d70">$cars</span>)&#x000A;    line <span style="color:#080;font-weight:bold">do</span>&#x000A;      <span style="color:#777"># Inside each car, every dimension generate a point</span>&#x000A;      data(dims)&#x000A;      left {|t, d| x.scale(t)}&#x000A;      bottom {|t, d|  y[t].scale(d[t])}&#x000A;      line_width {|t,d| &#x000A;        highlighted.call(d) ? <span style="color:#00D">4</span> : <span style="color:#00D">1</span>&#x000A;      }&#x000A;      stroke_style {|t,d|&#x000A;        <span style="color:#777"># Highlighted items will be opaquer</span>&#x000A;        alpha=highlighted.call(d) ? <span style="color:#60E">0.4</span> : <span style="color:#60E">0.1</span>&#x000A;        car_color.scale(d[attr_to_color]).alpha(alpha)&#x000A;      }&#x000A;      line_width(<span style="color:#00D">1</span>)&#x000A;    <span style="color:#080;font-weight:bold">end</span>&#x000A;  <span style="color:#080;font-weight:bold">end</span>&#x000A;<span style="color:#080;font-weight:bold">end</span>&#x000A;&#x000A;&#x000A;vis.render()&#x000A;puts vis.to_svg</pre></div>
+</div>
+</div>
+</div>
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5764936-8']);
+  _gaq.push(['_trackPageview']);
+  
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

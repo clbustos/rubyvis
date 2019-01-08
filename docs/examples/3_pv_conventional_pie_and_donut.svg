@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" font-size="10px" font-family="sans-serif" fill="none" stroke="none" stroke-width="1.5" width="400.0" height="400.0">
+     <g transform="translate(0.0,0.0)">
+          <path transform="translate(200.0,200.0)" d="M1.2246467991473532e-14,-200.0A200.0,200.0 0 0,1 159.92891290422432,-120.09472435237541L127.94313032337946,-96.07577948190033A160.0,160.0 0 0,0 9.797174393178826e-15,-160.0Z" fill="rgb(31,119,180)" fill-rule="evenodd"/>
+          <path transform="translate(200.0,200.0)" d="M159.92891290422432,-120.09472435237541A200.0,200.0 0 0,1 194.47865307879573,46.66962070402344L155.5829224630366,37.335696563218754A160.0,160.0 0 0,0 127.94313032337946,-96.07577948190033Z" fill="rgb(174,199,232)" fill-rule="evenodd"/>
+          <path transform="translate(200.0,200.0)" d="M194.47865307879573,46.66962070402344A200.0,200.0 0 0,1 102.03870441726852,172.01192633316245L81.63096353381482,137.60954106652997A160.0,160.0 0 0,0 155.5829224630366,37.335696563218754Z" fill="rgb(255,127,14)" fill-rule="evenodd"/>
+          <path transform="translate(200.0,200.0)" d="M102.03870441726852,172.01192633316245A200.0,200.0 0 0,1 -24.36808933546452,198.5099398572747L-19.494471468371618,158.80795188581976A160.0,160.0 0 0,0 81.63096353381482,137.60954106652997Z" fill="rgb(255,187,120)" fill-rule="evenodd"/>
+          <path transform="translate(200.0,200.0)" d="M-24.36808933546452,198.5099398572747A200.0,200.0 0 0,1 -130.3547238360065,151.68271481496654L-104.2837790688052,121.34617185197325A160.0,160.0 0 0,0 -19.494471468371618,158.80795188581976Z" fill="rgb(44,160,44)" fill-rule="evenodd"/>
+          <path transform="translate(200.0,200.0)" d="M-130.3547238360065,151.68271481496654A200.0,200.0 0 0,1 -191.6225162098866,57.27836660897147L-153.2980129679093,45.822693287177174A160.0,160.0 0 0,0 -104.2837790688052,121.34617185197325Z" fill="rgb(152,223,138)" fill-rule="evenodd"/>
+          <path transform="translate(200.0,200.0)" d="M-191.6225162098866,57.27836660897147A200.0,200.0 0 0,1 -192.69676842863382,-53.55329529694202L-154.15741474290706,-42.84263623755361A160.0,160.0 0 0,0 -153.2980129679093,45.822693287177174Z" fill="rgb(214,39,40)" fill-rule="evenodd"/>
+          <path transform="translate(200.0,200.0)" d="M-192.69676842863382,-53.55329529694202A200.0,200.0 0 0,1 -134.74488765361028,-147.79653328551365L-107.79591012288822,-118.23722662841092A160.0,160.0 0 0,0 -154.15741474290706,-42.84263623755361Z" fill="rgb(255,152,150)" fill-rule="evenodd"/>
+          <path transform="translate(200.0,200.0)" d="M-134.74488765361028,-147.79653328551365A200.0,200.0 0 0,1 -68.30768131022256,-187.97356376368745L-54.64614504817804,-150.37885101094997A160.0,160.0 0 0,0 -107.79591012288822,-118.23722662841092Z" fill="rgb(148,103,189)" fill-rule="evenodd"/>
+          <path transform="translate(200.0,200.0)" d="M-68.30768131022256,-187.97356376368745A200.0,200.0 0 0,1 -2.1437508791444564e-13,-200.0L-1.715000703315565e-13,-160.0A160.0,160.0 0 0,0 -54.64614504817804,-150.37885101094997Z" fill="rgb(197,176,213)" fill-rule="evenodd"/>
+     </g>
+     <g transform="translate(0.0,0.0)">
+          <text pointer-events="none" dy=".35em" transform="translate(280.45077580395105,38.97927874791267)" fill="rgb(0,0,0)" text-anchor="middle">0.95</text>
+          <text pointer-events="none" dy=".35em" transform="translate(376.25706112278147,163.48358719205734)" fill="rgb(0,0,0)" text-anchor="middle">0.90</text>
+          <text pointer-events="none" dy=".35em" transform="translate(344.8645245309135,306.83758483058455)" fill="rgb(0,0,0)" text-anchor="middle">0.82</text>
+          <text pointer-events="none" dy=".35em" transform="translate(236.92981189366841,376.1709084766786)" fill="rgb(0,0,0)" text-anchor="middle">0.67</text>
+          <text pointer-events="none" dy=".35em" transform="translate(127.25580828015529,364.64593092763175)" fill="rgb(0,0,0)" text-anchor="middle">0.60</text>
+          <text pointer-events="none" dy=".35em" transform="translate(49.01073341550628,297.9910270191954)" fill="rgb(0,0,0)" text-anchor="middle">0.59</text>
+          <text pointer-events="none" dy=".35em" transform="translate(20.008454671496054,201.74459458244905)" fill="rgb(0,0,0)" text-anchor="middle">0.58</text>
+          <text pointer-events="none" dy=".35em" transform="translate(46.66958953292482,105.71434241626017)" fill="rgb(0,0,0)" text-anchor="middle">0.58</text>
+          <text pointer-events="none" dy=".35em" transform="translate(106.85484845133712,45.974090676352034)" fill="rgb(0,0,0)" text-anchor="middle">0.40</text>
+          <text pointer-events="none" dy=".35em" transform="translate(168.78876267846263,22.726599105058426)" fill="rgb(0,0,0)" text-anchor="middle">0.36</text>
+     </g>
+</svg>

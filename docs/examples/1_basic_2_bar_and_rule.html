@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' content='text/html' http-equiv='Content-Type'>
+<link href='../style.css' rel='stylesheet' type='text/css'>
+<title>Rubyvis - Example: Inheritance and labels</title>
+</head>
+<body>
+<h1>Rubyvis - Example: Inheritance and labels</h1>
+<div class='example_main'>
+<div class='description'><p>Second example of Protovis &#8220;Getting Started section&#8221;<br />
+The rule&#8217;s label inherits the data and bottom property, causing it to appear on the rule and render the value (datum) as text. The bar’s label uses the bottom anchor to tweak positioning, so that the label is centered at the bottom of the bar.</p></div>
+<div class='navigation'>
+<ul>
+<li>
+<a href='../index.html'>Home</a>
+</li>
+<li>
+<a href='1_basic_1b_bar_pv_api.html'>Previous: First example (Protovis API)</a>
+</li>
+<li>
+<a href='1_basic_3_grouped_bars.html'>Next: Using parent</a>
+</li>
+</ul>
+</div>
+<div class='image'>
+<!--[if IE]>
+<embed class='svg' height='200' src='1_basic_2_bar_and_rule.svg' width='150'>
+<![endif]-->
+<object class='svg' data='1_basic_2_bar_and_rule.svg' height='200' type='image/svg+xml' width='150'></object>
+</div>
+<div class='source'><div class="CodeRay">
+  <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">rubyvis</span><span style="color:#710">'</span></span>&#x000A;&#x000A;vis = pv.Panel.new()&#x000A;.width(<span style="color:#00D">150</span>)&#x000A;.height(<span style="color:#00D">200</span>)&#x000A;&#x000A;vis.add(pv.Rule).&#x000A;  data(pv.range(<span style="color:#00D">0</span>, <span style="color:#00D">2</span>, <span style="color:#60E">0.5</span>)).&#x000A;  bottom(lambda {|d| d * <span style="color:#00D">80</span> + <span style="color:#60E">0.5</span>}).&#x000A;  add(pv.Label).left(<span style="color:#00D">0</span>)&#x000A;&#x000A;&#x000A;vis.add(pv.Bar).&#x000A;  data([<span style="color:#00D">1</span>, <span style="color:#60E">1.2</span>, <span style="color:#60E">1.7</span>, <span style="color:#60E">1.5</span>, <span style="color:#60E">0.7</span>]).&#x000A;  width(<span style="color:#00D">20</span>).height(lambda {|d|  d * <span style="color:#00D">80</span>}).&#x000A;  bottom(<span style="color:#00D">0</span>).&#x000A;  left(lambda { index * <span style="color:#00D">25</span> + <span style="color:#00D">25</span>}).&#x000A;  anchor(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">bottom</span><span style="color:#710">'</span></span>).&#x000A;    add(pv.Label)&#x000A;&#x000A;&#x000A;vis.render();&#x000A;puts vis.to_svg&#x000A;</pre></div>
+</div>
+</div>
+</div>
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5764936-8']);
+  _gaq.push(['_trackPageview']);
+  
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

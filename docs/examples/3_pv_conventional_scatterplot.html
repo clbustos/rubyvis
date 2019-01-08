@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' content='text/html' http-equiv='Content-Type'>
+<link href='../style.css' rel='stylesheet' type='text/css'>
+<title>Rubyvis - Example: Scatterplot</title>
+</head>
+<body>
+<h1>Rubyvis - Example: Scatterplot</h1>
+<div class='example_main'>
+<div class='description'><p>Scatterplots can facilitate visual analysis along multiple dimensions, though care should be taken to avoid interference. In this example, we encode three dimensions: two are encoded using position, while the third is redundantly encoded as both area and color.</p></div>
+<div class='navigation'>
+<ul>
+<li>
+<a href='../index.html'>Home</a>
+</li>
+<li>
+<a href='3_pv_conventional_pie_and_donut.html'>Previous: pie_and_donut.rb</a>
+</li>
+<li>
+<a href='3_pv_conventional_stacked_charts.html'>Next: Stacked Area</a>
+</li>
+</ul>
+</div>
+<div class='image'>
+<!--[if IE]>
+<embed class='svg' height='425' src='3_pv_conventional_scatterplot.svg' width='430'>
+<![endif]-->
+<object class='svg' data='3_pv_conventional_scatterplot.svg' height='425' type='image/svg+xml' width='430'></object>
+</div>
+<div class='source'><div class="CodeRay">
+  <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">rubyvis</span><span style="color:#710">'</span></span>&#x000A;data = pv.range(<span style="color:#00D">100</span>).map {|x| &#x000A;  <span style="color:#036;font-weight:bold">OpenStruct</span>.new({<span style="color:#606">x</span>: x, <span style="color:#606">y</span>: rand(), <span style="color:#606">z</span>: <span style="color:#00D">10</span>**(<span style="color:#00D">2</span>*rand)})&#x000A;}&#x000A;&#x000A;&#x000A;w = <span style="color:#00D">400</span>&#x000A;h = <span style="color:#00D">400</span>&#x000A;&#x000A;x = pv.Scale.linear(<span style="color:#00D">0</span>, <span style="color:#00D">99</span>).range(<span style="color:#00D">0</span>, w)&#x000A;y = pv.Scale.linear(<span style="color:#00D">0</span>, <span style="color:#00D">1</span>).range(<span style="color:#00D">0</span>, h)&#x000A;&#x000A;c = pv.Scale.log(<span style="color:#00D">1</span>, <span style="color:#00D">100</span>).range(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">orange</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">brown</span><span style="color:#710">&quot;</span></span>)&#x000A;&#x000A;<span style="color:#777"># The root panel.</span>&#x000A;vis = pv.Panel.new()&#x000A;    .width(w)&#x000A;    .height(h)&#x000A;    .bottom(<span style="color:#00D">20</span>)&#x000A;    .left(<span style="color:#00D">20</span>)&#x000A;    .right(<span style="color:#00D">10</span>)&#x000A;    .top(<span style="color:#00D">5</span>);&#x000A;&#x000A;<span style="color:#777"># Y-axis and ticks. </span>&#x000A;vis.add(pv.Rule)&#x000A;    .data(y.ticks())&#x000A;    .bottom(y)&#x000A;    .strokeStyle(lambda {|d| d!=<span style="color:#00D">0</span> ? <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">#eee</span><span style="color:#710">&quot;</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">#000</span><span style="color:#710">&quot;</span></span>})&#x000A;  .anchor(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">left</span><span style="color:#710">&quot;</span></span>).add(pv.Label)&#x000A;  .visible(lambda {|d|  d &gt; <span style="color:#00D">0</span> <span style="color:#080;font-weight:bold">and</span> d &lt; <span style="color:#00D">1</span>})&#x000A;  .text(y.tick_format)&#x000A;&#x000A;<span style="color:#777"># X-axis and ticks. </span>&#x000A;vis.add(pv.Rule)&#x000A;    .data(x.ticks())&#x000A;    .left(x)&#x000A;    .stroke_style(lambda {|d| d!=<span style="color:#00D">0</span> ? <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">#eee</span><span style="color:#710">&quot;</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">#000</span><span style="color:#710">&quot;</span></span>})&#x000A;  .anchor(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">bottom</span><span style="color:#710">&quot;</span></span>).add(pv.Label)&#x000A;  .visible(lambda {|d|  d &gt; <span style="color:#00D">0</span> <span style="color:#080;font-weight:bold">and</span> d &lt; <span style="color:#00D">100</span>})&#x000A;  .text(x.tick_format);&#x000A;&#x000A;<span style="color:#777">#/* The dot plot! */</span>&#x000A;vis.add(pv.Panel)&#x000A;    .data(data)&#x000A;  .add(pv.Dot)&#x000A;  .left(lambda {|d| x.scale(d.x)})&#x000A;  .bottom(lambda {|d| y.scale(d.y)})&#x000A;  .stroke_style(lambda {|d| c.scale(d.z)})&#x000A;  .fill_style(lambda {|d| c.scale(d.z).alpha(<span style="color:#60E">0.2</span>)})&#x000A;  .shape_size(lambda {|d| d.z})&#x000A;  .title(lambda {|d| <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">%0.1f</span><span style="color:#710">&quot;</span></span> % d.z})&#x000A;&#x000A;vis.render()&#x000A;puts vis.to_svg</pre></div>
+</div>
+</div>
+</div>
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5764936-8']);
+  _gaq.push(['_trackPageview']);
+  
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

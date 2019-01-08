@@ -1,0 +1,252 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" font-size="10px" font-family="sans-serif" fill="none" stroke="none" stroke-width="1.5" width="600.0" height="600.0">
+     <g transform="translate(0.0,0.0)">
+          <g transform="translate(0,-50)">
+               <a xlink:title="/rubyvis.rb: 2,408">
+                    <circle fill="rgb(31,119,180)" stroke="rgb(21,83,125)" cx="265.02430079508883" cy="423.03353467456816" r="20.789326479430393"/>
+               </a>
+               <a xlink:title="/rubyvis/mark/dot.rb: 5,697">
+                    <circle fill="rgb(174,199,232)" stroke="rgb(121,139,162)" cx="317.79044843162626" cy="423.03353467456816" r="31.976821157107015"/>
+               </a>
+               <a xlink:title="/rubyvis/mark/line.rb: 6,521">
+                    <circle fill="rgb(174,199,232)" stroke="rgb(121,139,162)" cx="278.5601420319194" cy="369.72455490089743" r="34.211276449067725"/>
+               </a>
+               <a xlink:title="/rubyvis/mark/shorcut_methods.rb: 10,043">
+                    <circle fill="rgb(174,199,232)" stroke="rgb(121,139,162)" cx="207.12929929994186" cy="397.57376423266646" r="42.45647266231024"/>
+               </a>
+               <a xlink:title="/rubyvis/mark/label.rb: 4,247">
+                    <circle fill="rgb(174,199,232)" stroke="rgb(121,139,162)" cx="235.7106244233634" cy="461.5448652125415" r="27.60916732183671"/>
+               </a>
+               <a xlink:title="/rubyvis/mark/anchor.rb: 3,446">
+                    <circle fill="rgb(174,199,232)" stroke="rgb(121,139,162)" cx="287.3256185388882" cy="471.0274545366765" r="24.86965810171728"/>
+               </a>
+               <a xlink:title="/rubyvis/mark/bar.rb: 2,709">
+                    <circle fill="rgb(174,199,232)" stroke="rgb(121,139,162)" cx="334.1143471356448" cy="474.53569095837474" r="22.05041059485943"/>
+               </a>
+               <a xlink:title="/rubyvis/mark/image.rb: 3,268">
+                    <circle fill="rgb(174,199,232)" stroke="rgb(121,139,162)" cx="369.5873877946058" cy="444.8286844499096" r="24.218832421276996"/>
+               </a>
+               <a xlink:title="/rubyvis/mark/wedge.rb: 4,280">
+                    <circle fill="rgb(174,199,232)" stroke="rgb(121,139,162)" cx="369.3160575248503" cy="392.8943367949603" r="27.716224009427172"/>
+               </a>
+               <a xlink:title="/rubyvis/mark/rule.rb: 783">
+                    <circle fill="rgb(174,199,232)" stroke="rgb(121,139,162)" cx="331.45536141789205" cy="381.3864656137743" r="11.854768002730065"/>
+               </a>
+               <a xlink:title="/rubyvis/mark/panel.rb: 3,292">
+                    <circle fill="rgb(174,199,232)" stroke="rgb(121,139,162)" cx="331.70361093017544" cy="345.2249491362954" r="24.307600583568775"/>
+               </a>
+               <a xlink:title="/rubyvis/mark/area.rb: 7,258">
+                    <circle fill="rgb(174,199,232)" stroke="rgb(121,139,162)" cx="291.0639380217348" cy="300.54132538091864" r="36.09280708076"/>
+               </a>
+               <a xlink:title="/rubyvis/sceneelement.rb: 3,786">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(178,88,9)" cx="235.21565669726863" cy="327.8341154227403" r="26.067686121624416"/>
+               </a>
+               <a xlink:title="/rubyvis/version.rb: 139">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(178,88,9)" cx="241.04172414254788" cy="358.34535984667065" r="4.994816967691531"/>
+               </a>
+               <a xlink:title="/rubyvis/dom.rb: 11,226">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(178,88,9)" cx="164.5615939735033" cy="321.30485177945695" r="44.887425484920676"/>
+               </a>
+               <a xlink:title="/rubyvis/scene/svg_rule.rb: 764">
+                    <circle fill="rgb(255,187,120)" stroke="rgb(178,130,84)" cx="156.86890462766743" cy="377.3771006357222" r="11.710052914478672"/>
+               </a>
+               <a xlink:title="/rubyvis/scene/svg_bar.rb: 985">
+                    <circle fill="rgb(255,187,120)" stroke="rgb(178,130,84)" cx="151.53760226754508" cy="401.80851724260214" r="13.296284327788054"/>
+               </a>
+               <a xlink:title="/rubyvis/scene/svg_dot.rb: 2,090">
+                    <circle fill="rgb(255,187,120)" stroke="rgb(178,130,84)" cx="157.16410765775305" cy="433.98458746832205" r="19.368024299159725"/>
+               </a>
+               <a xlink:title="/rubyvis/scene/svg_scene.rb: 5,501">
+                    <circle fill="rgb(255,187,120)" stroke="rgb(178,130,84)" cx="179.50719226549802" cy="479.59606722656076" r="31.421940413616742"/>
+               </a>
+               <a xlink:title="/rubyvis/scene/svg_line.rb: 5,890">
+                    <circle fill="rgb(255,187,120)" stroke="rgb(178,130,84)" cx="228.07172788405148" cy="521.1807380181211" r="32.51395689523625"/>
+               </a>
+               <a xlink:title="/rubyvis/scene/svg_area.rb: 6,437">
+                    <circle fill="rgb(255,187,120)" stroke="rgb(178,130,84)" cx="294.0533065863765" cy="529.50157761672" r="33.99021665557726"/>
+               </a>
+               <a xlink:title="/rubyvis/scene/svg_panel.rb: 4,637">
+                    <circle fill="rgb(255,187,120)" stroke="rgb(178,130,84)" cx="356.22708527665196" cy="520.3808276383833" r="28.84899750878575"/>
+               </a>
+               <a xlink:title="/rubyvis/scene/svg_curve.rb: 10,060">
+                    <circle fill="rgb(255,187,120)" stroke="rgb(178,130,84)" cx="420.0373462524243" cy="488.47715539879493" r="42.49239095658724"/>
+               </a>
+               <a xlink:title="/rubyvis/scene/svg_image.rb: 733">
+                    <circle fill="rgb(255,187,120)" stroke="rgb(178,130,84)" cx="404.3704376599915" cy="436.83909052388094" r="11.470019746322171"/>
+               </a>
+               <a xlink:title="/rubyvis/scene/svg_wedge.rb: 2,036">
+                    <circle fill="rgb(255,187,120)" stroke="rgb(178,130,84)" cx="413.73885968628406" cy="407.72297540896324" r="19.11617796846187"/>
+               </a>
+               <a xlink:title="/rubyvis/scene/svg_label.rb: 1,890">
+                    <circle fill="rgb(255,187,120)" stroke="rgb(178,130,84)" cx="409.60434973767815" cy="370.41718107830457" r="18.418025941525688"/>
+               </a>
+               <a xlink:title="/rubyvis/mark.rb: 37,376">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(178,88,9)" cx="406.81865584580794" cy="270.13318259228606" r="81.90465565542408"/>
+               </a>
+               <a xlink:title="/rubyvis/layout/treemap.rb: 11,606">
+                    <circle fill="rgb(44,160,44)" stroke="rgb(30,112,30)" cx="290.0531431076677" cy="218.81394635834377" r="45.640822400977285"/>
+               </a>
+               <a xlink:title="/rubyvis/layout/matrix.rb: 7,139">
+                    <circle fill="rgb(44,160,44)" stroke="rgb(30,112,30)" cx="224.35258121962073" cy="266.931962494831" r="35.795700789274015"/>
+               </a>
+               <a xlink:title="/rubyvis/layout/tree.rb: 7,770">
+                    <circle fill="rgb(44,160,44)" stroke="rgb(30,112,30)" cx="156.56700221302657" cy="239.46280849701338" r="37.344159359724344"/>
+               </a>
+               <a xlink:title="/rubyvis/layout/indent.rb: 2,793">
+                    <circle fill="rgb(44,160,44)" stroke="rgb(30,112,30)" cx="112.03159888128283" cy="279.2714499423033" r="22.38966760323482"/>
+               </a>
+               <a xlink:title="/rubyvis/layout/cluster.rb: 7,367">
+                    <circle fill="rgb(44,160,44)" stroke="rgb(30,112,30)" cx="83.87232747166289" cy="330.83606775744965" r="36.36281640163725"/>
+               </a>
+               <a xlink:title="/rubyvis/layout/grid.rb: 3,552">
+                    <circle fill="rgb(44,160,44)" stroke="rgb(30,112,30)" cx="118.6608893903529" cy="381.68686848978024" r="25.249260137704628"/>
+               </a>
+               <a xlink:title="/rubyvis/layout/network.rb: 13,435">
+                    <circle fill="rgb(44,160,44)" stroke="rgb(30,112,30)" cx="90.73672333172834" cy="450.59903024318186" r="49.10559906864872"/>
+               </a>
+               <a xlink:title="/rubyvis/layout/stack.rb: 9,856">
+                    <circle fill="rgb(44,160,44)" stroke="rgb(30,112,30)" cx="129.26872495271175" cy="533.2206511559584" r="42.05934699711738"/>
+               </a>
+               <a xlink:title="/rubyvis/layout/pack.rb: 9,374">
+                    <circle fill="rgb(44,160,44)" stroke="rgb(30,112,30)" cx="193.4037498638731" cy="586.0273445223535" r="41.018016253335766"/>
+               </a>
+               <a xlink:title="/rubyvis/layout/arc.rb: 6,775">
+                    <circle fill="rgb(44,160,44)" stroke="rgb(30,112,30)" cx="268.9132069451082" cy="593.6098405651577" r="34.87119480424494"/>
+               </a>
+               <a xlink:title="/rubyvis/layout/partition.rb: 8,061">
+                    <circle fill="rgb(44,160,44)" stroke="rgb(30,112,30)" cx="341.37990951018963" cy="585.598175891361" r="38.03703347968298"/>
+               </a>
+               <a xlink:title="/rubyvis/layout/hierarchy.rb: 7,816">
+                    <circle fill="rgb(44,160,44)" stroke="rgb(30,112,30)" cx="414.8524808950511" cy="568.2557787710239" r="37.45453879022697"/>
+               </a>
+               <a xlink:title="/rubyvis/layout/horizon.rb: 6,042">
+                    <circle fill="rgb(44,160,44)" stroke="rgb(30,112,30)" cx="477.8661940596972" cy="536.8970380866195" r="32.93081951750637"/>
+               </a>
+               <a xlink:title="/rubyvis/vector.rb: 3,649">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(178,88,9)" cx="487.4822813926031" cy="479.16995627230364" r="25.59169845968595"/>
+               </a>
+               <a xlink:title="/rubyvis/internals.rb: 6,569">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(178,88,9)" cx="464.74092633271994" cy="423.7238152112987" r="34.336957361352894"/>
+               </a>
+               <a xlink:title="/rubyvis/histogram.rb: 918">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(178,88,9)" cx="436.89864606071603" cy="385.64355837339804" r="12.83611262126853"/>
+               </a>
+               <a xlink:title="/rubyvis/property.rb: 259">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(178,88,9)" cx="434.4752389482668" cy="366.13934432757503" r="6.818079490796236"/>
+               </a>
+               <a xlink:title="/rubyvis/color/color.rb: 13,595">
+                    <circle fill="rgb(152,223,138)" stroke="rgb(106,156,96)" cx="508.97173808273055" cy="352.6250531967105" r="49.397137654189805"/>
+               </a>
+               <a xlink:title="/rubyvis/color/colors.rb: 5,512">
+                    <circle fill="rgb(152,223,138)" stroke="rgb(106,156,96)" cx="520.1508610736231" cy="272.55116794020984" r="31.453340952412958"/>
+               </a>
+               <a xlink:title="/rubyvis/format.rb: 348">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(178,88,9)" cx="492.81260761662105" cy="244.2394118203402" r="7.903178668486711"/>
+               </a>
+               <a xlink:title="/rubyvis/layout.rb: 1,274">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(178,88,9)" cx="490.66877751506195" cy="221.31468594161325" r="15.12157027952844"/>
+               </a>
+               <a xlink:title="/rubyvis/format/number.rb: 3,356">
+                    <circle fill="rgb(214,39,40)" stroke="rgb(149,27,28)" cx="472.26234495573965" cy="186.1797854386927" r="24.542746088096052"/>
+               </a>
+               <a xlink:title="/rubyvis/format/date.rb: 532">
+                    <circle fill="rgb(214,39,40)" stroke="rgb(149,27,28)" cx="438.02174949141954" cy="183.93044283103487" r="9.7716520549261"/>
+               </a>
+               <a xlink:title="/rubyvis/scale/ordinal.rb: 7,777">
+                    <circle fill="rgb(255,152,150)" stroke="rgb(178,106,105)" cx="404.407146178992" cy="150.89193210691826" r="37.36097726616559"/>
+               </a>
+               <a xlink:title="/rubyvis/scale/linear.rb: 136">
+                    <circle fill="rgb(255,152,150)" stroke="rgb(178,106,105)" cx="382.15045671073796" cy="186.86504816245827" r="4.940622051491826"/>
+               </a>
+               <a xlink:title="/rubyvis/scale/log.rb: 1,914">
+                    <circle fill="rgb(255,152,150)" stroke="rgb(178,106,105)" cx="358.1514302017438" cy="182.2722436038483" r="18.534596889685208"/>
+               </a>
+               <a xlink:title="/rubyvis/scale/quantitative.rb: 15,470">
+                    <circle fill="rgb(255,152,150)" stroke="rgb(178,106,105)" cx="316.88991161048534" cy="124.21249968552061" r="52.693535054923295"/>
+               </a>
+               <a xlink:title="/rubyvis/flatten.rb: 3,958">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(178,88,9)" cx="246.60384083765246" cy="161.0334119897698" r="26.653243881596115"/>
+               </a>
+               <a xlink:title="/rubyvis/nest.rb: 6,547">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(178,88,9)" cx="187.23181848035676" cy="174.73565154566913" r="34.27941080899222"/>
+               </a>
+               <a xlink:title="/rubyvis/javascript_behaviour.rb: 1,999">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(178,88,9)" cx="135.50669932590395" cy="187.26549298056244" r="18.941683485713014"/>
+               </a>
+               <a xlink:title="/rubyvis/scale.rb: 1,061">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(178,88,9)" cx="113.65068038953072" cy="211.6440306139401" r="13.799707151966343"/>
+               </a>
+               <a xlink:title="/rubyvis/transform.rb: 362">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(178,88,9)" cx="111.56819753061606" cy="233.40490279691693" r="8.060583171392276"/>
+               </a>
+               <a xlink:title="/rspec/expectations/differ_spec.rb: 2,399">
+                    <circle fill="rgb(148,103,189)" stroke="rgb(103,72,132)" cx="85.35749873530989" cy="245.36626990990038" r="20.750439624576387"/>
+               </a>
+               <a xlink:title="/rspec/expectations/differ.rb: 2,092">
+                    <circle fill="rgb(148,103,189)" stroke="rgb(103,72,132)" cx="63.436414517195175" cy="278.97729009273786" r="19.377289080507182"/>
+               </a>
+          </g>
+          <g transform="translate(0,-50)">
+               <text pointer-events="none" dy=".35em" transform="translate(265.02430079508883,423.03353467456816)" fill="rgb(0,0,0)" text-anchor="middle">rubyvi</text>
+               <text pointer-events="none" dy=".35em" transform="translate(317.79044843162626,423.03353467456816)" fill="rgb(0,0,0)" text-anchor="middle">dot</text>
+               <text pointer-events="none" dy=".35em" transform="translate(278.5601420319194,369.72455490089743)" fill="rgb(0,0,0)" text-anchor="middle">line</text>
+               <text pointer-events="none" dy=".35em" transform="translate(207.12929929994186,397.57376423266646)" fill="rgb(0,0,0)" text-anchor="middle">shorcut_meth</text>
+               <text pointer-events="none" dy=".35em" transform="translate(235.7106244233634,461.5448652125415)" fill="rgb(0,0,0)" text-anchor="middle">label</text>
+               <text pointer-events="none" dy=".35em" transform="translate(287.3256185388882,471.0274545366765)" fill="rgb(0,0,0)" text-anchor="middle">anchor</text>
+               <text pointer-events="none" dy=".35em" transform="translate(334.1143471356448,474.53569095837474)" fill="rgb(0,0,0)" text-anchor="middle">bar</text>
+               <text pointer-events="none" dy=".35em" transform="translate(369.5873877946058,444.8286844499096)" fill="rgb(0,0,0)" text-anchor="middle">image</text>
+               <text pointer-events="none" dy=".35em" transform="translate(369.3160575248503,392.8943367949603)" fill="rgb(0,0,0)" text-anchor="middle">wedge</text>
+               <text pointer-events="none" dy=".35em" transform="translate(331.45536141789205,381.3864656137743)" fill="rgb(0,0,0)" text-anchor="middle">rul</text>
+               <text pointer-events="none" dy=".35em" transform="translate(331.70361093017544,345.2249491362954)" fill="rgb(0,0,0)" text-anchor="middle">panel</text>
+               <text pointer-events="none" dy=".35em" transform="translate(291.0639380217348,300.54132538091864)" fill="rgb(0,0,0)" text-anchor="middle">area</text>
+               <text pointer-events="none" dy=".35em" transform="translate(235.21565669726863,327.8341154227403)" fill="rgb(0,0,0)" text-anchor="middle">sceneel</text>
+               <text pointer-events="none" dy=".35em" transform="translate(241.04172414254788,358.34535984667065)" fill="rgb(0,0,0)" text-anchor="middle">v</text>
+               <text pointer-events="none" dy=".35em" transform="translate(164.5615939735033,321.30485177945695)" fill="rgb(0,0,0)" text-anchor="middle">dom</text>
+               <text pointer-events="none" dy=".35em" transform="translate(156.86890462766743,377.3771006357222)" fill="rgb(0,0,0)" text-anchor="middle">svg</text>
+               <text pointer-events="none" dy=".35em" transform="translate(151.53760226754508,401.80851724260214)" fill="rgb(0,0,0)" text-anchor="middle">svg</text>
+               <text pointer-events="none" dy=".35em" transform="translate(157.16410765775305,433.98458746832205)" fill="rgb(0,0,0)" text-anchor="middle">svg_d</text>
+               <text pointer-events="none" dy=".35em" transform="translate(179.50719226549802,479.59606722656076)" fill="rgb(0,0,0)" text-anchor="middle">svg_scene</text>
+               <text pointer-events="none" dy=".35em" transform="translate(228.07172788405148,521.1807380181211)" fill="rgb(0,0,0)" text-anchor="middle">svg_line</text>
+               <text pointer-events="none" dy=".35em" transform="translate(294.0533065863765,529.50157761672)" fill="rgb(0,0,0)" text-anchor="middle">svg_area</text>
+               <text pointer-events="none" dy=".35em" transform="translate(356.22708527665196,520.3808276383833)" fill="rgb(0,0,0)" text-anchor="middle">svg_pane</text>
+               <text pointer-events="none" dy=".35em" transform="translate(420.0373462524243,488.47715539879493)" fill="rgb(0,0,0)" text-anchor="middle">svg_curve</text>
+               <text pointer-events="none" dy=".35em" transform="translate(404.3704376599915,436.83909052388094)" fill="rgb(0,0,0)" text-anchor="middle">svg</text>
+               <text pointer-events="none" dy=".35em" transform="translate(413.73885968628406,407.72297540896324)" fill="rgb(0,0,0)" text-anchor="middle">svg_w</text>
+               <text pointer-events="none" dy=".35em" transform="translate(409.60434973767815,370.41718107830457)" fill="rgb(0,0,0)" text-anchor="middle">svg_l</text>
+               <text pointer-events="none" dy=".35em" transform="translate(406.81865584580794,270.13318259228606)" fill="rgb(0,0,0)" text-anchor="middle">mark</text>
+               <text pointer-events="none" dy=".35em" transform="translate(290.0531431076677,218.81394635834377)" fill="rgb(0,0,0)" text-anchor="middle">treemap</text>
+               <text pointer-events="none" dy=".35em" transform="translate(224.35258121962073,266.931962494831)" fill="rgb(0,0,0)" text-anchor="middle">matrix</text>
+               <text pointer-events="none" dy=".35em" transform="translate(156.56700221302657,239.46280849701338)" fill="rgb(0,0,0)" text-anchor="middle">tree</text>
+               <text pointer-events="none" dy=".35em" transform="translate(112.03159888128283,279.2714499423033)" fill="rgb(0,0,0)" text-anchor="middle">indent</text>
+               <text pointer-events="none" dy=".35em" transform="translate(83.87232747166289,330.83606775744965)" fill="rgb(0,0,0)" text-anchor="middle">cluster</text>
+               <text pointer-events="none" dy=".35em" transform="translate(118.6608893903529,381.68686848978024)" fill="rgb(0,0,0)" text-anchor="middle">grid</text>
+               <text pointer-events="none" dy=".35em" transform="translate(90.73672333172834,450.59903024318186)" fill="rgb(0,0,0)" text-anchor="middle">network</text>
+               <text pointer-events="none" dy=".35em" transform="translate(129.26872495271175,533.2206511559584)" fill="rgb(0,0,0)" text-anchor="middle">stack</text>
+               <text pointer-events="none" dy=".35em" transform="translate(193.4037498638731,586.0273445223535)" fill="rgb(0,0,0)" text-anchor="middle">pack</text>
+               <text pointer-events="none" dy=".35em" transform="translate(268.9132069451082,593.6098405651577)" fill="rgb(0,0,0)" text-anchor="middle">arc</text>
+               <text pointer-events="none" dy=".35em" transform="translate(341.37990951018963,585.598175891361)" fill="rgb(0,0,0)" text-anchor="middle">partition</text>
+               <text pointer-events="none" dy=".35em" transform="translate(414.8524808950511,568.2557787710239)" fill="rgb(0,0,0)" text-anchor="middle">hierarchy</text>
+               <text pointer-events="none" dy=".35em" transform="translate(477.8661940596972,536.8970380866195)" fill="rgb(0,0,0)" text-anchor="middle">horizon</text>
+               <text pointer-events="none" dy=".35em" transform="translate(487.4822813926031,479.16995627230364)" fill="rgb(0,0,0)" text-anchor="middle">vector</text>
+               <text pointer-events="none" dy=".35em" transform="translate(464.74092633271994,423.7238152112987)" fill="rgb(0,0,0)" text-anchor="middle">internals</text>
+               <text pointer-events="none" dy=".35em" transform="translate(436.89864606071603,385.64355837339804)" fill="rgb(0,0,0)" text-anchor="middle">his</text>
+               <text pointer-events="none" dy=".35em" transform="translate(434.4752389482668,366.13934432757503)" fill="rgb(0,0,0)" text-anchor="middle">pr</text>
+               <text pointer-events="none" dy=".35em" transform="translate(508.97173808273055,352.6250531967105)" fill="rgb(0,0,0)" text-anchor="middle">color</text>
+               <text pointer-events="none" dy=".35em" transform="translate(520.1508610736231,272.55116794020984)" fill="rgb(0,0,0)" text-anchor="middle">colors</text>
+               <text pointer-events="none" dy=".35em" transform="translate(492.81260761662105,244.2394118203402)" fill="rgb(0,0,0)" text-anchor="middle">fo</text>
+               <text pointer-events="none" dy=".35em" transform="translate(490.66877751506195,221.31468594161325)" fill="rgb(0,0,0)" text-anchor="middle">layo</text>
+               <text pointer-events="none" dy=".35em" transform="translate(472.26234495573965,186.1797854386927)" fill="rgb(0,0,0)" text-anchor="middle">number</text>
+               <text pointer-events="none" dy=".35em" transform="translate(438.02174949141954,183.93044283103487)" fill="rgb(0,0,0)" text-anchor="middle">da</text>
+               <text pointer-events="none" dy=".35em" transform="translate(404.407146178992,150.89193210691826)" fill="rgb(0,0,0)" text-anchor="middle">ordinal</text>
+               <text pointer-events="none" dy=".35em" transform="translate(382.15045671073796,186.86504816245827)" fill="rgb(0,0,0)" text-anchor="middle">l</text>
+               <text pointer-events="none" dy=".35em" transform="translate(358.1514302017438,182.2722436038483)" fill="rgb(0,0,0)" text-anchor="middle">log</text>
+               <text pointer-events="none" dy=".35em" transform="translate(316.88991161048534,124.21249968552061)" fill="rgb(0,0,0)" text-anchor="middle">quantitative</text>
+               <text pointer-events="none" dy=".35em" transform="translate(246.60384083765246,161.0334119897698)" fill="rgb(0,0,0)" text-anchor="middle">flatten</text>
+               <text pointer-events="none" dy=".35em" transform="translate(187.23181848035676,174.73565154566913)" fill="rgb(0,0,0)" text-anchor="middle">nest</text>
+               <text pointer-events="none" dy=".35em" transform="translate(135.50669932590395,187.26549298056244)" fill="rgb(0,0,0)" text-anchor="middle">javas</text>
+               <text pointer-events="none" dy=".35em" transform="translate(113.65068038953072,211.6440306139401)" fill="rgb(0,0,0)" text-anchor="middle">scal</text>
+               <text pointer-events="none" dy=".35em" transform="translate(111.56819753061606,233.40490279691693)" fill="rgb(0,0,0)" text-anchor="middle">tr</text>
+               <text pointer-events="none" dy=".35em" transform="translate(85.35749873530989,245.36626990990038)" fill="rgb(0,0,0)" text-anchor="middle">differ</text>
+               <text pointer-events="none" dy=".35em" transform="translate(63.436414517195175,278.97729009273786)" fill="rgb(0,0,0)" text-anchor="middle">diffe</text>
+          </g>
+     </g>
+</svg>

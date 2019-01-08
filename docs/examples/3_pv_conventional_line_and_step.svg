@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" font-size="10px" font-family="sans-serif" fill="none" stroke="none" stroke-width="1.5" width="430" height="225">
+     <g transform="translate(20,5)">
+          <line shape-rendering="crispEdges" x1="40.81632653061224" y1="0" x2="40.81632653061224" y2="200" stroke="rgb(238,238,238)" stroke-width="1"/>
+          <line shape-rendering="crispEdges" x1="81.63265306122447" y1="0" x2="81.63265306122447" y2="200" stroke="rgb(238,238,238)" stroke-width="1"/>
+          <line shape-rendering="crispEdges" x1="122.44897959183672" y1="0" x2="122.44897959183672" y2="200" stroke="rgb(238,238,238)" stroke-width="1"/>
+          <line shape-rendering="crispEdges" x1="163.26530612244895" y1="0" x2="163.26530612244895" y2="200" stroke="rgb(238,238,238)" stroke-width="1"/>
+          <line shape-rendering="crispEdges" x1="204.08163265306123" y1="0" x2="204.08163265306123" y2="200" stroke="rgb(238,238,238)" stroke-width="1"/>
+          <line shape-rendering="crispEdges" x1="244.89795918367344" y1="0" x2="244.89795918367344" y2="200" stroke="rgb(238,238,238)" stroke-width="1"/>
+          <line shape-rendering="crispEdges" x1="285.71428571428567" y1="0" x2="285.71428571428567" y2="200" stroke="rgb(238,238,238)" stroke-width="1"/>
+          <line shape-rendering="crispEdges" x1="326.5306122448979" y1="0" x2="326.5306122448979" y2="200" stroke="rgb(238,238,238)" stroke-width="1"/>
+          <line shape-rendering="crispEdges" x1="367.3469387755102" y1="0" x2="367.3469387755102" y2="200" stroke="rgb(238,238,238)" stroke-width="1"/>
+     </g>
+     <g transform="translate(20,5)">
+          <line shape-rendering="crispEdges" x1="40.81632653061224" y1="200" x2="40.81632653061224" y2="205" stroke="rgb(0,0,0)" stroke-width="1"/>
+          <line shape-rendering="crispEdges" x1="81.63265306122447" y1="200" x2="81.63265306122447" y2="205" stroke="rgb(0,0,0)" stroke-width="1"/>
+          <line shape-rendering="crispEdges" x1="122.44897959183672" y1="200" x2="122.44897959183672" y2="205" stroke="rgb(0,0,0)" stroke-width="1"/>
+          <line shape-rendering="crispEdges" x1="163.26530612244895" y1="200" x2="163.26530612244895" y2="205" stroke="rgb(0,0,0)" stroke-width="1"/>
+          <line shape-rendering="crispEdges" x1="204.08163265306123" y1="200" x2="204.08163265306123" y2="205" stroke="rgb(0,0,0)" stroke-width="1"/>
+          <line shape-rendering="crispEdges" x1="244.89795918367344" y1="200" x2="244.89795918367344" y2="205" stroke="rgb(0,0,0)" stroke-width="1"/>
+          <line shape-rendering="crispEdges" x1="285.71428571428567" y1="200" x2="285.71428571428567" y2="205" stroke="rgb(0,0,0)" stroke-width="1"/>
+          <line shape-rendering="crispEdges" x1="326.5306122448979" y1="200" x2="326.5306122448979" y2="205" stroke="rgb(0,0,0)" stroke-width="1"/>
+          <line shape-rendering="crispEdges" x1="367.3469387755102" y1="200" x2="367.3469387755102" y2="205" stroke="rgb(0,0,0)" stroke-width="1"/>
+     </g>
+     <g transform="translate(20,5)">
+          <text pointer-events="none" y="3" dy=".71em" transform="translate(40.81632653061224,205)" fill="rgb(0,0,0)" text-anchor="middle">1</text>
+          <text pointer-events="none" y="3" dy=".71em" transform="translate(81.63265306122447,205)" fill="rgb(0,0,0)" text-anchor="middle">2</text>
+          <text pointer-events="none" y="3" dy=".71em" transform="translate(122.44897959183672,205)" fill="rgb(0,0,0)" text-anchor="middle">3</text>
+          <text pointer-events="none" y="3" dy=".71em" transform="translate(163.26530612244895,205)" fill="rgb(0,0,0)" text-anchor="middle">4</text>
+          <text pointer-events="none" y="3" dy=".71em" transform="translate(204.08163265306123,205)" fill="rgb(0,0,0)" text-anchor="middle">5</text>
+          <text pointer-events="none" y="3" dy=".71em" transform="translate(244.89795918367344,205)" fill="rgb(0,0,0)" text-anchor="middle">6</text>
+          <text pointer-events="none" y="3" dy=".71em" transform="translate(285.71428571428567,205)" fill="rgb(0,0,0)" text-anchor="middle">7</text>
+          <text pointer-events="none" y="3" dy=".71em" transform="translate(326.5306122448979,205)" fill="rgb(0,0,0)" text-anchor="middle">8</text>
+          <text pointer-events="none" y="3" dy=".71em" transform="translate(367.3469387755102,205)" fill="rgb(0,0,0)" text-anchor="middle">9</text>
+     </g>
+     <g transform="translate(20,5)">
+          <line shape-rendering="crispEdges" x1="0" y1="200.0" x2="400" y2="200.0" stroke="rgb(0,0,0)" stroke-width="1"/>
+          <line shape-rendering="crispEdges" x1="0" y1="150.0" x2="400" y2="150.0" stroke="rgb(238,238,238)" stroke-width="1"/>
+          <line shape-rendering="crispEdges" x1="0" y1="100.0" x2="400" y2="100.0" stroke="rgb(238,238,238)" stroke-width="1"/>
+          <line shape-rendering="crispEdges" x1="0" y1="50.0" x2="400" y2="50.0" stroke="rgb(238,238,238)" stroke-width="1"/>
+          <line shape-rendering="crispEdges" x1="0" y1="0.0" x2="400" y2="0.0" stroke="rgb(238,238,238)" stroke-width="1"/>
+     </g>
+     <g transform="translate(20,5)">
+          <text pointer-events="none" x="-3" dy=".35em" transform="translate(0,200.0)" fill="rgb(0,0,0)" text-anchor="end">0</text>
+          <text pointer-events="none" x="-3" dy=".35em" transform="translate(0,150.0)" fill="rgb(0,0,0)" text-anchor="end">1</text>
+          <text pointer-events="none" x="-3" dy=".35em" transform="translate(0,100.0)" fill="rgb(0,0,0)" text-anchor="end">2</text>
+          <text pointer-events="none" x="-3" dy=".35em" transform="translate(0,50.0)" fill="rgb(0,0,0)" text-anchor="end">3</text>
+          <text pointer-events="none" x="-3" dy=".35em" transform="translate(0,0.0)" fill="rgb(0,0,0)" text-anchor="end">4</text>
+     </g>
+     <g transform="translate(20,5)">
+          <path d="M0.0,76.01447491648494H8.16326530612245V96.38110783684188H16.3265306122449V60.969763338831484H24.48979591836735V48.54266966661751H32.6530612244898V79.32193590676533H40.81632653061224V53.98740938473543H48.9795918367347V37.94936784456294H57.14285714285714V62.38667003553962H65.3061224489796V71.21153648159665H73.46938775510203V34.95011781679278H81.63265306122447V77.00740313758105H89.79591836734694V70.74441008747533H97.9591836734694V68.57687538611412H106.12244897959184V78.96348771765878H114.28571428571428V96.33458850264648H122.44897959183672V74.41366601658098H130.6122448979592V124.16080675638783H138.77551020408163V97.01722283710572H146.93877551020407V146.0447045867869H155.10204081632654V150.49653138692042H163.26530612244895V123.3496737879645H171.42857142857142V149.75415844429824H179.59183673469389V148.84032452373398H187.75510204081633V169.64592715065868H195.9183673469388V145.19228142451672H204.08163265306123V144.14437233046067H212.24489795918367V152.71492790621826H220.4081632653061V118.5819806840759H228.57142857142856V130.99776577454134H236.73469387755102V103.01670730183466H244.89795918367344V130.6888679254419H253.06122448979588V108.31437755485167H261.2244897959184V104.16901420175267H269.3877551020408V89.92628883902336H277.55102040816325V85.7731029329925H285.71428571428567V62.870118946239415H293.87755102040813V61.32816537056058H302.0408163265306V75.68025948161137H310.2040816326531V64.66958914379839H318.3673469387755V58.14864894984913H326.5306122448979V32.894114475591294H334.6938775510204V73.60971936286766H342.85714285714283V73.98548040906078H351.02040816326524V56.53739051246117H359.18367346938777V70.53161440464152H367.3469387755102V89.80904699906753H375.51020408163265V79.46255122290029H383.67346938775506V85.58896502262559H391.8367346938776V96.2649935893742H400.0V110.28230498376251" fill="none" stroke="rgb(31,119,180)" stroke-width="3"/>
+     </g>
+</svg>

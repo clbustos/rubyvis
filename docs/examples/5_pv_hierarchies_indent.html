@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' content='text/html' http-equiv='Content-Type'>
+<link href='../style.css' rel='stylesheet' type='text/css'>
+<title>Rubyvis - Example: Indented Tree</title>
+</head>
+<body>
+<h1>Rubyvis - Example: Indented Tree</h1>
+<div class='example_main'>
+<div class='description'><p>Indented trees are widely-used to represent file systems, among other applications. Although indented trees require much vertical space and do not easily facilitate multiscale inference, they do allow efficient interactive exploration of the tree to find a specific node.<br />
+In addition, the indent layout allows rapid scanning of node labels, and multivariate data such as file size can be displayed adjacent to the hierarchy.</p></div>
+<div class='navigation'>
+<ul>
+<li>
+<a href='../index.html'>Home</a>
+</li>
+<li>
+<a href='5_pv_hierarchies_icicle.html'>Previous: Icicle</a>
+</li>
+<li>
+<a href='5_pv_hierarchies_node_link_tree.html'>Next: Node-Link Trees</a>
+</li>
+</ul>
+</div>
+<div class='image'>
+<!--[if IE]>
+<embed class='svg' height='874' src='5_pv_hierarchies_indent.svg' width='270'>
+<![endif]-->
+<object class='svg' data='5_pv_hierarchies_indent.svg' height='874' type='image/svg+xml' width='270'></object>
+</div>
+<div class='source'><div class="CodeRay">
+  <div class="code"><pre><span style="color:#777">#</span>&#x000A;<span style="color:#777"># Uses Protovis API</span>&#x000A;require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">rubyvis</span><span style="color:#710">'</span></span>&#x000A;&#x000A;&#x000A;<span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">get_files</span>(path)&#x000A;  h={}&#x000A;  <span style="color:#036;font-weight:bold">Dir</span>.glob(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>path<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">/*</span><span style="color:#710">&quot;</span></span>).each {|e|&#x000A;    <span style="color:#080;font-weight:bold">next</span> <span style="color:#080;font-weight:bold">if</span> <span style="color:#036;font-weight:bold">File</span>.expand_path(e)=~<span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#808">pkg|web|vendor|doc|~</span><span style="color:#404">/</span></span>&#x000A;    pa=<span style="color:#036;font-weight:bold">File</span>.expand_path(e) &#x000A;    <span style="color:#080;font-weight:bold">if</span> <span style="color:#036;font-weight:bold">File</span>.stat(pa).directory?&#x000A;      h[<span style="color:#036;font-weight:bold">File</span>.basename(pa)]=get_files(pa)&#x000A;    <span style="color:#080;font-weight:bold">else</span>&#x000A;      h[<span style="color:#036;font-weight:bold">File</span>.basename(pa)]=<span style="color:#036;font-weight:bold">File</span>.stat(pa).size&#x000A;    <span style="color:#080;font-weight:bold">end</span>&#x000A;  }&#x000A;  h&#x000A;<span style="color:#080;font-weight:bold">end</span>&#x000A;&#x000A;files=get_files(<span style="color:#036;font-weight:bold">File</span>.expand_path(<span style="color:#036;font-weight:bold">File</span>.dirname(<span style="color:#069">__FILE__</span>)+<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">/../../lib/</span><span style="color:#710">&quot;</span></span>))&#x000A;&#x000A;&#x000A;root = <span style="color:#036;font-weight:bold">Rubyvis</span>.dom(files)&#x000A;    .root(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">rubyvis</span><span style="color:#710">&quot;</span></span>)&#x000A;    .sort(lambda {|a,b| a.node_name&lt;=&gt;b.node_name})&#x000A;&#x000A;<span style="color:#777">#/* Recursively compute the package sizes. */</span>&#x000A;root.visit_after {|n,i| &#x000A;  <span style="color:#080;font-weight:bold">if</span> (n.first_child)&#x000A;    n.node_value= <span style="color:#036;font-weight:bold">Rubyvis</span>.sum(n.child_nodes , lambda {|nn|  nn.node_value})&#x000A;  <span style="color:#080;font-weight:bold">end</span>&#x000A;}&#x000A;&#x000A;<span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">t</span>(d)&#x000A;  d.parent_node ? (t(d.parent_node) + <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">.</span><span style="color:#710">&quot;</span></span> + d.node_name) : d.node_name&#x000A;<span style="color:#080;font-weight:bold">end</span>&#x000A;&#x000A;vis = <span style="color:#036;font-weight:bold">Rubyvis</span>::<span style="color:#036;font-weight:bold">Panel</span>.new()&#x000A;    .width(<span style="color:#00D">260</span>)&#x000A;    .height((root.nodes.size + <span style="color:#00D">1</span>)* <span style="color:#00D">12</span>)&#x000A;    .margin(<span style="color:#00D">5</span>)&#x000A;&#x000A;layout = vis.add(pv.Layout.Indent)&#x000A;.nodes(lambda {root.nodes})&#x000A;    .depth(<span style="color:#00D">12</span>)&#x000A;    .breadth(<span style="color:#00D">12</span>)&#x000A;&#x000A;layout.link.add(pv.Line)&#x000A;&#x000A;node = layout.node.add(pv.Panel)&#x000A;.top(lambda {|n| n.y - <span style="color:#00D">6</span>})&#x000A;    .height(<span style="color:#00D">12</span>)&#x000A;    .right(<span style="color:#00D">6</span>)&#x000A;    .strokeStyle(<span style="color:#069">nil</span>)&#x000A;    &#x000A;node.anchor(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">left</span><span style="color:#710">&quot;</span></span>).add(pv.Dot)&#x000A;    .strokeStyle(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">#1f77b4</span><span style="color:#710">&quot;</span></span>)&#x000A;    .fillStyle(lambda {|n| n.first_child ? <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">#aec7e8</span><span style="color:#710">&quot;</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">#ff7f0e</span><span style="color:#710">&quot;</span></span>})&#x000A;    .title(lambda {|d| t(d)})&#x000A;  .anchor(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">right</span><span style="color:#710">&quot;</span></span>).add(pv.Label)&#x000A;  .text(lambda {|n| n.node_name})&#x000A;&#x000A;node.anchor(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">right</span><span style="color:#710">&quot;</span></span>).add(pv.Label)&#x000A;.text(lambda {|n| (n.node_value &gt;&gt; <span style="color:#00D">10</span>).to_s + <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">KB</span><span style="color:#710">&quot;</span></span>})&#x000A;&#x000A;vis.render()&#x000A;puts vis.to_svg</pre></div>
+</div>
+</div>
+</div>
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5764936-8']);
+  _gaq.push(['_trackPageview']);
+  
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" font-size="10px" font-family="sans-serif" fill="none" stroke="none" stroke-width="1.5" width="200.0" height="150.0">
+     <g transform="translate(0.0,0.0)">
+          <g>
+               <rect y="90" width="20" height="60" fill="rgb(31,119,180)"/>
+               <rect x="25" y="85" width="20" height="65" fill="rgb(31,119,180)"/>
+          </g>
+          <g>
+               <text pointer-events="none" y="-3" transform="translate(10.0,150)" fill="rgb(0,0,0)" text-anchor="middle">a-1</text>
+               <text pointer-events="none" y="-3" transform="translate(35.0,150)" fill="rgb(0,0,0)" text-anchor="middle">a-2</text>
+          </g>
+          <g>
+               <text pointer-events="none" y="3" dy=".71em" transform="translate(10.0,90)" fill="rgb(0,0,0)" text-anchor="middle">0-0</text>
+               <text pointer-events="none" y="3" dy=".71em" transform="translate(35.0,85)" fill="rgb(0,0,0)" text-anchor="middle">0-1</text>
+          </g>
+          <g>
+               <rect x="60" y="70" width="20" height="80" fill="rgb(174,199,232)"/>
+               <rect x="85" y="65" width="20" height="85" fill="rgb(174,199,232)"/>
+          </g>
+          <g>
+               <text pointer-events="none" y="-3" transform="translate(70.0,150)" fill="rgb(0,0,0)" text-anchor="middle">b-1</text>
+               <text pointer-events="none" y="-3" transform="translate(95.0,150)" fill="rgb(0,0,0)" text-anchor="middle">b-2</text>
+          </g>
+          <g>
+               <text pointer-events="none" y="3" dy=".71em" transform="translate(70.0,70)" fill="rgb(0,0,0)" text-anchor="middle">1-0</text>
+               <text pointer-events="none" y="3" dy=".71em" transform="translate(95.0,65)" fill="rgb(0,0,0)" text-anchor="middle">1-1</text>
+          </g>
+          <g>
+               <rect x="120" y="50" width="20" height="100" fill="rgb(255,127,14)"/>
+               <rect x="145" y="45" width="20" height="105" fill="rgb(255,127,14)"/>
+          </g>
+          <g>
+               <text pointer-events="none" y="-3" transform="translate(130.0,150)" fill="rgb(0,0,0)" text-anchor="middle">c-1</text>
+               <text pointer-events="none" y="-3" transform="translate(155.0,150)" fill="rgb(0,0,0)" text-anchor="middle">c-2</text>
+          </g>
+          <g>
+               <text pointer-events="none" y="3" dy=".71em" transform="translate(130.0,50)" fill="rgb(0,0,0)" text-anchor="middle">2-0</text>
+               <text pointer-events="none" y="3" dy=".71em" transform="translate(155.0,45)" fill="rgb(0,0,0)" text-anchor="middle">2-1</text>
+          </g>
+          <g>
+               <rect x="180" y="30" width="20" height="120" fill="rgb(255,187,120)"/>
+               <rect x="205" y="25" width="20" height="125" fill="rgb(255,187,120)"/>
+          </g>
+          <g>
+               <text pointer-events="none" y="-3" transform="translate(190.0,150)" fill="rgb(0,0,0)" text-anchor="middle">d-1</text>
+               <text pointer-events="none" y="-3" transform="translate(215.0,150)" fill="rgb(0,0,0)" text-anchor="middle">d-2</text>
+          </g>
+          <g>
+               <text pointer-events="none" y="3" dy=".71em" transform="translate(190.0,30)" fill="rgb(0,0,0)" text-anchor="middle">3-0</text>
+               <text pointer-events="none" y="3" dy=".71em" transform="translate(215.0,25)" fill="rgb(0,0,0)" text-anchor="middle">3-1</text>
+          </g>
+     </g>
+</svg>

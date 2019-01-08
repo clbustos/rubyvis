@@ -50,4 +50,3 @@ EXAMPLES.each do |v|
   end
 end
 
-load 'upload_task.rb' if File.exists? "upload_task.rb"

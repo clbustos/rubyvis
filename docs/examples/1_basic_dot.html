@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' content='text/html' http-equiv='Content-Type'>
+<link href='../style.css' rel='stylesheet' type='text/css'>
+<title>Rubyvis - Example: Dot and anchors</title>
+</head>
+<body>
+<h1>Rubyvis - Example: Dot and anchors</h1>
+<div class='example_main'>
+<div class='description'><p>This example shows how looks differents positions of anchors on dots</p></div>
+<div class='navigation'>
+<ul>
+<li>
+<a href='../index.html'>Home</a>
+</li>
+<li>
+<a href='1_basic_area_interpolation.html'>Previous: Area Interpolation</a>
+</li>
+<li>
+<a href='1_basic_grid.html'>Next: Grid</a>
+</li>
+</ul>
+</div>
+<div class='image'>
+<!--[if IE]>
+<embed class='svg' height='200' src='1_basic_dot.svg' width='200'>
+<![endif]-->
+<object class='svg' data='1_basic_dot.svg' height='200' type='image/svg+xml' width='200'></object>
+</div>
+<div class='source'><div class="CodeRay">
+  <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">rubyvis</span><span style="color:#710">'</span></span>&#x000A;&#x000A;vis = pv.Panel.new().width(<span style="color:#00D">200</span>).height(<span style="color:#00D">200</span>);&#x000A;&#x000A;dot=vis.add(pv.Dot)&#x000A;    .data([<span style="color:#00D">1</span>,<span style="color:#00D">2</span>,<span style="color:#00D">3</span>,<span style="color:#00D">4</span>,<span style="color:#00D">5</span>,<span style="color:#00D">6</span>])&#x000A;    .bottom(lambda {|d| d*<span style="color:#00D">30</span>})&#x000A;    .left(lambda { <span style="color:#00D">20</span>+index*<span style="color:#00D">40</span>} )&#x000A;    .shape_radius(<span style="color:#00D">10</span>)&#x000A;    <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">%w{</span><span style="color:#D20">top bottom left right center</span><span style="color:#710">}</span></span>.each <span style="color:#080;font-weight:bold">do</span> |dir|&#x000A;      dot.anchor(dir).add(pv.Label).text(dir[<span style="color:#00D">0</span>,<span style="color:#00D">1</span>])&#x000A;    <span style="color:#080;font-weight:bold">end</span>&#x000A;vis.render()&#x000A;<span style="color:#777">#puts vis.children_inspect</span>&#x000A;puts vis.to_svg</pre></div>
+</div>
+</div>
+</div>
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5764936-8']);
+  _gaq.push(['_trackPageview']);
+  
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,435 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" font-size="10px" font-family="sans-serif" fill="none" stroke="none" stroke-width="1.5" width="600.0" height="1000.0">
+     <g transform="translate(0.0,0.0)">
+          <g>
+               <a xlink:title="rubyvis.rb 2,408">
+                    <rect shape-rendering="crispEdges" x="390" y="979" width="210" height="21" fill="rgb(31,119,180)"/>
+               </a>
+               <a xlink:title="rubyvis.rb 2,408">
+                    <rect shape-rendering="crispEdges" x="390" y="979" width="210" height="21" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="dot.rb 5,697">
+                    <rect shape-rendering="crispEdges" x="230" y="309" width="104" height="101" fill="rgb(174,199,232)"/>
+               </a>
+               <a xlink:title="dot.rb 5,697">
+                    <rect shape-rendering="crispEdges" x="230" y="309" width="104" height="101" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="line.rb 6,521">
+                    <rect shape-rendering="crispEdges" x="112" y="309" width="118" height="101" fill="rgb(174,199,232)"/>
+               </a>
+               <a xlink:title="line.rb 6,521">
+                    <rect shape-rendering="crispEdges" x="112" y="309" width="118" height="101" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="shorcut_methods.rb 10,043">
+                    <rect shape-rendering="crispEdges" y="309" width="112" height="164" fill="rgb(174,199,232)"/>
+               </a>
+               <a xlink:title="shorcut_methods.rb 10,043">
+                    <rect shape-rendering="crispEdges" y="309" width="112" height="164" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="label.rb 4,247">
+                    <rect shape-rendering="crispEdges" x="112" y="501" width="86" height="90" fill="rgb(174,199,232)"/>
+               </a>
+               <a xlink:title="label.rb 4,247">
+                    <rect shape-rendering="crispEdges" x="112" y="501" width="86" height="90" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="anchor.rb 3,446">
+                    <rect shape-rendering="crispEdges" x="198" y="410" width="70" height="91" fill="rgb(174,199,232)"/>
+               </a>
+               <a xlink:title="anchor.rb 3,446">
+                    <rect shape-rendering="crispEdges" x="198" y="410" width="70" height="91" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="bar.rb 2,709">
+                    <rect shape-rendering="crispEdges" x="264" y="501" width="70" height="71" fill="rgb(174,199,232)"/>
+               </a>
+               <a xlink:title="bar.rb 2,709">
+                    <rect shape-rendering="crispEdges" x="264" y="501" width="70" height="71" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="image.rb 3,268">
+                    <rect shape-rendering="crispEdges" x="198" y="501" width="66" height="90" fill="rgb(174,199,232)"/>
+               </a>
+               <a xlink:title="image.rb 3,268">
+                    <rect shape-rendering="crispEdges" x="198" y="501" width="66" height="90" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="wedge.rb 4,280">
+                    <rect shape-rendering="crispEdges" x="112" y="410" width="86" height="91" fill="rgb(174,199,232)"/>
+               </a>
+               <a xlink:title="wedge.rb 4,280">
+                    <rect shape-rendering="crispEdges" x="112" y="410" width="86" height="91" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="rule.rb 783">
+                    <rect shape-rendering="crispEdges" x="264" y="572" width="70" height="19" fill="rgb(174,199,232)"/>
+               </a>
+               <a xlink:title="rule.rb 783">
+                    <rect shape-rendering="crispEdges" x="264" y="572" width="70" height="19" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="panel.rb 3,292">
+                    <rect shape-rendering="crispEdges" x="268" y="410" width="66" height="91" fill="rgb(174,199,232)"/>
+               </a>
+               <a xlink:title="panel.rb 3,292">
+                    <rect shape-rendering="crispEdges" x="268" y="410" width="66" height="91" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="area.rb 7,258">
+                    <rect shape-rendering="crispEdges" y="473" width="112" height="118" fill="rgb(174,199,232)"/>
+               </a>
+               <a xlink:title="area.rb 7,258">
+                    <rect shape-rendering="crispEdges" y="473" width="112" height="118" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="sceneelement.rb 3,786">
+                    <rect shape-rendering="crispEdges" x="411" y="848" width="104" height="67" fill="rgb(31,119,180)"/>
+               </a>
+               <a xlink:title="sceneelement.rb 3,786">
+                    <rect shape-rendering="crispEdges" x="411" y="848" width="104" height="67" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="version.rb 139">
+                    <rect shape-rendering="crispEdges" x="593" y="1009" width="7" height="-30" fill="rgb(31,119,180)"/>
+               </a>
+               <a xlink:title="version.rb 139">
+                    <rect shape-rendering="crispEdges" x="593" y="1009" width="7" height="1.0e-10" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="dom.rb 11,226">
+                    <rect shape-rendering="crispEdges" x="487" y="591" width="113" height="181" fill="rgb(31,119,180)"/>
+               </a>
+               <a xlink:title="dom.rb 11,226">
+                    <rect shape-rendering="crispEdges" x="487" y="591" width="113" height="181" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="svg_rule.rb 764">
+                    <rect shape-rendering="crispEdges" x="544" y="540" width="27" height="51" fill="rgb(255,127,14)"/>
+               </a>
+               <a xlink:title="svg_rule.rb 764">
+                    <rect shape-rendering="crispEdges" x="544" y="540" width="27" height="51" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="svg_bar.rb 985">
+                    <rect shape-rendering="crispEdges" x="544" y="508" width="56" height="32" fill="rgb(255,127,14)"/>
+               </a>
+               <a xlink:title="svg_bar.rb 985">
+                    <rect shape-rendering="crispEdges" x="544" y="508" width="56" height="32" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="svg_dot.rb 2,090">
+                    <rect shape-rendering="crispEdges" x="556" y="422" width="44" height="86" fill="rgb(255,127,14)"/>
+               </a>
+               <a xlink:title="svg_dot.rb 2,090">
+                    <rect shape-rendering="crispEdges" x="556" y="422" width="44" height="86" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="svg_scene.rb 5,501">
+                    <rect shape-rendering="crispEdges" x="334" y="509" width="123" height="82" fill="rgb(255,127,14)"/>
+               </a>
+               <a xlink:title="svg_scene.rb 5,501">
+                    <rect shape-rendering="crispEdges" x="334" y="509" width="123" height="82" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="svg_line.rb 5,890">
+                    <rect shape-rendering="crispEdges" x="334" y="422" width="123" height="87" fill="rgb(255,127,14)"/>
+               </a>
+               <a xlink:title="svg_line.rb 5,890">
+                    <rect shape-rendering="crispEdges" x="334" y="422" width="123" height="87" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="svg_area.rb 6,437">
+                    <rect shape-rendering="crispEdges" x="496" y="309" width="104" height="113" fill="rgb(255,127,14)"/>
+               </a>
+               <a xlink:title="svg_area.rb 6,437">
+                    <rect shape-rendering="crispEdges" x="496" y="309" width="104" height="113" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="svg_panel.rb 4,637">
+                    <rect shape-rendering="crispEdges" x="457" y="422" width="99" height="86" fill="rgb(255,127,14)"/>
+               </a>
+               <a xlink:title="svg_panel.rb 4,637">
+                    <rect shape-rendering="crispEdges" x="457" y="422" width="99" height="86" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="svg_curve.rb 10,060">
+                    <rect shape-rendering="crispEdges" x="334" y="309" width="162" height="113" fill="rgb(255,127,14)"/>
+               </a>
+               <a xlink:title="svg_curve.rb 10,060">
+                    <rect shape-rendering="crispEdges" x="334" y="309" width="162" height="113" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="svg_image.rb 733">
+                    <rect shape-rendering="crispEdges" x="571" y="540" width="29" height="51" fill="rgb(255,127,14)"/>
+               </a>
+               <a xlink:title="svg_image.rb 733">
+                    <rect shape-rendering="crispEdges" x="571" y="540" width="29" height="51" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="svg_wedge.rb 2,036">
+                    <rect shape-rendering="crispEdges" x="457" y="508" width="45" height="83" fill="rgb(255,127,14)"/>
+               </a>
+               <a xlink:title="svg_wedge.rb 2,036">
+                    <rect shape-rendering="crispEdges" x="457" y="508" width="45" height="83" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="svg_label.rb 1,890">
+                    <rect shape-rendering="crispEdges" x="502" y="508" width="42" height="83" fill="rgb(255,127,14)"/>
+               </a>
+               <a xlink:title="svg_label.rb 1,890">
+                    <rect shape-rendering="crispEdges" x="502" y="508" width="42" height="83" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="mark.rb 37,376">
+                    <rect shape-rendering="crispEdges" y="591" width="295" height="231" fill="rgb(31,119,180)"/>
+               </a>
+               <a xlink:title="mark.rb 37,376">
+                    <rect shape-rendering="crispEdges" y="591" width="295" height="231" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="treemap.rb 11,606">
+                    <rect shape-rendering="crispEdges" y="166" width="148" height="143" fill="rgb(255,187,120)"/>
+               </a>
+               <a xlink:title="treemap.rb 11,606">
+                    <rect shape-rendering="crispEdges" y="166" width="148" height="143" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="matrix.rb 7,139">
+                    <rect shape-rendering="crispEdges" x="503" width="97" height="134" fill="rgb(255,187,120)"/>
+               </a>
+               <a xlink:title="matrix.rb 7,139">
+                    <rect shape-rendering="crispEdges" x="503" width="97" height="134" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="tree.rb 7,770">
+                    <rect shape-rendering="crispEdges" x="262" y="207" width="140" height="102" fill="rgb(255,187,120)"/>
+               </a>
+               <a xlink:title="tree.rb 7,770">
+                    <rect shape-rendering="crispEdges" x="262" y="207" width="140" height="102" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="indent.rb 2,793">
+                    <rect shape-rendering="crispEdges" x="536" y="235" width="64" height="74" fill="rgb(255,187,120)"/>
+               </a>
+               <a xlink:title="indent.rb 2,793">
+                    <rect shape-rendering="crispEdges" x="536" y="235" width="64" height="74" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="cluster.rb 7,367">
+                    <rect shape-rendering="crispEdges" x="402" width="101" height="134" fill="rgb(255,187,120)"/>
+               </a>
+               <a xlink:title="cluster.rb 7,367">
+                    <rect shape-rendering="crispEdges" x="402" width="101" height="134" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="grid.rb 3,552">
+                    <rect shape-rendering="crispEdges" x="536" y="134" width="64" height="101" fill="rgb(255,187,120)"/>
+               </a>
+               <a xlink:title="grid.rb 3,552">
+                    <rect shape-rendering="crispEdges" x="536" y="134" width="64" height="101" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="network.rb 13,435">
+                    <rect shape-rendering="crispEdges" width="148" height="166" fill="rgb(255,187,120)"/>
+               </a>
+               <a xlink:title="network.rb 13,435">
+                    <rect shape-rendering="crispEdges" width="148" height="166" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="stack.rb 9,856">
+                    <rect shape-rendering="crispEdges" x="148" width="114" height="158" fill="rgb(255,187,120)"/>
+               </a>
+               <a xlink:title="stack.rb 9,856">
+                    <rect shape-rendering="crispEdges" x="148" width="114" height="158" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="pack.rb 9,374">
+                    <rect shape-rendering="crispEdges" x="148" y="158" width="114" height="151" fill="rgb(255,187,120)"/>
+               </a>
+               <a xlink:title="pack.rb 9,374">
+                    <rect shape-rendering="crispEdges" x="148" y="158" width="114" height="151" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="arc.rb 6,775">
+                    <rect shape-rendering="crispEdges" x="402" y="134" width="134" height="93" fill="rgb(255,187,120)"/>
+               </a>
+               <a xlink:title="arc.rb 6,775">
+                    <rect shape-rendering="crispEdges" x="402" y="134" width="134" height="93" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="partition.rb 8,061">
+                    <rect shape-rendering="crispEdges" x="262" width="140" height="105" fill="rgb(255,187,120)"/>
+               </a>
+               <a xlink:title="partition.rb 8,061">
+                    <rect shape-rendering="crispEdges" x="262" width="140" height="105" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="hierarchy.rb 7,816">
+                    <rect shape-rendering="crispEdges" x="262" y="105" width="140" height="102" fill="rgb(255,187,120)"/>
+               </a>
+               <a xlink:title="hierarchy.rb 7,816">
+                    <rect shape-rendering="crispEdges" x="262" y="105" width="140" height="102" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="horizon.rb 6,042">
+                    <rect shape-rendering="crispEdges" x="402" y="227" width="134" height="82" fill="rgb(255,187,120)"/>
+               </a>
+               <a xlink:title="horizon.rb 6,042">
+                    <rect shape-rendering="crispEdges" x="402" y="227" width="134" height="82" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="vector.rb 3,649">
+                    <rect shape-rendering="crispEdges" x="411" y="915" width="104" height="64" fill="rgb(31,119,180)"/>
+               </a>
+               <a xlink:title="vector.rb 3,649">
+                    <rect shape-rendering="crispEdges" x="411" y="915" width="104" height="64" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="internals.rb 6,569">
+                    <rect shape-rendering="crispEdges" x="295" y="772" width="116" height="104" fill="rgb(31,119,180)"/>
+               </a>
+               <a xlink:title="internals.rb 6,569">
+                    <rect shape-rendering="crispEdges" x="295" y="772" width="116" height="104" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="histogram.rb 918">
+                    <rect shape-rendering="crispEdges" x="515" y="941" width="44" height="38" fill="rgb(31,119,180)"/>
+               </a>
+               <a xlink:title="histogram.rb 918">
+                    <rect shape-rendering="crispEdges" x="515" y="941" width="44" height="38" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="property.rb 259">
+                    <rect shape-rendering="crispEdges" x="593" y="941" width="7" height="68" fill="rgb(31,119,180)"/>
+               </a>
+               <a xlink:title="property.rb 259">
+                    <rect shape-rendering="crispEdges" x="593" y="941" width="7" height="68" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="color.rb 13,595">
+                    <rect shape-rendering="crispEdges" x="295" y="591" width="137" height="181" fill="rgb(44,160,44)"/>
+               </a>
+               <a xlink:title="color.rb 13,595">
+                    <rect shape-rendering="crispEdges" x="295" y="591" width="137" height="181" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="colors.rb 5,512">
+                    <rect shape-rendering="crispEdges" x="432" y="591" width="55" height="181" fill="rgb(44,160,44)"/>
+               </a>
+               <a xlink:title="colors.rb 5,512">
+                    <rect shape-rendering="crispEdges" x="432" y="591" width="55" height="181" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="format.rb 348">
+                    <rect shape-rendering="crispEdges" x="559" y="960" width="34" height="19" fill="rgb(31,119,180)"/>
+               </a>
+               <a xlink:title="format.rb 348">
+                    <rect shape-rendering="crispEdges" x="559" y="960" width="34" height="19" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="layout.rb 1,274">
+                    <rect shape-rendering="crispEdges" x="515" y="891" width="46" height="50" fill="rgb(31,119,180)"/>
+               </a>
+               <a xlink:title="layout.rb 1,274">
+                    <rect shape-rendering="crispEdges" x="515" y="891" width="46" height="50" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="number.rb 3,356">
+                    <rect shape-rendering="crispEdges" x="506" y="772" width="81" height="76" fill="rgb(152,223,138)"/>
+               </a>
+               <a xlink:title="number.rb 3,356">
+                    <rect shape-rendering="crispEdges" x="506" y="772" width="81" height="76" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="date.rb 532">
+                    <rect shape-rendering="crispEdges" x="587" y="772" width="13" height="76" fill="rgb(152,223,138)"/>
+               </a>
+               <a xlink:title="date.rb 532">
+                    <rect shape-rendering="crispEdges" x="587" y="772" width="13" height="76" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="ordinal.rb 7,777">
+                    <rect shape-rendering="crispEdges" x="180" y="822" width="115" height="124" fill="rgb(214,39,40)"/>
+               </a>
+               <a xlink:title="ordinal.rb 7,777">
+                    <rect shape-rendering="crispEdges" x="180" y="822" width="115" height="124" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="linear.rb 136">
+                    <rect shape-rendering="crispEdges" x="286" y="946" width="9" height="33" fill="rgb(214,39,40)"/>
+               </a>
+               <a xlink:title="linear.rb 136">
+                    <rect shape-rendering="crispEdges" x="286" y="946" width="9" height="33" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="log.rb 1,914">
+                    <rect shape-rendering="crispEdges" x="180" y="946" width="106" height="33" fill="rgb(214,39,40)"/>
+               </a>
+               <a xlink:title="log.rb 1,914">
+                    <rect shape-rendering="crispEdges" x="180" y="946" width="106" height="33" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="quantitative.rb 15,470">
+                    <rect shape-rendering="crispEdges" y="822" width="180" height="157" fill="rgb(214,39,40)"/>
+               </a>
+               <a xlink:title="quantitative.rb 15,470">
+                    <rect shape-rendering="crispEdges" y="822" width="180" height="157" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="flatten.rb 3,958">
+                    <rect shape-rendering="crispEdges" x="411" y="772" width="95" height="76" fill="rgb(31,119,180)"/>
+               </a>
+               <a xlink:title="flatten.rb 3,958">
+                    <rect shape-rendering="crispEdges" x="411" y="772" width="95" height="76" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="nest.rb 6,547">
+                    <rect shape-rendering="crispEdges" x="295" y="876" width="116" height="103" fill="rgb(31,119,180)"/>
+               </a>
+               <a xlink:title="nest.rb 6,547">
+                    <rect shape-rendering="crispEdges" x="295" y="876" width="116" height="103" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="javascript_behaviour.rb 1,999">
+                    <rect shape-rendering="crispEdges" x="515" y="848" width="85" height="43" fill="rgb(31,119,180)"/>
+               </a>
+               <a xlink:title="javascript_behaviour.rb 1,999">
+                    <rect shape-rendering="crispEdges" x="515" y="848" width="85" height="43" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="scale.rb 1,061">
+                    <rect shape-rendering="crispEdges" x="561" y="891" width="39" height="50" fill="rgb(31,119,180)"/>
+               </a>
+               <a xlink:title="scale.rb 1,061">
+                    <rect shape-rendering="crispEdges" x="561" y="891" width="39" height="50" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="transform.rb 362">
+                    <rect shape-rendering="crispEdges" x="559" y="941" width="34" height="19" fill="rgb(31,119,180)"/>
+               </a>
+               <a xlink:title="transform.rb 362">
+                    <rect shape-rendering="crispEdges" x="559" y="941" width="34" height="19" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="differ_spec.rb 2,399">
+                    <rect shape-rendering="crispEdges" y="979" width="208" height="21" fill="rgb(255,152,150)"/>
+               </a>
+               <a xlink:title="differ_spec.rb 2,399">
+                    <rect shape-rendering="crispEdges" y="979" width="208" height="21" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+               <a xlink:title="differ.rb 2,092">
+                    <rect shape-rendering="crispEdges" x="208" y="979" width="182" height="21" fill="rgb(255,152,150)"/>
+               </a>
+               <a xlink:title="differ.rb 2,092">
+                    <rect shape-rendering="crispEdges" x="208" y="979" width="182" height="21" fill="none" stroke="rgb(255,255,255)" stroke-width="1.0"/>
+               </a>
+          </g>
+          <g>
+               <text pointer-events="none" dy=".35em" transform="translate(495.0,989.5)" fill="rgb(0,0,0)" text-anchor="middle">rubyvis.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(282.0,359.5)" fill="rgb(0,0,0)" text-anchor="middle">dot.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(171.0,359.5)" fill="rgb(0,0,0)" text-anchor="middle">line.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(56.0,391.0) rotate(-90.0)" fill="rgb(0,0,0)" text-anchor="middle">shorcut_methods.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(155.0,546.0) rotate(-90.0)" fill="rgb(0,0,0)" text-anchor="middle">label.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(233.0,455.5) rotate(-90.0)" fill="rgb(0,0,0)" text-anchor="middle">anchor.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(299.0,536.5) rotate(-90.0)" fill="rgb(0,0,0)" text-anchor="middle">bar.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(231.0,546.0) rotate(-90.0)" fill="rgb(0,0,0)" text-anchor="middle">image.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(155.0,455.5) rotate(-90.0)" fill="rgb(0,0,0)" text-anchor="middle">wedge.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(299.0,581.5)" fill="rgb(0,0,0)" text-anchor="middle">rule.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(301.0,455.5) rotate(-90.0)" fill="rgb(0,0,0)" text-anchor="middle">panel.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(56.0,532.0) rotate(-90.0)" fill="rgb(0,0,0)" text-anchor="middle">area.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(463.0,881.5)" fill="rgb(0,0,0)" text-anchor="middle">sceneelement.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(596.5,994.0)" fill="rgb(0,0,0)" text-anchor="middle">version.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(543.5,681.5) rotate(-90.0)" fill="rgb(0,0,0)" text-anchor="middle">dom.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(557.5,565.5) rotate(-90.0)" fill="rgb(0,0,0)" text-anchor="middle">svg_rule.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(572.0,524.0)" fill="rgb(0,0,0)" text-anchor="middle">svg_bar.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(578.0,465.0) rotate(-90.0)" fill="rgb(0,0,0)" text-anchor="middle">svg_dot.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(395.5,550.0)" fill="rgb(0,0,0)" text-anchor="middle">svg_scene.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(395.5,465.5)" fill="rgb(0,0,0)" text-anchor="middle">svg_line.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(548.0,365.5) rotate(-90.0)" fill="rgb(0,0,0)" text-anchor="middle">svg_area.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(506.5,465.0)" fill="rgb(0,0,0)" text-anchor="middle">svg_panel.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(415.0,365.5)" fill="rgb(0,0,0)" text-anchor="middle">svg_curve.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(585.5,565.5) rotate(-90.0)" fill="rgb(0,0,0)" text-anchor="middle">svg_image.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(479.5,549.5) rotate(-90.0)" fill="rgb(0,0,0)" text-anchor="middle">svg_wedge.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(523.0,549.5) rotate(-90.0)" fill="rgb(0,0,0)" text-anchor="middle">svg_label.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(147.5,706.5)" fill="rgb(0,0,0)" text-anchor="middle">mark.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(74.0,237.5)" fill="rgb(0,0,0)" text-anchor="middle">treemap.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(551.5,67.0) rotate(-90.0)" fill="rgb(0,0,0)" text-anchor="middle">matrix.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(332.0,258.0)" fill="rgb(0,0,0)" text-anchor="middle">tree.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(568.0,272.0) rotate(-90.0)" fill="rgb(0,0,0)" text-anchor="middle">indent.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(452.5,67.0) rotate(-90.0)" fill="rgb(0,0,0)" text-anchor="middle">cluster.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(568.0,184.5) rotate(-90.0)" fill="rgb(0,0,0)" text-anchor="middle">grid.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(74.0,83.0) rotate(-90.0)" fill="rgb(0,0,0)" text-anchor="middle">network.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(205.0,79.0) rotate(-90.0)" fill="rgb(0,0,0)" text-anchor="middle">stack.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(205.0,233.5) rotate(-90.0)" fill="rgb(0,0,0)" text-anchor="middle">pack.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(469.0,180.5)" fill="rgb(0,0,0)" text-anchor="middle">arc.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(332.0,52.5)" fill="rgb(0,0,0)" text-anchor="middle">partition.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(332.0,156.0)" fill="rgb(0,0,0)" text-anchor="middle">hierarchy.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(469.0,268.0)" fill="rgb(0,0,0)" text-anchor="middle">horizon.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(463.0,947.0)" fill="rgb(0,0,0)" text-anchor="middle">vector.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(353.0,824.0)" fill="rgb(0,0,0)" text-anchor="middle">internals.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(537.0,960.0)" fill="rgb(0,0,0)" text-anchor="middle">histogram.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(596.5,975.0) rotate(-90.0)" fill="rgb(0,0,0)" text-anchor="middle">property.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(363.5,681.5) rotate(-90.0)" fill="rgb(0,0,0)" text-anchor="middle">color.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(459.5,681.5) rotate(-90.0)" fill="rgb(0,0,0)" text-anchor="middle">colors.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(576.0,969.5)" fill="rgb(0,0,0)" text-anchor="middle">format.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(538.0,916.0) rotate(-90.0)" fill="rgb(0,0,0)" text-anchor="middle">layout.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(546.5,810.0)" fill="rgb(0,0,0)" text-anchor="middle">number.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(593.5,810.0) rotate(-90.0)" fill="rgb(0,0,0)" text-anchor="middle">date.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(237.5,884.0) rotate(-90.0)" fill="rgb(0,0,0)" text-anchor="middle">ordinal.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(290.5,962.5) rotate(-90.0)" fill="rgb(0,0,0)" text-anchor="middle">linear.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(233.0,962.5)" fill="rgb(0,0,0)" text-anchor="middle">log.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(90.0,900.5)" fill="rgb(0,0,0)" text-anchor="middle">quantitative.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(458.5,810.0)" fill="rgb(0,0,0)" text-anchor="middle">flatten.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(353.0,927.5)" fill="rgb(0,0,0)" text-anchor="middle">nest.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(557.5,869.5)" fill="rgb(0,0,0)" text-anchor="middle">javascript_behaviour.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(580.5,916.0) rotate(-90.0)" fill="rgb(0,0,0)" text-anchor="middle">scale.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(576.0,950.5)" fill="rgb(0,0,0)" text-anchor="middle">transform.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(104.0,989.5)" fill="rgb(0,0,0)" text-anchor="middle">differ_spec.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(299.0,989.5)" fill="rgb(0,0,0)" text-anchor="middle">differ.rb</text>
+          </g>
+     </g>
+</svg>

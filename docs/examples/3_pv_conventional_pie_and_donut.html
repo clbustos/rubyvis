@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' content='text/html' http-equiv='Content-Type'>
+<link href='../style.css' rel='stylesheet' type='text/css'>
+<title>Rubyvis - Example: pie_and_donut.rb</title>
+</head>
+<body>
+<h1>Rubyvis - Example: pie_and_donut.rb</h1>
+<div class='example_main'>
+<div class='description'></div>
+<div class='navigation'>
+<ul>
+<li>
+<a href='../index.html'>Home</a>
+</li>
+<li>
+<a href='3_pv_conventional_line_and_step.html'>Previous: Line and Step Chart</a>
+</li>
+<li>
+<a href='3_pv_conventional_scatterplot.html'>Next: Scatterplot</a>
+</li>
+</ul>
+</div>
+<div class='image'>
+<!--[if IE]>
+<embed class='svg' height='400' src='3_pv_conventional_pie_and_donut.svg' width='400'>
+<![endif]-->
+<object class='svg' data='3_pv_conventional_pie_and_donut.svg' height='400' type='image/svg+xml' width='400'></object>
+</div>
+<div class='source'><div class="CodeRay">
+  <div class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">rubyvis</span><span style="color:#710">'</span></span>&#x000A;&#x000A;<span style="color:#777"># Sizing and scales. */</span>&#x000A;&#x000A;data = pv.range(<span style="color:#00D">10</span>).map {rand()}&#x000A;&#x000A;&#x000A;w = <span style="color:#00D">400</span>&#x000A;h = <span style="color:#00D">400</span>&#x000A;&#x000A;r = w / <span style="color:#60E">2.0</span>&#x000A;&#x000A;a = pv.Scale.linear(<span style="color:#00D">0</span>, pv.sum(data)).range(<span style="color:#00D">0</span>, <span style="color:#00D">2</span> * <span style="color:#036;font-weight:bold">Math</span>::<span style="color:#036;font-weight:bold">PI</span>)&#x000A;&#x000A;<span style="color:#777">#/* The root panel. */</span>&#x000A;vis = pv.Panel.new()&#x000A;    .width(w)&#x000A;    .height(h);&#x000A;<span style="color:#777">#/* The wedge, with centered label. */</span>&#x000A;&#x000A;vis.add(pv.Wedge)&#x000A;    .data(data.sort(&amp;pv.reverse_order))&#x000A;    .bottom(w / <span style="color:#60E">2.0</span>)&#x000A;    .left(w / <span style="color:#60E">2.0</span>)&#x000A;    .innerRadius(r - <span style="color:#00D">40</span>)&#x000A;    .outerRadius(r)&#x000A;    .angle(a)&#x000A;    .event(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">mouseover</span><span style="color:#710">&quot;</span></span>, lambda {<span style="color:#069">self</span>.inner_radius(<span style="color:#00D">0</span>)})&#x000A;    .event(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">mouseout</span><span style="color:#710">&quot;</span></span>, lambda{ <span style="color:#069">self</span>.inner_radius(r - <span style="color:#00D">40</span>)})&#x000A;  .anchor(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">center</span><span style="color:#710">&quot;</span></span>).add(pv.Label)&#x000A;  .visible(lambda {|d|  d &gt; <span style="color:#60E">0.15</span>})&#x000A;    .textAngle(<span style="color:#00D">0</span>)&#x000A;    .text(lambda {|d| <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">%0.2f</span><span style="color:#710">&quot;</span></span> %  d});&#x000A;&#x000A;vis.render();&#x000A;&#x000A;puts vis.to_svg</pre></div>
+</div>
+</div>
+</div>
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5764936-8']);
+  _gaq.push(['_trackPageview']);
+  
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

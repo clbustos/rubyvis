@@ -1,0 +1,510 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" font-size="10px" font-family="sans-serif" fill="none" stroke="none" stroke-width="1.5" width="608.5" height="638.5">
+     <g transform="translate(14.5,14.5)">
+          <g>
+               <g>
+                    <text pointer-events="none" dy=".35em" transform="translate(90.0,90.0)" fill="rgb(0,0,0)" text-anchor="middle" style="font:bold 14px sans-serif">penicillin</text>
+               </g>
+               <g/>
+               <g transform="translate(0,200)"/>
+               <g transform="translate(0,200)">
+                    <g>
+                         <line shape-rendering="crispEdges" x1="30.000000000000004" y1="0" x2="30.000000000000004" y2="180" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="60.00000000000001" y1="0" x2="60.00000000000001" y2="180" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="90.0" y1="0" x2="90.0" y2="180" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="120.00000000000001" y1="0" x2="120.00000000000001" y2="180" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="150.00000000000003" y1="0" x2="150.00000000000003" y2="180" stroke="rgb(221,221,221)" stroke-width="1"/>
+                    </g>
+                    <g/>
+                    <g/>
+                    <g>
+                         <line shape-rendering="crispEdges" x1="0" y1="150.0" x2="180" y2="150.0" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="0" y1="120.0" x2="180" y2="120.0" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="0" y1="90.0" x2="180" y2="90.0" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="0" y1="59.999999999999986" x2="180" y2="59.999999999999986" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="0" y1="29.99999999999997" x2="180" y2="29.99999999999997" stroke="rgb(221,221,221)" stroke-width="1"/>
+                    </g>
+                    <g/>
+                    <g>
+                         <text pointer-events="none" y="-3" transform="translate(0,150.0) rotate(-90.0)" fill="rgb(0,0,0)" text-anchor="middle">0.01</text>
+                         <text pointer-events="none" y="-3" transform="translate(0,120.0) rotate(-90.0)" fill="rgb(0,0,0)" text-anchor="middle">0.1</text>
+                         <text pointer-events="none" y="-3" transform="translate(0,90.0) rotate(-90.0)" fill="rgb(0,0,0)" text-anchor="middle">1.0</text>
+                         <text pointer-events="none" y="-3" transform="translate(0,59.999999999999986) rotate(-90.0)" fill="rgb(0,0,0)" text-anchor="middle">10.0</text>
+                         <text pointer-events="none" y="-3" transform="translate(0,29.99999999999997) rotate(-90.0)" fill="rgb(0,0,0)" text-anchor="middle">100.0</text>
+                    </g>
+                    <g>
+                         <a xlink:title="Mycobacterium tuberculosis">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="177.0926996097583" cy="69.03089986991944" r="4.5"/>
+                         </a>
+                         <a xlink:title="Salmonella schottmuelleri">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="120.00000000000001" cy="92.90730039024169" r="4.5"/>
+                         </a>
+                         <a xlink:title="Proteus vulgaris">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="104.31363764158988" cy="120.0" r="4.5"/>
+                         </a>
+                         <a xlink:title="Klebsiella pneumoniae">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="177.8825677714288" cy="87.62456261857125" r="4.5"/>
+                         </a>
+                         <a xlink:title="Brucella abortus">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="90.0" cy="80.96910013008056" r="4.5"/>
+                         </a>
+                         <a xlink:title="Pseudomonas aeruginosa">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="177.8825677714288" cy="80.96910013008056" r="4.5"/>
+                         </a>
+                         <a xlink:title="Escherichia coli">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="150.00000000000003" cy="101.93820026016112" r="4.5"/>
+                         </a>
+                         <a xlink:title="Salmonella (Eberthella) typhosa">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="90.0" cy="101.93820026016112" r="4.5"/>
+                         </a>
+                         <a xlink:title="Aerobacter aerogenes">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="178.1855775785586" cy="90.0" r="4.5"/>
+                         </a>
+                         <a xlink:title="Brucella antracis">
+                              <circle fill="rgb(0,0,139)" fill-opacity="0.2" stroke="rgb(0,0,139)" cx="0.0" cy="150.0" r="4.5"/>
+                         </a>
+                         <a xlink:title="Streptococcus fecalis">
+                              <circle fill="rgb(0,0,139)" fill-opacity="0.2" stroke="rgb(0,0,139)" cx="90.0" cy="90.0" r="4.5"/>
+                         </a>
+                         <a xlink:title="Staphylococcus aureus">
+                              <circle fill="rgb(0,0,139)" fill-opacity="0.2" stroke="rgb(0,0,139)" cx="44.31363764158987" cy="135.68636235841012" r="4.5"/>
+                         </a>
+                         <a xlink:title="Staphylococcus albus">
+                              <circle fill="rgb(0,0,139)" fill-opacity="0.2" stroke="rgb(0,0,139)" cx="25.352941200427708" cy="120.0" r="4.5"/>
+                         </a>
+                         <a xlink:title="Streptococcus hemolyticus">
+                              <circle fill="rgb(0,0,139)" fill-opacity="0.2" stroke="rgb(0,0,139)" cx="0.0" cy="55.616158929652855" r="4.5"/>
+                         </a>
+                         <a xlink:title="Streptococcus viridans">
+                              <circle fill="rgb(0,0,139)" fill-opacity="0.2" stroke="rgb(0,0,139)" cx="20.969100130080566" cy="59.999999999999986" r="4.5"/>
+                         </a>
+                         <a xlink:title="Diplococcus pneumoniae">
+                              <circle fill="rgb(0,0,139)" fill-opacity="0.2" stroke="rgb(0,0,139)" cx="20.969100130080566" cy="58.758219445253246" r="4.5"/>
+                         </a>
+                    </g>
+                    <rect width="180" height="180" fill="none" stroke="rgb(170,170,170)"/>
+               </g>
+               <g transform="translate(0,400)"/>
+               <g transform="translate(0,400)">
+                    <g>
+                         <line shape-rendering="crispEdges" x1="30.000000000000004" y1="0" x2="30.000000000000004" y2="180" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="60.00000000000001" y1="0" x2="60.00000000000001" y2="180" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="90.0" y1="0" x2="90.0" y2="180" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="120.00000000000001" y1="0" x2="120.00000000000001" y2="180" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="150.00000000000003" y1="0" x2="150.00000000000003" y2="180" stroke="rgb(221,221,221)" stroke-width="1"/>
+                    </g>
+                    <g>
+                         <text pointer-events="none" y="3" dy=".71em" transform="translate(30.000000000000004,180)" fill="rgb(0,0,0)" text-anchor="middle">0.01</text>
+                         <text pointer-events="none" y="3" dy=".71em" transform="translate(60.00000000000001,180)" fill="rgb(0,0,0)" text-anchor="middle">0.1</text>
+                         <text pointer-events="none" y="3" dy=".71em" transform="translate(90.0,180)" fill="rgb(0,0,0)" text-anchor="middle">1.0</text>
+                         <text pointer-events="none" y="3" dy=".71em" transform="translate(120.00000000000001,180)" fill="rgb(0,0,0)" text-anchor="middle">10.0</text>
+                         <text pointer-events="none" y="3" dy=".71em" transform="translate(150.00000000000003,180)" fill="rgb(0,0,0)" text-anchor="middle">100.0</text>
+                    </g>
+                    <g/>
+                    <g>
+                         <line shape-rendering="crispEdges" x1="0" y1="150.0" x2="180" y2="150.0" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="0" y1="120.0" x2="180" y2="120.0" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="0" y1="90.0" x2="180" y2="90.0" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="0" y1="59.999999999999986" x2="180" y2="59.999999999999986" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="0" y1="29.99999999999997" x2="180" y2="29.99999999999997" stroke="rgb(221,221,221)" stroke-width="1"/>
+                    </g>
+                    <g/>
+                    <g>
+                         <text pointer-events="none" y="-3" transform="translate(0,150.0) rotate(-90.0)" fill="rgb(0,0,0)" text-anchor="middle">0.01</text>
+                         <text pointer-events="none" y="-3" transform="translate(0,120.0) rotate(-90.0)" fill="rgb(0,0,0)" text-anchor="middle">0.1</text>
+                         <text pointer-events="none" y="-3" transform="translate(0,90.0) rotate(-90.0)" fill="rgb(0,0,0)" text-anchor="middle">1.0</text>
+                         <text pointer-events="none" y="-3" transform="translate(0,59.999999999999986) rotate(-90.0)" fill="rgb(0,0,0)" text-anchor="middle">10.0</text>
+                         <text pointer-events="none" y="-3" transform="translate(0,29.99999999999997) rotate(-90.0)" fill="rgb(0,0,0)" text-anchor="middle">100.0</text>
+                    </g>
+                    <g>
+                         <a xlink:title="Mycobacterium tuberculosis">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="177.0926996097583" cy="80.96910013008056" r="4.5"/>
+                         </a>
+                         <a xlink:title="Salmonella schottmuelleri">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="120.00000000000001" cy="121.37272471682027" r="4.5"/>
+                         </a>
+                         <a xlink:title="Proteus vulgaris">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="104.31363764158988" cy="120.0" r="4.5"/>
+                         </a>
+                         <a xlink:title="Klebsiella pneumoniae">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="177.8825677714288" cy="90.0" r="4.5"/>
+                         </a>
+                         <a xlink:title="Brucella abortus">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="90.0" cy="140.96910013008056" r="4.5"/>
+                         </a>
+                         <a xlink:title="Pseudomonas aeruginosa">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="177.8825677714288" cy="101.93820026016112" r="4.5"/>
+                         </a>
+                         <a xlink:title="Escherichia coli">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="150.00000000000003" cy="120.0" r="4.5"/>
+                         </a>
+                         <a xlink:title="Salmonella (Eberthella) typhosa">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="90.0" cy="152.9073003902417" r="4.5"/>
+                         </a>
+                         <a xlink:title="Aerobacter aerogenes">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="178.1855775785586" cy="83.87640052032225" r="4.5"/>
+                         </a>
+                         <a xlink:title="Brucella antracis">
+                              <circle fill="rgb(0,0,139)" fill-opacity="0.2" stroke="rgb(0,0,139)" cx="0.0" cy="154.64705879957228" r="4.5"/>
+                         </a>
+                         <a xlink:title="Streptococcus fecalis">
+                              <circle fill="rgb(0,0,139)" fill-opacity="0.2" stroke="rgb(0,0,139)" cx="90.0" cy="120.0" r="4.5"/>
+                         </a>
+                         <a xlink:title="Staphylococcus aureus">
+                              <circle fill="rgb(0,0,139)" fill-opacity="0.2" stroke="rgb(0,0,139)" cx="44.31363764158987" cy="180.0" r="4.5"/>
+                         </a>
+                         <a xlink:title="Staphylococcus albus">
+                              <circle fill="rgb(0,0,139)" fill-opacity="0.2" stroke="rgb(0,0,139)" cx="25.352941200427708" cy="180.0" r="4.5"/>
+                         </a>
+                         <a xlink:title="Streptococcus hemolyticus">
+                              <circle fill="rgb(0,0,139)" fill-opacity="0.2" stroke="rgb(0,0,139)" cx="0.0" cy="59.999999999999986" r="4.5"/>
+                         </a>
+                         <a xlink:title="Streptococcus viridans">
+                              <circle fill="rgb(0,0,139)" fill-opacity="0.2" stroke="rgb(0,0,139)" cx="20.969100130080566" cy="41.938200260161125" r="4.5"/>
+                         </a>
+                         <a xlink:title="Diplococcus pneumoniae">
+                              <circle fill="rgb(0,0,139)" fill-opacity="0.2" stroke="rgb(0,0,139)" cx="20.969100130080566" cy="59.999999999999986" r="4.5"/>
+                         </a>
+                    </g>
+                    <rect width="180" height="180" fill="none" stroke="rgb(170,170,170)"/>
+               </g>
+          </g>
+          <g transform="translate(200,0)">
+               <g/>
+               <g>
+                    <g>
+                         <line shape-rendering="crispEdges" x1="30.000000000000004" y1="0" x2="30.000000000000004" y2="180" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="60.00000000000001" y1="0" x2="60.00000000000001" y2="180" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="90.0" y1="0" x2="90.0" y2="180" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="120.00000000000001" y1="0" x2="120.00000000000001" y2="180" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="150.00000000000003" y1="0" x2="150.00000000000003" y2="180" stroke="rgb(221,221,221)" stroke-width="1"/>
+                    </g>
+                    <g/>
+                    <g>
+                         <text pointer-events="none" y="-3" transform="translate(30.000000000000004,0)" fill="rgb(0,0,0)" text-anchor="middle">0.01</text>
+                         <text pointer-events="none" y="-3" transform="translate(60.00000000000001,0)" fill="rgb(0,0,0)" text-anchor="middle">0.1</text>
+                         <text pointer-events="none" y="-3" transform="translate(90.0,0)" fill="rgb(0,0,0)" text-anchor="middle">1.0</text>
+                         <text pointer-events="none" y="-3" transform="translate(120.00000000000001,0)" fill="rgb(0,0,0)" text-anchor="middle">10.0</text>
+                         <text pointer-events="none" y="-3" transform="translate(150.00000000000003,0)" fill="rgb(0,0,0)" text-anchor="middle">100.0</text>
+                    </g>
+                    <g>
+                         <line shape-rendering="crispEdges" x1="0" y1="150.0" x2="180" y2="150.0" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="0" y1="120.0" x2="180" y2="120.0" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="0" y1="90.0" x2="180" y2="90.0" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="0" y1="59.999999999999986" x2="180" y2="59.999999999999986" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="0" y1="29.99999999999997" x2="180" y2="29.99999999999997" stroke="rgb(221,221,221)" stroke-width="1"/>
+                    </g>
+                    <g/>
+                    <g/>
+                    <g>
+                         <a xlink:title="Mycobacterium tuberculosis">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="110.96910013008056" cy="2.907300390241687" r="4.5"/>
+                         </a>
+                         <a xlink:title="Salmonella schottmuelleri">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="87.09269960975831" cy="59.999999999999986" r="4.5"/>
+                         </a>
+                         <a xlink:title="Proteus vulgaris">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="60.00000000000001" cy="75.68636235841012" r="4.5"/>
+                         </a>
+                         <a xlink:title="Klebsiella pneumoniae">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="92.37543738142875" cy="2.1174322285712037" r="4.5"/>
+                         </a>
+                         <a xlink:title="Brucella abortus">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="99.03089986991944" cy="90.0" r="4.5"/>
+                         </a>
+                         <a xlink:title="Pseudomonas aeruginosa">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="99.03089986991944" cy="2.1174322285712037" r="4.5"/>
+                         </a>
+                         <a xlink:title="Escherichia coli">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="78.06179973983888" cy="29.99999999999997" r="4.5"/>
+                         </a>
+                         <a xlink:title="Salmonella (Eberthella) typhosa">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="78.06179973983888" cy="90.0" r="4.5"/>
+                         </a>
+                         <a xlink:title="Aerobacter aerogenes">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="90.0" cy="1.8144224214414066" r="4.5"/>
+                         </a>
+                         <a xlink:title="Brucella antracis">
+                              <circle fill="rgb(0,0,139)" fill-opacity="0.2" stroke="rgb(0,0,139)" cx="30.000000000000004" cy="180.0" r="4.5"/>
+                         </a>
+                         <a xlink:title="Streptococcus fecalis">
+                              <circle fill="rgb(0,0,139)" fill-opacity="0.2" stroke="rgb(0,0,139)" cx="90.0" cy="90.0" r="4.5"/>
+                         </a>
+                         <a xlink:title="Staphylococcus aureus">
+                              <circle fill="rgb(0,0,139)" fill-opacity="0.2" stroke="rgb(0,0,139)" cx="44.31363764158987" cy="135.68636235841012" r="4.5"/>
+                         </a>
+                         <a xlink:title="Staphylococcus albus">
+                              <circle fill="rgb(0,0,139)" fill-opacity="0.2" stroke="rgb(0,0,139)" cx="60.00000000000001" cy="154.64705879957228" r="4.5"/>
+                         </a>
+                         <a xlink:title="Streptococcus hemolyticus">
+                              <circle fill="rgb(0,0,139)" fill-opacity="0.2" stroke="rgb(0,0,139)" cx="124.38384107034715" cy="180.0" r="4.5"/>
+                         </a>
+                         <a xlink:title="Streptococcus viridans">
+                              <circle fill="rgb(0,0,139)" fill-opacity="0.2" stroke="rgb(0,0,139)" cx="120.00000000000001" cy="159.03089986991944" r="4.5"/>
+                         </a>
+                         <a xlink:title="Diplococcus pneumoniae">
+                              <circle fill="rgb(0,0,139)" fill-opacity="0.2" stroke="rgb(0,0,139)" cx="121.24178055474675" cy="159.03089986991944" r="4.5"/>
+                         </a>
+                    </g>
+                    <rect width="180" height="180" fill="none" stroke="rgb(170,170,170)"/>
+               </g>
+               <g transform="translate(0,200)">
+                    <text pointer-events="none" dy=".35em" transform="translate(90.0,90.0)" fill="rgb(0,0,0)" text-anchor="middle" style="font:bold 14px sans-serif">streptomycin</text>
+               </g>
+               <g transform="translate(0,200)"/>
+               <g transform="translate(0,400)"/>
+               <g transform="translate(0,400)">
+                    <g>
+                         <line shape-rendering="crispEdges" x1="30.000000000000004" y1="0" x2="30.000000000000004" y2="180" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="60.00000000000001" y1="0" x2="60.00000000000001" y2="180" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="90.0" y1="0" x2="90.0" y2="180" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="120.00000000000001" y1="0" x2="120.00000000000001" y2="180" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="150.00000000000003" y1="0" x2="150.00000000000003" y2="180" stroke="rgb(221,221,221)" stroke-width="1"/>
+                    </g>
+                    <g>
+                         <text pointer-events="none" y="3" dy=".71em" transform="translate(30.000000000000004,180)" fill="rgb(0,0,0)" text-anchor="middle">0.01</text>
+                         <text pointer-events="none" y="3" dy=".71em" transform="translate(60.00000000000001,180)" fill="rgb(0,0,0)" text-anchor="middle">0.1</text>
+                         <text pointer-events="none" y="3" dy=".71em" transform="translate(90.0,180)" fill="rgb(0,0,0)" text-anchor="middle">1.0</text>
+                         <text pointer-events="none" y="3" dy=".71em" transform="translate(120.00000000000001,180)" fill="rgb(0,0,0)" text-anchor="middle">10.0</text>
+                         <text pointer-events="none" y="3" dy=".71em" transform="translate(150.00000000000003,180)" fill="rgb(0,0,0)" text-anchor="middle">100.0</text>
+                    </g>
+                    <g/>
+                    <g>
+                         <line shape-rendering="crispEdges" x1="0" y1="150.0" x2="180" y2="150.0" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="0" y1="120.0" x2="180" y2="120.0" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="0" y1="90.0" x2="180" y2="90.0" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="0" y1="59.999999999999986" x2="180" y2="59.999999999999986" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="0" y1="29.99999999999997" x2="180" y2="29.99999999999997" stroke="rgb(221,221,221)" stroke-width="1"/>
+                    </g>
+                    <g/>
+                    <g/>
+                    <g>
+                         <a xlink:title="Mycobacterium tuberculosis">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="110.96910013008056" cy="80.96910013008056" r="4.5"/>
+                         </a>
+                         <a xlink:title="Salmonella schottmuelleri">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="87.09269960975831" cy="121.37272471682027" r="4.5"/>
+                         </a>
+                         <a xlink:title="Proteus vulgaris">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="60.00000000000001" cy="120.0" r="4.5"/>
+                         </a>
+                         <a xlink:title="Klebsiella pneumoniae">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="92.37543738142875" cy="90.0" r="4.5"/>
+                         </a>
+                         <a xlink:title="Brucella abortus">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="99.03089986991944" cy="140.96910013008056" r="4.5"/>
+                         </a>
+                         <a xlink:title="Pseudomonas aeruginosa">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="99.03089986991944" cy="101.93820026016112" r="4.5"/>
+                         </a>
+                         <a xlink:title="Escherichia coli">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="78.06179973983888" cy="120.0" r="4.5"/>
+                         </a>
+                         <a xlink:title="Salmonella (Eberthella) typhosa">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="78.06179973983888" cy="152.9073003902417" r="4.5"/>
+                         </a>
+                         <a xlink:title="Aerobacter aerogenes">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="90.0" cy="83.87640052032225" r="4.5"/>
+                         </a>
+                         <a xlink:title="Brucella antracis">
+                              <circle fill="rgb(0,0,139)" fill-opacity="0.2" stroke="rgb(0,0,139)" cx="30.000000000000004" cy="154.64705879957228" r="4.5"/>
+                         </a>
+                         <a xlink:title="Streptococcus fecalis">
+                              <circle fill="rgb(0,0,139)" fill-opacity="0.2" stroke="rgb(0,0,139)" cx="90.0" cy="120.0" r="4.5"/>
+                         </a>
+                         <a xlink:title="Staphylococcus aureus">
+                              <circle fill="rgb(0,0,139)" fill-opacity="0.2" stroke="rgb(0,0,139)" cx="44.31363764158987" cy="180.0" r="4.5"/>
+                         </a>
+                         <a xlink:title="Staphylococcus albus">
+                              <circle fill="rgb(0,0,139)" fill-opacity="0.2" stroke="rgb(0,0,139)" cx="60.00000000000001" cy="180.0" r="4.5"/>
+                         </a>
+                         <a xlink:title="Streptococcus hemolyticus">
+                              <circle fill="rgb(0,0,139)" fill-opacity="0.2" stroke="rgb(0,0,139)" cx="124.38384107034715" cy="59.999999999999986" r="4.5"/>
+                         </a>
+                         <a xlink:title="Streptococcus viridans">
+                              <circle fill="rgb(0,0,139)" fill-opacity="0.2" stroke="rgb(0,0,139)" cx="120.00000000000001" cy="41.938200260161125" r="4.5"/>
+                         </a>
+                         <a xlink:title="Diplococcus pneumoniae">
+                              <circle fill="rgb(0,0,139)" fill-opacity="0.2" stroke="rgb(0,0,139)" cx="121.24178055474675" cy="59.999999999999986" r="4.5"/>
+                         </a>
+                    </g>
+                    <rect width="180" height="180" fill="none" stroke="rgb(170,170,170)"/>
+               </g>
+          </g>
+          <g transform="translate(400,0)">
+               <g/>
+               <g>
+                    <g>
+                         <line shape-rendering="crispEdges" x1="30.000000000000004" y1="0" x2="30.000000000000004" y2="180" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="60.00000000000001" y1="0" x2="60.00000000000001" y2="180" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="90.0" y1="0" x2="90.0" y2="180" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="120.00000000000001" y1="0" x2="120.00000000000001" y2="180" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="150.00000000000003" y1="0" x2="150.00000000000003" y2="180" stroke="rgb(221,221,221)" stroke-width="1"/>
+                    </g>
+                    <g/>
+                    <g>
+                         <text pointer-events="none" y="-3" transform="translate(30.000000000000004,0)" fill="rgb(0,0,0)" text-anchor="middle">0.01</text>
+                         <text pointer-events="none" y="-3" transform="translate(60.00000000000001,0)" fill="rgb(0,0,0)" text-anchor="middle">0.1</text>
+                         <text pointer-events="none" y="-3" transform="translate(90.0,0)" fill="rgb(0,0,0)" text-anchor="middle">1.0</text>
+                         <text pointer-events="none" y="-3" transform="translate(120.00000000000001,0)" fill="rgb(0,0,0)" text-anchor="middle">10.0</text>
+                         <text pointer-events="none" y="-3" transform="translate(150.00000000000003,0)" fill="rgb(0,0,0)" text-anchor="middle">100.0</text>
+                    </g>
+                    <g>
+                         <line shape-rendering="crispEdges" x1="0" y1="150.0" x2="180" y2="150.0" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="0" y1="120.0" x2="180" y2="120.0" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="0" y1="90.0" x2="180" y2="90.0" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="0" y1="59.999999999999986" x2="180" y2="59.999999999999986" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="0" y1="29.99999999999997" x2="180" y2="29.99999999999997" stroke="rgb(221,221,221)" stroke-width="1"/>
+                    </g>
+                    <g>
+                         <text pointer-events="none" y="-3" transform="translate(180,150.0) rotate(90.0)" fill="rgb(0,0,0)" text-anchor="middle">0.01</text>
+                         <text pointer-events="none" y="-3" transform="translate(180,120.0) rotate(90.0)" fill="rgb(0,0,0)" text-anchor="middle">0.1</text>
+                         <text pointer-events="none" y="-3" transform="translate(180,90.0) rotate(90.0)" fill="rgb(0,0,0)" text-anchor="middle">1.0</text>
+                         <text pointer-events="none" y="-3" transform="translate(180,59.999999999999986) rotate(90.0)" fill="rgb(0,0,0)" text-anchor="middle">10.0</text>
+                         <text pointer-events="none" y="-3" transform="translate(180,29.99999999999997) rotate(90.0)" fill="rgb(0,0,0)" text-anchor="middle">100.0</text>
+                    </g>
+                    <g/>
+                    <g>
+                         <a xlink:title="Mycobacterium tuberculosis">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="99.03089986991944" cy="2.907300390241687" r="4.5"/>
+                         </a>
+                         <a xlink:title="Salmonella schottmuelleri">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="58.627275283179735" cy="59.999999999999986" r="4.5"/>
+                         </a>
+                         <a xlink:title="Proteus vulgaris">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="60.00000000000001" cy="75.68636235841012" r="4.5"/>
+                         </a>
+                         <a xlink:title="Klebsiella pneumoniae">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="90.0" cy="2.1174322285712037" r="4.5"/>
+                         </a>
+                         <a xlink:title="Brucella abortus">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="39.03089986991944" cy="90.0" r="4.5"/>
+                         </a>
+                         <a xlink:title="Pseudomonas aeruginosa">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="78.06179973983888" cy="2.1174322285712037" r="4.5"/>
+                         </a>
+                         <a xlink:title="Escherichia coli">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="60.00000000000001" cy="29.99999999999997" r="4.5"/>
+                         </a>
+                         <a xlink:title="Salmonella (Eberthella) typhosa">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="27.092699609758302" cy="90.0" r="4.5"/>
+                         </a>
+                         <a xlink:title="Aerobacter aerogenes">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="96.12359947967775" cy="1.8144224214414066" r="4.5"/>
+                         </a>
+                         <a xlink:title="Brucella antracis">
+                              <circle fill="rgb(0,0,139)" fill-opacity="0.2" stroke="rgb(0,0,139)" cx="25.352941200427708" cy="180.0" r="4.5"/>
+                         </a>
+                         <a xlink:title="Streptococcus fecalis">
+                              <circle fill="rgb(0,0,139)" fill-opacity="0.2" stroke="rgb(0,0,139)" cx="60.00000000000001" cy="90.0" r="4.5"/>
+                         </a>
+                         <a xlink:title="Staphylococcus aureus">
+                              <circle fill="rgb(0,0,139)" fill-opacity="0.2" stroke="rgb(0,0,139)" cx="0.0" cy="135.68636235841012" r="4.5"/>
+                         </a>
+                         <a xlink:title="Staphylococcus albus">
+                              <circle fill="rgb(0,0,139)" fill-opacity="0.2" stroke="rgb(0,0,139)" cx="0.0" cy="154.64705879957228" r="4.5"/>
+                         </a>
+                         <a xlink:title="Streptococcus hemolyticus">
+                              <circle fill="rgb(0,0,139)" fill-opacity="0.2" stroke="rgb(0,0,139)" cx="120.00000000000001" cy="180.0" r="4.5"/>
+                         </a>
+                         <a xlink:title="Streptococcus viridans">
+                              <circle fill="rgb(0,0,139)" fill-opacity="0.2" stroke="rgb(0,0,139)" cx="138.06179973983888" cy="159.03089986991944" r="4.5"/>
+                         </a>
+                         <a xlink:title="Diplococcus pneumoniae">
+                              <circle fill="rgb(0,0,139)" fill-opacity="0.2" stroke="rgb(0,0,139)" cx="120.00000000000001" cy="159.03089986991944" r="4.5"/>
+                         </a>
+                    </g>
+                    <rect width="180" height="180" fill="none" stroke="rgb(170,170,170)"/>
+               </g>
+               <g transform="translate(0,200)"/>
+               <g transform="translate(0,200)">
+                    <g>
+                         <line shape-rendering="crispEdges" x1="30.000000000000004" y1="0" x2="30.000000000000004" y2="180" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="60.00000000000001" y1="0" x2="60.00000000000001" y2="180" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="90.0" y1="0" x2="90.0" y2="180" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="120.00000000000001" y1="0" x2="120.00000000000001" y2="180" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="150.00000000000003" y1="0" x2="150.00000000000003" y2="180" stroke="rgb(221,221,221)" stroke-width="1"/>
+                    </g>
+                    <g/>
+                    <g/>
+                    <g>
+                         <line shape-rendering="crispEdges" x1="0" y1="150.0" x2="180" y2="150.0" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="0" y1="120.0" x2="180" y2="120.0" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="0" y1="90.0" x2="180" y2="90.0" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="0" y1="59.999999999999986" x2="180" y2="59.999999999999986" stroke="rgb(221,221,221)" stroke-width="1"/>
+                         <line shape-rendering="crispEdges" x1="0" y1="29.99999999999997" x2="180" y2="29.99999999999997" stroke="rgb(221,221,221)" stroke-width="1"/>
+                    </g>
+                    <g>
+                         <text pointer-events="none" y="-3" transform="translate(180,150.0) rotate(90.0)" fill="rgb(0,0,0)" text-anchor="middle">0.01</text>
+                         <text pointer-events="none" y="-3" transform="translate(180,120.0) rotate(90.0)" fill="rgb(0,0,0)" text-anchor="middle">0.1</text>
+                         <text pointer-events="none" y="-3" transform="translate(180,90.0) rotate(90.0)" fill="rgb(0,0,0)" text-anchor="middle">1.0</text>
+                         <text pointer-events="none" y="-3" transform="translate(180,59.999999999999986) rotate(90.0)" fill="rgb(0,0,0)" text-anchor="middle">10.0</text>
+                         <text pointer-events="none" y="-3" transform="translate(180,29.99999999999997) rotate(90.0)" fill="rgb(0,0,0)" text-anchor="middle">100.0</text>
+                    </g>
+                    <g/>
+                    <g>
+                         <a xlink:title="Mycobacterium tuberculosis">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="99.03089986991944" cy="69.03089986991944" r="4.5"/>
+                         </a>
+                         <a xlink:title="Salmonella schottmuelleri">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="58.627275283179735" cy="92.90730039024169" r="4.5"/>
+                         </a>
+                         <a xlink:title="Proteus vulgaris">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="60.00000000000001" cy="120.0" r="4.5"/>
+                         </a>
+                         <a xlink:title="Klebsiella pneumoniae">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="90.0" cy="87.62456261857125" r="4.5"/>
+                         </a>
+                         <a xlink:title="Brucella abortus">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="39.03089986991944" cy="80.96910013008056" r="4.5"/>
+                         </a>
+                         <a xlink:title="Pseudomonas aeruginosa">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="78.06179973983888" cy="80.96910013008056" r="4.5"/>
+                         </a>
+                         <a xlink:title="Escherichia coli">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="60.00000000000001" cy="101.93820026016112" r="4.5"/>
+                         </a>
+                         <a xlink:title="Salmonella (Eberthella) typhosa">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="27.092699609758302" cy="101.93820026016112" r="4.5"/>
+                         </a>
+                         <a xlink:title="Aerobacter aerogenes">
+                              <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="96.12359947967775" cy="90.0" r="4.5"/>
+                         </a>
+                         <a xlink:title="Brucella antracis">
+                              <circle fill="rgb(0,0,139)" fill-opacity="0.2" stroke="rgb(0,0,139)" cx="25.352941200427708" cy="150.0" r="4.5"/>
+                         </a>
+                         <a xlink:title="Streptococcus fecalis">
+                              <circle fill="rgb(0,0,139)" fill-opacity="0.2" stroke="rgb(0,0,139)" cx="60.00000000000001" cy="90.0" r="4.5"/>
+                         </a>
+                         <a xlink:title="Staphylococcus aureus">
+                              <circle fill="rgb(0,0,139)" fill-opacity="0.2" stroke="rgb(0,0,139)" cx="0.0" cy="135.68636235841012" r="4.5"/>
+                         </a>
+                         <a xlink:title="Staphylococcus albus">
+                              <circle fill="rgb(0,0,139)" fill-opacity="0.2" stroke="rgb(0,0,139)" cx="0.0" cy="120.0" r="4.5"/>
+                         </a>
+                         <a xlink:title="Streptococcus hemolyticus">
+                              <circle fill="rgb(0,0,139)" fill-opacity="0.2" stroke="rgb(0,0,139)" cx="120.00000000000001" cy="55.616158929652855" r="4.5"/>
+                         </a>
+                         <a xlink:title="Streptococcus viridans">
+                              <circle fill="rgb(0,0,139)" fill-opacity="0.2" stroke="rgb(0,0,139)" cx="138.06179973983888" cy="59.999999999999986" r="4.5"/>
+                         </a>
+                         <a xlink:title="Diplococcus pneumoniae">
+                              <circle fill="rgb(0,0,139)" fill-opacity="0.2" stroke="rgb(0,0,139)" cx="120.00000000000001" cy="58.758219445253246" r="4.5"/>
+                         </a>
+                    </g>
+                    <rect width="180" height="180" fill="none" stroke="rgb(170,170,170)"/>
+               </g>
+               <g transform="translate(0,400)">
+                    <text pointer-events="none" dy=".35em" transform="translate(90.0,90.0)" fill="rgb(0,0,0)" text-anchor="middle" style="font:bold 14px sans-serif">neomycin</text>
+               </g>
+               <g transform="translate(0,400)"/>
+          </g>
+     </g>
+     <g transform="translate(14.5,14.5)">
+          <circle fill="rgb(0,0,139)" fill-opacity="0.2" stroke="rgb(0,0,139)" cx="0" cy="610" r="4.5"/>
+          <circle fill="rgb(139,0,0)" fill-opacity="0.2" stroke="rgb(139,0,0)" cx="100" cy="610" r="4.5"/>
+     </g>
+     <g transform="translate(14.5,14.5)">
+          <text pointer-events="none" x="3" dy=".35em" transform="translate(4.5,610)" fill="rgb(0,0,0)">Gram-positive</text>
+          <text pointer-events="none" x="3" dy=".35em" transform="translate(104.5,610)" fill="rgb(0,0,0)">Gram-negative</text>
+     </g>
+</svg>

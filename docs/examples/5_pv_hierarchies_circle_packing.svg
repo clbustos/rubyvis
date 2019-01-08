@@ -1,0 +1,282 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" font-size="10px" font-family="sans-serif" fill="none" stroke="none" stroke-width="1.5" width="604" height="800">
+     <g transform="translate(2,2)">
+          <g>
+               <a xlink:title="Rubyvis">
+                    <circle fill="rgb(31,119,180)" fill-opacity="0.25" stroke="rgb(31,119,180)" stroke-width="1" cx="300.0" cy="398.0" r="300.00000000000006"/>
+               </a>
+               <a xlink:title="rubyvis.rb: 2,408">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="38.95927766085293" cy="398.0" r="13.080061560230076"/>
+               </a>
+               <a xlink:title="rubyvis">
+                    <circle fill="rgb(31,119,180)" fill-opacity="0.25" stroke="rgb(31,119,180)" stroke-width="1" cx="324.59981123772366" cy="398.0" r="272.56047201664063"/>
+               </a>
+               <a xlink:title="mark">
+                    <circle fill="rgb(31,119,180)" fill-opacity="0.25" stroke="rgb(31,119,180)" stroke-width="1" cx="374.82259984128154" cy="415.4542911970103" r="79.49407479352907"/>
+               </a>
+               <a xlink:title="dot.rb: 5,697">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="351.1546778869947" cy="422.0079023518663" r="20.118919660493358"/>
+               </a>
+               <a xlink:title="line.rb: 6,521">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="392.79837385280086" cy="422.0079023518663" r="21.524776305312795"/>
+               </a>
+               <a xlink:title="shorcut_methods.rb: 10,043">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="370.37180830793244" cy="379.3010349491118" r="26.71242267529481"/>
+               </a>
+               <a xlink:title="label.rb: 4,247">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="328.2559665882449" cy="392.32395602255093" r="17.37091427919176"/>
+               </a>
+               <a xlink:title="anchor.rb: 3,446">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="315.39585371535173" cy="422.73480003264723" r="15.647291857876942"/>
+               </a>
+               <a xlink:title="bar.rb: 2,709">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="329.8349141239752" cy="448.48340594805364" r="13.87350034136427"/>
+               </a>
+               <a xlink:title="image.rb: 3,268">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="357.74958493915074" cy="456.7441309079312" r="15.237810580378104"/>
+               </a>
+               <a xlink:title="wedge.rb: 4,280">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="390.16265116640307" cy="460.8816987736483" r="17.438271346555293"/>
+               </a>
+               <a xlink:title="rule.rb: 783">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="409.75202518173444" cy="445.51566482937034" r="7.458687774776027"/>
+               </a>
+               <a xlink:title="panel.rb: 3,292">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="428.1845376645904" cy="432.17730438824555" r="15.293661020194603"/>
+               </a>
+               <a xlink:title="area.rb: 7,258">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="427.1880551798086" cy="394.18812768924863" r="22.708582645279794"/>
+               </a>
+               <a xlink:title="sceneelement.rb: 3,786">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="470.71773214578707" cy="415.4542911970103" r="16.401057510976408"/>
+               </a>
+               <a xlink:title="version.rb: 139">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="456.3843087116071" cy="402.1686795631269" r="3.142598846775001"/>
+               </a>
+               <a xlink:title="dom.rb: 11,226">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="472.8980903608769" cy="370.864599658226" r="28.24191005918002"/>
+               </a>
+               <a xlink:title="scene">
+                    <circle fill="rgb(31,119,180)" fill-opacity="0.25" stroke="rgb(31,119,180)" stroke-width="1" cx="437.04608620095433" cy="274.1647664091894" r="74.89016037807333"/>
+               </a>
+               <a xlink:title="svg_rule.rb: 764">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="437.0477530270899" cy="291.8100802891249" r="7.367637097165319"/>
+               </a>
+               <a xlink:title="svg_bar.rb: 985">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="452.7810395695063" cy="291.8100802891249" r="8.365649445251064"/>
+               </a>
+               <a xlink:title="svg_dot.rb: 2,090">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="443.64240497167896" cy="273.4022511277375" r="12.185818063115159"/>
+               </a>
+               <a xlink:title="svg_scene.rb: 5,501">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="412.45043927658935" cy="280.34653463182104" r="19.769804248283148"/>
+               </a>
+               <a xlink:title="svg_line.rb: 5,890">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="427.1197688181949" cy="317.8031245070058" r="20.45687041266811"/>
+               </a>
+               <a xlink:title="svg_area.rb: 6,437">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="468.9499243263685" cy="316.7842562395591" r="21.385691678872014"/>
+               </a>
+               <a xlink:title="svg_panel.rb: 4,637">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="475.26656253717374" cy="277.7554394081542" r="18.150980684208324"/>
+               </a>
+               <a xlink:title="svg_curve.rb: 10,060">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="456.8878081844382" cy="236.8045593580799" r="26.735021459375023"/>
+               </a>
+               <a xlink:title="svg_image.rb: 733">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="430.9573329633036" cy="258.72085626312776" r="7.216614955149773"/>
+               </a>
+               <a xlink:title="svg_wedge.rb: 2,036">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="414.5770186191918" cy="248.62055897450483" r="12.027363410315061"/>
+               </a>
+               <a xlink:title="svg_label.rb: 1,890">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="392.262734902539" cy="256.3512203014958" r="11.588105722012363"/>
+               </a>
+               <a xlink:title="mark.rb: 37,376">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="313.2495484248372" cy="299.7969462611561" r="51.532113803801614"/>
+               </a>
+               <a xlink:title="layout">
+                    <circle fill="rgb(31,119,180)" fill-opacity="0.25" stroke="rgb(31,119,180)" stroke-width="1" cx="178.9856654070615" cy="401.4061259403743" r="116.84607860274075"/>
+               </a>
+               <a xlink:title="treemap.rb: 11,606">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="152.4103922366233" cy="414.494922329418" r="28.715926283373637"/>
+               </a>
+               <a xlink:title="matrix.rb: 7,139">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="203.6479702136457" cy="414.494922329418" r="22.521651693648757"/>
+               </a>
+               <a xlink:title="tree.rb: 7,770">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="183.966812788842" cy="372.89844457483395" r="23.495898427663736"/>
+               </a>
+               <a xlink:title="indent.rb: 2,793">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="146.3920826209259" cy="372.1172597883705" r="14.086951342707685"/>
+               </a>
+               <a xlink:title="cluster.rb: 7,367">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="111.20506750065348" cy="383.444923627865" r="22.878464942448236"/>
+               </a>
+               <a xlink:title="grid.rb: 3,552">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="108.46364838670712" cy="422.1124577584392" r="15.886126819847254"/>
+               </a>
+               <a xlink:title="network.rb: 13,435">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="123.25965904275503" cy="466.49300509858017" r="30.895866655681115"/>
+               </a>
+               <a xlink:title="stack.rb: 9,856">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="180.44355545309463" cy="462.0218343530614" r="26.462562336961604"/>
+               </a>
+               <a xlink:title="pack.rb: 9,374">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="232.03228123085924" cy="453.6104792546205" r="25.80738621825952"/>
+               </a>
+               <a xlink:title="arc.rb: 6,775">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="247.70474981700121" cy="408.5085440398014" r="21.939978438916512"/>
+               </a>
+               <a xlink:title="partition.rb: 8,061">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="230.86622241766065" cy="365.83903150056517" r="23.931835404819598"/>
+               </a>
+               <a xlink:title="hierarchy.rb: 7,816">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="200.89895281661165" cy="328.9887261982287" r="23.56534607174138"/>
+               </a>
+               <a xlink:title="horizon.rb: 6,042">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="157.4442896255912" cy="337.5215289831565" r="20.719148691228366"/>
+               </a>
+               <a xlink:title="vector.rb: 3,649">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="294.47932303178" cy="467.2566750705567" r="16.101579414549125"/>
+               </a>
+               <a xlink:title="internals.rb: 6,569">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="316.380997862451" cy="497.9489564847987" r="21.603851212874734"/>
+               </a>
+               <a xlink:title="histogram.rb: 918">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="346.06017619619854" cy="498.1662154031586" r="8.076122304700986"/>
+               </a>
+               <a xlink:title="property.rb: 259">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="358.4137778409286" cy="497.61558950899195" r="4.289744525893864"/>
+               </a>
+               <a xlink:title="color">
+                    <circle fill="rgb(31,119,180)" fill-opacity="0.25" stroke="rgb(31,119,180)" stroke-width="1" cx="386.16994094809553" cy="545.5899870636472" r="51.13540690523677"/>
+               </a>
+               <a xlink:title="color.rb: 13,595">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="366.3803803608619" cy="545.5899870636472" r="31.079294562777232"/>
+               </a>
+               <a xlink:title="colors.rb: 5,512">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="417.2492355108727" cy="545.5899870636472" r="19.78956058723358"/>
+               </a>
+               <a xlink:title="format.rb: 348">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="407.07346263482333" cy="493.5214231956262" r="4.972458516517351"/>
+               </a>
+               <a xlink:title="layout.rb: 1,274">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="421.3900352128964" cy="491.3089119109885" r="9.514068208957042"/>
+               </a>
+               <a xlink:title="format">
+                    <circle fill="rgb(31,119,180)" fill-opacity="0.25" stroke="rgb(31,119,180)" stroke-width="1" cx="451.325767166986" cy="481.93094486671083" r="21.856209340192223"/>
+               </a>
+               <a xlink:title="number.rb: 3,356">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="445.17771756326044" cy="481.93094486671083" r="15.441607981240761"/>
+               </a>
+               <a xlink:title="date.rb: 532">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="466.76737514822673" cy="481.93094486671083" r="6.148049603725503"/>
+               </a>
+               <a xlink:title="scale">
+                    <circle fill="rgb(31,119,180)" fill-opacity="0.25" stroke="rgb(31,119,180)" stroke-width="1" cx="528.8786726791857" cy="462.14307405054444" r="58.18136299194096"/>
+               </a>
+               <a xlink:title="ordinal.rb: 7,777">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="516.7079673098382" cy="494.32703285362396" r="23.50647978304258"/>
+               </a>
+               <a xlink:title="linear.rb: 136">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="543.322948017299" cy="494.32703285362396" r="3.1085009244183035"/>
+               </a>
+               <a xlink:title="log.rb: 1,914">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="549.1518944141953" cy="480.75593114506154" r="11.661448895470608"/>
+               </a>
+               <a xlink:title="quantitative.rb: 15,470">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="531.4025624120974" cy="439.60593088390067" r="33.15329541947828"/>
+               </a>
+               <a xlink:title="flatten.rb: 3,958">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="514.2540163592147" cy="388.63288836422413" r="16.769474042174686"/>
+               </a>
+               <a xlink:title="nest.rb: 6,547">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="518.3617625712076" cy="350.51647350321184" r="21.567644534981564"/>
+               </a>
+               <a xlink:title="javascript_behaviour.rb: 1,999">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="512.2043783472856" cy="317.60224195014075" r="11.917576372311027"/>
+               </a>
+               <a xlink:title="scale.rb: 1,061">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="517.2563709307001" cy="297.6313645702354" r="8.68238897683676"/>
+               </a>
+               <a xlink:title="transform.rb: 362">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="516.412484067259" cy="283.90339586052994" r="5.071493018183353"/>
+               </a>
+               <a xlink:title="rspec">
+                    <circle fill="rgb(31,119,180)" fill-opacity="0.25" stroke="rgb(31,119,180)" stroke-width="1" cx="28.62006250099779" cy="360.5402631267657" r="25.780345755362088"/>
+               </a>
+               <a xlink:title="expectations">
+                    <circle fill="rgb(31,119,180)" fill-opacity="0.25" stroke="rgb(31,119,180)" stroke-width="1" cx="28.62006250099779" cy="360.5402631267657" r="25.513794000136127"/>
+               </a>
+               <a xlink:title="differ_spec.rb: 2,399">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="16.428415297122058" cy="360.5402631267657" r="13.055595041034401"/>
+               </a>
+               <a xlink:title="differ.rb: 2,092">
+                    <circle fill="rgb(255,127,14)" stroke="rgb(31,119,180)" stroke-width="1" cx="41.67565754203224" cy="360.5402631267657" r="12.191647203875766"/>
+               </a>
+          </g>
+          <g>
+               <text pointer-events="none" dy=".35em" transform="translate(38.95927766085293,398.0)" fill="rgb(0,0,0)" text-anchor="middle">ruby</text>
+               <text pointer-events="none" dy=".35em" transform="translate(351.1546778869947,422.0079023518663)" fill="rgb(0,0,0)" text-anchor="middle">dot.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(392.79837385280086,422.0079023518663)" fill="rgb(0,0,0)" text-anchor="middle">line.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(370.37180830793244,379.3010349491118)" fill="rgb(0,0,0)" text-anchor="middle">shorcut_me</text>
+               <text pointer-events="none" dy=".35em" transform="translate(328.2559665882449,392.32395602255093)" fill="rgb(0,0,0)" text-anchor="middle">label.</text>
+               <text pointer-events="none" dy=".35em" transform="translate(315.39585371535173,422.73480003264723)" fill="rgb(0,0,0)" text-anchor="middle">ancho</text>
+               <text pointer-events="none" dy=".35em" transform="translate(329.8349141239752,448.48340594805364)" fill="rgb(0,0,0)" text-anchor="middle">bar.r</text>
+               <text pointer-events="none" dy=".35em" transform="translate(357.74958493915074,456.7441309079312)" fill="rgb(0,0,0)" text-anchor="middle">image</text>
+               <text pointer-events="none" dy=".35em" transform="translate(390.16265116640307,460.8816987736483)" fill="rgb(0,0,0)" text-anchor="middle">wedge.</text>
+               <text pointer-events="none" dy=".35em" transform="translate(409.75202518173444,445.51566482937034)" fill="rgb(0,0,0)" text-anchor="middle">ru</text>
+               <text pointer-events="none" dy=".35em" transform="translate(428.1845376645904,432.17730438824555)" fill="rgb(0,0,0)" text-anchor="middle">panel</text>
+               <text pointer-events="none" dy=".35em" transform="translate(427.1880551798086,394.18812768924863)" fill="rgb(0,0,0)" text-anchor="middle">area.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(470.71773214578707,415.4542911970103)" fill="rgb(0,0,0)" text-anchor="middle">scenee</text>
+               <text pointer-events="none" dy=".35em" transform="translate(456.3843087116071,402.1686795631269)" fill="rgb(0,0,0)" text-anchor="middle">v</text>
+               <text pointer-events="none" dy=".35em" transform="translate(472.8980903608769,370.864599658226)" fill="rgb(0,0,0)" text-anchor="middle">dom.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(437.0477530270899,291.8100802891249)" fill="rgb(0,0,0)" text-anchor="middle">sv</text>
+               <text pointer-events="none" dy=".35em" transform="translate(452.7810395695063,291.8100802891249)" fill="rgb(0,0,0)" text-anchor="middle">svg</text>
+               <text pointer-events="none" dy=".35em" transform="translate(443.64240497167896,273.4022511277375)" fill="rgb(0,0,0)" text-anchor="middle">svg_</text>
+               <text pointer-events="none" dy=".35em" transform="translate(412.45043927658935,280.34653463182104)" fill="rgb(0,0,0)" text-anchor="middle">svg_sce</text>
+               <text pointer-events="none" dy=".35em" transform="translate(427.1197688181949,317.8031245070058)" fill="rgb(0,0,0)" text-anchor="middle">svg_lin</text>
+               <text pointer-events="none" dy=".35em" transform="translate(468.9499243263685,316.7842562395591)" fill="rgb(0,0,0)" text-anchor="middle">svg_area</text>
+               <text pointer-events="none" dy=".35em" transform="translate(475.26656253717374,277.7554394081542)" fill="rgb(0,0,0)" text-anchor="middle">svg_pa</text>
+               <text pointer-events="none" dy=".35em" transform="translate(456.8878081844382,236.8045593580799)" fill="rgb(0,0,0)" text-anchor="middle">svg_curve.</text>
+               <text pointer-events="none" dy=".35em" transform="translate(430.9573329633036,258.72085626312776)" fill="rgb(0,0,0)" text-anchor="middle">sv</text>
+               <text pointer-events="none" dy=".35em" transform="translate(414.5770186191918,248.62055897450483)" fill="rgb(0,0,0)" text-anchor="middle">svg_</text>
+               <text pointer-events="none" dy=".35em" transform="translate(392.262734902539,256.3512203014958)" fill="rgb(0,0,0)" text-anchor="middle">svg_</text>
+               <text pointer-events="none" dy=".35em" transform="translate(313.2495484248372,299.7969462611561)" fill="rgb(0,0,0)" text-anchor="middle">mark.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(152.4103922366233,414.494922329418)" fill="rgb(0,0,0)" text-anchor="middle">treemap.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(203.6479702136457,414.494922329418)" fill="rgb(0,0,0)" text-anchor="middle">matrix.r</text>
+               <text pointer-events="none" dy=".35em" transform="translate(183.966812788842,372.89844457483395)" fill="rgb(0,0,0)" text-anchor="middle">tree.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(146.3920826209259,372.1172597883705)" fill="rgb(0,0,0)" text-anchor="middle">inden</text>
+               <text pointer-events="none" dy=".35em" transform="translate(111.20506750065348,383.444923627865)" fill="rgb(0,0,0)" text-anchor="middle">cluster.</text>
+               <text pointer-events="none" dy=".35em" transform="translate(108.46364838670712,422.1124577584392)" fill="rgb(0,0,0)" text-anchor="middle">grid.</text>
+               <text pointer-events="none" dy=".35em" transform="translate(123.25965904275503,466.49300509858017)" fill="rgb(0,0,0)" text-anchor="middle">network.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(180.44355545309463,462.0218343530614)" fill="rgb(0,0,0)" text-anchor="middle">stack.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(232.03228123085924,453.6104792546205)" fill="rgb(0,0,0)" text-anchor="middle">pack.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(247.70474981700121,408.5085440398014)" fill="rgb(0,0,0)" text-anchor="middle">arc.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(230.86622241766065,365.83903150056517)" fill="rgb(0,0,0)" text-anchor="middle">partitio</text>
+               <text pointer-events="none" dy=".35em" transform="translate(200.89895281661165,328.9887261982287)" fill="rgb(0,0,0)" text-anchor="middle">hierarch</text>
+               <text pointer-events="none" dy=".35em" transform="translate(157.4442896255912,337.5215289831565)" fill="rgb(0,0,0)" text-anchor="middle">horizon</text>
+               <text pointer-events="none" dy=".35em" transform="translate(294.47932303178,467.2566750705567)" fill="rgb(0,0,0)" text-anchor="middle">vector</text>
+               <text pointer-events="none" dy=".35em" transform="translate(316.380997862451,497.9489564847987)" fill="rgb(0,0,0)" text-anchor="middle">internal</text>
+               <text pointer-events="none" dy=".35em" transform="translate(346.06017619619854,498.1662154031586)" fill="rgb(0,0,0)" text-anchor="middle">his</text>
+               <text pointer-events="none" dy=".35em" transform="translate(358.4137778409286,497.61558950899195)" fill="rgb(0,0,0)" text-anchor="middle">p</text>
+               <text pointer-events="none" dy=".35em" transform="translate(366.3803803608619,545.5899870636472)" fill="rgb(0,0,0)" text-anchor="middle">color.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(417.2492355108727,545.5899870636472)" fill="rgb(0,0,0)" text-anchor="middle">colors.</text>
+               <text pointer-events="none" dy=".35em" transform="translate(407.07346263482333,493.5214231956262)" fill="rgb(0,0,0)" text-anchor="middle">f</text>
+               <text pointer-events="none" dy=".35em" transform="translate(421.3900352128964,491.3089119109885)" fill="rgb(0,0,0)" text-anchor="middle">lay</text>
+               <text pointer-events="none" dy=".35em" transform="translate(445.17771756326044,481.93094486671083)" fill="rgb(0,0,0)" text-anchor="middle">numbe</text>
+               <text pointer-events="none" dy=".35em" transform="translate(466.76737514822673,481.93094486671083)" fill="rgb(0,0,0)" text-anchor="middle">da</text>
+               <text pointer-events="none" dy=".35em" transform="translate(516.7079673098382,494.32703285362396)" fill="rgb(0,0,0)" text-anchor="middle">ordinal.</text>
+               <text pointer-events="none" dy=".35em" transform="translate(543.322948017299,494.32703285362396)" fill="rgb(0,0,0)" text-anchor="middle">l</text>
+               <text pointer-events="none" dy=".35em" transform="translate(549.1518944141953,480.75593114506154)" fill="rgb(0,0,0)" text-anchor="middle">log.</text>
+               <text pointer-events="none" dy=".35em" transform="translate(531.4025624120974,439.60593088390067)" fill="rgb(0,0,0)" text-anchor="middle">quantitative</text>
+               <text pointer-events="none" dy=".35em" transform="translate(514.2540163592147,388.63288836422413)" fill="rgb(0,0,0)" text-anchor="middle">flatte</text>
+               <text pointer-events="none" dy=".35em" transform="translate(518.3617625712076,350.51647350321184)" fill="rgb(0,0,0)" text-anchor="middle">nest.rb</text>
+               <text pointer-events="none" dy=".35em" transform="translate(512.2043783472856,317.60224195014075)" fill="rgb(0,0,0)" text-anchor="middle">java</text>
+               <text pointer-events="none" dy=".35em" transform="translate(517.2563709307001,297.6313645702354)" fill="rgb(0,0,0)" text-anchor="middle">sca</text>
+               <text pointer-events="none" dy=".35em" transform="translate(516.412484067259,283.90339586052994)" fill="rgb(0,0,0)" text-anchor="middle">t</text>
+               <text pointer-events="none" dy=".35em" transform="translate(16.428415297122058,360.5402631267657)" fill="rgb(0,0,0)" text-anchor="middle">diff</text>
+               <text pointer-events="none" dy=".35em" transform="translate(41.67565754203224,360.5402631267657)" fill="rgb(0,0,0)" text-anchor="middle">diff</text>
+          </g>
+     </g>
+</svg>
