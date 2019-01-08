@@ -7,7 +7,7 @@
 
 ## DESCRIPTION:
 
-Ruby port of Protovis[http://vis.stanford.edu/protovis/], a Javascript visualization toolkit.
+Ruby port of [Protovis](http://vis.stanford.edu/protovis/), a Javascript visualization toolkit.
 
 ## FEATURES/PROBLEMS:
 
@@ -135,20 +135,20 @@ The library allows you to use chain methods API, like original protovis
     puts vis.to_svg
     
 
-See examples directory for original protovis examples adaptations and others graphics. You can see all of them online on the (documentation page)[http://clbustos.github.io/rubyvis/].
+See examples directory for original protovis examples adaptations and others graphics. You can see all of them online on the [documentation page](http://clbustos.github.io/rubyvis/).
 
 
 ## THE MOST FREQUENT QUESTION (MFQ)
 
 ¿Why use a server-side technology if I can use a client-side, which is faster and more economic for developer?
 
-If you want to present graphs: (a) complex and/or dynamically generated, (b) only on the web and (c) on modern browsers, Protovis[http://vis.stanford.edu/protovis/] is an excellent option. For simpler charts, Protovis is overkill. I recomend jqPlot[http://www.jqplot.com/]
+If you want to present graphs: (a) complex and/or dynamically generated, (b) only on the web and (c) on modern browsers, [Protovis](http://vis.stanford.edu/protovis/) is an excellent option. For simpler charts, Protovis is overkill. I recomend [jqPlot](http://www.jqplot.com/).
 
 Rubyvis is designed mainly for off-line operation, like batch creation of graphs for use on printed documents (rtf-pdf), with possibility of use easily the script for on-line use.
 
 ## REQUIREMENTS:
 
-Tested on Ruby 1.9.2, 1.9.3, 2.0.0, 2.1.1 and Jruby (mode 1.9)
+Tested on Ruby 2.1 to 2.6 and Jruby (mode 1.9)
 
 ## INSTALL:
 
