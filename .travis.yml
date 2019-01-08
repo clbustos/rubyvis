@@ -10,4 +10,5 @@ rvm:
 #  - rbx-2.1.1
 
 script:
+  gem install bundler
   bundle exec rspec 
