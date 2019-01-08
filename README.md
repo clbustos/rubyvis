@@ -135,7 +135,8 @@ The library allows you to use chain methods API, like original protovis
     puts vis.to_svg
     
 
-See examples directory for original protovis examples adaptations and others graphics
+See examples directory for original protovis examples adaptations and others graphics. You can see all of them online on the (documentation page)[http://clbustos.github.io/rubyvis/].
+
 
 ## THE MOST FREQUENT QUESTION (MFQ)
 
