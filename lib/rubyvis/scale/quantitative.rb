@@ -74,12 +74,12 @@ module Rubyvis
       }
       domain(*args)
     end
-    
+
     # Deprecated
     def new_date(x=nil) # :nodoc:
       x.nil? ? Time.new() : Time.at(x)
     end
-    # Return 
+    # Return
     #   lambda {|d| scale_object.scale(d)}
     # Useful as value on dynamic properties
     #   scale=Rubyvis.linear(0,1000)
@@ -102,7 +102,7 @@ module Rubyvis
       # puts "Segundo #{(@l[j + 1] - @l[j])}"
       @i[j].call((@f.call(x) - @l[j]) .quo(@l[j + 1] - @l[j]));
     end
-    alias :[] :scale      
+    alias :[] :scale
     def transform(forward, inverse)
       @f=lambda {|x| @n ? -forward.call(-x) : forward.call(x); }
       @g=lambda {|y| @n ? -inverse.call(-y) : inverse.call(y); }
@@ -152,41 +152,41 @@ module Rubyvis
       array,min,max=arguments
       o=nil
       if (arguments.size>0)
-        if array.is_a? Array 
+        if array.is_a? Array
           min = Rubyvis.identity if (arguments.size < 2)
           max = min if (arguments.size < 3)
           o = [array[0]].min if array.size>0
           @d = array.size>0 ? [Rubyvis.min(array, min), Rubyvis.max(array, max)] : []
-        else 
+        else
           o = array
           @d = arguments.map {|i| i.to_f}
         end
-        
-        if !@d.size 
+
+        if !@d.size
           @d = [-Infinity, Infinity];
-        elsif (@d.size == 1) 
+        elsif (@d.size == 1)
           @d = [@d.first, @d.first]
         end
-        
+
         @n = (@d.first.to_f<0 or @d.last.to_f<0)
         @l=@d.map{|v| @f.call(v)}
-        
+
         @type = (o.is_a? Time) ? :time : :number;
         return self
       end
       # TODO: Fix this.
-      @d.map{|v| 
+      @d.map{|v|
         case @type
         when :number
           v.to_f
         when :time
           Time.at(v)
-        else 
+        else
           v
         end
       }
     end
-    
+
     # Sets or gets the output range. This method can be invoked several ways:
     #
     # <p>1. <tt>range(min, ..., max)</tt>
@@ -211,7 +211,7 @@ module Rubyvis
     #   range(min,...,max)
     #   range()
     def range(*arguments)
-      if (arguments.size>0) 
+      if (arguments.size>0)
         @r = arguments.dup
         if (@r.size==0)
           @r = [-Infinity, Infinity];
@@ -225,16 +225,16 @@ module Rubyvis
       end
       @r
     end
-    
+
     def invert(y)
       j=Rubyvis.search(@r, y)
       j=-j-2 if j<0
       j = [0, [@i.size - 1, j].min].max
-      
+
       val=@g.call(@l[j] + (y - @r[j]).quo(@r[j + 1] - @r[j]) * (@l[j + 1] - @l[j]))
       @type==:time ? Time.at(val) : val
     end
-    
+
     def type(v=nil)
       return @type if v.nil?
       case @type
@@ -246,7 +246,7 @@ module Rubyvis
     end
     def ticks_floor(d,prec) # :nodoc:
       dfloor=d
-      case(prec) 
+      case(prec)
         when 31536e6, :month
           dfloor = Time.utc(d.year,1,d.day,d.hour,d.min,d.sec)
         when 2592e6, :month_day
@@ -264,9 +264,9 @@ module Rubyvis
       end
       return dfloor
     end
-    
+
     private :ticks_floor
-    
+
     def to_date(d) # :nodoc:
       Time.utc(*d)
     end
@@ -286,44 +286,44 @@ module Rubyvis
       max = reverse ? start : _end
       span = max - min
       # Special case: empty, invalid or infinite span.
-      if (!span or (span.is_a? Float and span.infinite?)) 
-        @tick_format= Rubyvis.Format.date("%x") if (@type == newDate) 
+      if (!span or (span.is_a? Float and span.infinite?))
+        @tick_format= Rubyvis.Format.date("%x") if (@type == newDate)
         return [type(min)];
       end
-      
+
       #/* Special case: dates. */
-      if (@type == :time) 
+      if (@type == :time)
       #/* Floor the date d given the precision p. */
       precision, format, increment, step = 1,1,1,1
-      if (span >= 3 * 31536e6 / 1000.0) 
+      if (span >= 3 * 31536e6 / 1000.0)
         precision = 31536e6
         format = "%Y"
         increment = lambda {|d|  Time.at(d.to_f+(step*365*24*60*60)) }
-      elsif (span >= 3 * 2592e6 / 1000.0) 
+      elsif (span >= 3 * 2592e6 / 1000.0)
         precision = 2592e6;
         format = "%m/%Y";
         increment = lambda {|d| Time.at(d.to_f+(step*30*24*60*60)) }
-      elsif (span >= 3 * 6048e5 / 1000.0) 
+      elsif (span >= 3 * 6048e5 / 1000.0)
         precision = 6048e5;
         format = "%m/%d";
         increment = lambda {|d| Time.at(d.to_f+(step*7*24*60*60)) }
-      elsif (span >= 3 * 864e5 / 1000.0) 
+      elsif (span >= 3 * 864e5 / 1000.0)
         precision = 864e5;
         format = "%m/%d";
         increment = lambda {|d| Time.at(d.to_f+(step*24*60*60)) }
-      elsif (span >= 3 * 36e5 / 1000.0) 
+      elsif (span >= 3 * 36e5 / 1000.0)
         precision = 36e5;
         format = "%I:%M %p";
         increment = lambda {|d| Time.at(d.to_f+(step*60*60)) }
-      elsif (span >= 3 * 6e4 / 1000.0 ) 
+      elsif (span >= 3 * 6e4 / 1000.0 )
         precision = 6e4;
         format = "%I:%M %p";
         increment = lambda {|d| Time.at(d.to_f+(step*60)) }
-      elsif (span >= 3 * 1e3 / 1000.0) 
+      elsif (span >= 3 * 1e3 / 1000.0)
         precision = 1e3;
         format = "%I:%M:%S";
         increment = lambda {|d|  Time.at(d.to_f+(step)) }
-      else 
+      else
         precision = 1;
         format = "%S.%Qs";
         increment = lambda {|d|  Time.at(d.to_f+(step/1000.0)) }
@@ -335,11 +335,11 @@ module Rubyvis
       # If we'd generate too many ticks, skip some!.
       n = span / (precision/1000.0)
       # FIX FROM HERE
-      if (n > 10) 
-        case (precision) 
+      if (n > 10)
+        case (precision)
         when 36e5
           step = (n > 20) ? 6 : 3;
-          date.setHours(Math.floor(date.getHours() / step) * step);
+          date.change(hour: (Math.floor(date.hour / step) * step))
         when 2592e6
           step = 3; # seasons
           ar=date.to_a
@@ -347,21 +347,21 @@ module Rubyvis
           date=to_date(ar)
         when 6e4
           step = (n > 30) ? 15 : ((n > 15) ? 10 : 5);
-          date.setMinutes(Math.floor(date.getMinutes() / step) * step);
+          date.change(min: (Math.floor(date.min / step) * step))
         when 1e3
           step = (n > 90) ? 15 : ((n > 60) ? 10 : 5);
-          date.setSeconds(Math.floor(date.getSeconds() / step) * step);
+          date.change(sec: (Math.floor(date.sec / step) * step))
         when 1
           step = (n > 1000) ? 250 : ((n > 200) ? 100 : ((n > 100) ? 50 : ((n > 50) ? 25 : 5)));
           date.setMilliseconds(Math.floor(date.getMilliseconds() / step) * step);
         else
           step = Rubyvis.log_ceil(n / 15, 10);
-          if (n / step < 2) 
+          if (n / step < 2)
             step =step.quo(5)
           elsif (n / step < 5)
             step = step.quo(2)
           end
-          date.setFullYear((date.getFullYear().quo(step)).floor * step);
+          date.change(year: ((date.year.quo(step)).floor * step))
         end
       end
       # END FIX
@@ -372,10 +372,10 @@ module Rubyvis
         end
         return reverse ? dates.reverse() : dates;
       end
-      
-      # Normal case: numbers. 
+
+      # Normal case: numbers.
       m||= 10
-      
+
       step = Rubyvis.log_floor(span.quo(m), 10)
       err = m.quo(span.quo(step))
       if (err <= 0.15)
@@ -387,14 +387,14 @@ module Rubyvis
       end
       start = (min.quo(step)).ceil * step
       _end = (max.quo(step)).floor * step
-      
+
       @tick_format= Rubyvis.Format.number.fraction_digits([0, -(Rubyvis.log(step, 10) + 0.01).floor].max).to_proc
-      
+
       ticks = Rubyvis.range(start, _end + step, step)
-      
+
       return reverse ? ticks.reverse() : ticks;
     end
-    
+
     # Returns a Proc that formats the specified tick value using the appropriate precision, based on
     # the step interval between tick marks. If ticks() has not been called,
     # the argument is converted to a string, but no formatting is applied.
@@ -403,7 +403,7 @@ module Rubyvis
     def tick_format
       @tick_format
     end
-    
+
     # "Nices" this scale, extending the bounds of the input domain to
     # evenly-rounded values. Nicing is useful if the domain is computed
     # dynamically from data, and may be irregular. For example, given a domain of
@@ -419,9 +419,9 @@ module Rubyvis
       min=reverse ? _end : start
       max = reverse ? start : _end
       span=max-min
-      
+
       return self if(!span or span.infinite?)
-      
+
       step=10**((Math::log(span).quo(Math::log(10))).round-1)
       @d=[(min.quo(step)).floor*step, (max.quo(step)).ceil*step]
       @d.reverse if  reverse
@@ -434,7 +434,7 @@ module Rubyvis
         that.scale(f.js_apply(self,args))
       }
     end
-    
-    
+
+
   end
 end
