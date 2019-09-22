@@ -9,7 +9,6 @@ GEM
     mini_portile2 (2.4.0)
     nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
-    nokogiri (1.10.4-java)
     rake (12.3.3)
     rspec (3.8.0)
       rspec-core (~> 3.8.0)
@@ -28,16 +27,15 @@ GEM
     tilt (2.0.9)
 
 PLATFORMS
-  java
   ruby
 
 DEPENDENCIES
   coderay
   haml
-  nokogiri
+  nokogiri (>= 1.10.4)
   rake
   rspec
   rspec-mocks
 
 BUNDLED WITH
-   1.17.3
+   2.0.2
