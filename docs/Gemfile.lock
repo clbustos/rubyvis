@@ -8,7 +8,7 @@ GEM
       temple (>= 0.8.0)
       tilt
     mini_portile2 (2.4.0)
-    nokogiri (1.10.0)
+    nokogiri (1.10.10)
       mini_portile2 (~> 2.4.0)
     rake (12.3.2)
     rspec (3.8.0)
