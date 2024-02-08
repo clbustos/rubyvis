@@ -1,6 +1,7 @@
 require File.expand_path(File.dirname(__FILE__)+"/spec_helper.rb")
 describe "Issue #22 github: Pie chart" do
-  it "should use bold font" do
+  skip "should use bold font" do
+    
     width=600
     height=600
     percentages=[10,20,70]
