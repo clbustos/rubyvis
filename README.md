@@ -140,7 +140,7 @@ See examples directory for original protovis examples adaptations and others gra
 
 ## THE MOST FREQUENT QUESTION (MFQ)
 
-¿Why use a server-side technology if I can use a client-side, which is faster and more economic for developer?
+Why use a server-side technology if I can use a client-side, which is faster and more economic for developer?
 
 If you want to present graphs: (a) complex and/or dynamically generated, (b) only on the web and (c) on modern browsers, [Protovis](http://vis.stanford.edu/protovis/) is an excellent option. For simpler charts, Protovis is overkill. I recomend [jqPlot](http://www.jqplot.com/).
 
